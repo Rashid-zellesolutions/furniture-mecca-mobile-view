@@ -393,3 +393,8 @@
     }
 }
 
+@media only screen and (max-width: 480px){
+    .best-seller-slider-container{
+        display: none;
+    }
+}

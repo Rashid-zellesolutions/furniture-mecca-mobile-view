@@ -47,6 +47,35 @@
 
 /* Mobile Navbar CSS */
 
+.mobile-navbar{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    overflow-y: hidden;
+    overflow-x: auto;
+    gap: 10px;
+}
+
+.mobile-nav-link{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    /* height: 22px; */
+    display: flex;
+    white-space: nowrap; /* Prevent text wrapping */
+    width: max-content;
+    padding: 2px 10px;
+    background-color: var(--border-color);
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.mobile-nav-link a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
 /* Custom scrollbar styling for Webkit browsers */
 .mobile-navbar::-webkit-scrollbar {
     display: none;
@@ -83,7 +112,14 @@
 
 
 @media only screen and (max-width: 480px){
+    .navbar{
+        padding: 10px;
+        border-top: none;
+    }
     .mobile-navbar{
+        display: flex;
+    }
+    .navar-links-container{
         display: none;
     }
 }

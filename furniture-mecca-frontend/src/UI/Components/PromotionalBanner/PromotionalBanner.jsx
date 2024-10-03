@@ -21,7 +21,7 @@ const PromotionalBanner = ({handleLanguageModal, currentSelectedCountryFlag, usa
         <div className='rotating-message'>
           {currentIndex === 1 ? <span>Need help ordering? <Link className='toll-free-ancor' href='#'> Call 860-812-1111 </Link> </span> 
           : currentIndex === 2 ? <span>Learn about my <Link className='toll-free-ancor' href='#'>Financing Options</Link> </span> 
-          : <span>Shop Furniture Mecca's everyday low prices!</span>}
+          : <span>Shop everyday low prices!</span>}
         </div>
         <div className='header-links-and-select-language'>
           <div className='banner-link-container'>
@@ -39,8 +39,10 @@ const PromotionalBanner = ({handleLanguageModal, currentSelectedCountryFlag, usa
         </div>
         <div className='on-tab-deliver-to'>
             <img src={deliverTo} alt="delivery" />
-            <span> Deliver to : <Link> PA 19134</Link> </span>
-            <img src={locationIcon} alt="location" className='promotion-banner-location' />
+            <div className='mobile-view-delever-to'> 
+              <p>Deliver to : </p>
+              <Link> PA 19134</Link> 
+            </div>
         </div>
       </div>
   )

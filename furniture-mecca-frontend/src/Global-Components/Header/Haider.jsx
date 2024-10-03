@@ -21,6 +21,7 @@ import PromotionalBanner from '../../UI/Components/PromotionalBanner/Promotional
 import CartSidePannel from '../../UI/Components/Cart-side-section/CartSidePannel';
 import { useCart } from '../../context/cartContext/cartContext';
 import { useProducts } from '../../context/productsContext/productContext';
+import mobileUserIcon from '../../Assets/icons/user-charcol.png';
 
 const Haider = () => {
   const [isTabMenuOpen, setIsTabMenuOpen] = useState(false);
@@ -124,8 +125,8 @@ const Haider = () => {
         usaFlag={usaFlag} 
         currentSelectedCountry={currentSelectedCountry} 
       />
-
-      <div className='header'>
+      {/* Desktop view header */}
+      <div className='header'> 
         <div className='logo-container'>
           <Link to={'/'}>
             <img src={logo} alt="logo" />
@@ -191,26 +192,22 @@ const Haider = () => {
 
       {/* Mobile View Header */}
       <div className='mobile-view-header'>
-        <div className='mobile-view-logo-and-icon'>
-          <div className='toggle-and-profile-div'>
-              <img src={navToggler} alt="togle button" onClick={handleTabMenu} />
-              <img src={profileIcon} alt="profile" className='mobile-view-profile-icon' />
-          </div>
-          <div className='mobile-view-logo-div'>
-              <Link to={'/'}><img src={logo} alt='logo' /></Link>
-          </div>
-          <div className='mobile-view-card-and-location'>
-              <img src={profileIcon} alt="profile" className='mobile-view-card-location-profile' />
-              <img src={locationIcon} alt="location" className='movile-view-location' />
-              <img src={cartIcon} alt="cart" />
-          </div>
+        <div className='mobile-view-logo-and-other-containt-section'>
+          <img className='nav-toggler' src={navToggler} alt="togle button" onClick={handleTabMenu} />
+          <img className='mobile-logo' src={logo} alt='mobile-logo' />
+          <div className='mobile-view-cart-and-location'>
+            <img src={locationIcon} alt='location' />
+            <img src={cartIcon} alt='cart-icon' />
+          </div> 
         </div>
-        <div className='movile-view-search-bar-div'>
-          <div className='movile-view-search-bar'>
-            <input type='search' placeholder="Search all things Bob's" />
-            <img src={searchRed} alt="search" />
+        <div className='mobile-view-search-section'>
+          <div className='mobile-view-search'>
+            <img src={searchIcon} alt='search-icon' />
+            <input type='text' placeholder='Search All Things Mecca' />
           </div>
+          <img className='mobile-user-icon' src={mobileUserIcon} alt='user-icon' />
         </div>
+          
       </div>
             {isTabMenuOpen ? <TabMenu isNavbarVisible={isTabMenuOpen} setIsNavbarVisible={setIsTabMenuOpen} navLinks={navLinks} /> : <Nav navLinks={navLinks} />}
             

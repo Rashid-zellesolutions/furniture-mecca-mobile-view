@@ -237,6 +237,7 @@ const Nav = ({navLinks}) => {
                 )}
             </h3>
         })}
+        </nav>
         <div className='mobile-navbar'>
             {navLinks.map((item, index) => {
                 return  <h3 key={index} className='mobile-nav-link'>
@@ -244,7 +245,7 @@ const Nav = ({navLinks}) => {
                 </h3>
             })}
         </div>
-        </nav>
+        
     </div>
   )
 }

@@ -68,3 +68,59 @@
     width: auto;
     object-fit: cover;
 }
+
+.on-tab-deliver-to{
+    display: none;
+    display: flex;
+    gap: 5px;
+    width: auto;
+    align-items: center;
+    justify-self: start;
+}
+
+.on-tab-deliver-to img{
+    width: auto;
+    height: 18px;
+    object-fit: contain;
+}
+
+.mobile-view-delever-to{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.mobile-view-delever-to p{
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+}
+
+.mobile-view-delever-to a{
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+@media only screen and (max-width: 480px){
+    .banner-link-container{
+        display: none;
+    }
+    .header-main-banner-language-div{
+        display: none;
+    }
+    .furniture-mecca-promotional-banner{
+        padding: 8px 10px;
+    }
+
+    .rotating-message{
+        font-size: 10px;
+        line-height: 12px;
+        font-weight: 400;
+    }
+    .on-tab-deliver-to{
+        display: flex;
+    }
+}
