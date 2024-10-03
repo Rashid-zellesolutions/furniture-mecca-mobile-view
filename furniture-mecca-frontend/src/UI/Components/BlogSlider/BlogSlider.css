@@ -1,0 +1,82 @@
+.blogs-main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: var(--global-padding);
+    text-align: center;
+    gap: 5px;
+}
+
+.blogs-main-container h3{
+    font-size: 25px;
+    font-weight: 600;
+    line-height: var(--heading-line-height);
+    color: #595959;
+}
+
+.blogs-main-container h3 span{
+    color: var(--active-nav-item-color);
+}
+
+.blogs-main-para{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+
+.blogs-slider-main-container{
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* Optional: Override default slick width for slides */
+/* .slick-list {
+    overflow: hidden !important; 
+}
+
+.slick-track {
+    display: flex !important; 
+} */
+
+.blog-cards-container{
+    display: flex;
+    width: 25%;
+    padding: 0;
+    height: auto;
+    margin-top: 20px;
+}
+
+.slick-slider{
+    margin-bottom: 25px;
+    display: flex !important;
+    width: 100%;
+}
+
+.slick-dots li button:before {
+    font-family: 'slick';
+    font-size: 15px;
+    line-height: 30px;
+}
+
+
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev{
+    display: none !important;
+}
+
+.slick-dots {
+    position: absolute;
+    bottom: -25px;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+} 

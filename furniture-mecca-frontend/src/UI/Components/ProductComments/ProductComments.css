@@ -1,0 +1,8 @@
+.customer-comments-main-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f7f7f7;
+    padding: var(--inner-padding);
+    gap: 16px;
+}

@@ -1,0 +1,94 @@
+.deal-of-the-day-main-container{
+    display: flex;
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: var(--global-padding);
+    overflow: hidden;
+}
+
+.deal-of-the-day-border-heading{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 90px;
+    background-color: #fff;
+    z-index: 9999;
+    padding: 5px 10px;
+    gap: 20px;
+    border: none;
+    overflow: hidden;
+    outline: none;
+}
+
+.deal-of-the-day-end-time{
+    display: flex;
+    background-color: #C61B1A;
+    height: 43px;
+    width: 235px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    margin-top: -3px;
+}
+
+.deal-of-the-day-end-time p{
+    color: var(--text-white) !important; 
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    line-height: 22px !important;
+}
+
+.deal-of-the-day-border-heading p{
+    font-size: 25px;
+    font-weight: 600;
+    line-height: var(--heading-line-height);
+    color: #595959;
+    margin-top: 5px;
+}
+
+.deal-of-the-day-outer-container{
+    width: 100%;
+    border: 2px solid #C61B1A;
+    border-radius: 8px;
+    padding: 42px 15px 32px 38px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-main-container{
+    height: auto;
+    width: 99%;
+}
+
+.slick-arrow.slick-next,
+.slick-arrow.slick-prev{
+position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    border: none;
+    cursor: pointer;
+    z-index: 9999;
+    background-color: #C61B1A;
+    width: 32px;
+    height: 32px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.slick-arrow.slick-next img,
+.slick-arrow.slick-prev img{
+    width: auto;
+    height: 15px;
+    object-fit: contain;
+}
+
+.slick-arrow.slick-prev{left: -15px;}
+.slick-arrow.slick-next{right: 5px;}
+
+.slick-prev::before,.slick-next::before{
+   display:none;    
+}
