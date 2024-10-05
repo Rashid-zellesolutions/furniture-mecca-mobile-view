@@ -35,22 +35,27 @@
     align-items: center;
     justify-content: space-between;
     gap: 30px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    flex-wrap: nowrap;
 
 }
 
 .budget-furniturre-card{
     display: flex;
     flex-direction: column;
-    width: 33%;
+    width: 100%;
     background-color: #f5fff8;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    flex-wrap: nowrap;
 }
 
 .budget-furniture-card-img{
     width: 100%;
     height: 390px;
+    /* height: auto; */
     object-fit: cover;
     overflow: hidden;
 }
@@ -114,4 +119,12 @@
     left: 25%;
 }
 
-
+@media only screen and (max-width: 480px){
+    .furniture-for-budget-main-secton{
+        padding: 15px 10px;
+    }
+    .furniture-for-budget-card{
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -37,7 +37,13 @@ import DealOfTheDay from '../../Components/DealOfTheDay/DealOfTheDay';
 import TrendingNow from '../../Components/TrendingNow/TrendingNow';
 import FurnitureForBudget from '../../Components/FurnitureForBudget/FurnitureForBudget';
 import { useLocation } from 'react-router-dom';
-import SliderTwo from '../../../Global-Components/Slider/SliderTwo';
+import AnnouncmentBanners from '../../Components/AnnouncmentBanner/AnnouncmentBanner';
+
+import twelveMonthCreditOfferImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 121.png';
+import payPalMobileBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/PAYPAL-BANNER 1.png';
+import sixMonthCreditImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 122.png';
+import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/Frame 4278.png'   
+import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFinancingSlider';
 
 
 const Home = () => {
@@ -102,8 +108,13 @@ const Home = () => {
       <Sliderr />
       <ShipBanner bannerImg={shipBanner} paddindTrue={false} />
       <Category title={'Shop by Category'} categoryData={categoryCardData} />
-      <TrendingNow />
+      <MobileFinancingSlider />
+      <AnnouncmentBanners bannerImage={twelveMonthCreditOfferImage} padding={'10px'}/>
+      <AnnouncmentBanners bannerImage={payPalMobileBanner} padding={'10px 0'}/>
+      <AnnouncmentBanners bannerImage={sixMonthCreditImage} padding={'10px 0'}/>
+      <AnnouncmentBanners bannerImage={paymentOptionsBanner} padding={'10px 0'}/>
       <FinanceBannerSlider />
+      <TrendingNow />
       <BestSellerSlider />
       <Comparision />
       <ProductSlider cardData={productCardData} />

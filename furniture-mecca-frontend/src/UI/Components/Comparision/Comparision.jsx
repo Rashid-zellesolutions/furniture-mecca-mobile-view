@@ -1,7 +1,7 @@
 import React from 'react'
 import './Comparision.css'
 import ComparisionImage from '../../../Assets/Furniture Mecca/Comparision/comparision-img.jpg';
-import myPlansImage from '../../../Assets/Furniture Mecca/Comparision/my-plans.png';
+import mobCompair from '../../../Assets/Furniture Mecca/Comparision/download 120.png';
 import compatetantImage from '../../../Assets/Furniture Mecca/Comparision/compatetant.png';
 
 const Comparision = () => {
@@ -12,8 +12,7 @@ const Comparision = () => {
             <img src={ComparisionImage} alt='img' />
         </div>
         <div className='mobile-view-comparission'>
-          <img src={myPlansImage} alt='img' />
-          <img src={compatetantImage} alt='img' />
+          <img src={mobCompair} alt='img' />
         </div>
     </div>
   )

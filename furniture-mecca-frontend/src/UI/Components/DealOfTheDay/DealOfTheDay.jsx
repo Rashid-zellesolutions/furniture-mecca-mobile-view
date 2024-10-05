@@ -191,6 +191,7 @@ const SamplePrevArrow = (props) => {
 
 const DealOfTheDay = () => {
   const navigate = useNavigate();
+  
   const imgIcons = [
     {defIcon: cartIcon, hoveredIcon: cartWhite},
     {defIcon: heartIcon, hoveredIcon: heartWhite},

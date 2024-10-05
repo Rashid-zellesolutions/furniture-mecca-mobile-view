@@ -80,3 +80,31 @@
     list-style: none;
     text-align: center;
 } 
+
+@media only screen and (max-width: 480px){
+    .blogs-main-container{
+        padding: 15px 10px;
+        gap: 0px;
+    }
+    .blogs-main-container h3{
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 600;
+        text-align: center;
+        padding: 0px 20px;
+    }
+    .blogs-main-para{
+        display: none;
+    }
+
+    .blog-cards-container{
+        margin-top: 15px;
+    }
+
+    .blog-para-and-see-more p{
+        display: none;
+    }
+    
+}
+
+

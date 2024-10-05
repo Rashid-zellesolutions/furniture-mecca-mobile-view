@@ -71,7 +71,7 @@
 
 .on-tab-deliver-to{
     display: none;
-    display: flex;
+    /* display: flex; */
     gap: 5px;
     width: auto;
     align-items: center;

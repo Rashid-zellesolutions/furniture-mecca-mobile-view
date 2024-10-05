@@ -3,13 +3,16 @@ import './FinanceBannerSlider.css';
 import paypalBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/New-Financing-WF-1.jpg';
 import moveForword from '../../../Assets/Furniture Mecca/Landing Page/sale banner/New-Financing-AAF-1.jpg';
 
+
 function FinanceBannerSlider() {
     const images = [
         paypalBanner,
         moveForword,
       ];
 
+
     const [currentIndex, setCurrentIndex] = useState(0);
+    
     
     useEffect(() => {
         const intervel = setInterval(() => {
@@ -17,7 +20,8 @@ function FinanceBannerSlider() {
         }, 5000);
         return () => clearInterval(intervel)
     }, [images.length]);
-  
+
+    
   return (
     <div className="carousel-container">
         <div className="carousel-wrapper" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>

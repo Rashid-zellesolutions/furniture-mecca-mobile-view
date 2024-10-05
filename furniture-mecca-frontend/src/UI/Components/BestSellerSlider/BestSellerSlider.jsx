@@ -10,10 +10,46 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import BestSellerProductCard from '../BestSellerProductCard/BestSellerProductCard';
 import { useProducts } from '../../../context/productsContext/productContext';
+import mobileHeadImage from '../../../Assets/Furniture Mecca/Landing Page/best seller products/mobile-view-main-image.png'
 
+import leftArrow from '../../../Assets/icons/arrow-left-white.png';
+import rightArrow from '../../../Assets/icons/right-arrow-white.png';
+
+const BestSellerPrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return(
+      <div onClick={onClick} className={`best-seller-arrow ${className}`} >
+        <img src={leftArrow} alt='arrow' />
+      </div>
+    )
+    }
+  
+    function BestSellerNextArrow(props) {
+      const { className, style, onClick } = props;
+      return(
+        <div onClick={onClick} className={`best-seller-arrow ${className}`} >
+          <img src={rightArrow} alt='arrow'/>
+        </div>
+      )
+    }
 
 
 const BestSellerSlider = () => {
+
+
+    const settings = {
+        // className: "slider variable-width",
+        className: 'center',
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        variableWidth: true,
+        // arrows: false,
+        nextArrow: <BestSellerNextArrow to="next"/>,
+        prevArrow: <BestSellerPrevArrow to="prev" />,
+      };
 
     const [width, setWidth] = useState(window.innerWidth);
     useEffect(() => {
@@ -59,7 +95,11 @@ const BestSellerSlider = () => {
     };
 
 
-
+    // mobile scripts
+    const [mobIndex, setMobIndex] = useState(0)
+    const handleMobileNavClick = (index) => {
+        setMobIndex(index);
+    }
     
 
 
@@ -74,14 +114,14 @@ const BestSellerSlider = () => {
                     <h3>Best Seller</h3>
                     <div className='best-seller-menu-bar'>
                     {bestSellerNav.map((item, index) => (
-                    <p
-                        key={index}
-                        className={activeItem === index ? 'active' : ''}
-                        onClick={() => handleActiveItem(index)}
-                    >
-                        {item}
-                    </p>
-                ))}
+                        <p
+                            key={index}
+                            className={activeItem === index ? 'active' : ''}
+                            onClick={() => handleActiveItem(index)}
+                        >
+                            {item}
+                        </p>
+                    ))}
                     </div>
                 </div>
                 <div className='best-seller-slider-main-banner-mobile-view'>
@@ -106,6 +146,35 @@ const BestSellerSlider = () => {
                 </div>
             </div>
         </div>
+        
+        <div className='mobile-best-seller'>
+            <div className='mobile-best-seller-heading'>
+                <h3>Best Seller</h3>
+            </div>
+            <div className='mobile-best-seller-menu'>
+                <img src={mobileHeadImage} alt='mobile-head-image' />
+                <div className='mobile-best-seller-menu-items'>
+                    {bestSellerNav.map((items, index) => (
+                        <p
+                            className={mobIndex === index ? "mobile-nav-active" : ""}
+                            onClick={() => handleMobileNavClick(index)}
+                        >
+                            {items}
+                        </p>
+                    ))}
+                </div>
+            </div>
+                <div className='mobile-slider-cards'>
+                    <Slider {...settings}>
+                        {products.map((items, index) => (
+                            <div style={{width: '100%', backgroundColor: 'blue', height: '250px'}}>
+                                This is card {index}
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
+        </div>
+
         <div className='pagination-dots'>
             {Array.from({ length: totalPages }, (_, index) => (
                 <span 
@@ -115,6 +184,7 @@ const BestSellerSlider = () => {
                 ></span>
             ))}
         </div>
+        
     </div>
   );
 };

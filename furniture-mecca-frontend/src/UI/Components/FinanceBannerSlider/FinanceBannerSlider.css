@@ -23,24 +23,9 @@
     object-fit: cover;
 }
 
-.carousel-control{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.carousel-control img{
-    width: 30px;
-    height: 30px;
-}
-
-.carousel-control.prev{
-    left: 10px;
-}
-
-.carousel-control.next{
-    right: 10px;
+@media only screen and (max-width: 480px){
+    .carousel-container{
+        display: none;
+    }
+    
 }
