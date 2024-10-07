@@ -115,3 +115,20 @@
         width: 30%;
     }
 }
+
+@media only screen and (max-width: 480px){
+    .trending-now-main-container{
+        gap: 15px;
+        padding: 20px 10px 15px 10px;
+    }
+    .trending-now-main-container h3{
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 600;
+        margin-bottom: 0px;
+    }
+
+    .tranding-slider-and-categories{
+        gap: 10px;
+    }
+}

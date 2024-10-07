@@ -44,6 +44,7 @@ import payPalMobileBanner from '../../../Assets/Furniture Mecca/Landing Page/sal
 import sixMonthCreditImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 122.png';
 import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/Frame 4278.png'   
 import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFinancingSlider';
+import ImageSlider from '../../Components/404NotFound/ImageSlider';
 
 
 const Home = () => {
@@ -106,7 +107,7 @@ const Home = () => {
     <div className='home-page-main-container'>
       <NearStorePopUp />
       <Sliderr />
-      <ShipBanner bannerImg={shipBanner} paddindTrue={false} />
+      <ShipBanner bannerImg={shipBanner} showBanner={true} paddindTrue={false} />
       <Category title={'Shop by Category'} categoryData={categoryCardData} />
       <MobileFinancingSlider />
       <AnnouncmentBanners bannerImage={twelveMonthCreditOfferImage} padding={'10px'}/>
@@ -116,6 +117,7 @@ const Home = () => {
       <FinanceBannerSlider />
       <TrendingNow />
       <BestSellerSlider />
+      {/* <ImageSlider /> */}
       <Comparision />
       <ProductSlider cardData={productCardData} />
       <DealOfTheDay />

@@ -178,4 +178,16 @@
         font-weight: 500;
         color: #000;
     }
+
+    .blog-date-tag p{
+        font-size: 10px;
+        line-height: 15px;
+        font-weight: 500;
+    }
+    .blog-date-tag p:nth-child(1) {
+        border-bottom: 1px solid #d7d7d7;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 500;
+    }
 }

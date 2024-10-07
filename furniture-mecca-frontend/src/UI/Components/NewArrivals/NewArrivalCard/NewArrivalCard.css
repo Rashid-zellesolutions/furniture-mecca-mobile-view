@@ -91,3 +91,57 @@
 .card-buttons a img{
     width: 20px;
 }
+
+.mobile-view-new-ariival-price{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.mobile-view-new-ariival-price del{
+    font-size: 10px;
+    line-height: 15px;
+    font-weight: 600;
+}
+
+.mobile-view-new-arrival-product-price{
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 480px){
+    .pieces-text{
+        bottom: 15%;
+        font-size: 25px;
+        line-height: 30px;
+        font-weight: 700;
+    }
+    .card-buttons{
+        display: none;
+    }
+    .title-and-price{
+        position: relative;    
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 15px;
+        background-color: var(--button-color);
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        color: #fff;
+    }
+    .new-arrival-product-price{
+        display: none;
+    }
+    .new-arrival-product-name{
+        font-size: 10px;
+        line-height: 15px;
+        font-weight: 600;
+    }
+    .mobile-view-new-ariival-price{
+        display: flex;
+    }
+}

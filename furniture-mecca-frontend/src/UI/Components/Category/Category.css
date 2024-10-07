@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     padding: var(--global-padding);
-    /* background-color: orange; */
 }
 
 .category-heading{
@@ -95,7 +94,7 @@
     }
 }
 
-@media only screen and (min-width: 320px) and (max-width: 480px){
+@media only screen and (max-width: 480px){
     .category-main-container{
         padding: 20px 10px 10px 10px;
     }
@@ -103,9 +102,9 @@
     .category-heading{
         color: var(--text-color);
         font-size: 20px;
-        line-height: 30px;
-        font-weight: 700;
-        margin-bottom: 10px;
+        line-height: 24px;
+        font-weight: 600;
+        margin-bottom: 5px;
     }
 
     .category-cards-container{

@@ -43,16 +43,16 @@
 @media only screen and (max-width: 480px){
     .comparision-main-div{
         text-align: start;
-        padding: 10px;
-        gap: 5px;
+        padding: 15px 10px;
+        gap: 15px;
     }
 
     .comparision-main-div h3{
         font-size: 20px;
-        line-height: 30px;
-        font-weight: 700;
+        line-height: 24px;
+        font-weight: 600;
         color: var(--text-color);
-        margin-left: 20px;
+        /* margin-left: 20px; */
     }
 
     .comparision-img-div{

@@ -21,6 +21,9 @@ import smallSpaceMainImage from './Assets/pages-main-images/Small-Space-Desk-1-1
 import outletMainImage from './Assets/pages-main-images/Outlet-Desk-1-1024x341.jpg';
 import tentSaleMainImage from './Assets/pages-main-images/Main-Banner-Desktop-1-1536x409.jpg'
 
+// Mobile view pages main images
+import categoryMobileBanner from './Assets/mobile-view-pages-main-images/Dining-Room-Mob-1 1.png'
+
 import newArrivalImage from './Assets/category/new-arrival.png';
 import livingRoomImage from './Assets/category/living-room.png';
 import diningImage from './Assets/category/dining.png';
@@ -112,7 +115,7 @@ function App() {
           />
           <Route 
             path='/dining-room' 
-            element={<Categories categoriesMainImage={diningRoomMainImage} categoryCartTitle={'Dining Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
+            element={<Categories categoriesMainImage={diningRoomMainImage} mobileViewMainImage={categoryMobileBanner} categoryCartTitle={'Dining Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
           />
           <Route 
             path='/mattresses' 

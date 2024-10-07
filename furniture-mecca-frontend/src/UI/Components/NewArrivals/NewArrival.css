@@ -96,7 +96,7 @@ position: absolute;
     border: none;
     cursor: pointer;
     z-index: 9999;
-    background-color: var(--active-nav-item-color);
+    background-color: #fff;
     width: 32px;
     height: 32px;
     display: flex !important;
@@ -124,5 +124,27 @@ position: absolute;
     left: 50px;
 }
 
+@media only screen and (max-width: 480px){
+    .new-arrival-main{
+        padding: 15px 10px;
+        gap: 15px;
+    }
+
+    .slick-arrow.slick-prev.category-arrow-left{left: 10px !important;}
+    .slick-arrow.slick-next.category-arrow-right{right: 15px !important;}
+
+    .new-arrival-heading-div a{
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 600;
+    }
+    .new-arrival-heading-div a:nth-child(2){
+        color: var(--text-color);
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 15px;
+        text-decoration: none;
+    }
+}
 
 

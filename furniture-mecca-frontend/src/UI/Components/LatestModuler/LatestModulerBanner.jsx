@@ -10,7 +10,7 @@ import installmentBanner from '../../../Assets/Furniture Mecca/Landing Page/Pay 
 // import fullBed from '../../../Assets/to-be-change/hp-fourth_hero_mat_desktop_1b_3200x1388.png';
 import mobileViewFullBed from '../../../Assets/images/Rectangle 703.png'
 
-const LatestModulerBanner = ({images, customWidth, mainImage, mainImgShow, showBanners, paddingTop }) => {
+const LatestModulerBanner = ({images, mobileMainImage, customWidth, mainImage, mainImgShow, showBanners, paddingTop }) => {
   
   return (
     <>
@@ -32,7 +32,8 @@ const LatestModulerBanner = ({images, customWidth, mainImage, mainImgShow, showB
       </div>
       <div className={`full-width-container ${customWidth ? 'hide' : ''}`}>
         <div className={`dining-image-div ${mainImgShow ? 'show-main-img' : ''}`}>
-          <img src={mainImage} alt='dining image' />
+          <img src={mainImage} alt='dining image' className='desktop-main-banner' />
+          <img src={mobileMainImage} alt='mobile-main-image' className='mobile-main-banner' />
         </div>
         <div className={`dining-paypal-div ${showBanners ? 'show-banners' : ''} ${paddingTop ? 'padding-top' : ''}`}>
             <img src={PaypalBannerOne} alt='paypal one' />

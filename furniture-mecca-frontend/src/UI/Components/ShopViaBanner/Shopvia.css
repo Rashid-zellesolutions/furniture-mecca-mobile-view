@@ -20,7 +20,7 @@
 .shop-via-banner span{
     font-size: 15px;
     font-weight: 400;
-    line-height: 17px;
+    line-height: 18px;
     width: 100%;
     display: flex;
     gap: 10px;
@@ -37,4 +37,16 @@
 .shop-via-banner img{
     width: 15px; 
     height: 15px;
+}
+
+@media only screen and (max-width: 480px){
+    .shop-via-banner span{
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14px;
+    }
+    
+    .shop-via-banner span a{
+        font-weight: 600;
+    }
 }

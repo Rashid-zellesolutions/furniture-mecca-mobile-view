@@ -239,7 +239,33 @@
     display: none;
     flex-direction: column;
     width: 100%;
-    gap: 15px;
+    /* gap: 15px; */
+    position: relative;
+    /* padding: 0 20px; */
+    height: auto;
+}
+
+/* .mobile-best-seller .slick-slider{
+    display: flex !important;
+} */
+
+/* .mobile-best-seller .slick-slider .center .slick-initialized{
+    background-color: green;
+    display: flex !important;
+    width: 100%;
+} */
+
+.mobile-view-single-card{
+    display: flex !important;
+    width: 100%;
+    overflow: hidden;
+    /* background-color: orange; */
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    padding: 10px 25px;
+    /* height: 100%; */
+    transition: transform 0.5s ease;
 }
 
 .mobile-best-seller-heading{
@@ -252,13 +278,13 @@
     display: flex;
     position: relative;
     width: 100%;
-    height: auto;
+    height: 240px;
 }
 
 .mobile-best-seller-menu img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .mobile-best-seller-menu-items{
@@ -292,9 +318,31 @@
     display: flex;
     width: 100%;
     height: 300px;
-    padding: 10px;
-    /* overflow-y: hidden;
-    overflow-x: auto; */
+    padding: 0 10px;
+    background-color: #fff;
+    /* position: absolute;
+    bottom: 0;
+    left: 0; */
+}
+
+.mobile-pagination-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.mobile-dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc; /* Inactive dot color */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mobile-dot.mobile-active {
+    background-color: #333; /* Active dot color */
 }
 
 /* .mobile-slider-cards .slick-initialized .slick-slide{
@@ -302,51 +350,62 @@
     width: 100%;
 } */
 
-.mobile-slider-cards .slick-initialized .slick-slide> div{
+/* .mobile-slider-cards .slick-slider{
+    display: flex;
+    gap: 10px;
+    top: -120px;
+    z-index: 9999999;
+
+} */
+
+/* .mobile-slider-cards .slick-initialized .slick-slide> div{
     display: flex !important;
-    width: 430px;
+    width: 100%;
 }
 
 .mobile-slider-cards .slick-arrow.best-seller-arrow.slick-prev{
-    background-color: orange;
     left: 0;
 }
 
 .mobile-slider-cards .slick-arrow.best-seller-arrow.slick-next{
-    background-color: orange;
+
     right: 0;
 }
 
 .mobile-slider-cards .slick-slider> div{
     display: flex;
-    background-color: orange !important;
-    /* gap: 30px !important; */
 
-}
-
-/* .mobile-slider-cards .slick-list{
-    display: flex !important;
-    overflow: hidden;
-    width: 100% !important;
-    padding: 10px 30px !important;
-    gap: 10px !important;
 } */
 
-.slick-slide{
-    display: flex !important;
-    width: 100%;
-    /* overflow: hidden; */
-    
+/* .mobile-best-seller .slick-list{
+    display: flex;
+    padding: 0 25px !important;
+    width: 100% !important;
+    position: relative !important;
+    float: none !important;
+    overflow: hidden !important;
 }
 
-.mobile-slider-cards .slick-track{
-    display: flex !important;
-    background-color: green !important;
+.mobile-best-seller .slick-track{
     width: 100% !important;
-    margin-left: 10px !important;
-    z-index: 9999;
-    /* overflow: hidden; */
 }
+
+
+.mobile-best-seller .slick-initialized .slick-slide {
+    display: flex !important;
+    width: 100% !important;
+} */
+
+
+/* .slick-slide{
+    display: flex !important;
+    width: 100%;
+    
+} */
+
+/* .mobile-slider-cards .slick-track{
+    display: flex !important; 
+} */
 
 @media only screen and (max-width: 780px){
     .best-seller-slider-container{
@@ -510,7 +569,6 @@
         display: none;
     }
     .mobile-best-seller{
-        display: none;
+        display: flex;
     }
 }
-

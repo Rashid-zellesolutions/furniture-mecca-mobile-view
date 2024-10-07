@@ -13,7 +13,7 @@ import call from '../../Assets/icons/call.png'
 import mail from '../../Assets/icons/mail.png'
 import clock from '../../Assets/icons/white-clock.png'
 import calander from '../../Assets/icons/white-calander.png'
-import TabFooter from '../TabAndMobileFooter/TabFooter';
+import TabFooter from '../TabAndMobileFooter/MobileFooter';
 import filledStart from '../../Assets/icons/Star 3.png';
 import unfilledStart from '../../Assets/icons/Star 5.png';
 import nearStore from '../../Assets/Footer/venango-store-image.png';
@@ -21,6 +21,7 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import { WiTime4 } from "react-icons/wi";
 import { CiCalendarDate } from "react-icons/ci";
 import { FiPhoneCall } from "react-icons/fi";
+import MobileFooter from '../TabAndMobileFooter/MobileFooter';
 
 // import { FaRegCalendarPlus } from "react-icons/fa";
 // import NearStorePopUp from '../../UI/Components/NearStorePopUp/NearStorePopUp';
@@ -299,91 +300,6 @@ const Footer = ({notLandingPage}) => {
                     </div>
                 </div>
             </div>
-
-            {/* <div className='footer-contact-section'>
-                <div className='footer-social-icon-and-near-store-details'>
-                <div className='footer-social-and-address-container'>
-                    <div className='social-icons'>
-                        {socialIcons.map((item, index) => {
-                            return <Link key={index} to={item.link}>
-                                <img src={item.icon} alt={item.name} />
-                            </Link>
-                        })}
-                    </div>
-                    <div className='rating-container'>
-                        <img src={footerRedFurnitureMecca} alt="img" />
-                        <div className='rating-stars-container'>
-                            <h3>FURNITURE MECCA</h3>
-                            <span className='rating-stars'>{stars.map((item, i) => {
-                                return <img key={i} src={item.icon} alt='start' />
-                            })}</span>
-                            <p>847 Google Reviews</p>
-                        </div>
-                    </div>
-                    <div className='location-phone-main-container'>
-                        {locationPhoneMail.map((item, index) => {
-                            return <span key={index} className='icon-and-name'>
-                                <img src={item.icon} alt={item.name} />
-                                <Link to={item.link}>{item.name}</Link>
-                            </span>
-                        })}
-                    </div>
-                </div>
-                    <div className='footer-nearby-store'>
-                        <h3>Nearest Store</h3>
-                        <div className='nearby-store-details'>
-                            <img src={nearStore} alt='img' />
-                        </div>
-                            <div className='nearby-store-adress'>
-                                <span>
-                                    <MdOutlineLocationOn size={20} />
-                                    <p>E Venango St, Philadelphia, PA 19134 <br /> Philadelphia, Pennsylvania, 101</p>
-                                </span>
-                                <span>
-                                    <FiPhoneCall  size={15} />
-                                    <p> 267 639 6801</p>
-                                </span>
-                                <span>
-                                    <WiTime4 size={20} />
-                                    <p>9:30 AM - 6:30 PM</p>
-                                </span>
-                                <span>
-                                    <CiCalendarDate size={20} />
-                                    <p>Monday - Sunday</p>
-                                </span>
-                                <div>
-                                    <p>Outlet</p>
-                                    <Link>Direction</Link>
-                                    <Link>Book an Appointment</Link>
-                                </div>
-                            </div>
-                    </div>
-
-                    </div>
-                        <div className='footer-get-scoop-and-about'>
-                            <div className={`footer-get-the-scoop-main-section ${notLandingPage ? 'show-footer-scoop' : ''}`}>
-                                <h3>Get the Scoop</h3>
-                                <div className='footer-get-scoop-input-and-button'>
-                                    <div className='footer-get-scoop-input'>
-                                        <input type='text' placeholder='Email' />
-                                    </div>
-                                    <button>Sign Me Up!</button>
-                                </div>
-                                <p>By signing up. you agree to our Privacy Policy and Terms of Use</p>
-                            </div>
-
-                            <div className='footer-care-and-about-section'>
-                            {footerCustomerCareAndAbout.map((items, index) => {
-                                    return <div key={index} className='footer-care-and-about'>
-                                        <h3>{items.heading}</h3>
-                                        {items.navLinks.map((innerItem, innerIndex) => {
-                                            return <Link className='footer-care-and-about-links' key={innerIndex} to={innerItem}>{innerItem.name}</Link>
-                                        })}
-                                    </div>
-                                })}
-                            </div>
-                        </div>
-            </div> */}
             <div className='footer-rights-reserved-container'>
                 <p>2020 - 2024 Furniture Mecca. All Rights Reserved</p>
                 <p>
@@ -392,7 +308,22 @@ const Footer = ({notLandingPage}) => {
             </div>
         </div>
         <div className='mobile-view-footer-main-div'>
-            <TabFooter />
+            {/* <div className='mobile-footer-top-section'>
+                <div className='mobile-footer-owner-logo'>
+                    <div>
+                        <img src={ownerTag} alt='owner tag' />
+                    </div>
+                    <div>
+                        <h3>Furniture Mecca</h3>
+                        <div>
+                            {stars.map((items, indes) => (
+                                <img ssrc={items} alt='star' />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div> */}
+            <MobileFooter />
         </div>
     </>
   )

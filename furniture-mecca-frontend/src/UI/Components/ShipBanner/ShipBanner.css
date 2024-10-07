@@ -14,9 +14,25 @@
     cursor: pointer;
 }
 
+.hide-banner{
+    display: none;
+    width: 100%;
+}
+
+.hide-banner img{
+    width: 100%;
+    top: -40px;
+    cursor: pointer;
+}
+
+
+
 @media only screen and (max-width: 480px){
     .banner-div{
         display: none;
+    }
+    .hide-banner{
+        display: flex;
     }
 }
 

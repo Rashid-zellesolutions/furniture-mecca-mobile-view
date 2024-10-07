@@ -19,6 +19,10 @@ const NewArrivalCard = ({arrivalImage, pieces, title, price, addToCartLink, addT
             <span className='title-and-price'>
                 <p className='new-arrival-product-name'>{title}</p>
                 <p className='new-arrival-product-price'>{price}</p>
+                <div className='mobile-view-new-ariival-price'>
+                    <del>$ 799</del>
+                    <p className='mobile-view-new-arrival-product-price'>{price}</p>
+                </div>
             </span>
         </div>
         <div className='card-buttons'>

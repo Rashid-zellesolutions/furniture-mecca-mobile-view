@@ -342,9 +342,7 @@
     color: #dfdfdf;
 }
 
-.mobile-view-footer-main-div{
-    display: none;
-}
+
 
 .rating-stars{
     display: flex;
@@ -685,9 +683,26 @@
     color: #dfdfdf;
 }
 
+.mobile-view-footer-main-div{
+    display: none;
+}
+
 @media only screen and (max-width: 480px){
     .footer-main-container{
         display: none;
+    }
+    /* .footer-nav {
+        display: none;
+    }
+    .footer-second-contant-section{
+        display: none;
+    }
+    .footer-rights-reserved-container{
+        display: none;
+    } */
+
+    .mobile-view-footer-main-div{
+        display: flex;
     }
 }
 

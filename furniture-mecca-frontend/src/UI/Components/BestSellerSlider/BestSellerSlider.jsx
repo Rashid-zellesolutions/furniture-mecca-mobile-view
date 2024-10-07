@@ -14,6 +14,7 @@ import mobileHeadImage from '../../../Assets/Furniture Mecca/Landing Page/best s
 
 import leftArrow from '../../../Assets/icons/arrow-left-white.png';
 import rightArrow from '../../../Assets/icons/right-arrow-white.png';
+import ImageSlider from '../404NotFound/ImageSlider';
 
 const BestSellerPrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -75,6 +76,7 @@ const BestSellerSlider = () => {
     }
     // const productCardData = useSelector((state) => state.productCard.data)
     const {products} = useProducts()
+    console.log(products.length)
     // const productCardData = products.products;
     // console.log("productCardData on Landing Page", products)
     
@@ -96,10 +98,39 @@ const BestSellerSlider = () => {
 
 
     // mobile scripts
+    const mobileSettings = {
+        // className: "slider variable-width",
+        className: 'center',
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        variableWidth: false,
+        arrows: false,
+        nextArrow: <BestSellerNextArrow to="next"/>,
+        prevArrow: <BestSellerPrevArrow to="prev" />,
+    };
     const [mobIndex, setMobIndex] = useState(0)
     const handleMobileNavClick = (index) => {
         setMobIndex(index);
     }
+
+    const [cardIndex, setCardIndex] = useState(0)
+    const handlePaginationClick = (index) => {
+        // setCardIndex(index);
+        const newIndex = Math.max(0, Math.min(products.length - 1, index));
+        setCardIndex(newIndex);
+    };
+
+    const getDisplayedIndexes = () => {
+        const halfVisible = 1; // Half of the dots
+        const start = Math.max(0, cardIndex - halfVisible);
+        const end = Math.min(products.length, start + 3);
+        return Array.from({ length: end - start }, (_, i) => start + i);
+    };
+
+    const displayedIndexes = getDisplayedIndexes();
     
 
 
@@ -165,14 +196,34 @@ const BestSellerSlider = () => {
                 </div>
             </div>
                 <div className='mobile-slider-cards'>
-                    <Slider {...settings}>
-                        {products.map((items, index) => (
-                            <div style={{width: '100%', backgroundColor: 'blue', height: '250px'}}>
-                                This is card {index}
-                            </div>
+                    <div 
+                        className='mobile-view-single-card' 
+                        style={{ transform: `translateX(-${cardIndex * 100}%)`, transition: 'transform 0.5s ease' }}
+                    >
+                        {products.slice(cardIndex, cardIndex + 1).map((item, index) =>(
+                            <BestSellerProductCard 
+                            productData={item}
+                            key={index} 
+                            productMainImage={item.mainImage} 
+                            starIcon={item.ratingStars} 
+                            reviews={item.reviewCount} 
+                            productName={item.productTitle} 
+                            oldPrice={item.priceTag}
+                            newPrice={item.priceTag}
+                            handleCardClicked={() => handleCardClicked(item)}
+                        />
                         ))}
-                    </Slider>
+                    </div>
                 </div>
+                    <div className='mobile-pagination-dots'>
+                        {displayedIndexes.map((_, index) => (
+                            <span 
+                                key={index} 
+                                className={`mobile-dot ${index === cardIndex ? 'mobile-active' : ''}`} 
+                                onClick={() => handlePaginationClick(index)}
+                            />
+                        ))}
+                    </div>
         </div>
 
         <div className='pagination-dots'>

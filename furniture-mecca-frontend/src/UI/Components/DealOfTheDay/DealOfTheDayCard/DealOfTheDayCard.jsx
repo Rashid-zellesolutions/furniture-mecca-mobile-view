@@ -100,15 +100,30 @@ const products = [
   // Add more products here
 ];
 
-const DealOfTheDayCard = ({index, name, star, review, price, newPrice, imgIcons, productmage, descount, handleDealCardClick, dealDayData,  handleHoverEnter, handleHoveLeave}) => {
-  const cardIcons = [cartIcon, heartIcon, combinedArrows];
-  const [isHovered, setIsHovered] = useState(0);
+const DealOfTheDayCard = ({
+    index, 
+    name, 
+    star, 
+    review, 
+    price, 
+    newPrice, 
+    imgIcons, 
+    productmage, 
+    descount, 
+    handleDealCardClick, 
+    dealDayData,  
+    handleHoverEnter, 
+    handleHoveLeave
+  }) => {
 
-  const handleIconMouseEnter = (index) => {setIsHovered(index)}
-  const handleIconMouseLeave = () => {setIsHovered(null)}
+    const cardIcons = [cartIcon, heartIcon, combinedArrows];
+    const [isHovered, setIsHovered] = useState(0);
 
-  // Deal of the day product name limitations
-  const maxLength = 40;
+    const handleIconMouseEnter = (index) => {setIsHovered(index)}
+    const handleIconMouseLeave = () => {setIsHovered(null)}
+
+    // Deal of the day product name limitations
+    const maxLength = 40;
     const truncateTitle = (title, maxLength) => {
         if (title.length > maxLength) {
             return title.slice(0, maxLength) + '...';
@@ -116,60 +131,77 @@ const DealOfTheDayCard = ({index, name, star, review, price, newPrice, imgIcons,
         return title;
     };
     
-  return (
-    <div 
-      index={index} 
-      className='deal-of-the-day-product-card' 
-      onClick={() => handleDealCardClick(dealDayData)}
-    >
+    return (
       <div 
-          className='deal-of-the-day-product-rating-and-name'
-        >
-        <h3 className='deal-of-the-day-product-name'>
-          {truncateTitle(name, maxLength)}
-        </h3>
+        index={index} 
+        className='deal-of-the-day-product-card' 
+        onClick={() => handleDealCardClick(dealDayData)}
+      >
         <div 
-          className='deal-of-the-day-price'>
-          <del>${price}</del>
-          <p>$ 1,599.00</p>
-        </div>
-        <div 
-            className='deal-of-the-day-rating-and-reviews'>
+            className='deal-of-the-day-product-rating-and-name'
+          >
+          <h3 className='deal-of-the-day-product-name'>
+            {truncateTitle(name, maxLength)}
+          </h3>
           <div 
-              className='deal-of-the-day-card-stars'>
-            {star.map((items, innIndex) => (
-              // <p className='deal-of-the-day-stars'>{items.icon}</p>
-              <img 
-                  key={innIndex} 
-                  src={items.icon} 
-                  alt='star' 
-                />
+            className='deal-of-the-day-price'>
+            <del>${price}</del>
+            <p>$ 1,599.00</p>
+          </div>
+          <div 
+              className='deal-of-the-day-rating-and-reviews'>
+            <div 
+                className='deal-of-the-day-card-stars'>
+              {star.map((items, innIndex) => (
+                // <p className='deal-of-the-day-stars'>{items.icon}</p>
+                <img 
+                    key={innIndex} 
+                    src={items.icon} 
+                    alt='star' 
+                  />
+              ))}
+              </div>
+            <p>({review})</p>
+          </div>
+        </div>
+        <div className='deal-of-the-day-product-image'>
+          <div className='deal-of-the-day-product-discount'><p>-12%</p></div>
+          <img src={productmage} alt='img' />
+          <div className='deal-of-the-day-card-icons-div'>
+            {imgIcons.map((items, index) => (
+              <button 
+                  key={index}  
+                  className={`deal-of-the-day-icon ${isHovered === index ? 'change-bg' : ''}`} 
+                  onMouseEnter={() => handleIconMouseEnter(index)} 
+                  onMouseLeave={handleIconMouseLeave}
+                >
+                <img 
+                    src={isHovered === index ? items.hoveredIcon : items.defIcon} 
+                    alt='icon'  />
+              </button>
             ))}
+          </div> 
+        </div>
+        <div className='mobile-view-deal-of-the-day-product-details'>
+            <div className='mobile-view-star-rating-and-review'>
+                <div className='mobile-view-product-stars'>
+                    {star.map((item, index) => (
+                      <img src={item.icon} alt='src' />
+                    ))}
+                </div>
+                <p>{review}</p>
             </div>
-          <p>({review})</p>
+            <h3 className='mobile-view-deal-of-the-day-product-name'>
+                {truncateTitle(name, maxLength)}
+            </h3>
+            <div 
+              className='mobile-view-deal-of-the-day-price'>
+              <del>${price}</del>
+              <p>$ 1,599.00</p>
+            </div>
         </div>
       </div>
-      <div className='deal-of-the-day-product-image'>
-        <div className='deal-of-the-day-product-discount'><p>-12%</p></div>
-        <img src={productmage} alt='img' />
-        <div className='deal-of-the-day-card-icons-div'>
-          {imgIcons.map((items, index) => (
-            <button 
-                key={index}  
-                className={`deal-of-the-day-icon ${isHovered === index ? 'change-bg' : ''}`} 
-                onMouseEnter={() => handleIconMouseEnter(index)} 
-                onMouseLeave={handleIconMouseLeave}
-              >
-              <img 
-                  src={isHovered === index ? items.hoveredIcon : items.defIcon} 
-                  alt='icon'  />
-            </button>
-          ))}
-        </div> 
-      </div>
-      {/* <div className='deal-of-the-day-product-under-line'></div> */}
-    </div>
-  );
+    );
 };
 
 export default DealOfTheDayCard;

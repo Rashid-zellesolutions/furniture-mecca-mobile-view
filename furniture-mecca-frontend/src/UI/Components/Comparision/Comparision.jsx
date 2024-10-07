@@ -7,7 +7,7 @@ import compatetantImage from '../../../Assets/Furniture Mecca/Comparision/compat
 const Comparision = () => {
   return (
     <div className='comparision-main-div'>
-        <h3>Compare & Shop - FM's vs Leading National Brand</h3>
+        <h3>Dare to Compare: FM's vs Leading National Brand</h3>
         <div className='comparision-img-div'>
             <img src={ComparisionImage} alt='img' />
         </div>

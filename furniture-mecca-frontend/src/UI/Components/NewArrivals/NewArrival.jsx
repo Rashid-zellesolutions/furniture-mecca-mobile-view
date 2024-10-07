@@ -6,8 +6,8 @@ import './NewArrival.css';
 import goldenDiningRoomSet from '../../../Assets/images/Dining-Room-Set-in-Gold-02 1.png';
 import blackDiningRoomSet from '../../../Assets/images/Dining-room-set-black.png';
 import whiteDiningRoomSet from '../../../Assets/images/dining-room-set-white.png';
-import leftArrow from '../../../Assets//icons/arrow-left-white.png'
-import rightArrow from '../../../Assets//icons/right-arrow-white.png'
+import leftArrow from '../../../Assets//icons/arrow-left-charcol.png'
+import rightArrow from '../../../Assets//icons/arrow-right-charcol.png'
 import cartRed from '../../../Assets/icons/cart.png';
 import { FaEye } from "react-icons/fa";
 import cart from '../../../Assets/icons/cart-white.png';

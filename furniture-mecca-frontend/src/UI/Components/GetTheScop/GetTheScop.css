@@ -7,8 +7,8 @@
     background-image: url('../../../Assets/to-be-change/bb\ 1.png');
     background-repeat: no-repeat;
     background-size: cover;
-    /* margin-bottom: 25px; */
-    /* margin-top: 25px; */
+    margin-bottom: 35px;
+    margin-top: 35px;
 }
 
 .get-the-scop-form-container{
@@ -217,8 +217,142 @@
     font-weight: 400;
 }
 
+/* Mobile view */
+
 .mobile-view-scop-main-container{
     display: none;
+    background-image: url('../../../Assets/Furniture Mecca/Landing Page/get the scope/mobile-get-the-scoop-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* padding: 20px 0 10px 0; */
+    /* background-color: #D9D9D9; */
+    flex-direction: column;
+    /* margin-top: 20px; */
+}
+
+.mobile-view-get0the-scoop-overlay{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 20px 30px;
+    background: #00000080;
+    gap: 15px;
+
+}
+
+.mobile-view-get-scoop-heading{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mobile-view-get-scoop-heading h3{
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+.mobile-view-get-scoop-heading span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.mobile-view-get-scoop-heading span a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+}
+
+.mobile-view-get-scoop-input-and-button{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.mobile-view-get-scoop-input-and-button input{
+    padding: 11px 22px;
+    border-radius: 5px;
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+
+}
+
+.mobile-view-get-scoop-input-and-button button{
+    padding: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: var(--text-color);
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.mobile-view-conditions{
+    font-size: 10px;
+    line-height: 15px;
+    font-weight: 400;
+}
+
+.mobile-view-flyre-view{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.mobile-view-flyre-view h3{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+}
+
+.mobile-view-flyre-view p{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+}
+
+.mobile-view-flyre-view button{
+    padding: 11px 15px;
+    background-color: var(--text-color);
+    color: #fff;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 1300px){
@@ -229,70 +363,13 @@
     }
 }
 
-@media only screen and (max-width: 1100px){
+@media only screen and (max-width: 480px){
     .get-the-scop-main-container{
         display: none;
     }
 
     .mobile-view-scop-main-container{
         display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px 0 10px 0;
-        background-color: #D9D9D9;
-        flex-direction: column;
-        margin-top: 20px;
-    }
-
-    .mobile-view-scop-main-container h3{
-        font-size: 22px;
-        font-weight: 600;
-        line-height: 25px;
-        color: #484F59;
-    }
-
-    .mobile-view-scop-main-container p{
-        text-align: center;
-        font-size: 14px;
-        font-weight: 300;
-        line-height: 22px;   
-        color: var(--text-color);
-        padding: 10px 0 0 0;
-    }
-
-    .mobile-view-scop-main-container p a{
-        color: var(--text-color);
-        font-weight: 500;
-    }
-    .mobile-view-scoop-email-input{
-        display: flex;
-        gap: 20px;
-        padding: 0 30px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 5px;
-        width: 100%;
-        padding: 15px;
-    }
-    .mobile-view-scoop-email-input input{
-        border: 2px solid var(--border-color);
-        outline: none;
-        height: 40px;
-        border-radius: 5px;
-        width: 50%;
-        padding: 10px;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 18px;
-        color: var(--text-color);
-    }
-    .mobile-view-scoop-email-input button{
-        height: 35px;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #484F59;
-        border: 1px solid #484F59;
-        color: var(--text-white);
     }
 }
 

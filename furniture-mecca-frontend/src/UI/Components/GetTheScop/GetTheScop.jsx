@@ -28,13 +28,30 @@ const GetTheScop = () => {
         </div>
       </div>
       <div className='mobile-view-scop-main-container'>
-        <h3>Get the scoop</h3>
-        <p>New products, Outlet deals, <br /> style trends and ways to save</p>
-        <div className='mobile-view-scoop-email-input'>
-          <input type='search' placeholder='Email Address' />
-          <button>Sign me up</button>
+        <div className='mobile-view-get0the-scoop-overlay'>
+            <div className='mobile-view-get-scoop-heading'>
+                <h3>Get The Scoop</h3>
+                <span>
+                  <a href='#'>Offer</a> |
+                  <a href='#'>Discounts</a> |
+                  <a href='#'>Best Prices</a>
+                </span>
+            </div>
+            <div className='mobile-view-get-scoop-input-and-button'>
+                <input type='text' placeholder='Email' />
+                <button>
+                  Sign me up
+                </button>
+            </div>
+            <p className='mobile-view-conditions'>By signing up, you agree to our Privacy Policy and Terms of Use.</p>
+            <div className='mobile-view-flyre-view'>
+                <h3>Furniture Mecca Promotions</h3>
+                <p>Get exclusive promotions for the year 2024</p>
+                <button>
+                  Click to see flyer
+                </button>
+            </div>
         </div>
-        <p>By signing up, you agree to our <br /> <a href='#'>Privacy Policy</a> and <a href='#'>Terms of Use</a></p>
       </div>
     </>
   )
