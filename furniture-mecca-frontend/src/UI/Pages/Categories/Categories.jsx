@@ -26,9 +26,8 @@ const Categories = ({categoriesMainImage, mobileViewMainImage, categoryCartTitle
       {/* <Shopvia /> */}
       <LatestModulerBanner customWidth={false} showBanners={showPromotionsBaneers} mainImgShow={true} mobileMainImage={mobileViewMainImage} mainImage={categoriesMainImage} />
       <Category title={categoryCartTitle} categoryData={categoryCardData} />
-      {isMobile ? <BestSellerSlider /> : <BestSeller />}
-      {/* <BestSeller />
-      <BestSellerSlider /> */}
+      {/* {isMobile ? <BestSellerSlider /> : <BestSeller />} */}
+      <BestSeller />
       {/* <DealOfDay /> */}
       <NewArrival /> 
       <ShipBanner bannerImg={shipBanner} showBanner={false} paddindTrue={false} />

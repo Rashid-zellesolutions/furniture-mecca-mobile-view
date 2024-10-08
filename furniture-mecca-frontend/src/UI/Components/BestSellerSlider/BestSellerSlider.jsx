@@ -136,6 +136,7 @@ const BestSellerSlider = () => {
 
   return (
     <div className="best-seller-slider-container"> 
+    
         <div className='best-seller-imaage-and-cards'>
             <div className='best-seller-slider-main-banner'>
                 <img src={activeItem === 0 ?  BestSellerSliderMainBanner : bestSellerMainSecondImage} alt='main banner' />

@@ -194,7 +194,9 @@ const Haider = () => {
       <div className='mobile-view-header'>
         <div className='mobile-view-logo-and-other-containt-section'>
           <img className='nav-toggler' src={navToggler} alt="togle button" onClick={handleTabMenu} />
-          <img className='mobile-logo' src={logo} alt='mobile-logo' />
+          {/* <a href='/'> */}
+            <img className='mobile-logo' src={logo} alt='mobile-logo' />
+          {/* </a> */}
           <div className='mobile-view-cart-and-location'>
             <img src={locationIcon} alt='location' />
             <img src={cartIcon} alt='cart-icon' />

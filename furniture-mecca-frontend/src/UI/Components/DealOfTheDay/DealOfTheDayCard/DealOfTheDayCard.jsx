@@ -137,6 +137,7 @@ const DealOfTheDayCard = ({
         className='deal-of-the-day-product-card' 
         onClick={() => handleDealCardClick(dealDayData)}
       >
+
         <div 
             className='deal-of-the-day-product-rating-and-name'
           >
@@ -164,7 +165,9 @@ const DealOfTheDayCard = ({
             <p>({review})</p>
           </div>
         </div>
+
         <div className='deal-of-the-day-product-image'>
+          <img src={heartIcon} alt='heart-icon' className='mobile-view-deal-day-card-heart-icon' />
           <div className='deal-of-the-day-product-discount'><p>-12%</p></div>
           <img src={productmage} alt='img' />
           <div className='deal-of-the-day-card-icons-div'>
@@ -182,6 +185,7 @@ const DealOfTheDayCard = ({
             ))}
           </div> 
         </div>
+
         <div className='mobile-view-deal-of-the-day-product-details'>
             <div className='mobile-view-star-rating-and-review'>
                 <div className='mobile-view-product-stars'>
@@ -200,6 +204,7 @@ const DealOfTheDayCard = ({
               <p>$ 1,599.00</p>
             </div>
         </div>
+
       </div>
     );
 };

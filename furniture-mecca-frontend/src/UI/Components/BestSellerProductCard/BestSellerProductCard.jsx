@@ -18,6 +18,7 @@ const BestSellerProductCard = ({ productMainImage, productData, starIcon, review
         className='category-product-card' 
         onClick={() => handleCardClicked(productData)}
     >
+        <img src={heartIcon} alt='heart' className='show-on-mobile' />
         <div className='category-product-image'>
             <img src={productMainImage} alt='product image' />
         </div>
@@ -44,7 +45,7 @@ const BestSellerProductCard = ({ productMainImage, productData, starIcon, review
                     <del>${oldPrice}</del>
                     <p>${newPrice}</p>
                 </div>
-                <img src={heartIcon} alt='heart' />
+                <img src={heartIcon} alt='heart' className='hide-on-mobile' />
             </div>
         </div>
     </div>

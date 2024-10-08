@@ -133,6 +133,9 @@ position: absolute;
     .deal-of-the-day-border-heading p{
         margin-top: 0px;
         color: var(--active-nav-item-color);
+        font-size: 20px;
+        line-height: 24px;
+        font-weight: 600;
     }
     .deal-of-the-day-outer-container{
         padding: 20px 15px 20px 38px;

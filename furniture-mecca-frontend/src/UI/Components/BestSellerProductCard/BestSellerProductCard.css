@@ -84,7 +84,7 @@
     color: var(--active-nav-item-color);
 } */
 
-.category-besst-seller-main-container{
+/* .category-besst-seller-main-container{
     display: flex;
     width: 100%;
     gap: 20px;
@@ -132,17 +132,16 @@
     line-height: 27px;
     font-weight: 600;
     border-bottom: 3px solid var(--active-nav-item-color);
-}
+} */
 
 /* Best Seller Product Cards */
-.category-products-main-container{
+/* .category-products-main-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
     height: auto;
     gap: 20px;
-    /* overflow: hidden; */
-}
+} */
 
 .category-product-card{
     /* box-shadow: 1px 1px 4px 0px #00000026; */
@@ -155,9 +154,14 @@
     transition: all 0.3s ease;
     background-color: #fff;
     border-radius: 6px;
+    position: relative;
     box-shadow: 0px 1px 12px 0px #0000001A;
 
 
+}
+
+.show-on-mobile{
+    display: none;
 }
 
 .category-product-card:hover{
@@ -277,4 +281,44 @@
     width: auto;
     height: 100%;
     object-fit: cover;
+}
+
+@media only screen and (max-width: 480px){
+    .show-on-mobile{
+        display: flex;
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+    }
+    .hide-on-mobile{
+        display: none;
+    }
+
+    .category-product-rating-section p{
+        font-size: 10px;
+        line-height: 15px;
+        font-weight: 300;
+    }
+    
+    .category-product-name h3{
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    .category-product-price del{
+        font-size: 12px;
+        line-height: 14px;
+        font-weight: 600;
+    }
+    
+    .category-product-price p{
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 600;
+        color: var(--active-nav-item-color);
+    }
 }
