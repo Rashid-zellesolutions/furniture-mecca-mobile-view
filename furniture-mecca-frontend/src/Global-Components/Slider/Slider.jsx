@@ -17,6 +17,7 @@ import sliderImageOne from '../../Assets/Furniture Mecca/Landing Page/Slider/sof
 import sliderImageTwo from '../../Assets/Furniture Mecca/Landing Page/Slider/Property 1=Variant2.png';
 import sliderImageThree from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa4.png';
 import sliderImageFour from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa2.png';
+import axios from 'axios';
 
 const Sliderr = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,7 +28,10 @@ const Sliderr = () => {
     const [isDraging, setIsDraging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [currentX, setCurrentX] = useState(0);
+    const [slides, setSlides] = useState([])
+    const url = 'https://fm.skyhub.pk';
 
+    console.log("index",currentIndex)
     const handleMouseEnter = () => {
         setIsHovered(true);
     }
@@ -36,12 +40,25 @@ const Sliderr = () => {
         setIsHovered(false);
     }
 
-    const slides = [
-        { img: imageOne },
-        { img: imageTwo },
-        { img: imageOne },
-    ];
-    const infiniteSlides = [...slides, ...slides];
+    // const slides = [
+    //     { img: imageOne },
+    //     { img: imageTwo },
+    //     { img: imageOne },
+    // ];
+
+    const getHomeSliderImages = async () => {
+        try {
+            const response = await axios.get('https://fm.skyhub.pk/api/v1/pages/home/slider/get')
+            setSlides(response.data.homeSliders || [])
+            console.log("slider response", response.data.homeSliders);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(() => {
+        getHomeSliderImages();
+    }, [])
+    // const infiniteSlides = [...slides, ...slides];
 
     const mobileViewSLider = [
         {img: sliderImageOne},
@@ -50,12 +67,20 @@ const Sliderr = () => {
         {img: sliderImageFour},
     ]
 
-    const nextSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    };
+    // const nextSlide = () => {
+    //     setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    // };
 
+    // const prevSlide = () => {
+    //     setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+    // };
+
+    const nextSlide = () => {
+        setCurrentIndex(prevIndex => (slides.length ? (prevIndex + 1) % slides.length : 0));
+    };
+    
     const prevSlide = () => {
-        setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+        setCurrentIndex(prevIndex => (slides.length ? (prevIndex === 0 ? slides.length - 1 : prevIndex - 1) : 0));
     };
 
     useEffect(() => {
@@ -63,37 +88,40 @@ const Sliderr = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const handleMouseDown = (e) => {
-        setStartX(e.clientX);
-        setIsDraging(true)
-        console.log("mouse down startX Value", startX)
-        console.log("mouse down Draging Value", isDraging)
-    }
-    const handleMouseMove = (e) => {
-        if(!isDraging) return;
-        setCurrentX(e.clientX);
-        console.log("mouse up drag Value", isDraging)
-        console.log("mouse up startX Value", startX)
-    }
-    const handleMouseUp = () => {
-        if(!isDraging) return;
-        const diff = startX - currentX;
-        console.log("diff value", diff)
+    // const handleMouseDown = (e) => {
+    //     setStartX(e.clientX);
+    //     setIsDraging(true)
+    //     console.log("mouse down startX Value", startX)
+    //     console.log("mouse down Draging Value", isDraging)
+    // }
 
-        if(Math.abs(diff) > 200){
-            if(diff > 0){
-                nextSlide();
-            }else {
-                prevSlide()
-            }
-        }
-        setIsDraging(false);
-        setStartX(0);
-        setCurrentX(0);
+    // const handleMouseMove = (e) => {
+    //     if(!isDraging) return;
+    //     setCurrentX(e.clientX);
+    //     console.log("mouse up drag Value", isDraging)
+    //     console.log("mouse up startX Value", startX)
+    // }
 
-    }
+    // const handleMouseUp = () => {
+    //     if(!isDraging) return;
+    //     const diff = startX - currentX;
+    //     console.log("diff value", diff)
+
+    //     if(Math.abs(diff) > 200){
+    //         if(diff > 0){
+    //             nextSlide();
+    //         }else {
+    //             prevSlide()
+    //         }
+    //     }
+    //     setIsDraging(false);
+    //     setStartX(0);
+    //     setCurrentX(0);
+
+    // }
 
     // mobile slider
+    
     const handleMobileMouseEnter = () => {}
     const handlemobileMouseLeave = () => {}
 
@@ -151,10 +179,10 @@ const Sliderr = () => {
         <>
         <div 
             className='slider'
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp}
+            // onMouseDown={handleMouseDown}
+            // onMouseMove={handleMouseMove}
+            // onMouseUp={handleMouseUp}
+            // onMouseLeave={handleMouseUp}
             style={{ cursor: isDraging ? 'grabbing' : 'grab' }}
         >
             <div 
@@ -171,13 +199,14 @@ const Sliderr = () => {
             <div className='slides-container' 
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-                {infiniteSlides.map((slide, index) => (
+                {slides.map((slide, index) => (
                     <div 
                         className='slide' 
                         key={index}>
                         <img 
-                            src={slide.img} 
-                            alt={`slide ${index + 1}`} 
+                            src={`${url}${slide.image_url}`} 
+                            // src={slide.img}
+                            alt={`slide ${index + 1}`}
                         />
                     </div>
                 ))}
