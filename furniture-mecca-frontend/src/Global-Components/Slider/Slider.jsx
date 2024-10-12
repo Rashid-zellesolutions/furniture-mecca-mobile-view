@@ -31,7 +31,7 @@ const Sliderr = () => {
     const [slides, setSlides] = useState([])
     const url = 'https://fm.skyhub.pk';
 
-    console.log("index",currentIndex)
+    // console.log("index",currentIndex)
     const handleMouseEnter = () => {
         setIsHovered(true);
     }
@@ -50,7 +50,7 @@ const Sliderr = () => {
         try {
             const response = await axios.get('https://fm.skyhub.pk/api/v1/pages/home/slider/get')
             setSlides(response.data.homeSliders || [])
-            console.log("slider response", response.data.homeSliders);
+            // console.log("slider response", response.data.homeSliders);
         } catch (error) {
             console.error(error);
         }
