@@ -4,7 +4,8 @@ import logo from '../../Assets/Logo/m_logo_360 2.png'
 import searchIcon from '../../Assets/icons/search-icon-charcol.png';
 import NearStoreIcon from '../../Assets/icons/home.png';
 import HeartIcon from '../../Assets/icons/like.png';
-import cartIcon from '../../Assets/icons/cart2.png';
+import cartIcon from '../../Assets/icons/new-cart.png';
+import mobileCartIcon from '../../Assets/icons/mobile-cart.png';
 import profileIcon from '../../Assets/icons/profile.png'
 import locationIcon from '../../Assets/icons/location-red.png';
 import navToggler from '../../Assets/icons/Union.png'
@@ -194,12 +195,12 @@ const Haider = () => {
       <div className='mobile-view-header'>
         <div className='mobile-view-logo-and-other-containt-section'>
           <img className='nav-toggler' src={navToggler} alt="togle button" onClick={handleTabMenu} />
-          {/* <a href='/'> */}
+          <a href='/'>
             <img className='mobile-logo' src={logo} alt='mobile-logo' />
-          {/* </a> */}
+          </a>
           <div className='mobile-view-cart-and-location'>
             <img src={locationIcon} alt='location' />
-            <img src={cartIcon} alt='cart-icon' />
+            <img src={mobileCartIcon} alt='cart-icon' />
           </div> 
         </div>
         <div className='mobile-view-search-section'>

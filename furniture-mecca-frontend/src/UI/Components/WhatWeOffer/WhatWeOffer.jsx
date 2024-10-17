@@ -9,7 +9,7 @@ const WhatWeOffer = () => {
     const servisesData = [
         {serviseName: 'Professional Assembly for $109.99', howItWOrk: 'How It Work', icon: toolIcon, style: '' },
         {serviseName: '5 Year Protection Plan for $100.99', howItWOrk: `What's Covered`, icon: protectionIcon },
-        {serviseName: 'Flexible Payment Options', howItWOrk: 'Pay in full or carry a balance. Pay in full or carry a balance.', icon: paymentIcon },
+        // {serviseName: 'Flexible Payment Options', howItWOrk: 'Pay in full or carry a balance. Pay in full or carry a balance.', icon: paymentIcon },
     ]
   return (
     <div className='what-we-offer-container'>

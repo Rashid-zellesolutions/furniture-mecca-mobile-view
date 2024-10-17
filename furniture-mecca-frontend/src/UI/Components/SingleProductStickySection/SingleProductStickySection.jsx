@@ -36,6 +36,9 @@ import imgFour from '../../../Assets/Furniture Mecca/Landing Page/instagram imag
 import imgFive from '../../../Assets/Furniture Mecca/Landing Page/instagram images/Rectangle 878.png';
 import { useCart } from '../../../context/cartContext/cartContext';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
+import FinancingOptions from '../FinancingOptions/FinancingOptions';
+import SizeVariant from '../SizeVariant/SizeVariant';
+import DeliveryOptions from '../DeliveryOptions/DeliveryOptions';
 
 
 
@@ -180,7 +183,11 @@ const SingleProductStickySection = (productData) => {
             disableDotsControls
             disableButtonsControls
             items={product.productAllImages && product.productAllImages.map((img, index) => (
+                <div className='single-product-main-slider-image-container'>
+                  <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
+                  <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p>
                 <img key={index} src={img} className="single-product-slider-img" alt={`Slide ${index}`} />
+                </div>
             ))
             }
             responsive={{
@@ -240,6 +247,7 @@ const SingleProductStickySection = (productData) => {
                           </div>
                       })}
                   </div>
+                  <SizeVariant />
                 </div>
                   <div className='add-cart-or-add-items-div'>
                       <div className='item-count'>
@@ -263,9 +271,11 @@ const SingleProductStickySection = (productData) => {
                     </button>
                   </div>
                 </div>
+                <FinancingOptions />
                 <AlsoNeed />
                 <WhatWeOffer />
-                <ProductOverView />
+                <DeliveryOptions />
+                {/* <ProductOverView /> */}
                 <SingleProductFAQ />
         </div>
       </div>

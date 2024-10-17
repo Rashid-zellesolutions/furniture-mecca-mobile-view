@@ -1,0 +1,62 @@
+.size-variant-main-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.show-selected-size-section{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+    padding: 10px;
+}
+
+.show-selected-size-section p{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    color: #595959;
+}
+
+.show-selected-size-section h3{
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 600;
+    text-decoration: underline;
+    color: #595959;
+}
+
+.size-variant-boxes-section{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+    gap: 10px;
+}
+
+.size-variant-button{
+    /* height: 34px; */
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    border: 1px solid #595959;
+    background-color: #FFF;
+    color: #595959;
+    font-size: 13px;
+    line-height: 19px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.size-variant-button.set-selected-size{
+    background-color: var(--active-nav-item-color);
+    color: #FFF;
+    font-weight: 700;
+    border: 1px solid var(--active-nav-item-color);
+}

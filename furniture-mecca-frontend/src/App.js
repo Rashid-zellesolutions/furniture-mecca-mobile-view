@@ -22,7 +22,15 @@ import outletMainImage from './Assets/pages-main-images/Outlet-Desk-1-1024x341.j
 import tentSaleMainImage from './Assets/pages-main-images/Main-Banner-Desktop-1-1536x409.jpg'
 
 // Mobile view pages main images
-import categoryMobileBanner from './Assets/mobile-view-pages-main-images/Dining-Room-Mob-1 1.png'
+import livingRoomMobileBanner from './Assets/mobile-view-pages-main-images/Living-Room-Mobile-Banner.webp'
+import bedRoomMobileBanner from './Assets/mobile-view-pages-main-images/Bedroom-Mobile-Banner.webp'
+import dinningRoomMobileBanner from './Assets/mobile-view-pages-main-images/Dining-Room-Mobile-Banner.webp'
+import mattresessMobileBanner from './Assets/mobile-view-pages-main-images/Mattresses-Mobile-Banner.webp'
+import kidsMobileBanner from './Assets/mobile-view-pages-main-images/Kids-Room-Mobile-Banner.webp'
+import accentMobileBanner from './Assets/mobile-view-pages-main-images/Accent-Furniture-Mobile-Banner.webp'
+import outletMobileBanner from './Assets/mobile-view-pages-main-images/Dining-Room-Mobile-Banner.webp'
+import rugsMobileBanner from './Assets/mobile-view-pages-main-images/Dining-Room-Mobile-Banner.webp'
+import smallSpacesMobileBanner from './Assets/mobile-view-pages-main-images/Small-Space-Mobile-Banner.webp'
 
 import newArrivalImage from './Assets/category/new-arrival.png';
 import livingRoomImage from './Assets/category/living-room.png';
@@ -107,39 +115,39 @@ function App() {
           <Route path='/dining-room-sets' element={<ProductArchive />} />
           <Route 
             path='/living-room' 
-            element={<Categories categoriesMainImage={diningRoomMainImage} categoryCartTitle={'Living Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
+            element={<Categories categoriesMainImage={livingRoomMainImage} mobileViewMainImage={livingRoomMobileBanner} categoryCartTitle={'Living Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
           />
           <Route 
             path='/bedroom' 
-            element={<Categories categoriesMainImage={bedroomMainImage} categoryCartTitle={'Bedroom Set'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
+            element={<Categories categoriesMainImage={bedroomMainImage} mobileViewMainImage={bedRoomMobileBanner} categoryCartTitle={'Bedroom Set'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
           />
           <Route 
             path='/dining-room' 
-            element={<Categories categoriesMainImage={diningRoomMainImage} mobileViewMainImage={categoryMobileBanner} categoryCartTitle={'Dining Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
+            element={<Categories categoriesMainImage={diningRoomMainImage} mobileViewMainImage={dinningRoomMobileBanner} categoryCartTitle={'Dining Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
           />
           <Route 
             path='/mattresses' 
-            element={<Categories categoriesMainImage={mattressesMainImage} categoryCartTitle={'Mattresses'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
+            element={<Categories categoriesMainImage={mattressesMainImage} mobileViewMainImage={mattresessMobileBanner} categoryCartTitle={'Mattresses'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
           />
           <Route 
             path='/kids' 
-            element={<Categories categoriesMainImage={kidsMainImage} showPromotionsBaneers={false} categoryCartTitle={'Kids Room'} categoryCardData={categoryCardData} />} 
+            element={<Categories categoriesMainImage={kidsMainImage} mobileViewMainImage={kidsMobileBanner} showPromotionsBaneers={false} categoryCartTitle={'Kids Room'} categoryCardData={categoryCardData} />} 
           />
           <Route 
             path='/accent-furniture-and-rugs' 
-            element={<Categories categoriesMainImage={accentFurnitureMainImage} showPromotionsBaneers={false} categoryCartTitle={'Accent Furniture And Rugs'} categoryCardData={categoryCardData} newArrival={true} />} 
+            element={<Categories categoriesMainImage={accentFurnitureMainImage} mobileViewMainImage={accentMobileBanner} showPromotionsBaneers={false} categoryCartTitle={'Accent Furniture And Rugs'} categoryCardData={categoryCardData} newArrival={true} />} 
           />
           <Route 
             path='/small-spaces' 
-            element={<Categories categoriesMainImage={smallSpaceMainImage} categoryCartTitle={'Small Spaces'} showPromotionsBaneers={false} categoryCardData={categoryCardData} newArrival={true} />} 
+            element={<Categories categoriesMainImage={smallSpaceMainImage} mobileViewMainImage={smallSpacesMobileBanner} categoryCartTitle={'Small Spaces'} showPromotionsBaneers={false} categoryCardData={categoryCardData} newArrival={true} />} 
           />
           <Route 
             path='/outlets' 
-            element={<Categories categoriesMainImage={outletMainImage} showPromotionsBaneers={false} categoryCartTitle={'Outlets'} categoryCardData={categoryCardData} newArrival={true} />} 
+            element={<Categories categoriesMainImage={outletMainImage} mobileViewMainImage={outletMobileBanner} showPromotionsBaneers={false} categoryCartTitle={'Outlets'} categoryCardData={categoryCardData} newArrival={true} />} 
           />
           <Route 
             path='/tent-sale' 
-            element={<Categories categoriesMainImage={tentSaleMainImage} showBanners={false} categoryCartTitle={'Labor Day Sale'} categoryCardData={categoryCardData} newArrival={true} />} 
+            element={<Categories categoriesMainImage={tentSaleMainImage} mobileViewMainImage={livingRoomMobileBanner} showBanners={false} categoryCartTitle={'Labor Day Sale'} categoryCardData={categoryCardData} newArrival={true} />} 
           />
 
           <Route path='/single-product/:slug' element={<SingleProduct  />} />

@@ -37,7 +37,7 @@ const TrendingNow = () => {
         }, 3000); // Change slide every 3 seconds
 
         return () => clearInterval(interval); // Cleanup interval on component unmount
-    }, [data.sliders.length]);
+    }, [data.sliders]);
     // Extract only the product objects
     const productArray = Object.keys(data)
     .filter(key => key.startsWith('product_'))

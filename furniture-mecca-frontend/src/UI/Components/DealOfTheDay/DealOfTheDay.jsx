@@ -97,7 +97,7 @@ const DealOfTheDay = () => {
 
     // Deal of the day timer
     const calculateTimeLeft = () => {
-      const targetDate = new Date("2024-10-12T21:00:00").getTime();
+      const targetDate = new Date("2024-10-19T21:00:00").getTime();
       const now = new Date().getTime();
       const difference = targetDate - now;
       const padZero = (num) => String(num).padStart(2, '0');
