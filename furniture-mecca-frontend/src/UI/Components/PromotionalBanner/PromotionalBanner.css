@@ -4,15 +4,15 @@
     height: 42px;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 20px 12px 20px;
+    padding: 11px 70px 11px 20px;
     background-color: #F0F0F0;
 }
 
 .rotating-message{
     color: var(--text-color);
     font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
+    font-weight: 500;
+    line-height: 18px;
 }
 
 .toll-free-ancor{
@@ -31,8 +31,8 @@
     width: 253px;
     height: 25px;
     align-items: center;
-    gap: 20px;
-    border-right: 1px solid #595959;
+    gap: 30px;
+    /* border-right: 1px solid #595959; */
 }
 
 .banner-link-container a{

@@ -30,7 +30,7 @@
 .best-seller-slider-div{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     flex: 1;
     z-index: 0;
 }
@@ -212,7 +212,7 @@
 
 .pagination-dots {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
     /* padding: 5px 0; */
 }
 
@@ -239,7 +239,7 @@
     display: none;
     flex-direction: column;
     width: 100%;
-    /* gap: 15px; */
+    gap: 15px;
     position: relative;
     /* padding: 0 20px; */
     height: auto;
@@ -260,8 +260,8 @@
     width: 100%;
     overflow: hidden;
     /* background-color: orange; */
-    position: absolute;
-    bottom: 80px;
+    /* position: absolute; */
+    /* bottom: 80px; */
     left: 0;
     padding: 10px 25px;
     /* height: 100%; */
@@ -316,8 +316,9 @@
 
 .mobile-slider-cards{
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 300px;
+    height: auto;
     padding: 0 10px;
     background-color: #fff;
     /* position: absolute;

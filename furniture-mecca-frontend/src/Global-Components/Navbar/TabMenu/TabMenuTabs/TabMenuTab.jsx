@@ -31,7 +31,7 @@ const TabMenuTab = ({name, ind, closeMenu, headingLink}) => {
                 {
                     subDataName: 'Living Room',
                     furnitureLinks: [
-                        {name: 'Living thsi Room Sets', link: '#'},
+                        {name: 'Living Room Sets', link: '#'},
                         {name: 'Sofa & Couches', link: '#'},
                         {name: 'Sectionals', link: '#'},
                         {name: 'Love Seats', link: '#'},
@@ -66,7 +66,7 @@ const TabMenuTab = ({name, ind, closeMenu, headingLink}) => {
                 {
                     subDataName: 'Dining',
                     furnitureLinks: [
-                        {name: 'Dining Room Sets', link: '/dining-room-sets'},
+                        {name: 'Dining Room Sets', link: '/product-category/dining-room/dining-room-sets'},
                         {name: 'Sofa & Couches', link: '#'},
                         {name: 'Sectionals', link: '#'},
                         {name: 'Love Seats', link: '#'},

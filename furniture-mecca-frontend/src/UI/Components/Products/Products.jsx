@@ -20,7 +20,7 @@ import closeBtn from '../../../Assets/icons/close-btn.png'
 import QuickView from '../QuickView/QuickView';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
 
-const Products = () => {
+const Products = ({productArchiveHading}) => {
     // products context data
     const {products} = useProducts();
     const {cart, addToCart, cartSectionOpen, setCartSectionOpen, increamentQuantity, decreamentQuantity, removeFromCart, calculateTotalPrice} = useCart();
@@ -200,7 +200,7 @@ const Products = () => {
 
   return (
     <div className='products-main-container'>
-        <h3>Dining Room Furniture Sets</h3>
+        <h3>Category: {productArchiveHading}</h3>
         {/* Toggle section code */}
         <div className='toggle-sort-section'>
             <div className='hide-and-show-filters-button-container' onClick={handleFilterSection}>

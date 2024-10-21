@@ -34,15 +34,15 @@ const Nav = ({navLinks}) => {
         {
             heading: 'Living Room',
             links: [
-                {name: 'Living Room Sets', link: '#'},
-                {name: 'Sofa & LoveSeat Sets', link: '#'},
-                {name: 'Sectionals', link: '#'},
-                {name: 'Reclining Furniture', link: '#'},
-                {name: 'Sofas', link: '#'},
-                {name: 'Sleeper Sofas', link: '#'},
-                {name: 'LoveSeats', link: '#'},
-                {name: 'Small Space Living Room', link: '#'},
-                {name: 'Outlets', link: '#'},
+                {name: 'Living Room Sets', link: '/product-category/living-room/living-room-sets'},
+                {name: 'Sofa & LoveSeat Sets', link: '/product-category/living-room/sofa-loveseat-sets'},
+                {name: 'Sectionals', link: '/product-category/living-room/sectionals'},
+                {name: 'Reclining Furniture', link: '/product-category/living-room/reclining-sets'},
+                {name: 'Sofas', link: '/product-category/living-room/sofas'},
+                {name: 'Sleeper Sofas', link: '/product-category/living-room/sleeper-sofas'},
+                {name: 'LoveSeats', link: '/product-category/living-room/loveseats'},
+                {name: 'Small Space Living Room', link: '/product-category/living-room/small-space-living-rooms'},
+                {name: 'Outlets', link: '/product-category/living-room/living-room-outlet'},
             ],
             Images: [
                 {title: "Cashton Sofa and Loveseat", price: '$799', link: '#', img: cashtonImage},
@@ -56,19 +56,19 @@ const Nav = ({navLinks}) => {
         {
             heading: 'Bedroom',
             links: [
-                {name: 'Bedroom Sets', link: '#'},
-                {name: 'Beds & Headboards', link: '#'},
-                {name: 'Dresser & Mirror Set', link: '#'},
-                {name: 'Dressers', link: '#'},
-                {name: 'Chests', link: '#'},
-                {name: 'NightStands', link: '#'},
-                {name: 'Mirrors', link: '#'},
-                {name: 'Twin Beds', link: '#'},
-                {name: 'Quen Beds', link: '#'},
-                {name: 'Full Beds', link: '#'},
-                {name: 'King', link: '#'},
-                {name: 'Small Spaces Bedrooms', link: '#'},
-                {name: 'Outlets', link: '#'},
+                {name: 'Bedroom Sets', link: '/product-category/bedroom/bedroom-sets'},
+                {name: 'Beds & Headboards', link: '/product-category/bedroom/beds-headboards'},
+                {name: 'Dresser & Mirror Set', link: '/product-category/bedroom/dresser-mirror-sets'},
+                {name: 'Dressers', link: '/product-category/bedroom/dressers'},
+                {name: 'Chests', link: '/product-category/bedroom/chests'},
+                {name: 'NightStands', link: '/product-category/bedroom/nightstands'},
+                {name: 'Mirrors', link: '/product-category/bedroom/mirrors'},
+                {name: 'Twin Beds', link: '/product-category/bedroom/twin-beds'},
+                {name: 'Quen Beds', link: '/product-category/bedroom/queen-beds-fm'},
+                {name: 'Full Beds', link: '/product-category/bedroom/full-beds'},
+                {name: 'King Beds', link: '/product-category/bedroom/king-beds'},
+                {name: 'Small Spaces Bedrooms', link: '/product-category/bedroom/small-space-bedrooms'},
+                {name: 'Outlets', link: '/product-category/bedroom/bedroom-outlet'},
             ],
             Images: [
                 {title: "Cashton Sofa and Loveseat", price: '$799', link: '#',  img: cashtonImage},
@@ -84,12 +84,12 @@ const Nav = ({navLinks}) => {
         {
             heading: 'Dining Room', link: '/dining-room',
             links: [
-                {name: 'Dining Room Sets', link: '/dining-room-sets'},
-                {name: 'Pub Heights Dining Sets', link: '#'},
-                {name: 'Dining Chairs & Benches', link: '#'},
-                {name: 'Dining Tables', link: '#'},
-                {name: 'Bar Stools', link: '#'},
-                {name: 'Servers, Buffets & China Cabinets', link: '#'},
+                {name: 'Dining Room Sets', link: '/product-category/dining-room/dining-room-sets'},
+                {name: 'Pub Heights Dining Sets', link: '/product-category/dining-room/pub-heights-dining-sets'},
+                {name: 'Dining Chairs & Benches', link: '/product-category/dining-room/dining-chairs-benches'},
+                {name: 'Dining Tables', link: '/product-category/dining-room/dining-tables'},
+                {name: 'Bar Stools', link: '/product-category/dining-room/bar-pub-stools'},
+                {name: 'Servers, Buffets & China Cabinets', link: '/product-category/dining-room/servers-buffets-china-cabinets'},
             ],
             Images: [
                 {title: "Cashton Sofa and Loveseat", price: '$799', link: '#',  img: cashtonImage},
@@ -103,16 +103,16 @@ const Nav = ({navLinks}) => {
         {
             heading: 'Mattresses',
             links: [
-                {name: 'Twin Size', link: '#'},
-                {name: 'Quen Size', link: '#'},
-                {name: 'Full Size', link: '#'},
-                {name: 'King Size', link: '#'},
-                {name: 'Bed Frames', link: '#'},
-                {name: 'Pillows', link: '#'},
-                {name: 'Memory Foam Mattresses', link: '#'},
-                {name: 'box Spring', link: '#'},
-                {name: 'Mattresses Protection', link: '#'},
-                {name: 'Outlet', link: '#'},
+                {name: 'Twin Size', link: '/product-category/mattresses/twin-size'},
+                {name: 'Quen Size', link: '/product-category/mattresses/queen-size'},
+                {name: 'Full Size', link: '/product-category/mattresses/full-size'},
+                {name: 'King Size', link: '/product-category/mattresses/king-size'},
+                {name: 'Bed Frames', link: '/product-category/mattresses/bed-frames'},
+                {name: 'Pillows', link: '/product-category/mattresses/pillows'},
+                {name: 'Memory Foam Mattresses', link: '/product-category/mattresses/memory-foam-mattresses'},
+                {name: 'box Spring', link: '/product-category/mattresses/box-springs'},
+                {name: 'Mattresses Protection', link: '/product-category/mattresses/mattress-protection'},
+                {name: 'Outlet', link: '/product-category/mattresses/sale-mattresses'},
             ],
             Images: [
                 {title: "Cashton Sofa and Loveseat", price: '$799', link: '#',  img: cashtonImage},
@@ -126,11 +126,11 @@ const Nav = ({navLinks}) => {
         {
             heading: 'Kids',
             links: [
-                {name: 'Kids Bedroom Sets', link: '#'},
-                {name: 'Kids Room', link: '#'},
-                {name: 'Kids Beds & Headboards', link: '#'},
-                {name: 'Kids Bedroom Storage', link: '#'},
-                {name: 'Outlet', link: '#'},
+                {name: 'Kids Bedroom Sets', link: '/product-category/kids/kids-bedroom-sets'},
+                {name: 'Kids Room', link: '/product-category/kids/kids-room'},
+                {name: 'Kids Beds & Headboards', link: '/product-category/kids/kids-beds-headboards'},
+                {name: 'Kids Bedroom Storage', link: '/product-category/kids/kids-bedroom-storage'},
+                {name: 'Outlet', link: '/product-category/kids/sale-kids-room'},
             ],
             Images: [
                 {title: "Cashton Sofa and Loveseat", price: '$799', link: '#',  img: cashtonImage},
@@ -142,22 +142,27 @@ const Nav = ({navLinks}) => {
 
     const accentFurnitureLinks = [
         {
-            heading: 'Accent Furniture / Rugs',
+            heading: 'Accent Furniture',
             links: [
-                {headingOne: 'Accent', innerLinks: [
-                    {name: 'Kids Bedroom Sets', link: '#'},
-                    {name: 'Kids Room', link: '#'},
-                    {name: 'Kids Beds & Headboards', link: '#'},
-                    {name: 'Kids Bedroom Storage', link: '#'},
-                    {name: 'Outlet', link: '#'},
+                {headingOne: 'Accent Furniture', innerLinks: [
+                    {name: 'Accent Tables', link: '/product-category/accent-furniture/accent-tables'},
+                    {name: 'Accent Chest & Storage', link: '/product-category/accent-furniture/accent-chests-storage'},
+                    {name: 'Coffee & End Tables', link: '/product-category/accent-furniture/coffee-end-tables'},
+                    {name: 'Lampes & Lighting', link: '/product-category/accent-furniture/lamps-lighting'},
+                    {name: 'Entertainment Centers & TV Stands', link: '/product-category/accent-furniture/entertainment-centers-tv-stands'},
+                    {name: 'Home Office', link: '/product-category/accent-furniture/home-office'},
+                    {name: 'Benches', link: '/product-category/accent-furniture/benches'},
+                    {name: 'Outlets', link: '/product-category/accent-furniture/sale-accent-furniture'},
                 ]},
 
                 {headingOne: 'Rugs', innerLinks: [
-                    {name: 'Kids Bedroom Sets', link: '#'},
-                    {name: 'Kids Room', link: '#'},
-                    {name: 'Kids Beds & Headboards', link: '#'},
-                    {name: 'Kids Bedroom Storage', link: '#'},
-                    {name: 'Outlet', link: '#'},
+                    {name: 'Machine Washable', link: '/product-category/rugs-main/machine-washable'},
+                    {name: 'Indoor/Outdoor Rugs', link: '/product-category/rugs-main/indoor-outdoor-rugs'},
+                    {name: 'Runners', link: '/product-category/rugs-main/runners'},
+                    {name: 'Small Area Rugs', link: '/product-category/rugs-main/small-area-rugs'},
+                    {name: 'Large Area Rugs', link: '/product-category/rugs-main/large-area-rugs'},
+                    {name: 'All Area Rugs', link: '/product-category/rugs-main/all-area-rugs'},
+                    {name: 'Outlets', link: '/product-category/rugs-main/sale-rugs'},
                 ]},
                 
             ],
@@ -172,9 +177,9 @@ const Nav = ({navLinks}) => {
         {
             heading: 'Kids',
             links: [
-                {name: 'Small Spaces Bedrooms', link: '#'},
-                {name: 'Small Spaces Living Rooms', link: '#'},
-                {name: 'Small Spaces Dining Rooms', link: '#'},
+                {name: 'Small Spaces Bedrooms', link: '/product-category/small-space-furniture/small-space-bedrooms'},
+                {name: 'Small Spaces Living Rooms', link: '/product-category/small-space-furniture/small-space-living-rooms'},
+                {name: 'Small Spaces Dining Rooms', link: '/product-category/small-space-furniture/small-space-dining-rooms'},
             ],
             Images: [
                 {title: "Cashton Sofa and Loveseat", price: '$799', link: '#',  img: cashtonImage},
@@ -188,12 +193,11 @@ const Nav = ({navLinks}) => {
         {
             heading: 'Outlet',
             links: [
-                {name: 'Tent Sale', link: '#'},
-                {name: 'Summer Sale', link: '#'},
-                {name: 'OverStock Sale', link: '#'},
-                {name: 'Package Deals', link: '#'},
-                {name: '50% OFF', link: '#'},
-                {name: 'Last Call', link: '#'},
+                {name: 'Steal Deal', link: '/steal-deal'},
+                {name: 'Fall Sale', link: '/product-category/fall-sale-2024'},
+                {name: 'Package Deals', link: '/product-category/sale/package-deals'},
+                {name: '50% OFF', link: '/product-category/sale/50-off-sale'},
+                {name: 'Last Call', link: '/product-category/sale/last-call'},
             ],
             Images: [
                 {title: "Cashton Sofa and Loveseat", price: '$799', link: '#',  img: cashtonImage},

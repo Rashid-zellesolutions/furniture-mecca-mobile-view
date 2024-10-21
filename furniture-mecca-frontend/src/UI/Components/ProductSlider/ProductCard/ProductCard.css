@@ -62,15 +62,16 @@
 
 .product-details h3{
     color: var(--text-color);
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 500;
     line-height: 24px;
-    padding: 15px 0px 0px 10px;
+    padding: 15px 0px 2px 10px;
 }
 
 .product-details p{
     font-size: 12px;
-    line-height: 22px;
+    line-height: 18px;
+    font-weight: 400;
     color: var(--text-color);
     padding: 5px 0px 0px 10px;
 }
@@ -89,8 +90,8 @@
     border-bottom: 1px solid #000;
     width: max-content;
     margin-left: 10px;
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-bottom: 30px;
     cursor: pointer;
     position: relative;
     overflow: hidden;

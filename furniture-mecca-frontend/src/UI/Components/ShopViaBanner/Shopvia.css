@@ -3,7 +3,7 @@
     width: 100%;
     align-items: center;
     background-color: var(--banner-bg-color);
-    padding: 10px 10px;
+    padding: 16px 10px;
 }
 
 .close{
@@ -40,6 +40,9 @@
 }
 
 @media only screen and (max-width: 480px){
+    .shop-via-banner{
+        padding: 13px 10px;
+    }
     .shop-via-banner span{
         font-size: 12px;
         font-weight: 400;

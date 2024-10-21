@@ -45,6 +45,7 @@ import sixMonthCreditImage from '../../../Assets/Furniture Mecca/Landing Page/sa
 import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/Frame 4278.png'   
 import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFinancingSlider';
 import ImageSlider from '../../Components/404NotFound/ImageSlider';
+import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery';
 
 
 const Home = () => {
@@ -125,6 +126,7 @@ const Home = () => {
       <GetTheScop />
       <BlogSlider />
       <InstaGallery />
+      {/* <InstaTwoImageGallery /> */}
     </div>
   )
 }

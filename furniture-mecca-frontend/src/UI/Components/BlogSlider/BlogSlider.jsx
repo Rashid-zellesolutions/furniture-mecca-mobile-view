@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,9 +7,50 @@ import diningRoomBlogImage from '../../../Assets/Furniture Mecca/Landing Page/bl
 import livingRoomBlogImage from '../../../Assets/Furniture Mecca/Landing Page/blogs/Some-Basics-On-Keeping-Your-Living-Room-Furniture-Clean 1.png';
 import mattressBlogImage from '../../../Assets/Furniture Mecca/Landing Page/blogs/Perks-Of-Using-High-Quality-Mattresses-For-Sleeping 1.png';
 import BlogCard from './BlogCard';
+import leftArrow from '../../../Assets/icons/arrow-left-charcol.png'
+import rightArrow from '../../../Assets/icons/right-arrow.png'
+
+// const SamplePrevArrow = (props) => {
+//   const { className, style, onClick } = props;
+//   return(
+//     <div onClick={onClick} className={`arrow ${className}`} >
+//       <img src={leftArrow} alt='arrow' />
+//     </div>
+//   )
+//   }
+
+//   function SampleNextArrow(props) {
+//     const { className, style, onClick } = props;
+//     return(
+//       <div onClick={onClick} className={`arrow ${className}`} >
+//         <img src={rightArrow} alt='arrow'/>
+//       </div>
+//     )
+//   }
 
 
 const BlogSlider = () => {
+
+  const blogsData = [
+        {img: diningRoomBlogImage, category: 'Dining Room', title: 'Advantages Of Purchasing a Firm Mattress', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: livingRoomBlogImage, category: 'Bed Room', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: mattressBlogImage, category: 'Mattresses', title: 'How To Choose the Ideal Furniture Shop for Your House', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: diningRoomBlogImage, category: 'Loveseats', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: diningRoomBlogImage, category: 'Kids Room', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: diningRoomBlogImage, category: 'Living Room', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: diningRoomBlogImage, category: 'Accent Furniture', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: diningRoomBlogImage, category: 'Rugs', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: diningRoomBlogImage, category: 'Tent Sale', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+        {img: diningRoomBlogImage, category: 'Outlets', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
+    ]
+
+    const maxLength = 50;
+    const truncateTitle = (title, maxLength) => {
+        if (title.length > maxLength) {
+            return title.slice(0, maxLength) + '...';
+        }
+        return title; 
+    };
 
     var settings = {
         dots: true,
@@ -21,6 +62,8 @@ const BlogSlider = () => {
         initialSlide: 0,
         nextArrow: false,
         prevArrow: false,
+      //   nextArrow: <SampleNextArrow to="next"/>,
+      // prevArrow: <SamplePrevArrow to="prev" />,
         responsive: [
           {
             breakpoint: 1024,
@@ -49,26 +92,9 @@ const BlogSlider = () => {
         ]
       };
 
-    const maxLength = 50;
-    const truncateTitle = (title, maxLength) => {
-        if (title.length > maxLength) {
-            return title.slice(0, maxLength) + '...';
-        }
-        return title; 
-    };
+    
 
-    const blogsData = [
-        {img: diningRoomBlogImage, category: 'Dining Room', title: 'Advantages Of Purchasing a Firm Mattress', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: livingRoomBlogImage, category: 'Bed Room', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: mattressBlogImage, category: 'Mattresses', title: 'How To Choose the Ideal Furniture Shop for Your House', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: diningRoomBlogImage, category: 'Loveseats', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: diningRoomBlogImage, category: 'Kids Room', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: diningRoomBlogImage, category: 'Living Room', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: diningRoomBlogImage, category: 'Accent Furniture', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: diningRoomBlogImage, category: 'Rugs', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: diningRoomBlogImage, category: 'Tent Sale', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-        {img: diningRoomBlogImage, category: 'Outlets', title: 'Benifits Of Accent Furniture', createdBy: 'Furniture Mecca', comments: '4 comments'},
-    ]
+    
       // products slider script
     const [currentIndex, setCurrentIndex] = useState(0)
     const itemsToShow = 1; // Number of items to show at a time

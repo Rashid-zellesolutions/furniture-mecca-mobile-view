@@ -41,15 +41,15 @@ const Haider = () => {
   }
 
   const navLinks = [
-      {name: "Living Room", link: '/living-room', hasDropdown: true},
-      {name: "Bedroom", link: '/bedroom', hasDropdown: true},
-      {name: "Dining Room", link: '/dining-room', hasDropdown: true},
-      {name: "Mattresses", link: '/mattresses', hasDropdown: true},
-      {name: "Kids", link: '/kids', hasDropdown: true},
-      {name: "Accent Furniture / Rugs", link: '/accent-furniture-and-rugs', hasDropdown: true},
+      {name: "Living Room", link: 'living-room-category', hasDropdown: true},
+      {name: "Bedroom", link: '/bedroom-category', hasDropdown: true},
+      {name: "Dining Room", link: '/dining-room-category', hasDropdown: true},
+      {name: "Mattresses", link: '/mattresses-category', hasDropdown: true},
+      {name: "Kids", link: '/kids-category', hasDropdown: true},
+      {name: "Accent Furniture / Rugs", link: '/accent-furniture-category', hasDropdown: true},
       {name: "Small Spaces", link: '/small-spaces', hasDropdown: true},
-      {name: "Outlets", link: '/outlets', hasDropdown: true},
-      {name: "Labor Day Sale", link: '/tent-sale', hasDropdown: true},
+      {name: "Outlets", link: '/sale-category', hasDropdown: true},
+      {name: "Labor Day Sale", link: '/labor-day-sale', hasDropdown: true},
       
   ]
   const [nearStorePopUp, setNearStorePopUp] = useState(false)
@@ -122,6 +122,7 @@ const Haider = () => {
       {/* Banner Responsive */}
       <PromotionalBanner 
         handleLanguageModal={handleLanguageModal} 
+        handleDeliverModal={handleSearchModal}
         currentSelectedCountryFlag={currentSelectedCountryFlag} 
         usaFlag={usaFlag} 
         currentSelectedCountry={currentSelectedCountry} 
@@ -199,8 +200,8 @@ const Haider = () => {
             <img className='mobile-logo' src={logo} alt='mobile-logo' />
           </a>
           <div className='mobile-view-cart-and-location'>
-            <img src={locationIcon} alt='location' />
-            <img src={mobileCartIcon} alt='cart-icon' />
+            <img src={locationIcon} alt='location' onClick={handleNearStorePopUp}/>
+            <img src={mobileCartIcon} alt='cart-icon' onClick={handleCartSectionOpen} />
           </div> 
         </div>
         <div className='mobile-view-search-section'>

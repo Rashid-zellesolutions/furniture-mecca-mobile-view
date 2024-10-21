@@ -97,7 +97,7 @@ const DealOfTheDay = () => {
 
     // Deal of the day timer
     const calculateTimeLeft = () => {
-      const targetDate = new Date("2024-10-19T21:00:00").getTime();
+      const targetDate = new Date("2024-10-25T21:00:00").getTime();
       const now = new Date().getTime();
       const difference = targetDate - now;
       const padZero = (num) => String(num).padStart(2, '0');
@@ -144,7 +144,7 @@ const DealOfTheDay = () => {
     return (
       <div className='deal-of-the-day-main-container'> 
         <div className='deal-of-the-day-border-heading'>
-          <p>Deal Of The Day</p>
+          <p>Deal Of The Month</p>
           <div className='deal-of-the-day-end-time'>
             <p>end in: {days}d : {hours}h : {minutes}m : {seconds}s</p>
           </div>

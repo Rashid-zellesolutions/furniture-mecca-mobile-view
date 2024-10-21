@@ -5,7 +5,7 @@ import deliverTo from '../../../Assets/icons/delivery.png'
 // import locationModalIcon from '../../Assets/icons/location.png'
 import locationIcon from '../../../Assets/icons/location-red.png';
 
-const PromotionalBanner = ({handleLanguageModal, currentSelectedCountryFlag, usaFlag, currentSelectedCountry}) => {
+const PromotionalBanner = ({handleLanguageModal, handleDeliverModal, currentSelectedCountryFlag, usaFlag, currentSelectedCountry}) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const dynamicHeading = [0, 1, 2]
@@ -37,7 +37,7 @@ const PromotionalBanner = ({handleLanguageModal, currentSelectedCountryFlag, usa
             </button>
           </div>
         </div>
-        <div className='on-tab-deliver-to'>
+        <div className='on-tab-deliver-to' onClick={handleDeliverModal}>
             <img src={deliverTo} alt="delivery" />
             <div className='mobile-view-delever-to'> 
               <p>Deliver to : </p>

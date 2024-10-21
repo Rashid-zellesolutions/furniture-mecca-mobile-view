@@ -9,6 +9,7 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { useLocation } from 'react-router-dom';
 import aarrowTop from './Assets/icons/arrow-up.png'
 import { IoIosArrowUp } from "react-icons/io";
+import routes from "./utils/Routes/Route";
 
 
 import livingRoomMainImage from './Assets/pages-main-images/Living-Room-Desk-1-1024x341.jpg';
@@ -110,51 +111,7 @@ function App() {
         <Haider />
         <Shopvia />
         <Routes>
-          <Route exact path='/' element={<Home />} />
-          {/* Main Pages Routes */}
-          <Route path='/dining-room-sets' element={<ProductArchive />} />
-          <Route 
-            path='/living-room' 
-            element={<Categories categoriesMainImage={livingRoomMainImage} mobileViewMainImage={livingRoomMobileBanner} categoryCartTitle={'Living Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
-          />
-          <Route 
-            path='/bedroom' 
-            element={<Categories categoriesMainImage={bedroomMainImage} mobileViewMainImage={bedRoomMobileBanner} categoryCartTitle={'Bedroom Set'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
-          />
-          <Route 
-            path='/dining-room' 
-            element={<Categories categoriesMainImage={diningRoomMainImage} mobileViewMainImage={dinningRoomMobileBanner} categoryCartTitle={'Dining Room'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
-          />
-          <Route 
-            path='/mattresses' 
-            element={<Categories categoriesMainImage={mattressesMainImage} mobileViewMainImage={mattresessMobileBanner} categoryCartTitle={'Mattresses'} showPromotionsBaneers={false} categoryCardData={categoryCardData} />} 
-          />
-          <Route 
-            path='/kids' 
-            element={<Categories categoriesMainImage={kidsMainImage} mobileViewMainImage={kidsMobileBanner} showPromotionsBaneers={false} categoryCartTitle={'Kids Room'} categoryCardData={categoryCardData} />} 
-          />
-          <Route 
-            path='/accent-furniture-and-rugs' 
-            element={<Categories categoriesMainImage={accentFurnitureMainImage} mobileViewMainImage={accentMobileBanner} showPromotionsBaneers={false} categoryCartTitle={'Accent Furniture And Rugs'} categoryCardData={categoryCardData} newArrival={true} />} 
-          />
-          <Route 
-            path='/small-spaces' 
-            element={<Categories categoriesMainImage={smallSpaceMainImage} mobileViewMainImage={smallSpacesMobileBanner} categoryCartTitle={'Small Spaces'} showPromotionsBaneers={false} categoryCardData={categoryCardData} newArrival={true} />} 
-          />
-          <Route 
-            path='/outlets' 
-            element={<Categories categoriesMainImage={outletMainImage} mobileViewMainImage={outletMobileBanner} showPromotionsBaneers={false} categoryCartTitle={'Outlets'} categoryCardData={categoryCardData} newArrival={true} />} 
-          />
-          <Route 
-            path='/tent-sale' 
-            element={<Categories categoriesMainImage={tentSaleMainImage} mobileViewMainImage={livingRoomMobileBanner} showBanners={false} categoryCartTitle={'Labor Day Sale'} categoryCardData={categoryCardData} newArrival={true} />} 
-          />
-
-          <Route path='/single-product/:slug' element={<SingleProduct  />} />
-          {/* <Route path='/single-product' element={<SingleProduct  />} /> */}
-          <Route path='/add-to-cart' element={<Cart />} />
-          <Route path='/summery-page' element={<Summary />} />
-          <Route path='*' element={<PageNotFound />} />
+            {routes}
         </Routes>
         <Footer notLandingPage={currentUrl === '/' ? false : true} />
         <button onClick={handleClickTop} className={`scroll-to-top-button ${isVisible ? 'show-scrollTop' : ''}`}>

@@ -13,7 +13,7 @@ import InstaGallery from '../../Components/InstaGallery/InstaGallery';
 import RelatedCategories from '../../Components/Related-categories-Tags/RelatedCategories';
 import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery';
 
-const ProductArchive = () => {
+const ProductArchive = ({productArchiveHading}) => {
   // Breadcrup component data
   const breadcrumRecentData = [
     {img: underFifteen, title: 'Under $1500'},
@@ -31,7 +31,7 @@ const ProductArchive = () => {
     <div>
         {/* <Shopvia /> */}
         <BreadCrumWithProduct breadcrumRecentData={breadcrumRecentData}  />
-        <Products />
+        <Products productArchiveHading={productArchiveHading}/>
         <RelatedCategories />
         <FAQ />
         {/* <CategoriesGetScop isTrue={false} /> */}

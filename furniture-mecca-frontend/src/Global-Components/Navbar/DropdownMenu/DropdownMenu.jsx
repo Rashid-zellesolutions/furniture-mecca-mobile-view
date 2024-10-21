@@ -18,7 +18,7 @@ const DropdownMenu = ({navHeading, dropDownNavData}) => {
     
   return (
     <div className='mattresses-main-div'>
-                {dropDownNavData[0].heading === 'Accent Furniture / Rugs' ? (dropDownNavData[0].links.map((item, i) => {
+                {dropDownNavData[0].heading === 'Accent Furniture' ? (dropDownNavData[0].links.map((item, i) => {
                     return <div className='menu-links'>
                         <h3 className='living-room-heading'>{item.headingOne}</h3>
                         <div className='mattresses-links-div'>

@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from 'react-slick';
 import './Slider.css';
-import imageOne from '../../Assets/Furniture Mecca/Landing Page/Slider/Main Banner 1.jpg';
-import imageTwo from '../../Assets/Furniture Mecca/Landing Page/Slider/Main Banner 2.jpg';
-import imageThree from '../../Assets/slider-images/slider-image-3.png';
 import ArrowLeft from '../../Assets/icons/arrow-left.png';
 import ArrowRight from '../../Assets/icons/arrow-right.png';
 import arrowLeftRed from '../../Assets/icons/arrow-left-red.png';
 import arrowRightRed from '../../Assets/icons/arrow-right-red.png';
-import { Link } from 'react-router-dom';
 
 // Mobile view banner images
 import sliderImageOne from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa3.png';
-import sliderImageTwo from '../../Assets/Furniture Mecca/Landing Page/Slider/Property 1=Variant2.png';
 import sliderImageThree from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa4.png';
 import sliderImageFour from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa2.png';
 import axios from 'axios';
@@ -23,15 +15,11 @@ const Sliderr = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [mobileCurrentIndex, setMobileCurrentIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
-    // const [touchStart, setTouchStart] = useState(null);
-    // const [touchEnd, setTouchEnd] = useState(null)
     const [isDraging, setIsDraging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [currentX, setCurrentX] = useState(0);
     const [slides, setSlides] = useState([])
     const url = 'https://fm.skyhub.pk';
-
-    // console.log("index",currentIndex)
     const handleMouseEnter = () => {
         setIsHovered(true);
     }
@@ -40,17 +28,10 @@ const Sliderr = () => {
         setIsHovered(false);
     }
 
-    // const slides = [
-    //     { img: imageOne },
-    //     { img: imageTwo },
-    //     { img: imageOne },
-    // ];
-
     const getHomeSliderImages = async () => {
         try {
             const response = await axios.get('https://fm.skyhub.pk/api/v1/pages/home/slider/get')
             setSlides(response.data.homeSliders || [])
-            // console.log("slider response", response.data.homeSliders);
         } catch (error) {
             console.error(error);
         }
@@ -58,22 +39,12 @@ const Sliderr = () => {
     useEffect(() => {
         getHomeSliderImages();
     }, [])
-    // const infiniteSlides = [...slides, ...slides];
 
     const mobileViewSLider = [
         {img: sliderImageOne},
-        // {img: sliderImageTwo},
         {img: sliderImageThree},
         {img: sliderImageFour},
     ]
-
-    // const nextSlide = () => {
-    //     setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    // };
-
-    // const prevSlide = () => {
-    //     setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
-    // };
 
     const nextSlide = () => {
         setCurrentIndex(prevIndex => (slides.length ? (prevIndex + 1) % slides.length : 0));
@@ -88,43 +59,6 @@ const Sliderr = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // const handleMouseDown = (e) => {
-    //     setStartX(e.clientX);
-    //     setIsDraging(true)
-    //     console.log("mouse down startX Value", startX)
-    //     console.log("mouse down Draging Value", isDraging)
-    // }
-
-    // const handleMouseMove = (e) => {
-    //     if(!isDraging) return;
-    //     setCurrentX(e.clientX);
-    //     console.log("mouse up drag Value", isDraging)
-    //     console.log("mouse up startX Value", startX)
-    // }
-
-    // const handleMouseUp = () => {
-    //     if(!isDraging) return;
-    //     const diff = startX - currentX;
-    //     console.log("diff value", diff)
-
-    //     if(Math.abs(diff) > 200){
-    //         if(diff > 0){
-    //             nextSlide();
-    //         }else {
-    //             prevSlide()
-    //         }
-    //     }
-    //     setIsDraging(false);
-    //     setStartX(0);
-    //     setCurrentX(0);
-
-    // }
-
-    // mobile slider
-    
-    const handleMobileMouseEnter = () => {}
-    const handlemobileMouseLeave = () => {}
-
     const mobileNextSlide = () => {
         setMobileCurrentIndex((prevIndex) => (prevIndex + 1) % mobileViewSLider.length);
     };
@@ -138,51 +72,10 @@ const Sliderr = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // let settings = {
-    //     dots: true,
-    //     infinite: false,
-    //     speed: 500,
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     initialSlide: 0,
-    //     nextArrow: false,
-    //     prevArrow: false,
-    //     responsive: [
-    //       {
-    //         breakpoint: 1024,
-    //         settings: {
-    //           slidesToShow: 3,
-    //           slidesToScroll: 3,
-    //           infinite: true,
-    //           dots: true
-    //         }
-    //       },
-    //       {
-    //         breakpoint: 600,
-    //         settings: {
-    //           slidesToShow: 2,
-    //           slidesToScroll: 2,
-    //           initialSlide: 2
-    //         }
-    //       },
-    //       {
-    //         breakpoint: 480,
-    //         settings: {
-    //           slidesToShow: 1,
-    //           slidesToScroll: 1
-    //         }
-    //       }
-    //     ]
-    //   };
-
     return (
         <>
         <div 
             className='slider'
-            // onMouseDown={handleMouseDown}
-            // onMouseMove={handleMouseMove}
-            // onMouseUp={handleMouseUp}
-            // onMouseLeave={handleMouseUp}
             style={{ cursor: isDraging ? 'grabbing' : 'grab' }}
         >
             <div 
