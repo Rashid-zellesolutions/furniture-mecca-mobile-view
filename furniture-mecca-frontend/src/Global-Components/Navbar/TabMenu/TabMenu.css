@@ -32,6 +32,7 @@
 .tab-menu-link h3{
     display: flex;
     width: 100%;
+    color: var(--text-color);
     justify-content: space-between;
 }
 

@@ -18,10 +18,15 @@ import bestSellerMobileBanner from '../../../Assets/Furniture Mecca/Landing Page
 
 const BestSeller = () => {
     const bestSellerNav = ['Living Room', 'Bedroom', 'Dining Room']
+    const [loading, setLoading] = useState(false);
     const [activeItem, setActiveItem] = useState(0)
 
     const handleActiveItem = (index) => {
-        setActiveItem(index)
+        setLoading(true); // Start loading
+        setActiveItem(index);
+        setTimeout(() => {
+            setLoading(false); // Stop loading after 2 seconds
+        }, 2000);
     };
 
     // const productCardData = useSelector((state) => state.productCard.data)
@@ -68,10 +73,18 @@ const BestSeller = () => {
         })
     }
 
+    // const handleActiveItem = (index) => {
+    //     setLoading(true); // Start loading
+    //     setActiveItem(index);
+    //     setTimeout(() => {
+    //         setLoading(false); // Stop loading after 2 seconds
+    //     }, 2000);
+    // };
+
 
   return (
-    <div className='category-besst-seller-main-container'>
-
+    <div className={`category-besst-seller-main-container ${loading ? 'blurred' : ''}`}>
+         {loading && <Loader />}
         <div className='category-best-seller-and-banner-container'>
 
             <div className='category-best-seller-cards-section'>
@@ -121,8 +134,9 @@ const BestSeller = () => {
                     {bestSellerNav.map((items, index) => (
                         <p 
                             key={index}
-                            onClick={() => handleMobileNavClick(index)}
+                            onClick={() => {handleMobileNavClick(index); handleActiveItem(index)}}
                             className={`mobile-view-nav-link ${mobiIndex === index ? 'mobile-view-nav-active' : ''}`}
+                            
                         >
                             {items}
                         </p>

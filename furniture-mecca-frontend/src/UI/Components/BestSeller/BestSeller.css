@@ -6,6 +6,11 @@
     padding: var(--global-padding);
 }
 
+.blurred {
+    filter: blur(4px);
+    pointer-events: none; /* Prevent interactions while loading */
+}
+
 .category-best-seller-and-banner-container{
     display: flex;
     width: 100%;
@@ -17,6 +22,7 @@
     flex-direction: column;
     flex-grow: 1;
     gap: 20px;
+    height: 100%;
 }
 
 .category-best-seller-menu{
@@ -236,8 +242,8 @@
 }
 
 .mobile-view-nav-link{
-    font-size: 10px;
-    line-height: 15px;
+    font-size: 14px;
+    line-height: 21px;
     font-weight: 400;
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease;
@@ -247,6 +253,7 @@
     border-bottom: 2px solid var(--active-nav-item-color);
     color: var(--active-nav-item-color);
     transform: scale(1.1);
+    font-weight: 600;
 }
 
 .mobile-view-category-best-seller-card-section{

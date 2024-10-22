@@ -39,6 +39,7 @@ import CartSidePannel from '../Cart-side-section/CartSidePannel';
 import FinancingOptions from '../FinancingOptions/FinancingOptions';
 import SizeVariant from '../SizeVariant/SizeVariant';
 import DeliveryOptions from '../DeliveryOptions/DeliveryOptions';
+import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 
 
 
@@ -173,6 +174,7 @@ const SingleProductStickySection = (productData) => {
   return (
     <div className='sticky-main-container'>
       <div className='left-section'>
+        {/* <Breadcrumb /> */}
       <div className='single-product-alice-slider'>
         <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
           <img src={arrowLeft} alt='left' />

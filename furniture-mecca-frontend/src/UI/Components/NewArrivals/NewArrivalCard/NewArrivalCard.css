@@ -17,7 +17,7 @@
 
 .pieces-text {
     position: absolute;
-    bottom: 10%;
+    bottom: -10px;
     font-size: 55px;
     line-height: 64px;
     font-weight: 700;
@@ -30,7 +30,7 @@
 .title-and-price{
     position: absolute;
     bottom: 0;
-    display: flex;
+    display: none;
     width: 100%;
     background-color: #FAFAFA;
     padding: 5px 10px;
@@ -63,6 +63,7 @@
     gap: 10px;
 }
 
+
 .card-buttons a{
     display: flex;
     align-items: center;
@@ -92,6 +93,54 @@
     width: 20px;
 }
 
+.new-arrival-desc-and-price{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+    background-color: var(--button-color);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.new-arrival-desc{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.new-arrival-desc p{
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.new-arrival-new-and-old-price{
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+    width: max-content;
+}
+
+.new-arrival-desc-and-price del, h3{
+    color: #fff;
+}
+
+.new-arrival-desc-and-price del{
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.new-arrival-desc-and-price h3{
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+}
+
 .mobile-view-new-ariival-price{
     display: none;
     flex-direction: column;
@@ -113,7 +162,7 @@
 
 @media only screen and (max-width: 480px){
     .pieces-text{
-        bottom: 15%;
+        bottom: -5px;
         font-size: 25px;
         line-height: 30px;
         font-weight: 700;
@@ -123,7 +172,7 @@
     }
     .title-and-price{
         position: relative;    
-        display: flex;
+        display: none;
         width: 100%;
         align-items: center;
         justify-content: space-between;
@@ -136,6 +185,9 @@
     .new-arrival-product-price{
         display: none;
     }
+    /* .new-arrival-desc-and-price{
+        display: none;
+    } */
     .new-arrival-product-name{
         font-size: 10px;
         line-height: 15px;

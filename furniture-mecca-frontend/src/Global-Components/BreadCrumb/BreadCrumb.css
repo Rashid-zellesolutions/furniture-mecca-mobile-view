@@ -1,0 +1,25 @@
+.breadcrumb-main-container{
+    display: flex;
+    width: 100%;
+    height: max-content;
+
+}
+
+.bread-crumb-list{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    list-style: none;
+}
+
+.bread-crumb-list li{
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+}
+
+.bread-crumb-list li a{
+    color: #595959;
+    text-decoration: none;
+}

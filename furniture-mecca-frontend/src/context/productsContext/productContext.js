@@ -29,7 +29,7 @@ export const ProductProvider = ({children}) => {
             {icon: star, title: 'filled'},
         ], productAllImages: [
             dakotaSet, dakotaSet, dakotaSet, dakotaSet, dakotaSet
-        ], lowPriceAddvertisement: 'Every day Low Prices', 
+        ], lowPriceAddvertisement: 'FM Every day Low Prices', 
         reviewCount: '200', priceTag: 1198, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
             {color: 'brown', hexa: '#FF0000'},
             {color: 'black', hexa: '#B78953'},
@@ -42,7 +42,7 @@ export const ProductProvider = ({children}) => {
                 {icon: star, title: 'filled'},
             ], productAllImages: [
                 goldDiningSet, goldDiningSet, goldDiningSet, goldDiningSet, goldDiningSet
-            ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+            ],  lowPriceAddvertisement: 'FM Every day Low Prices',
             reviewCount: '197', priceTag: 1998, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                 {color: 'brown', hexa: '#FF0000'},
                 {color: 'black', hexa: '#B78953'},
@@ -56,7 +56,7 @@ export const ProductProvider = ({children}) => {
                     {icon: star, title: 'filled'},
                 ], productAllImages: [
                     webImage, webImage, webImage, webImage, webImage
-                ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+                ],  lowPriceAddvertisement: 'FM Every day Low Prices',
                 reviewCount: '218', priceTag: 998, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                     {color: 'brown', hexa: '#FF0000'},
                     {color: 'black', hexa: '#B78953'},
@@ -68,7 +68,7 @@ export const ProductProvider = ({children}) => {
                     {icon: star, title: 'filled'},
                 ], productAllImages: [
                     everDeen, everDeen, everDeen,everDeen, everDeen
-                ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+                ],  lowPriceAddvertisement: 'FM Every day Low Prices',
                 reviewCount: '150', priceTag: 4598, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                     {color: 'brown', hexa: '#FF0000'},
                     {color: 'black', hexa: '#B78953'},
@@ -81,7 +81,7 @@ export const ProductProvider = ({children}) => {
                     {icon: star, title: 'filled'},
                 ], productAllImages: [
                     blackDiningSet, blackDiningSet, blackDiningSet, blackDiningSet, blackDiningSet
-                ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+                ],  lowPriceAddvertisement: 'FM Every day Low Prices',
                 reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                     {color: 'brown', hexa: '#FF0000'},
                     {color: 'black', hexa: '#B78953'},
@@ -94,7 +94,7 @@ export const ProductProvider = ({children}) => {
             {icon: star, title: 'filled'},
         ], productAllImages: [
             whiteDiningSet, whiteDiningSet, whiteDiningSet, whiteDiningSet, whiteDiningSet
-        ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+        ],  lowPriceAddvertisement: 'FM Every day Low Prices',
         reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
             {color: 'brown', hexa: '#FF0000'},
             {color: 'black', hexa: '#B78953'},
@@ -107,7 +107,7 @@ export const ProductProvider = ({children}) => {
                     {icon: star, title: 'filled'},
                 ], productAllImages: [
                     brownDiningSet, brownDiningSet, brownDiningSet, brownDiningSet, brownDiningSet 
-                ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+                ],  lowPriceAddvertisement: 'FM Every day Low Prices',
                 reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                     {color: 'brown', hexa: '#FF0000'},
                     {color: 'black', hexa: '#B78953'},
@@ -120,7 +120,7 @@ export const ProductProvider = ({children}) => {
                 {icon: star, title: 'filled'},
             ], productAllImages: [
                 dakotaSet, dakotaSet, dakotaSet, dakotaSet, dakotaSet 
-            ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+            ],  lowPriceAddvertisement: 'FM Every day Low Prices',
             reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                 {color: 'brown', hexa: '#FF0000'},
                 {color: 'black', hexa: '#B78953'},
@@ -133,7 +133,7 @@ export const ProductProvider = ({children}) => {
                 {icon: star, title: 'filled'},
             ], productAllImages: [
                 goldDiningSet, goldDiningSet, goldDiningSet, goldDiningSet, goldDiningSet 
-            ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+            ],  lowPriceAddvertisement: 'FM Every day Low Prices',
             reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                 {color: 'brown', hexa: '#FF0000'},
                 {color: 'black', hexa: '#B78953'},
@@ -146,7 +146,7 @@ export const ProductProvider = ({children}) => {
                 {icon: star, title: 'filled'},
             ], productAllImages: [
                 everDeen, everDeen, everDeen, everDeen, everDeen
-            ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+            ],  lowPriceAddvertisement: 'FM Every day Low Prices',
             reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                 {color: 'brown', hexa: '#FF0000'},
             {color: 'black', hexa: '#B78953'},
@@ -159,7 +159,7 @@ export const ProductProvider = ({children}) => {
                     {icon: star, title: 'filled'},
                 ], productAllImages: [
                     whiteDiningSet, whiteDiningSet, whiteDiningSet, whiteDiningSet, whiteDiningSet
-                ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+                ],  lowPriceAddvertisement: 'FM Every day Low Prices',
                 reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                     {color: 'brown', hexa: '#FF0000'},
                     {color: 'black', hexa: '#B78953'},
@@ -172,7 +172,7 @@ export const ProductProvider = ({children}) => {
                 {icon: star, title: 'filled'},
             ], productAllImages: [
                 zoraDiningSet, zoraDiningSet, zoraDiningSet, zoraDiningSet, zoraDiningSet 
-            ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+            ],  lowPriceAddvertisement: 'FM Every day Low Prices',
             reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                 {color: 'brown', hexa: '#FF0000'},
                 {color: 'black', hexa: '#B78953'},
@@ -185,7 +185,7 @@ export const ProductProvider = ({children}) => {
                 {icon: star, title: 'filled'},
             ], productAllImages: [
                 knightDaleSet, knightDaleSet, knightDaleSet, knightDaleSet, knightDaleSet 
-            ],  lowPriceAddvertisement: 'Bobs Every day Low Prices',
+            ],  lowPriceAddvertisement: 'FM Every day Low Prices',
             reviewCount: '180', priceTag: 1398, totalPrice: 0 , financingAdd: '12 most special financing', learnMore: 'Learn more', colorVariation: [
                 {color: 'brown', hexa: '#FF0000'},
                 {color: 'black', hexa: '#B78953'},

@@ -7,12 +7,14 @@ import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ProductProvider } from './context/productsContext/productContext';
 import { CartProvider } from './context/cartContext/cartContext';
+import { NavigationProvider } from './context/BreadCrumbContext/NavigationContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <NavigationProvider>
     <ProductProvider>
       <CartProvider>
         <Provider store={store}>
@@ -22,6 +24,7 @@ root.render(
       </Provider>
       </CartProvider>
     </ProductProvider>
+    </NavigationProvider>
   </React.StrictMode>
 );
 

@@ -10,7 +10,7 @@ import eyeWhite from '../../../Assets/icons/eye-white.png';
 import namer from 'color-namer';
 
 const ProductCard = ({tagIcon, tagClass, mainImage, productCardContainerClass, mouseEnter, mouseLeave, ProductTitle, stars, reviewCount, lowPriceAddvertisement,
-    priceTag, financingAdd, singleProductData, slug, stock, handleQuickView, learnMore, colorVariation, handleAddToCart, handleCartSectionOpen, mainIndex, deliveryTime, handleVariantColor, selectedColorIndices, maxWidthAccordingToComp, borderLeft, justWidth, handleCardClick
+    priceTag, financingAdd, percent, singleProductData, slug, stock, handleQuickView, learnMore, colorVariation, handleAddToCart, handleCartSectionOpen, mainIndex, deliveryTime, handleVariantColor, selectedColorIndices, maxWidthAccordingToComp, borderLeft, justWidth, handleCardClick
 }) => {
     
     const [cartClicked, setCartClicked] = useState(true);
@@ -53,7 +53,8 @@ const ProductCard = ({tagIcon, tagClass, mainImage, productCardContainerClass, m
         <div className={`${productCardContainerClass} ${borderLeft ? 'hide-after' : ''} `} style={{maxWidth: maxWidthAccordingToComp, width: justWidth}}>
             <div className='product-card-data'>
                 <div className='tag-and-heart'>
-                    <h3>{stock}</h3>
+                    <h3 className='stock-label'>{stock}</h3>
+                    <p className='percent-label'>{percent}</p>
                     <img src={tagIcon} alt='heart img' className={tagClass} />
                 </div>
                 <div className='product-main-image-container'>
@@ -85,16 +86,24 @@ const ProductCard = ({tagIcon, tagClass, mainImage, productCardContainerClass, m
                     })}
                     <p>{reviewCount}</p>
                 </div>
+                {/* <p className='mobile-view-low-price'>{lowPriceAddvertisement}</p> */}
                 <h3 className='product-price-tag'>$ {priceTag}</h3>
+                {/* <p className='mobile-view-mos-finance'>12 mos special financing <i> Learn more</i></p> */}
             <div className='color-variation-div'>
-                {colorVariation.map((color, colorIndex) => {
-                    return <span key={colorIndex} className='color-variation' onClick={() => handleClick(colorIndex, color)}
-                    style={{
-                        backgroundColor: `${color.color}`,
-                        border: selectedColorIndices[mainIndex] === colorIndex ? `1px solid ${color.color}` : 'none',
-                        boxShadow: selectedColorIndices[mainIndex] === colorIndex ? `inset 0 0 0 2px #FFFF` : ''
-                    }}></span>
-                })}
+                <div className='color-variations'>
+                    {colorVariation.map((color, colorIndex) => {
+                        return <span key={colorIndex} className='color-variation' onClick={() => handleClick(colorIndex, color)}
+                        style={{
+                            backgroundColor: `${color.color}`,
+                            border: selectedColorIndices[mainIndex] === colorIndex ? `1px solid ${color.color}` : 'none',
+                            boxShadow: selectedColorIndices[mainIndex] === colorIndex ? `inset 0 0 0 2px #FFFF` : ''
+                        }}></span>
+                    })}
+                </div>
+                <div className='mobile-view-cart-and-view-icons'>
+                    <img src={cartBlack} alt='cart icon' />
+                    <img src={eyeBlack} alt='eye icon' onClick={handleQuickView}/>
+                </div>
             </div>
             </div>
         </div>

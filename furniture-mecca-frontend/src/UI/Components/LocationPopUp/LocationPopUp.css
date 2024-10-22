@@ -187,3 +187,33 @@
     line-height: 18px;
     color: var(--text-color);
 }
+
+@media only screen and (max-width: 480px){
+    .location-modal-containt-div{
+        width: 100%;
+    }
+    .location-heading-and-search-bar-section {
+        padding: 30px 50px 20px 50px;
+    }
+
+    .location-search-input {
+        width: 115px;
+    }
+
+    .update-zip-btn {
+        background-color: var(--active-nav-item-color);
+        width: 135px;
+        color: var(--text-white);
+        border-radius: 8px;
+        font-size: 10px;
+        line-height: 15px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+    .location-modal-detail-section {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 50px 50px 50px;
+        width: 100%;
+    }
+}

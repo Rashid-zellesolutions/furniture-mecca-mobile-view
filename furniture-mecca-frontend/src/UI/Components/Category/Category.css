@@ -4,6 +4,13 @@
     padding: var(--global-padding);
 }
 
+.category-bread-crumb-and-title{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
 .category-heading{
     color: var(--text-color);
     font-size: 25px;

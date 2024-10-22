@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import AddBtn from '../../../Assets/icons/add-bold-btn.png'
 import { MdKeyboardArrowDown } from "react-icons/md";
 import filterHumberger from '../../../Assets/icons/humberger-icon.png'
+import arrowUpDown from '../../../Assets/icons/arrow-up-donw.png'
 import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from '../ProductCard/ProductCard';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +20,7 @@ import closeBtn from '../../../Assets/icons/close-btn.png'
 // import CartSideSection from '../Cart-side-section/CartSideSection';
 import QuickView from '../QuickView/QuickView';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
+import paginationArrow from '../../../Assets/icons/arrow-right-large.png'
 
 const Products = ({productArchiveHading}) => {
     // products context data
@@ -198,9 +200,20 @@ const Products = ({productArchiveHading}) => {
     };
     const colorIndex = useSelector((state) => state.colorIndex.colorIndex)
 
+    // Mobile view Script
+    const [selectedGrid, setSelectedGrid] = useState('')
+    const [activeGrid, setActiveGrid] = useState('')
+    const handleActiveGrid = (grid) => {
+        setActiveGrid(grid);
+        setSelectedGrid(grid)
+    }
+
   return (
     <div className='products-main-container'>
-        <h3>Category: {productArchiveHading}</h3>
+        
+        <h3 className='desktop-view-category-title'>Category: {productArchiveHading}</h3>
+        <p className='mobile-view-category-title'>{productArchiveHading}</p>
+
         {/* Toggle section code */}
         <div className='toggle-sort-section'>
             <div className='hide-and-show-filters-button-container' onClick={handleFilterSection}>
@@ -334,6 +347,72 @@ const Products = ({productArchiveHading}) => {
                 <div className='view-more-products-button-div'>
                     <button className='view-more-btn'>View 15 more</button>
                 </div>
+            </div>
+        </div>
+        {/* Mobile view product section */}
+        <div className='mobile-view-product-and-filter-section'>
+            <div className='mobile-view-filters-section'>
+                <div className='mobile-view-filter-head'>
+                    <div className='mobile-view-product-count'>
+                        <p>214 items</p>
+                        <p>Starting at $ 299</p>
+                    </div>
+                    <div className='mobile-view-product-card-grid-select'>
+                        <div className={`mobile-view-card-grid-single-col ${activeGrid === 'single-col' ? 'grid-active' : ''}`} onClick={() => handleActiveGrid('single-col')}></div>
+                        <div className='mobile-view-card-grid-dual-col' onClick={() => handleActiveGrid('dual-col')}>
+                            <div className={`mobile-view-card-grid-dual-col-inner ${activeGrid !== 'single-col' ? 'active-dual-col' : ''}`}></div>
+                            <div className={`mobile-view-card-grid-dual-col-inner ${activeGrid !== 'single-col' ? 'active-dual-col' : ''}`}></div>
+                        </div>
+                    </div>
+                </div>
+                <div className='mobile-view-filter-body'>
+                    <button className='mobile-view-show-filters'>
+                        <img src={filterHumberger} alt='filter' />
+                        Show Filter
+                    </button>
+                    <button className={`mobile-view-sort-btn`}>
+                        <img src={arrowUpDown} alt='arrow up down' />
+                        Sort
+                    </button>
+                </div>
+            </div>
+            <div className={`${selectedGrid === 'single-col' ? 'mobile-view-product-single-column' : 'mobile-view-products-main-container' } `}>
+                {products.slice(0, 3).map((item, index) => {
+                        return <ProductCard key={index}
+                            slug={item.slug}
+                            singleProductData={item}
+                            maxWidthAccordingToComp={'32%'} 
+                            justWidth={'100%'} 
+                            tagIcon={item.productTag ? item.productTag : item.heart}
+                            tagClass={` ${item.productTag ? 'tag-img' : 'heart-icon'}`}
+                            mainImage={hoveredIndex === index && item.hoverImage ? item.hoverImage : item.mainImage}
+                            productCardContainerClass={`product-card ${hideFilters ? 'card-width-increase' : ''}`}
+                            mouseEnter={() => handleImageHover(index)}
+                            ProductTitle={truncateTitle(item.productTitle, maxLength)}
+                            stars={item.ratingStars} 
+                            reviewCount={item.reviewCount} 
+                            lowPriceAddvertisement={item.lowPriceAddvertisement}
+                            priceTag={item.priceTag} 
+                            financingAdd={item.financingAdd} learnMore={item.learnMore} colorVariation={item.colorVariation}
+                            mainIndex={index} 
+                            deliveryTime={item.deliveryTime} 
+                            selectedColorIndices={selectedColorIndices} 
+                            borderLeft={index % 3 === 2} 
+                            stock={item.stock}
+                            percent={'-12%'}
+                            mouseLeave={handleImageHoverLeave} 
+                            handleVariantColor={() => handleVariantImageClick(index, colorIndex)}
+                            handleCardClick={() => handleProductClick(item)}
+                            handleAddToCart={() => addToCart(item)}
+                            handleCartSectionOpen={() => handleCartSectionOpen(item)}
+                            handleQuickView={() => handleQuickViewOpen(item)}
+                        />
+                    })}
+            </div>
+            <div className='mobile-view-pagination'>
+                <p>1</p>
+                <p>2</p>
+                <img src={paginationArrow} alt='arrow' />
             </div>
         </div>
         {/* Related Categories Code */}

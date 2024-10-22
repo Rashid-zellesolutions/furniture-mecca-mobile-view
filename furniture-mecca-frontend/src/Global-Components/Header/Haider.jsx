@@ -23,6 +23,7 @@ import CartSidePannel from '../../UI/Components/Cart-side-section/CartSidePannel
 import { useCart } from '../../context/cartContext/cartContext';
 import { useProducts } from '../../context/productsContext/productContext';
 import mobileUserIcon from '../../Assets/icons/user-charcol.png';
+import MobileNavbar from '../Navbar/MobileNavbar/MobileNavbar';
 
 const Haider = () => {
   const [isTabMenuOpen, setIsTabMenuOpen] = useState(false);
@@ -115,6 +116,10 @@ const Haider = () => {
     setSearchLocation(false)
     console.log("close btn cicked", searchLocation)
   }
+  const [mobileNavVisible, setMobileNavVisible] = useState(false)
+  const showMobileNav = () => {
+    setMobileNavVisible(true)
+  }
 
   return (
     <div className='haider-main-container'>
@@ -195,7 +200,7 @@ const Haider = () => {
       {/* Mobile View Header */}
       <div className='mobile-view-header'>
         <div className='mobile-view-logo-and-other-containt-section'>
-          <img className='nav-toggler' src={navToggler} alt="togle button" onClick={handleTabMenu} />
+          <img className='nav-toggler' src={navToggler} alt="togle button" onClick={showMobileNav} />
           <a href='/'>
             <img className='mobile-logo' src={logo} alt='mobile-logo' />
           </a>
@@ -235,6 +240,10 @@ const Haider = () => {
               increamentQuantity={increamentQuantity}
               decreamentQuantity={decreamentQuantity}
               removeFromCart={removeFromCart}
+            />
+            <MobileNavbar 
+              showMobileNav={mobileNavVisible}
+              setMobileNavVisible={setMobileNavVisible}
             />
     </div>
   )

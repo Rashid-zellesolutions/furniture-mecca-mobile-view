@@ -169,10 +169,13 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 0;
+    width: 100%;
     height: 100%;
     overflow: hidden;
-    transition: width 0.5s ease;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    opacity: 0;
+    transition: all 0.5s ease;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -182,6 +185,12 @@
 }
 
 .quick-view-section.show-quick-view-section{
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    visibility: visible;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 480px){
+    .cart-side-section-containt-div{
+        width: 100%;
+    }
 }

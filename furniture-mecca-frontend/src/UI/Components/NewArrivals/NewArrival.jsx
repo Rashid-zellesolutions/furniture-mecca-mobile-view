@@ -6,8 +6,8 @@ import './NewArrival.css';
 import goldenDiningRoomSet from '../../../Assets/images/Dining-Room-Set-in-Gold-02 1.png';
 import blackDiningRoomSet from '../../../Assets/images/Dining-room-set-black.png';
 import whiteDiningRoomSet from '../../../Assets/images/dining-room-set-white.png';
-import leftArrow from '../../../Assets//icons/arrow-left-charcol.png'
-import rightArrow from '../../../Assets//icons/arrow-right-charcol.png'
+import leftArrow from '../../../Assets//icons/arrow-left-white.png'
+import rightArrow from '../../../Assets//icons/arrow-right-white.png'
 import cartRed from '../../../Assets/icons/cart.png';
 import { FaEye } from "react-icons/fa";
 import cart from '../../../Assets/icons/cart-white.png';
@@ -74,28 +74,34 @@ const NewArrival = () => {
 
   const cardData = [
         {
-            cardImage: goldenDiningRoomSet, pieces: '8 Pieces', title: 'Trellis Room Set', price: '$599', addCartLink: '#', 
-            addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" 
+            cardImage: goldenDiningRoomSet, pieces: '8 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '399', addCartLink: '#', 
+            addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" ,
+            desc: 'Monaco 3 PC Modular Sectional with 2 Chaise, Grey, Sectional'
         },
         {
-            cardImage: blackDiningRoomSet, pieces: '5 Pieces', title: 'Trellis Room Set', price: '$599', addCartLink: '#', 
-            addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" 
+            cardImage: blackDiningRoomSet, pieces: '5 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '$399', addCartLink: '#', 
+            addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" ,
+            desc: 'Monaco 3 PC Modular Sectional with 2 Chaise, Grey, Sectional'
         },
         {
-            cardImage: whiteDiningRoomSet, pieces: '4 Pieces', title: 'Trellis Room Set', price: '$599', addCartLink: '#', 
-            addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" 
+            cardImage: whiteDiningRoomSet, pieces: '4 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '$399', addCartLink: '#', 
+            addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" ,
+            desc: 'Monaco 3 PC Modular Sectional with 2 Chaise, Grey, Sectional'
         },
         {
-          cardImage: goldenDiningRoomSet, pieces: '8 Pieces', title: 'Trellis Room Set', price: '$599', addCartLink: '#', 
-          addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" 
+          cardImage: goldenDiningRoomSet, pieces: '8 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '$399', addCartLink: '#', 
+          addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" ,
+          desc: 'Monaco 3 PC Modular Sectional with 2 Chaise, Grey, Sectional'
       },
       {
-          cardImage: blackDiningRoomSet, pieces: '5 Pieces', title: 'Trellis Room Set', price: '$599', addCartLink: '#', 
-          addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" 
+          cardImage: blackDiningRoomSet, pieces: '5 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '$399', addCartLink: '#', 
+          addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" ,
+          desc: 'Monaco 3 PC Modular Sectional with 2 Chaise, Grey, Sectional'
       },
       {
-          cardImage: whiteDiningRoomSet, pieces: '4 Pieces', title: 'Trellis Room Set', price: '$599', addCartLink: '#', 
-          addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" 
+          cardImage: whiteDiningRoomSet, pieces: '4 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '$399', addCartLink: '#', 
+          addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" ,
+          desc: 'Monaco 3 PC Modular Sectional with 2 Chaise, Grey, Sectional'
       },
   ]
   
@@ -117,6 +123,8 @@ const NewArrival = () => {
                   pieces={item.pieces} 
                   title={item.title} 
                   price={item.price} 
+                  newPrice={item.newPrice}
+                  desc={item.desc}
                   addToCartLink={item.addCartLink} 
                   addToCardIcon={item.addCartIcon}
                   addToCart={item.addCart}

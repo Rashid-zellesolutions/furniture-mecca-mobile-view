@@ -58,6 +58,7 @@ import Summery from './UI/Pages/Summery/Summery';
 import PageNotFound from './UI/Pages/404Page/404Page';
 import Cart from "./UI/Pages/Cart/Cart";
 import Summary from "./UI/Pages/Summery/Summary";
+import Breadcrumb from "./Global-Components/BreadCrumb/BreadCrumb";
 
 
 function App() {
@@ -106,10 +107,16 @@ function App() {
     }
   }, [])
 
+  // const [breadcrumbItem, setBreadcrumbItem] = useState([]);
+  // const updateBreadcrumb = (items) => {
+  //   setBreadcrumbItem(items)
+  // }
+
   return (
       <div>
         <Haider />
         <Shopvia />
+        {/* <Breadcrumb /> */}
         <Routes>
             {routes}
         </Routes>

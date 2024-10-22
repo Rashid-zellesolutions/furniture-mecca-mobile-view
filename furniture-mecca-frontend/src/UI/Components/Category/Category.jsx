@@ -24,6 +24,9 @@ import smallSpaces from '../../../Assets/Furniture Mecca/category page/categorie
 import diningRoomCollection from '../../../Assets/Furniture Mecca/category page/categories/mobile-view-images/Dining-Rppm-Collection-mobile.png';
 import shopAllDining from '../../../Assets/Furniture Mecca/category page/categories/mobile-view-images/Shop-All-Dining-Mobile.png';
 import diningRoomOutlet from '../../../Assets/Furniture Mecca/category page/categories/mobile-view-images/Dining-Room-Outlet-mobile.png';
+import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
+import BreadCrumWithProduct from '../BreadCrumWithProduct/BreadCrumWithProduct';
+import { useLocation } from 'react-router-dom';
 
 const Category = ({title, categoryData }) => {
 
@@ -57,7 +60,10 @@ const Category = ({title, categoryData }) => {
 
   return (
     <div className='category-main-container'>
-      <h3 className='category-heading'>{title}</h3>
+      <div className="category-bread-crumb-and-title">
+        <Breadcrumb />
+        <h3 className='category-heading'>{title}</h3>
+      </div>
         <div className='category-cards-container'>
           {category.map((item, index) => (
             <a key={index} href={item.link}>
