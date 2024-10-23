@@ -53,9 +53,53 @@
     gap: 15px;
 }
 
+.mobile-sub-nav-title-div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-sub-nav-title-image{
+    width: auto;
+    height: 25px;
+    object-fit: contain;
+}
+
 .category-heading{
     font-size: 18px;
     line-height: 27px;
     font-weight: 600;
     color: #000;
+    margin: 0;
+}
+
+.mobile-sub-nav-single-item{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    gap: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);
+    /* height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden; */
+}
+
+.mobile-sub-nav-single-item img{
+    width: auto;
+    height: 20px;
+    object-fit: contain;
+}
+
+.mobile-sub-nav-single-item p{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 600;
 }

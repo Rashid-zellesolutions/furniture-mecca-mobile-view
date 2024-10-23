@@ -20,6 +20,12 @@ import { useDispatch } from 'react-redux'
 import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery'
 import { useProducts } from '../../../context/productsContext/productContext'
 import { useCart } from '../../../context/cartContext/cartContext'
+import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFinancingSlider'
+import AnnouncmentBanners from '../../Components/AnnouncmentBanner/AnnouncmentBanner'
+import twelveMonthCreditOfferImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 121.png';
+import payPalMobileBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/PAYPAL-BANNER 1.png';
+import sixMonthCreditImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 122.png';
+import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/Frame 4278.png'
 
 const SingleProduct = () => {
 
@@ -54,6 +60,11 @@ const SingleProduct = () => {
         {/* <CustomerPhotos /> */}
         <ProductComments />
         <OutdoorFaves />
+        <MobileFinancingSlider />
+        <AnnouncmentBanners bannerImage={twelveMonthCreditOfferImage} padding={'10px'}/>
+        <AnnouncmentBanners bannerImage={payPalMobileBanner} padding={'10px 0'}/>
+        <AnnouncmentBanners bannerImage={sixMonthCreditImage} padding={'10px 0'}/>
+        <AnnouncmentBanners bannerImage={paymentOptionsBanner} padding={'10px 0'}/>
     </div>
   )
 }

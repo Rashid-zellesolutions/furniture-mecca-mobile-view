@@ -32,3 +32,26 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+@media only screen and (max-width: 480px){
+    .financing-options-main-container {
+        padding: 20px 0;
+        gap: 10px;
+    }
+
+    .payment-method-cards-container {
+        gap: 15px;
+    }
+    .payment-method-cards-container img {
+        width: auto;
+        height: 45px;
+        object-fit: contain;
+    }
+
+    .no-credit-button{
+        height: 34px;
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 600;
+    }
+}

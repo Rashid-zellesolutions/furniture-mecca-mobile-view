@@ -57,3 +57,25 @@
     right: 10px;
   }
     
+@media only screen and (max-width: 480px){
+  .customer-photos-main-container{
+    background-color: #fff;
+  }
+  .customer-photos-main-container h3{
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  .customer-slider-arrow img {
+      width: auto;
+      height: 30px;
+      object-fit: contain;
+  }
+  .slide-image {
+      width: auto;
+      height: 100px;
+      flex-shrink: 0;
+      cursor: pointer;
+  }
+}

@@ -77,6 +77,9 @@ const MobileNavbar = ({showMobileNav, setMobileNavVisible}) => {
             openSubNav={openSubNav}
             setOpenSubNav={setOpenSubNav}
             subNavHeading={mobileNav[navIndex].name}
+            navImg={mobileNav[navIndex].icon}
+            selectedIndex={navIndex}
+            setMobileNavVisible={setMobileNavVisible}
         />
     </div>
   )

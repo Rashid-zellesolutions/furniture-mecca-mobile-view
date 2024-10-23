@@ -24,6 +24,7 @@
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
+    color: #000;
 }
 
 .user-name-and-detail p{
@@ -114,4 +115,24 @@
     gap: 7px;
     border-radius: 25px;
     cursor: pointer;
+}
+
+/* mobile section */
+.mobile-comments{
+    display: none;
+}
+
+@media only screen and (max-width: 480px){
+    .user-details{
+        display: none;
+    }
+    .comment-section{
+        display: none;
+    }
+    .feedback{
+        display: none;
+    }
+    .mobile-comments{
+        display: flex;
+    }
 }

@@ -1009,9 +1009,7 @@ label {
     .related-categories-main-div{
         display: none !important;
     }
-    .f-a-q-main-container{
-        display: none;
-    }
+    
     .quickview-containt.show-quick-view-containt{
         width: 100%;
         padding: 20px 10px;

@@ -12,6 +12,12 @@ import sectionalSets from '../../../Assets/Furniture Mecca/product archive page/
 import InstaGallery from '../../Components/InstaGallery/InstaGallery';
 import RelatedCategories from '../../Components/Related-categories-Tags/RelatedCategories';
 import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery';
+import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFinancingSlider';
+import AnnouncmentBanners from '../../Components/AnnouncmentBanner/AnnouncmentBanner';
+import twelveMonthCreditOfferImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 121.png';
+import payPalMobileBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/PAYPAL-BANNER 1.png';
+import sixMonthCreditImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 122.png';
+import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/Frame 4278.png'
 
 const ProductArchive = ({productArchiveHading}) => {
   // Breadcrup component data
@@ -29,16 +35,16 @@ const ProductArchive = ({productArchiveHading}) => {
 
   return (
     <div>
-        {/* <Shopvia /> */}
         <BreadCrumWithProduct breadcrumRecentData={breadcrumRecentData}  />
         <Products productArchiveHading={productArchiveHading}/>
         <RelatedCategories />
         <FAQ />
-        {/* <CategoriesGetScop isTrue={false} /> */}
-        {/* <InstaGallery /> */}
-        <InstaTwoImageGallery />
-        {/* <CustomerServicePanel /> */}
-    </div>
+        <MobileFinancingSlider />
+        <AnnouncmentBanners bannerImage={twelveMonthCreditOfferImage} padding={'10px'}/>
+        <AnnouncmentBanners bannerImage={payPalMobileBanner} padding={'10px 0'}/>
+        <AnnouncmentBanners bannerImage={sixMonthCreditImage} padding={'10px 0'}/>
+        <AnnouncmentBanners bannerImage={paymentOptionsBanner} padding={'10px 0'}/>
+    </div>    
   )
 }
 

@@ -115,3 +115,21 @@
     padding: 16px 24px;
     border-radius: 10px;
 }
+
+@media only screen and (max-width: 480px){
+    .comments-main-container{
+        padding: 0;
+    }
+    .sort-by-related {
+        display: none;
+    }
+    .product-comment-section-main-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        padding: 0;
+        background-color: #fff;
+    }
+
+}

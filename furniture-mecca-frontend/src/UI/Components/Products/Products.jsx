@@ -21,6 +21,7 @@ import closeBtn from '../../../Assets/icons/close-btn.png'
 import QuickView from '../QuickView/QuickView';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
 import paginationArrow from '../../../Assets/icons/arrow-right-large.png'
+import MobileViewProductFilters from '../MobileViewProductFilters/MobileViewProductFilters';
 
 const Products = ({productArchiveHading}) => {
     // products context data
@@ -36,6 +37,8 @@ const Products = ({productArchiveHading}) => {
     const [showAllFilters, setShowAllFilters] = useState(false);
     const [addToCartClicked, setAddToCartClicked] = useState(false)
     const [quickViewClicked, setQuickView] = useState(false);
+    
+
 
     const handleCartSectionOpen = (item) => {
         setAddToCartClicked(true)
@@ -201,11 +204,15 @@ const Products = ({productArchiveHading}) => {
     const colorIndex = useSelector((state) => state.colorIndex.colorIndex)
 
     // Mobile view Script
+    const [mobileFilters, setMobileFilters] = useState(false);
     const [selectedGrid, setSelectedGrid] = useState('')
     const [activeGrid, setActiveGrid] = useState('')
     const handleActiveGrid = (grid) => {
         setActiveGrid(grid);
         setSelectedGrid(grid)
+    }
+    const handleMobileFilters = () => {
+        setMobileFilters(true)
     }
 
   return (
@@ -366,7 +373,7 @@ const Products = ({productArchiveHading}) => {
                     </div>
                 </div>
                 <div className='mobile-view-filter-body'>
-                    <button className='mobile-view-show-filters'>
+                    <button className='mobile-view-show-filters' onClick={handleMobileFilters}>
                         <img src={filterHumberger} alt='filter' />
                         Show Filter
                     </button>
@@ -485,6 +492,13 @@ const Products = ({productArchiveHading}) => {
                 <QuickView setQuickViewProduct={quickViewProduct} />
             </div>
         </div>
+
+        {/*Mobile view filters  */}
+        <MobileViewProductFilters 
+            showMobileFilters={mobileFilters}
+            setMobileFilters={setMobileFilters}
+            filtersData={filtersData}
+        />
     </div>
   )
 }
