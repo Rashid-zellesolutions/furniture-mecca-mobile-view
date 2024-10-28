@@ -295,7 +295,7 @@ const routes = (
         />
 
         <Route 
-            path='/summery-page' 
+            path='/cart-page/check-out' 
             element={
                 <Summary 
                 />

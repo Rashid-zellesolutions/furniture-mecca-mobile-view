@@ -48,7 +48,7 @@ const NewArrivalCard = ({arrivalImage, pieces, newPrice, desc, title, price, add
             </div>
             <div className='new-arrival-new-and-old-price'>
                 <del>{price}</del>
-                <h3>{newPrice}</h3>
+                <h3 className='new-arrival-new-price'>{newPrice}</h3>
             </div>
         </div>
     </div>

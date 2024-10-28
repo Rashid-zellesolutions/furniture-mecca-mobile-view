@@ -8,6 +8,7 @@ const ProductCommentsSection = () => {
     const handleClicked = () => {
         setIsClicked(!isClicked)
     }
+    
   return (
     <div className='product-comment-section-main-container'>
         <div className='sort-by-related'>
@@ -29,8 +30,8 @@ const ProductCommentsSection = () => {
         </div>
         <div className='comments-main-container'>
             <Comments />
-            <Comments />
-            <Comments />
+            {/* <Comments />
+            <Comments /> */}
         </div>
     </div>
   )

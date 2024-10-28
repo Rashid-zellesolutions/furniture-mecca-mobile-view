@@ -49,3 +49,17 @@
     line-height: 37px;
     color: var(--text-color);
 }
+
+@media only screen and (max-width: 480px){
+    .cart-you-may-like-section{
+        display: none;
+    }
+    .cart-body{
+        padding: 30px 10px;
+        height: auto;
+    }
+    .cart-products-section{
+        width: 100%;
+        padding: 0;
+    }
+}

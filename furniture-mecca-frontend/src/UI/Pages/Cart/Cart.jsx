@@ -17,6 +17,9 @@ const Cart = () => {
                 <CartProductsSuggestion />
             </div>
         </div>
+        {/* <div className='mobile-view-cart-body'>
+
+        </div> */}
     </div>
   )
 }

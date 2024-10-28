@@ -125,7 +125,7 @@
     width: max-content;
 }
 
-.new-arrival-desc-and-price del, h3{
+.new-arrival-desc-and-price del, .new-arrival-new-price{
     color: #fff;
 }
 

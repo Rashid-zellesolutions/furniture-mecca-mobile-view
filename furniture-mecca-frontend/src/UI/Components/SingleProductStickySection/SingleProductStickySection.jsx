@@ -51,7 +51,9 @@ const SingleProductStickySection = (productData) => {
   // Alice Slider
   const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobActiveIndex, setMobActiveIndex] = useState(0);
   const carouselRef = useRef(null);
+  const mobCarouselRef = useRef(null);
 
   const handleThumbnailClickk = (index) => {
     setActiveIndex(index);
@@ -65,6 +67,13 @@ const SingleProductStickySection = (productData) => {
       carouselRef.current.slideTo(newIndex); // Slide to the next thumbnail
     }
   };
+  // const handleMobileNextSlide = () => {
+  //   const newIndex = mobActiveIndex + 1;
+  //   if (newIndex < images.length) {
+  //     setMobActiveIndex(newIndex);
+  //     mobCarouselRef.current.slideTo(newIndex); // Slide to the next thumbnail
+  //   }
+  // };
 
   const handlePrevSlide = () => {
     const newIndex = activeIndex - 1;
@@ -73,8 +82,17 @@ const SingleProductStickySection = (productData) => {
       carouselRef.current.slideTo(newIndex); // Slide to the previous thumbnail
     }
   };
+  // const handleMobilePrevSlide = () => {
+  //   const newIndex = mobActiveIndex - 1;
+  //   if (newIndex >= 0) {
+  //     setMobActiveIndex(newIndex);
+  //     mobCarouselRef.current.slideTo(newIndex); // Slide to the previous thumbnail
+  //   }
+  // };
+
 
   // Calculate the visible thumbnails
+  
   const visibleThumbnails = () => {
     const totalImages = images.length;
     const startIndex = Math.max(0, activeIndex > totalImages - 4 ? totalImages - 4 : activeIndex);
@@ -132,9 +150,9 @@ const SingleProductStickySection = (productData) => {
     { name: 'Gray', img: grayImage },
   ]
 
-  const [variationName, setVariationName] = useState()
-  const handleColorVariation = (index) => {
-    setVariationName(index);
+  const [variationName, setVariationName] = useState(product.colorVariation[0].color)
+  const handleColorVariation = (name) => {
+    setVariationName(name);
   }
 
   const [count, setCount] = useState(1);
@@ -159,15 +177,10 @@ const SingleProductStickySection = (productData) => {
   const { cart, addToCart, increamentQuantity, decreamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
   const [cartSection, setCartSection] = useState(false);
 
-  // console.log("log cart before", cart)
-  // console.log("log product before", product)
   const handleAddToCartProduct = (product) => {
     setCartSection(true);
     addToCart(product)
-    // console.log("product data", product)
   }
-  // console.log("log cart after", cart)
-  // console.log("log product after", product)
   const handleCartClose = () => {
     setCartSection(false)
   }
@@ -176,8 +189,12 @@ const SingleProductStickySection = (productData) => {
     <>
       <div className='sticky-main-container'>
         <div className='left-section'>
+          <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
+            <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p>
           {/* <Breadcrumb /> */}
           <div className='single-product-alice-slider'>
+            {/* <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
+            <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p> */}
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
             </button>
@@ -187,11 +204,12 @@ const SingleProductStickySection = (productData) => {
               disableDotsControls
               disableButtonsControls
               items={product.productAllImages && product.productAllImages.map((img, index) => (
-                <div className='single-product-main-slider-image-container'>
-                  <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
-                  <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p>
-                  <img key={index} src={img} className="single-product-slider-img" alt={`Slide ${index}`} />
-                </div>
+                // <div className='single-product-main-slider-image-container'>
+                //   <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
+                //   <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p>
+                //   <img key={index} src={img} className="single-product-slider-img" alt={`Slide ${index}`} />
+                // </div>
+                <img key={index} src={img} className="single-product-slider-img" alt={`Slide ${index}`} />
               ))
               }
               responsive={{
@@ -318,16 +336,83 @@ const SingleProductStickySection = (productData) => {
             <p>4.1</p>
             <Link>{product.reviewCount} Reviews</Link>
           </div>
-          <div className='mobile-view-single-product-slider'>
-            
-            <div className='mobile-view-slider-thumb-images'>
-
+          <div className='mobile-view-single-product-slider-main-section'>
+            <button
+              className='mobile-single-product-slider-arrow mobile-single-product-arrow-left'
+              onClick={handlePrevSlide}
+            >
+              <img src={arrowLeft} alt='left arrow' />
+            </button>
+            <div className='mobile-view-single-product-slider-main-image'>
+              <AliceCarousel
+                ref={carouselRef} // Attach the ref
+                activeIndex={activeIndex}
+                disableDotsControls
+                disableButtonsControls
+                items={product.productAllImages && product.productAllImages.map((img, index) => (
+                  <img
+                    key={index}
+                    src={img}
+                    className="single-product-slider-img"
+                    alt={`Slide ${index}`}
+                  />
+                ))
+                }
+                responsive={{
+                  0: { items: 1 },
+                  1024: { items: 1 }
+                }}
+              />
             </div>
+            <div className='mobile-view-slider-thumb-images'>
+              {product.productAllImages && product.productAllImages.map((img, index) => (
+                <div
+                  key={index}
+                  className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
+                  onClick={() => handleThumbnailClickk(index)}
+                >
+                  <img src={img} alt={`Thumbnail ${index}`} />
+                </div>
+              ))}
+            </div>
+            <button
+              className='mobile-single-product-slider-arrow mobile-single-product-arrow-right'
+              onClick={handleNextSlide}
+            >
+              <img src={arrowRight} alt='arrow right' />
+            </button>
           </div>
         </div>
         <div className='mobile-view-single-product-details'>
-            <SizeVariant />
-            <FinancingOptions />
+          <div className='mobile-view-color-variant'>
+              <div className='mobile-selected-color'>
+                <p>Selected Color: </p>
+                <h3>{variationName}</h3>
+              </div>
+              <div className='mobile-variant-images-div'>
+                  {product.colorVariation && product.colorVariation.map((item, index) => {
+                    return <div key={index} className={`mobile-single-product-color-variant ${variationName === index ? 'selected-color-variation' : ''}`} onClick={() => handleColorVariation(item.color)}>
+                      <img src={silverImage} alt='img' />
+                      <p>{item.color}</p>
+                    </div>
+                  })}
+                </div>
+          </div>
+          <SizeVariant />
+          <FinancingOptions />
+          <div className='mobile-product-count-and-add-to-cart'>
+              <div className='mobile-product-count'>
+                  <button>
+                    <img src={minus} alt='minus-btn' />
+                  </button>
+                  <p>0</p>
+                  <button>
+                    <img src={plus} alt='plus-btn' />
+                  </button>
+              </div>
+              <button className='mobile-add-to-cart-btn'>Add To Cart</button>
+          </div>
+          <SingleProductFAQ />
         </div>
       </div>
     </>

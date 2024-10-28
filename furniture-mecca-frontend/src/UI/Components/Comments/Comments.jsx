@@ -18,6 +18,78 @@ const Comments = () => {
         }
     ]
 
+    const desktopCommentFormate = [
+        {
+            name: 'Pamela', 
+            state: 'Duxbury, Ma', 
+            verify: 'Verified Buyer',
+            productImgs: [
+                { img: productOne },
+                { img: productTwo },
+                { img: productThree },
+            ],
+            icon: [
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+            ],
+            date: '07/15/2024',
+            comment: `This furniture has barely made it into a third season. Despite covering it during 
+                    the winter, it has completely fallen apart. The plastic is breaking, and the cushions 
+                    are misshapen and moldy. I would not recommend this. It was not cheap, but in the long run, 
+                    I should have spent more and gotten something that was going to last a lot longer.`,
+            showLess: 'Show Less',
+        },
+        {
+            name: 'Pamela', 
+            state: 'Duxbury, Ma', 
+            verify: 'Verified Buyer',
+            productImgs: [
+                { img: productOne },
+                { img: productTwo },
+                { img: productThree },
+            ],
+            icon: [
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+            ],
+            date: '07/15/2024',
+            comment: `This furniture has barely made it into a third season. Despite covering it during 
+                    the winter, it has completely fallen apart. The plastic is breaking, and the cushions 
+                    are misshapen and moldy. I would not recommend this. It was not cheap, but in the long run, 
+                    I should have spent more and gotten something that was going to last a lot longer.`,
+            showLess: 'Show Less',
+        },
+        {
+            name: 'Pamela', 
+            state: 'Duxbury, Ma', 
+            verify: 'Verified Buyer',
+            productImgs: [
+                { img: productOne },
+                { img: productTwo },
+                { img: productThree },
+            ],
+            icon: [
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+                { star: filledStar },
+            ],
+            date: '07/15/2024',
+            comment: `This furniture has barely made it into a third season. Despite covering it during 
+                    the winter, it has completely fallen apart. The plastic is breaking, and the cushions 
+                    are misshapen and moldy. I would not recommend this. It was not cheap, but in the long run, 
+                    I should have spent more and gotten something that was going to last a lot longer.`,
+            showLess: 'Show Less',
+        }
+    ]
+
     const commentData = [
         {
             icon: [
@@ -44,8 +116,8 @@ const Comments = () => {
             ],
             comment: `
                 This furniture has barely made it into a third season. 
-                Despite covering it during the winter, it has completely fallen apart....
-        `, productImgs: [
+                Despite covering it during the winter, it has completely fallen apart....`, 
+            productImgs: [
                 { img: productOne },
                 { img: productTwo },
                 { img: productThree },
@@ -127,38 +199,38 @@ const Comments = () => {
                     Helpful  0
                 </button>
             </div>
-            {/* <div className='mobile-comments'>
+            <div className='mobile-comments'>
                 {mobileCommentData.map((item, index) => (
-                    <div>
-                        <div>
+                    <div key={index} className='mobile-single-comment'>
+                        <div className='mobile-comment-name-and-date'>
                             <h3>{item.name}</h3>
                             <p>{item.date}</p>
                         </div>
-                        <h3>{item.state}</h3>
-                        <div>
+                        <h3 className='mobile-comment-state'>{item.state}</h3>
+                        <div className='mobile-comment-status-and-rating'>
                             <p>{item.verified}</p>
                             <span>
-                                {item.starIcon.map((icon, ind) => (
-                                    <img src={icon} alt='star' />
+                                {item.starIcon.map((item, ind) => (
+                                    <img key={ind} src={item.star} alt='star' />
                                 ))}
                             </span>
                         </div>
-                        <p>{item.comment}</p>
-                        <button>show more</button>
-                        <div>
-                            <div>
-                                {item.productImgs.map((igm, index) => (
-                                    <img src={igm} alt='product-image' />
+                        <p className='mobile-comment'>{item.comment}</p>
+                        <button className='mobile-comment-show-more-btn'>show more</button>
+                        <div className='mobile-comment-images-and-feedback'>
+                            <div className='mobile-single-comment-images'>
+                                {item.productImgs.map((item, index) => (
+                                    <img src={item.img} alt='product-image' />
                                 ))}
                             </div>
-                            <button>
+                            <button className='mobile-comment-feedback'>
                                 <img src={thumbUp} alt='thhumb' />
-                                Helpful  0
+                                <p>Helpful  0</p>
                             </button>
                         </div>
                     </div>
                 ))}
-            </div> */}
+            </div>
         </div>
     )
 }

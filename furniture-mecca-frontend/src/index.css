@@ -33,7 +33,7 @@
 
 body {
   font-family: var(--Poppins-font);
-  color: var(--text-color);
+  color: var(--text-color) !important;
 }
 
 body::-webkit-scrollbar {
@@ -65,4 +65,8 @@ button {
 
 input{
   font-family: var(--Poppins-font);
+}
+
+h3{
+  color: var(--text-color);
 }

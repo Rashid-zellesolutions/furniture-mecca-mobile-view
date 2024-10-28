@@ -3,6 +3,7 @@ import './MobileSubNav.css'
 import crossBtn from '../../../../Assets/icons/close-btn.png';
 import mainLogo from '../../../../Assets/Logo/m_logo_360 2.png'
 import ordersIcon from '../../../../Assets/icons/order.png';
+import { IoMdArrowBack } from "react-icons/io";
 
 
 const MobileSubNav = ({ openSubNav, setOpenSubNav, setMobileNavVisible, subNavHeading, navImg, selectedIndex }) => {
@@ -117,7 +118,10 @@ const MobileSubNav = ({ openSubNav, setOpenSubNav, setMobileNavVisible, subNavHe
     return (
         <div className={`mobile-sub-navbar ${openSubNav ? 'show-sub-nav' : ''}`}>
             <button className='close-sub-nav' onClick={handleCloseSubNav}>
-                <img src={crossBtn} alt='close btn' />
+                {/* <img src={crossBtn} alt='close btn' /> */}
+                <a>
+                    <IoMdArrowBack size={25} />
+                </a>
             </button>
             <div className='mobile-sub-nav-head'>
                 <img src={mainLogo} alt='main-logo' />
