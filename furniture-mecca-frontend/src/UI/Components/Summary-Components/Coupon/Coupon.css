@@ -77,3 +77,9 @@
     cursor: pointer;
     /* padding: 12px 20px; */
 }
+
+@media only screen and (max-width: 480px){
+    .coupon-container{
+        display: none;
+    }
+}

@@ -122,6 +122,95 @@
     width: 100%;
 }
 
+/* Mobile Styling */
+.mobile-view-shipping-details-form{
+    display: none;
+    flex-direction: column;
+    justify-content: start;
+    width: 100%;
+    gap: 15px;
+}
+
+.mobile-view-personal-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.mobile-delivery-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.mobile-view-city-and-zip{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.mobile-delivery-options-sections{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 30px 20px;
+    background-color: #F9FAFA;
+    gap: 20px;
+}
+
+.mobile-delivery-option-details{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 15px;
+}
+
+.mobile-delivery-option-single-detail{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: -5px;
+}
+
+.mobile-delivery-option-single-detail h3{
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.mobile-delivery-option-single-detail p{
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 400;
+}
+
+.mobile-pay-btn-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 20px 10px; */
+    width: 100%;
+}
+
+.mobile-pay-btn-section button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    background-color: var(--active-nav-item-color);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+}
+
 /* Media queries for 1024 to large screen */
 @media only screen and (min-width: 1024px) and (max-width: 1200px){
     .first-name-last-name{
@@ -129,5 +218,14 @@
     }
     .city-state-zip{
         gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .shipping-detail-form{
+        display: none;
+    }
+    .mobile-view-shipping-details-form{
+        display: flex;
     }
 }

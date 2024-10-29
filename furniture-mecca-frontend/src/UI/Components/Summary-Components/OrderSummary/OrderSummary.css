@@ -7,7 +7,7 @@
     gap: 30px;
 }
 
-.order-summary-main-container h3{
+.order-summery-main-heading{
     font-size: 20px;
     line-height: 30px;
     font-weight: 600;
@@ -84,7 +84,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 15px 120px;
+    padding: 15px 0 15px 120px;
     gap: 10px;
     border-top: 1px solid #d7d7d7;
     border-bottom: 1px solid #d7d7d7;
@@ -106,7 +106,7 @@
 
 .selected-product-total{
     display: flex;
-    padding: 0px 120px 0px 120px;
+    padding-left: 120px;
     align-items: center;
     justify-content: center;
 }
@@ -123,6 +123,155 @@
     line-height: 30px;
     font-weight: 600;
 }
+
+/* Mobile styling */
+.mobile-view-main-heading{
+    display: none;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-view-main-heading h3{
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.mobile-view-main-heading p{
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.mobile-view-order-summery-details{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.mobile-view-pricing-details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-view-single-price{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-view-single-price p{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.mobile-view-single-price h3{
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.mobile-view-order-summery-selected-orders{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.mobile-view-ordered-summery-selected-products{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.mobile-view-selected-single-product{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.mobile-view-selectedProduct-image{
+    width: auto;
+    height: 50px;
+    object-fit: contain;
+    border: 1px solid var(--border-color);
+}
+
+.mobile-view-order-summery-selected-product-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mobile-view-order-summery-selected-product-content h3{
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.mobile-view-selected-order-price-and-quantity{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-view-selected-order-price-and-quantity p{
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.mobile-view-selected-order-price-and-quantity h3{
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.mobile-view-order-summery-view-all-products-btn-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.mobile-view-order-summery-view-all-products-btn-div button{
+    background-color: transparent;
+    width: max-content;
+    height: max-content;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+
 
 @media only screen and (min-width: 481px) and (max-width: 600px){
     .selected-single-product {
@@ -160,5 +309,23 @@
     .selected-product-color h3 {
         font-size: 10px;
         line-height: 12px;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .order-summary-main-container{
+        padding: 10px;
+    }
+    .order-summery-main-heading{
+        display: none;
+    }
+    .mobile-view-main-heading{
+        display: flex;
+    }
+    .order-summary-details{
+        display: none;
+    }
+    .mobile-view-order-summery-details{
+        display: flex;
     }
 }

@@ -11,6 +11,12 @@
     font-weight: 400;
 }
 
+.required-field::after{
+    content: '*';
+    color: var(--active-nav-item-color);
+    margin-left: 4px;
+}
+
 .summary-input-field input{
     border: none;
     background-color: #F9FAFA;

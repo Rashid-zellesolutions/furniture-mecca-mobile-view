@@ -42,6 +42,8 @@ import KidsRoom from '../../Assets/to-be-change/kids-room.png';
 import AreaRugs from '../../Assets/to-be-change/area-rugs.png';
 import HomeDecor from '../../Assets/to-be-change/home-decor.png';
 import Outlet from '../../Assets/to-be-change/outlet.png';
+import Financing from "../../UI/Pages/Financing/Financing";
+import LoginRegister from "../../UI/Pages/LoginRegisteration/LoginRegister";
 
 const categoryCardData = [
 {title: "Dining Room Sets", img: newArrivalImage, link: '#'},
@@ -300,6 +302,16 @@ const routes = (
                 <Summary 
                 />
             } 
+        />
+
+        <Route 
+            path="/financing-option"
+            element={<Financing />}
+        />
+
+        <Route 
+            path="/login"
+            element={<LoginRegister />}
         />
 
         {/* not found routes */}

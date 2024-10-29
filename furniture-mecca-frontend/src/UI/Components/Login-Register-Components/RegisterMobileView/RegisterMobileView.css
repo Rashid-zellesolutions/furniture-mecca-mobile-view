@@ -1,0 +1,20 @@
+.mobile-register-main{
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    gap: 30px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 00;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-register-main.slide-register-left{
+    visibility: visible;
+    opacity: 1;
+    z-index: 9999;
+    display: flex;
+}

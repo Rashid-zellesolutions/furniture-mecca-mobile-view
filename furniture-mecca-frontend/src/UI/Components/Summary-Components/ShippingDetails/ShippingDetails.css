@@ -14,14 +14,23 @@
     font-weight: 700;
 }
 
+/* Mobile styling */
+.mobile-delivery-options h3{
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
 @media only screen and (max-width: 480px){
     .shipping-main-container {
         padding: 0;
         border: none;
     }
-    .first-name-last-name{
-        flex-direction: column;
-        gap: 10px !important;
+    .shipping-main-container h3{
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 600;
     }
 }
 

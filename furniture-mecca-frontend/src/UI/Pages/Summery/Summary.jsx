@@ -6,6 +6,8 @@ import Coupon from '../../Components/Summary-Components/Coupon/Coupon';
 import PaymentMethod from '../../Components/Summary-Components/PaymentMethod/PaymentMethod';
 import TrustFor from '../../Components/Summary-Components/Trust-for-varaities/TrustFor';
 import HappyCustomers from '../../Components/Summary-Components/Happy-Customer/HappyCustomers';
+import ShipingAndDelivery from '../../Components/Summary-Components/ShippingAndDelivery/ShipingAndDelivery';
+import PaymentInfo from '../../Components/Summary-Components/PaymentInfo/PaymentInfo';
 
 const Summary = () => {
 
@@ -41,6 +43,8 @@ const Summary = () => {
             <Coupon />
           </div>:
           currentId === 2 ? <PaymentMethod /> : <div className='order-summery-and-proceed-btn'> 
+            <ShipingAndDelivery />
+            <PaymentInfo />
             <OrderSummary />
             <div className='order-summery-proceed-btn-div'>
               <button>

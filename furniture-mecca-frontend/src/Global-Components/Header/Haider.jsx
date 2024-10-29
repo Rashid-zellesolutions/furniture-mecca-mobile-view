@@ -120,6 +120,8 @@ const Haider = () => {
   const showMobileNav = () => {
     setMobileNavVisible(true)
   }
+  
+  // Login redirect
 
   return (
     <div className='haider-main-container'>
@@ -164,9 +166,9 @@ const Haider = () => {
           </div>
         </div>
         <div className='header-icons-container'>
-          <Link>
+          <a href='/login'>
           <img src={profileIcon} alt="profile" /> 
-          </Link>
+          </a>
           <Link>
           <img src={HeartIcon} alt="heart" />
           </Link>
@@ -214,7 +216,9 @@ const Haider = () => {
             <img src={searchIcon} alt='search-icon' />
             <input type='text' placeholder='Search All Things Mecca' />
           </div>
-          <img className='mobile-user-icon' src={mobileUserIcon} alt='user-icon' />
+          <a href='/login'>
+            <img className='mobile-user-icon' src={mobileUserIcon} alt='user-icon' />
+          </a>
         </div>
           
       </div>
