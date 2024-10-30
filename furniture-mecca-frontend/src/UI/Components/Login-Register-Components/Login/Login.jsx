@@ -9,7 +9,7 @@ const Login = ({signupclicked}) => {
         <div className='signup-sec-content'>
             <label className='signup-sec-label'>
                 Email
-                <input type='text' placeholder='name@gmail.com' />
+                <input className='login-and-register-input' type='text' placeholder='name@gmail.com' />
             </label>
             <p>A link to set a new password will be sent to your email address.</p>
             <p>
@@ -25,11 +25,11 @@ const Login = ({signupclicked}) => {
         <div className='login-sec-id-pass-content'>
             <label>
                 Email
-                <input type="text" placeholder='name@gmail.com' />
+                <input className='login-and-register-input' type="text" placeholder='name@gmail.com' />
             </label>
             <label>
                 Password
-                <input type="password" placeholder='***' />
+                <input className='login-and-register-input' type="password" placeholder='***' />
             </label>
             <div className='login-sec-forgot-pass'>
                     <input type='checkbox' />

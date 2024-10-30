@@ -1,10 +1,11 @@
 import React from 'react'
 import './Loader.css';
+import loaderAnimation from '../../../Assets/Loader-animations/loader.gif';
 
 const Loader = () => {
   return (
     <div className="loader-overlay">
-    <div className="loader"></div>
+     <img src={loaderAnimation} alt='animation' />
   </div>
   )
 }

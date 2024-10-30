@@ -146,6 +146,7 @@ const Footer = ({notLandingPage}) => {
             ]
         },
     ]
+
     const socialIcons = [
         {name: 'facebook', icon: facebook, link: 'https://www.facebook.com/myfurnituremecca'},
         {name: 'tiktok', icon: tiktok, link: 'https://www.tiktok.com/@myfurnituremecca?_t=8gcQvVGSaGI&_r=1'},
@@ -162,16 +163,16 @@ const Footer = ({notLandingPage}) => {
     const footerCustomerCareAndAbout = [
         {heading: 'Customer Care', navLinks: [
             {name: 'Contact Us', link: '#'},
-            {name: 'Financing', link: '#'},
+            {name: 'Financing', link: '/financing-option'},
             {name: 'Shipping & Delivery', link: '#'},
             {name: 'Terms & Conditions', link: '#'},
         ]},
         {heading: 'About Furniture Mecca', navLinks: [
-            {name: 'About Us', link: '#'},
-            {name: 'Career', link: '#'},
-            {name: 'Store Locations', link: '#'},
+            {name: 'About Us', link: '/about-us'},
+            {name: 'Career', link: '/careers'},
+            {name: 'Store Locations', link: '/all-stores'},
             {name: 'Reference', link: '#'},
-            {name: 'My Account', link: '#'},
+            {name: 'My Account', link: '/user-dashboard'},
         ]},
     ]
 

@@ -12,11 +12,11 @@ const LoginMobileView = ({mobileSignupClicked, handleRegisteView}) => {
             <h3>Login</h3>
             <label className='mobile-login-input-label'>
                 Email 
-                <input type='text' placeholder='name@gmail.com' />
+                <input className='login-and-register-input' type='text' placeholder='name@gmail.com' />
             </label>
             <label className='mobile-login-input-label'>
                 Password 
-                <input type='text' placeholder='***' />
+                <input className='login-and-register-input' type='text' placeholder='***' />
             </label>
             <div className='mobile-logn-sec-login-btn-div'>
                 <button>Login</button>

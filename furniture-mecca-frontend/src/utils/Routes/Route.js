@@ -44,6 +44,8 @@ import HomeDecor from '../../Assets/to-be-change/home-decor.png';
 import Outlet from '../../Assets/to-be-change/outlet.png';
 import Financing from "../../UI/Pages/Financing/Financing";
 import LoginRegister from "../../UI/Pages/LoginRegisteration/LoginRegister";
+import UserDashboard from "../../UI/Pages/UserDashboard/UserDashboard";
+import Careers from "../../UI/Pages/Careers/Careers";
 
 const categoryCardData = [
 {title: "Dining Room Sets", img: newArrivalImage, link: '#'},
@@ -312,6 +314,16 @@ const routes = (
         <Route 
             path="/login"
             element={<LoginRegister />}
+        />
+
+        <Route 
+            path="/user-dashboard"
+            element={<UserDashboard />}
+        />
+
+        <Route 
+            path="/careers"
+            element={<Careers />}
         />
 
         {/* not found routes */}

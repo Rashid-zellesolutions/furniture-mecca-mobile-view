@@ -6,7 +6,7 @@
 }
 
 .mobile-login-and-register-page{
-    display: flex;
+    display: none;
     padding: 30px 10px;
     position: relative;
 }
@@ -14,5 +14,8 @@
 @media only screen and (max-width: 480px){
     .login-register-main-page{
         display: none;
+    }
+    .mobile-login-and-register-page{
+        display: flex;
     }
 }

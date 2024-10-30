@@ -81,7 +81,7 @@
     font-weight: 400;
 }
 
-.mobile-login-input-label input{
+.login-and-register-input{
     width: 100%;
     background-color: #fff;
     border: 1px solid var(--border-color);
@@ -90,6 +90,7 @@
     line-height: 18px;
     font-weight: 400;
     color: var(--text-color);
+    outline: none;
 }
 
 .mobile-logn-sec-login-btn-div{
@@ -111,3 +112,4 @@
     padding: 5px 30px;
     cursor: pointer;
 }
+
