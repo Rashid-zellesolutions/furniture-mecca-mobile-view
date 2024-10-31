@@ -173,6 +173,7 @@ const Footer = ({notLandingPage}) => {
             {name: 'Store Locations', link: '/all-stores'},
             {name: 'Reference', link: '#'},
             {name: 'My Account', link: '/user-dashboard'},
+            {name: 'Blogs', link: '/blogs'},
         ]},
     ]
 

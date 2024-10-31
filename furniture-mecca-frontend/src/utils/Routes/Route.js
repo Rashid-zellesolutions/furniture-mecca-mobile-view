@@ -46,6 +46,7 @@ import Financing from "../../UI/Pages/Financing/Financing";
 import LoginRegister from "../../UI/Pages/LoginRegisteration/LoginRegister";
 import UserDashboard from "../../UI/Pages/UserDashboard/UserDashboard";
 import Careers from "../../UI/Pages/Careers/Careers";
+import Blogs from "../../UI/Pages/Blogs/Blogs";
 
 const categoryCardData = [
 {title: "Dining Room Sets", img: newArrivalImage, link: '#'},
@@ -324,6 +325,10 @@ const routes = (
         <Route 
             path="/careers"
             element={<Careers />}
+        />
+        <Route 
+            path="/blogs"
+            element={<Blogs />}
         />
 
         {/* not found routes */}

@@ -1,5 +1,5 @@
 .mobile-cart{
-    display: flex;
+    display: none;
     flex-direction: column;
     width: 100%;
     border-radius: 10px;
@@ -101,4 +101,10 @@
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
     padding: 0 10px;
+}
+
+@media only screen and (max-width: 480px){
+    .mobile-cart{
+        display: flex;
+    }
 }
