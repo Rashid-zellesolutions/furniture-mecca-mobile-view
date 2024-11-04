@@ -904,11 +904,14 @@ label {
     justify-content: center;
     padding: 10px;
     gap: 10px;
-    border: 1px solid var(--border-color);
+    border: 1px solid #595959;
     background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
     color: var(--text-color);
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 600;
 }
 
 .mobile-view-products-main-container{

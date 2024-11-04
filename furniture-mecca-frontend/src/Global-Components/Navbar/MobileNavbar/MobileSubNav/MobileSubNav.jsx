@@ -129,7 +129,7 @@ const MobileSubNav = ({ openSubNav, setOpenSubNav, setMobileNavVisible, subNavHe
             <div className='mobile-sub-nav-body'>
                 <div className='mobile-sub-nav-title-div'>
                     <img src={navImg} alt='title-image' className='mobile-sub-nav-title-image' />
-                    <h3 className='category-heading'>{subNavHeading}</h3>
+                    <h3 className='mobile-nav-category-heading'>{subNavHeading}</h3>
                 </div>
                 <div className='mobile-sub-nav-items'>
                     {navSubItems[selectedIndex].subItems && navSubItems[selectedIndex].subItems.map((items, index) => (

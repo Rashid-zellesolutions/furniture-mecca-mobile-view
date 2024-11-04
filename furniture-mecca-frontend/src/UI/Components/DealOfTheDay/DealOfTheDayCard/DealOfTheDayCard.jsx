@@ -112,15 +112,25 @@ const DealOfTheDayCard = ({
     descount, 
     handleDealCardClick, 
     dealDayData,  
-    handleHoverEnter, 
-    handleHoveLeave
+    // handleHoverEnter, 
+    // handleHoveLeave
   }) => {
 
-    const cardIcons = [cartIcon, heartIcon, combinedArrows];
-    const [isHovered, setIsHovered] = useState(0);
+    const cardIcons = [
+      {defIcon: cartIcon, hoveredIcon: cartWhite},
+      {defIcon: heartIcon, hoveredIcon: heartWhite},
+      {defIcon: combinedArrows, hoveredIcon: multiArrowWhite},
+    ];
+    const [isHovered, setIsHovered] = useState(null);
 
-    const handleIconMouseEnter = (index) => {setIsHovered(index)}
-    const handleIconMouseLeave = () => {setIsHovered(null)}
+    const handleIconMouseEnter = (index) => {
+      setIsHovered(index) 
+      console.log('on mouse enter index', isHovered)
+    }
+    const handleIconMouseLeave = () => {
+      setIsHovered(null)
+      console.log('on mouse leave index', isHovered)
+    }
 
     // Deal of the day product name limitations
     const maxLength = 40;
@@ -171,18 +181,43 @@ const DealOfTheDayCard = ({
           <div className='deal-of-the-day-product-discount'><p>-12%</p></div>
           <img src={productmage} alt='img' />
           <div className='deal-of-the-day-card-icons-div'>
-            {imgIcons.map((items, index) => (
+            {/* {imgIcons.map((items, iconIndex) => ( */}
               <button 
-                  key={index}  
-                  className={`deal-of-the-day-icon ${isHovered === index ? 'change-bg' : ''}`} 
-                  onMouseEnter={() => handleIconMouseEnter(index)} 
-                  onMouseLeave={handleIconMouseLeave}
-                >
-                <img 
-                    src={isHovered === index ? items.hoveredIcon : items.defIcon} 
-                    alt='icon'  />
+                  // key={iconIndex}  
+                  className={`deal-of-the-day-icon-one`} 
+                  // onMouseEnter={() => handleIconMouseEnter(iconIndex)} 
+                  // onMouseLeave={handleIconMouseLeave}
+              >
+                {/* <img 
+                    src={isHovered === iconIndex ? items.hoveredIcon : items.defIcon} 
+                    alt='icon'  
+                /> */}
               </button>
-            ))}
+              
+              <button 
+                  // key={iconIndex}  
+                  className={`deal-of-the-day-icon-two`} 
+                  // onMouseEnter={() => handleIconMouseEnter(iconIndex)} 
+                  // onMouseLeave={handleIconMouseLeave}
+              >
+                {/* <img 
+                    src={isHovered === iconIndex ? items.hoveredIcon : items.defIcon} 
+                    alt='icon'  
+                /> */}
+              </button>
+
+              <button 
+                  // key={iconIndex}  
+                  className={`deal-of-the-day-icon-three `} 
+                  // onMouseEnter={() => handleIconMouseEnter(iconIndex)} 
+                  // onMouseLeave={handleIconMouseLeave}
+              >
+                {/* <img 
+                    src={isHovered === iconIndex ? items.hoveredIcon : items.defIcon} 
+                    alt='icon'  
+                /> */}
+              </button>
+            {/* ))} */}
           </div> 
         </div>
 

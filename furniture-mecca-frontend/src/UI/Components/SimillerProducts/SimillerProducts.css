@@ -42,12 +42,15 @@
     font-size: 24px;
     outline: none;
     z-index: 1;
+    width: 38px;
+    height: 38px;
     transition: background-color 0.3s ease;
 }
 
 .scroll-button img {
-    width: 50px;
-    height: 50px;
+    width: auto;
+    height: 100%;
+    object-fit: contain;
 }
 
 .scroll-button.left {

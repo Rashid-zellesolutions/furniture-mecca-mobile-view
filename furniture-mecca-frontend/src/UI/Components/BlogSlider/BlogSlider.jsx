@@ -10,23 +10,23 @@ import BlogCard from './BlogCard';
 import leftArrow from '../../../Assets/icons/arrow-left-charcol.png'
 import rightArrow from '../../../Assets/icons/right-arrow.png'
 
-// const SamplePrevArrow = (props) => {
-//   const { className, style, onClick } = props;
-//   return(
-//     <div onClick={onClick} className={`arrow ${className}`} >
-//       <img src={leftArrow} alt='arrow' />
-//     </div>
-//   )
-//   }
+const SamplePrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return(
+    <div onClick={onClick} className={`blog-slider-arrow blog-slider-arrow-left ${className}`} >
+      <img src={leftArrow} alt='arrow' />
+    </div>
+  )
+  }
 
-//   function SampleNextArrow(props) {
-//     const { className, style, onClick } = props;
-//     return(
-//       <div onClick={onClick} className={`arrow ${className}`} >
-//         <img src={rightArrow} alt='arrow'/>
-//       </div>
-//     )
-//   }
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return(
+      <div onClick={onClick} className={`blog-slider-arrow blog-slider-arrow-right ${className}`} >
+        <img src={rightArrow} alt='arrow'/>
+      </div>
+    )
+  }
 
 
 const BlogSlider = () => {
@@ -53,17 +53,18 @@ const BlogSlider = () => {
     };
 
     var settings = {
-        dots: true,
+        dots: false,
         infinite: false,
         arrows: false,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         initialSlide: 0,
-        nextArrow: false,
-        prevArrow: false,
-      //   nextArrow: <SampleNextArrow to="next"/>,
-      // prevArrow: <SamplePrevArrow to="prev" />,
+        arrows: true,
+        // nextArrow: true,
+        // prevArrow: true,
+        nextArrow: <SampleNextArrow to="next"/>,
+      prevArrow: <SamplePrevArrow to="prev" />,
         responsive: [
           {
             breakpoint: 1024,

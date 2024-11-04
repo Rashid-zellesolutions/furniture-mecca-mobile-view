@@ -6,8 +6,10 @@ import './NewArrival.css';
 import goldenDiningRoomSet from '../../../Assets/images/Dining-Room-Set-in-Gold-02 1.png';
 import blackDiningRoomSet from '../../../Assets/images/Dining-room-set-black.png';
 import whiteDiningRoomSet from '../../../Assets/images/dining-room-set-white.png';
-import leftArrow from '../../../Assets//icons/arrow-left-white.png'
+import leftArrow from '../../../Assets//icons/arrow-left-white (2).png'
 import rightArrow from '../../../Assets//icons/arrow-right-white.png'
+import mobArrowLeft from '../../../Assets/icons/arrow-left-charcol.png';
+import mobArrowRight from '../../../Assets/icons/arrow-right-charcol.png'
 import cartRed from '../../../Assets/icons/cart.png';
 import { FaEye } from "react-icons/fa";
 import cart from '../../../Assets/icons/cart-white.png';
@@ -20,7 +22,8 @@ const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
   return(
     <div onClick={onClick} className={`category-arrow category-arrow-left ${className}`} >
-      <img src={leftArrow} alt='arrow' />
+      <img src={leftArrow} alt='arrow' className='new-arrival-desktop-arrows' />
+      <img src={mobArrowLeft} alt='arrow' className='new-arrival-mobile-arrows' />
     </div>
   )
   }
@@ -29,7 +32,8 @@ const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
     return(
       <div onClick={onClick} className={`category-arrow category-arrow-right ${className}`} >
-        <img src={rightArrow} alt='arrow'/>
+        <img src={rightArrow} alt='arrow' className='new-arrival-desktop-arrows'/>
+        <img src={mobArrowRight} alt='arrow' className='new-arrival-mobile-arrows' />
       </div>
     )
   }
@@ -74,7 +78,7 @@ const NewArrival = () => {
 
   const cardData = [
         {
-            cardImage: goldenDiningRoomSet, pieces: '8 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '399', addCartLink: '#', 
+            cardImage: goldenDiningRoomSet, pieces: '8 Pieces', title: 'Trellis Room Set', price: '$599', newPrice: '$399', addCartLink: '#', 
             addCartIcon: cart, addCart: 'add to cart', viewAllLink: '#', viewIcon: <FaEye  size={20}/>, viewAll: "View All" ,
             desc: 'Monaco 3 PC Modular Sectional with 2 Chaise, Grey, Sectional'
         },

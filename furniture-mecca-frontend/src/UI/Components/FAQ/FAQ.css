@@ -208,4 +208,8 @@
         height: 24px;
         cursor: pointer;
     }
+    .answere-section{
+        padding: 0;
+        text-align: start;
+    }
 }

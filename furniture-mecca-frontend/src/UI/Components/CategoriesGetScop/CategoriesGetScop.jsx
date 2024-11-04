@@ -166,12 +166,18 @@ const CategoriesGetScop = ({isTrue}) => {
             <div className='mobile-view-image-gallery-slider'>
                 <div className='mobile-view-slider-one'>
                     {sliderImages.map((item, index) => (
-                        <img src={item} alt='img' />
+                        <img src={item} alt='img' className={index % 2 === 0 ? 'large' : 'small'} />
+                    ))}
+                    {sliderImages.map((item, index) => (
+                        <img src={item} alt='img' className={index % 2 === 0 ? 'large' : 'small'} />
                     ))}
                 </div>
                 <div className='mobile-view-slider-two'>
                     {sliderImages.map((item, index) => (
-                        <img src={item} alt='img' />
+                        <img src={item} alt='img' className={index % 2 === 0 ? 'small' : 'large'} />
+                    ))}
+                    {sliderImages.map((item, index) => (
+                        <img src={item} alt='img' className={index % 2 === 0 ? 'large' : 'small'} />
                     ))}
                 </div>
             </div>

@@ -18,7 +18,7 @@ const GetTheScop = () => {
                   <input type='text' placeholder='Email Address' />
                   <button><a>Sign me up</a></button>
               </div>
-              <p>By Signing Up you agree to our Terms of Use and Privacy Policy</p>
+              <p>By Signing Up you agree to our <a href='#' className='desktop-get-the-scoop-terms'> Terms of Use </a> and <a href='#' className='desktop-get-the-scoop-terms'> Privacy Policy </a></p>
           </div>
         </div>
         <div className='get-the-scop-banner'>
@@ -43,7 +43,7 @@ const GetTheScop = () => {
                   Sign me up
                 </button>
             </div>
-            <p className='mobile-view-conditions'>By signing up, you agree to our Privacy Policy and Terms of Use.</p>
+            <p className='mobile-view-conditions'>By signing up, you agree to our <a href='#' className='mobile-view-get-the-scoop-conditions'> Privacy Policy </a> and <a href='#' className='mobile-view-get-the-scoop-conditions'> Terms of Use </a>.</p>
             <div className='mobile-view-flyre-view'>
                 <h3>Furniture Mecca Promotions</h3>
                 <p>Get exclusive promotions for the year 2024</p>

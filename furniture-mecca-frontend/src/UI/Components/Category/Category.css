@@ -1,7 +1,8 @@
 .category-main-container{
     display: flex;
     flex-direction: column;
-    padding: var(--global-padding);
+    /* padding: var(--global-padding); */
+    padding: 25px 60px 35px 60px;
 }
 
 .category-bread-crumb-and-title{

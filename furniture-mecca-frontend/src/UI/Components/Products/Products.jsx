@@ -22,6 +22,7 @@ import QuickView from '../QuickView/QuickView';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
 import paginationArrow from '../../../Assets/icons/arrow-right-large.png'
 import MobileViewProductFilters from '../MobileViewProductFilters/MobileViewProductFilters';
+import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 
 const Products = ({productArchiveHading}) => {
     // products context data
@@ -217,7 +218,7 @@ const Products = ({productArchiveHading}) => {
 
   return (
     <div className='products-main-container'>
-        
+        <Breadcrumb />
         <h3 className='desktop-view-category-title'>Category: {productArchiveHading}</h3>
         <p className='mobile-view-category-title'>{productArchiveHading}</p>
 

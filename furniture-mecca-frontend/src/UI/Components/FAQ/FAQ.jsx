@@ -118,7 +118,7 @@ const FAQ = () => {
                         style={{ height: activeIndex === index ? `${answerRef.current.scrollHeight}px` : '0px' }}
                         >
                             <p>{item.answereOne}</p>
-                            <p>{item.answereTwo}</p>
+                            {/* <p>{item.answereTwo}</p> */}
                         </div>
                     </div>
                     })}

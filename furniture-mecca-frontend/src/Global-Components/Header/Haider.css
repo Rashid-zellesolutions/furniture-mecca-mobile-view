@@ -176,6 +176,20 @@
     margin-top: 2px;
 }
 
+.header-cart-icon-count{
+    position: relative;
+}
+
+.header-cart-products-count{
+    position: absolute;
+    top: 42%;
+    left: 41%;
+    font-size: 8px;
+    line-height: 14px;
+    font-weight: 600;
+    color: var(--active-nav-item-color);
+}
+
 .header-nav-container{
     display: flex;
     width: 100%;
@@ -241,7 +255,7 @@
     border: none;
     border-radius: 30px;
     padding: 11px 13px;
-    background-color: var(--border-color);
+    background-color: #EEEEEE;
 }
 
 .mobile-view-search img{

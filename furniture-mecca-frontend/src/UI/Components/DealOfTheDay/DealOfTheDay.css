@@ -72,7 +72,7 @@
 .slick-arrow.slick-next,
 .slick-arrow.slick-prev{
 position: absolute;
-    top: 60%;
+    top: 65%;
     transform: translateY(-50%);
     border: none;
     cursor: pointer;
@@ -101,6 +101,21 @@ position: absolute;
 }
 
 /* Mobile timer */
+.mobile-view-deal-of-the-day-timer-and-product-count{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.mobile-view-deal-of-the-day-product-count{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    height: max-content;
+}
+
 .mobile-view-timer{
     display: none;
     background-color: #C61B1A;
@@ -148,7 +163,10 @@ position: absolute;
         top: 35%;
     }
     .slick-arrow.slick-prev {
-        left: -20px;
+        left: -15px;
+    }
+    .slick-arrow.slick-next {
+        right: 10px;
     }
     .mobile-view-timer{
         display: flex;

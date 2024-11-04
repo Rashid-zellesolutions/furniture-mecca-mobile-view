@@ -40,11 +40,11 @@
     }
 
     .payment-method-cards-container {
-        gap: 15px;
+        gap: 10px;
     }
     .payment-method-cards-container img {
         width: auto;
-        height: 45px;
+        height: 38px;
         object-fit: contain;
     }
 

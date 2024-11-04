@@ -37,6 +37,7 @@ const BlogCard = ({img, category, title, createdBy, comments}) => {
                         ))}
                         (200)
                     </div>
+                    <span className='mobile-view-blog-card-author'>By: <p>Furniture Mecca</p></span>
                     <p>{comments}</p>
                 </div>
             </div>

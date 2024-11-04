@@ -60,3 +60,31 @@
     font-weight: 700;
     border: 1px solid var(--active-nav-item-color);
 }
+
+@media only screen and (max-width: 480px){
+    .size-variant-main-container{
+        gap: 0;
+    }
+    .show-selected-size-section{
+        padding: 10px 0;
+    }
+    .show-selected-size-section p{
+        font-size: 10px;
+        line-height: 15px;
+        font-weight: 500;
+    }
+    .show-selected-size-section h3{
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 600;
+    }
+    .size-variant-boxes-section{
+        padding: 10px 0;
+        gap: 5px;
+    }
+    .size-variant-button{
+        font-size: 10px;
+        line-height: 15px;
+        font-weight: 500;
+    }
+}

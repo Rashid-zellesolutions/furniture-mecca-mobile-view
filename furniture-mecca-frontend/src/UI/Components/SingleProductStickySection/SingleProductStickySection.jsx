@@ -59,12 +59,23 @@ const SingleProductStickySection = (productData) => {
     setActiveIndex(index);
     carouselRef.current.slideTo(index); // Slide to the selected thumbnail
   };
+  const handleMobThumbnailClickk = (index) => {
+    setActiveIndex(index);
+    mobCarouselRef.current.slideTo(index); // Slide to the selected thumbnail
+  };
 
   const handleNextSlide = () => {
     const newIndex = activeIndex + 1;
     if (newIndex < images.length) {
       setActiveIndex(newIndex);
       carouselRef.current.slideTo(newIndex); // Slide to the next thumbnail
+    }
+  };
+  const handleMobNextSlide = () => {
+    const newIndex = activeIndex + 1;
+    if (newIndex < images.length) {
+      setActiveIndex(newIndex);
+      mobCarouselRef.current.slideTo(newIndex); // Slide to the next thumbnail
     }
   };
   // const handleMobileNextSlide = () => {
@@ -80,6 +91,13 @@ const SingleProductStickySection = (productData) => {
     if (newIndex >= 0) {
       setActiveIndex(newIndex);
       carouselRef.current.slideTo(newIndex); // Slide to the previous thumbnail
+    }
+  };
+  const handleMobPrevSlide = () => {
+    const newIndex = activeIndex - 1;
+    if (newIndex >= 0) {
+      setActiveIndex(newIndex);
+      mobCarouselRef.current.slideTo(newIndex); // Slide to the previous thumbnail
     }
   };
   // const handleMobilePrevSlide = () => {
@@ -188,13 +206,12 @@ const SingleProductStickySection = (productData) => {
   return (
     <>
       <div className='sticky-main-container'>
+        {/* <Breadcrumb /> */}
         <div className='left-section'>
+          {/* <Breadcrumb /> */}
           <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
             <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p>
-          {/* <Breadcrumb /> */}
           <div className='single-product-alice-slider'>
-            {/* <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
-            <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p> */}
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
             </button>
@@ -204,11 +221,6 @@ const SingleProductStickySection = (productData) => {
               disableDotsControls
               disableButtonsControls
               items={product.productAllImages && product.productAllImages.map((img, index) => (
-                // <div className='single-product-main-slider-image-container'>
-                //   <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
-                //   <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p>
-                //   <img key={index} src={img} className="single-product-slider-img" alt={`Slide ${index}`} />
-                // </div>
                 <img key={index} src={img} className="single-product-slider-img" alt={`Slide ${index}`} />
               ))
               }
@@ -339,13 +351,13 @@ const SingleProductStickySection = (productData) => {
           <div className='mobile-view-single-product-slider-main-section'>
             <button
               className='mobile-single-product-slider-arrow mobile-single-product-arrow-left'
-              onClick={handlePrevSlide}
+              onClick={handleMobPrevSlide}
             >
               <img src={arrowLeft} alt='left arrow' />
             </button>
             <div className='mobile-view-single-product-slider-main-image'>
               <AliceCarousel
-                ref={carouselRef} // Attach the ref
+                ref={mobCarouselRef} // Attach the ref
                 activeIndex={activeIndex}
                 disableDotsControls
                 disableButtonsControls
@@ -369,7 +381,7 @@ const SingleProductStickySection = (productData) => {
                 <div
                   key={index}
                   className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
-                  onClick={() => handleThumbnailClickk(index)}
+                  onClick={() => handleMobThumbnailClickk(index)}
                 >
                   <img src={img} alt={`Thumbnail ${index}`} />
                 </div>
@@ -377,7 +389,7 @@ const SingleProductStickySection = (productData) => {
             </div>
             <button
               className='mobile-single-product-slider-arrow mobile-single-product-arrow-right'
-              onClick={handleNextSlide}
+              onClick={handleMobNextSlide}
             >
               <img src={arrowRight} alt='arrow right' />
             </button>

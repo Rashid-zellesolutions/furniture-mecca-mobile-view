@@ -4,7 +4,8 @@ import logo from '../../Assets/Logo/m_logo_360 2.png'
 import searchIcon from '../../Assets/icons/search-icon-charcol.png';
 import NearStoreIcon from '../../Assets/icons/home.png';
 import HeartIcon from '../../Assets/icons/like.png';
-import cartIcon from '../../Assets/icons/new-cart.png';
+// import cartIcon from '../../Assets/icons/new-cart.png';
+import cartIcon from '../../Assets/icons/shopping-bag.png';
 import mobileCartIcon from '../../Assets/icons/mobile-cart.png';
 import profileIcon from '../../Assets/icons/profile.png'
 import locationIcon from '../../Assets/icons/location-red.png';
@@ -30,7 +31,8 @@ const Haider = () => {
   const [showCart, setShowCart] = useState(false)
   const {products} = useProducts()
     const {cart, addToCart, cartSectionOpen, setCartSectionOpen, increamentQuantity, decreamentQuantity, removeFromCart, calculateTotalPrice} = useCart()
-  const handleCartSectionOpen = () => {
+    const cartItemCount = cart.length 
+    const handleCartSectionOpen = () => {
     setShowCart(true)
   }
   const handleCartSectionClose = () => {
@@ -172,8 +174,9 @@ const Haider = () => {
           <Link>
           <img src={HeartIcon} alt="heart" />
           </Link>
-          <Link onClick={handleCartSectionOpen}>
+          <Link className='header-cart-icon-count' onClick={handleCartSectionOpen}>
             <img src={cartIcon} alt="cart" />
+            <p className='header-cart-products-count'>{cartItemCount}</p>
           </Link>
         </div>
       </div>

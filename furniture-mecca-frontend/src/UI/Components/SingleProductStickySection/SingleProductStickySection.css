@@ -451,8 +451,13 @@
     cursor: pointer;
 }
 
+.single-product-color-variant img{
+    border: 1px solid #fff;
+    border-radius: 15px;
+}
+
 .selected-color-variation img{
-    border: 2px solid var(--active-nav-item-color);
+    border: 1px solid var(--active-nav-item-color);
     border-radius: 15px;
 }
 
@@ -633,6 +638,7 @@
     line-height: 16px;
     font-weight: 600;
     cursor: pointer;
+    color: var(--text-white);
 }
 
 .mobile-view-product-tags h3:nth-child(2){

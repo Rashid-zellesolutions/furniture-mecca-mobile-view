@@ -42,6 +42,9 @@
 
 .get-the-scop-form .get-the-scop-offers a{
     color: var(--text-color);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
 }
 
 .get-the-scop-input{
@@ -86,6 +89,9 @@
 
 .get-the-scop-input button a{
     color: var(--text-white);
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 600;
     position: absolute;
     z-index: 1;
     transition: all 0.5s ease-in-out;
@@ -129,6 +135,11 @@
     line-height: 22px;
     width: 100%;
     text-align: center;
+}
+
+.desktop-get-the-scoop-terms{
+    color: var(--text-color);
+    padding: 0 3px;
 }
 
 .get-the-scop-banner{
@@ -203,6 +214,9 @@
 
 .get-the-scop-banner button a{
     color: var(--text-white);
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -215,7 +229,7 @@
 .get-the-scop-banner button:hover a{
     color: var(--button-color);
     transition: all 0.3s ease-in-out;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 /* Mobile view */
@@ -263,6 +277,7 @@
     font-size: 20px;
     line-height: 24px;
     font-weight: 600;
+    color: var(--text-white); 
 }
 
 .mobile-view-get-scoop-heading span{
@@ -323,6 +338,14 @@
     text-align: center;
 }
 
+.mobile-view-get-the-scoop-conditions{
+    color: var(--text-white);
+    font-size: 10px;
+    line-height: 15px;
+    font-weight: 500;
+    padding: 0 3px;
+}
+
 .mobile-view-flyre-view{
     display: flex;
     width: 100%;
@@ -333,9 +356,10 @@
 }
 
 .mobile-view-flyre-view h3{
-    font-size: 16px;
+    font-size: 20px;
     line-height: 30px;
     font-weight: 600;
+    color: var(--text-white);
 }
 
 .mobile-view-flyre-view p{
@@ -343,6 +367,7 @@
     line-height: 18px;
     font-weight: 400;
     text-align: center;
+    color: var(--text-white);
 }
 
 .mobile-view-flyre-view button{

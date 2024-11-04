@@ -13,13 +13,16 @@
     list-style: none;
 }
 
-.bread-crumb-list li{
+/* .bread-crumb-list li{
     font-size: 14px;
     line-height: 21px;
     font-weight: 500;
-}
+} */
 
 .bread-crumb-list li a{
     color: #595959;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
     text-decoration: none;
 }

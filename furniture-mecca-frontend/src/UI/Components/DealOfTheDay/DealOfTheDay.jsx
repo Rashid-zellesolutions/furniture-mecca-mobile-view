@@ -97,7 +97,7 @@ const DealOfTheDay = () => {
 
     // Deal of the day timer
     const calculateTimeLeft = () => {
-      const targetDate = new Date("2024-10-25T21:00:00").getTime();
+      const targetDate = new Date("2024-11-09T21:00:00").getTime();
       const now = new Date().getTime();
       const difference = targetDate - now;
       const padZero = (num) => String(num).padStart(2, '0');
@@ -140,6 +140,7 @@ const DealOfTheDay = () => {
     const handleDealCardClick = (items) => {
       // navigate(`/single-product/${items.slug}`, {state: {products: items}})
     }
+    const productCount = products.length
   
     return (
       <div className='deal-of-the-day-main-container'> 
@@ -153,8 +154,11 @@ const DealOfTheDay = () => {
           Rashid
         </div> */}
         <div className='deal-of-the-day-outer-container'>
-          <div className='mobile-view-timer'>
-              <p>{days}d: {hours}h: {minutes}m: {seconds}s</p>
+          <div className='mobile-view-deal-of-the-day-timer-and-product-count'>
+            <div className='mobile-view-timer'>
+                <p>{days}d: {hours}h: {minutes}m: {seconds}s</p>
+            </div>
+            <h3 className='mobile-view-deal-of-the-day-product-count'>{productCount} Products</h3>
           </div>
           <div className='slider-main-container'>
             <Slider {...settings}>

@@ -61,7 +61,7 @@ const TrendingNow = () => {
                     <div key={item.uid} className='trending-item-category'>
                         <img src={`${url}${item.image_url}`} alt={item.alt_text} />
                     </div>
-                ))}
+                ))} 
             </div>
         </div>
     </div>

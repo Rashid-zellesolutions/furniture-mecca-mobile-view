@@ -120,7 +120,7 @@
 }
 
 .mobile-view-deal-day-card-heart-icon{
-  display: none;
+  display: none !important;
   position: absolute;
   top: 10px;
   left: 15px;
@@ -165,28 +165,69 @@
   right: 0;
 }
 
-.deal-of-the-day-icon{
+.deal-of-the-day-icon-one{
   display: flex;
   align-items: center;
+  background-image: url('../../../../Assets/icons/cart-bag-charcol.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
   justify-content: center;
   height: 35px;
   width: 35px;
-  /* padding: 2px 0 4px 2px; */
   background-color: #fff;
   border: 1px solid var(--border-color);
   cursor: pointer;
   transition: background-color 0.5s ease;
 }
 
-.deal-of-the-day-icon.change-bg{
+.deal-of-the-day-icon-one:hover{
   background-color: #595959;
+  background-image: url('../../../../Assets/icons/cart-bag-white.png');
 }
 
-.deal-of-the-day-icon img{
-  height: auto;
-  width: 22px;
-  object-fit: contain;
+.deal-of-the-day-icon-two{
+  display: flex;
+  align-items: center;
+  background-image: url('../../../../Assets/icons/heart-charcol.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
 }
+
+.deal-of-the-day-icon-two:hover{
+  background-color: #595959;
+  background-image: url('../../../../Assets/icons/heart-white.png');
+}
+
+.deal-of-the-day-icon-three{
+  display: flex;
+  align-items: center;
+  background-image: url('../../../../Assets/icons/multi-arrow-charcol.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  justify-content: center;
+  height: 35px;
+  width: 35px;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.deal-of-the-day-icon-three:hover{
+  background-color: #595959;
+  background-image: url('../../../../Assets/icons/multi-arrow-white.png');
+}
+
 
 .deal-of-the-day-product-under-line{
   display: flex;
@@ -270,5 +311,8 @@
       font-size: 10px;
       line-height: 15px;
       font-weight: 600;
+    }
+    .mobile-view-deal-day-card-heart-icon{
+      display: flex !important;
     }
 }
