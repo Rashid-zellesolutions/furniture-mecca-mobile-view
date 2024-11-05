@@ -125,7 +125,7 @@ position: absolute;
 }
 
 .mobile-view-timer p{
-    font-size: 14px;
+    font-size: 11px;
     line-height: 17px;
     font-weight: 600;
     color: #fff;
@@ -154,7 +154,8 @@ position: absolute;
         font-weight: 600;
     }
     .deal-of-the-day-outer-container{
-        padding: 20px 15px 20px 38px;
+        /* padding: 20px 15px 20px 38px; */
+        padding: 20px 15px 20px 20px;
         gap: 10px;
     }
 
@@ -166,7 +167,7 @@ position: absolute;
         left: -15px;
     }
     .slick-arrow.slick-next {
-        right: 10px;
+        right: -12px;
     }
     .mobile-view-timer{
         display: flex;

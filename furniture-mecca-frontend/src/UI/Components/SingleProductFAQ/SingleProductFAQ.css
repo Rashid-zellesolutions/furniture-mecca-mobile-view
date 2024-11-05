@@ -146,3 +146,23 @@
     color: var(--text-color);
     list-style-type: circle;
 }
+
+@media only screen and (max-width: 480px){
+    .details-toggler{
+        padding: 10px 0;
+    }
+    .single-product-details-section p{
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 600;
+    }
+    .single-product-details-section img{
+        width: 15px;
+        height: 15px;
+    }
+    .single-product-details-answered-section p{
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 400;
+    }
+}

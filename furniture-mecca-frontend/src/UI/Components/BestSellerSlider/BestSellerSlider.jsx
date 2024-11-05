@@ -37,8 +37,25 @@ function BestSellerNextArrow(props) {
 
 
 const BestSellerSlider = () => {
+    const [width, setWidth] = useState(window.innerWidth);
+    const [loading, setLoading] = useState(false);
+    const [activeItem, setActiveItem] = useState(0)
+    const navigate = useNavigate()
+    const bestSellerNav = ['Living Room', 'Bedroom', 'Dining Room']
+    const { products } = useProducts()
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [mobIndex, setMobIndex] = useState(0)
+    const [applyFilter, setApplyFilter] = useState(false);
+    const [cardIndex, setCardIndex] = useState(0)
 
-
+    const handleActiveItem = (index) => {
+        setActiveItem(index)
+        setLoading(true); // Show loader
+        setTimeout(() => {
+            setActiveItem(index);
+            setLoading(false); // Hide loader after 2 seconds
+        }, 1000);
+    }
     const settings = {
         // className: "slider variable-width",
         className: 'center',
@@ -52,51 +69,25 @@ const BestSellerSlider = () => {
         nextArrow: <BestSellerNextArrow to="next" />,
         prevArrow: <BestSellerPrevArrow to="prev" />,
     };
-
-    const [width, setWidth] = useState(window.innerWidth);
     useEffect(() => {
         const handleResizer = () => setWidth(window.innerWidth);
         window.addEventListener("resize", handleResizer);
         return () => window.removeEventListener("resize", handleResizer)
     })
 
-
-    const bestSellerNav = ['Living Room', 'Bedroom', 'Dining Room']
-
-    const [loading, setLoading] = useState(false);
-    const [activeItem, setActiveItem] = useState(0)
-    const navigate = useNavigate()
-
-    const handleActiveItem = (index) => {
-        setActiveItem(index)
-        setLoading(true); // Show loader
-        setTimeout(() => {
-            setActiveItem(index);
-            setLoading(false); // Hide loader after 2 seconds
-        }, 1000);
-    }
-    // const productCardData = useSelector((state) => state.productCard.data)
-    const { products } = useProducts()
-    console.log(products.length)
-    // const productCardData = products.products;
-    // console.log("productCardData on Landing Page", products)
-
     // product slice to show 6 product maxx
     const handleCardClicked = (item) => {
         navigate(`/single-product/${item.slug}`, { state: { products: item } })
     }
 
-
-
     const cardsPerPage = 6; // Number of cards per page
     const totalPages = Math.ceil(products.length / cardsPerPage);
-    const [currentIndex, setCurrentIndex] = useState(0); // Current page index
+     // Current page index
 
     // Handle page change
     const handlePageChange = (index) => {
         setCurrentIndex(index);
     };
-
 
     // mobile scripts
     const mobileSettings = {
@@ -112,28 +103,26 @@ const BestSellerSlider = () => {
         nextArrow: <BestSellerNextArrow to="next" />,
         prevArrow: <BestSellerPrevArrow to="prev" />,
     };
-    const [mobIndex, setMobIndex] = useState(0)
+    
     const handleMobileNavClick = (index) => {
-        setMobIndex(index);
+        setApplyFilter(true);
+        setTimeout(() => {
+            setApplyFilter(false);
+            setMobIndex(index)
+        }, 1000)
     }
-
-    const [cardIndex, setCardIndex] = useState(0)
     const handlePaginationClick = (index) => {
         // setCardIndex(index);
         const newIndex = Math.max(0, Math.min(products.length - 1, index));
         setCardIndex(newIndex);
     };
-
     const getDisplayedIndexes = () => {
         const halfVisible = 1; // Half of the dots
         const start = Math.max(0, cardIndex - halfVisible);
         const end = Math.min(products.length, start + 3);
         return Array.from({ length: end - start }, (_, i) => start + i);
     };
-
     const displayedIndexes = getDisplayedIndexes();
-
-
 
     return (
         <div className="best-seller-slider-container">
@@ -180,52 +169,57 @@ const BestSellerSlider = () => {
                 </div>
             </div>
 
-            <div className='mobile-best-seller'> 
-                <div className='mobile-best-seller-heading'>
-                    <h3>Best Seller</h3>
-                </div>
-                <div className='mobile-best-seller-menu'>
-                    <img src={mobileHeadImage} alt='mobile-head-image' />
-                    <div className='mobile-best-seller-menu-items'>
+            {/* Best Seller Mobile View */}
+            <div className='mobile-view-best-seller-main-container'>
+                <div className={`mobile-view-best-seller-loading ${applyFilter ? 'show-mobile-view-best-seller-filter' : ''}`}></div>
+                <h3 className='mobile-view-best-seller-heading'>Best Seller</h3>
+                <div className='mobile-view-nav-and-card-contaner'>
+
+                    <div className='mobile-view-best-seller-menu-items'>
                         {bestSellerNav.map((items, index) => (
                             <p
-                                className={mobIndex === index ? "mobile-nav-active" : ""}
+                                className={`mobile-view-best-seller-nav ${mobIndex === index ? "mobile-view-nav-active" : ""}`}
                                 onClick={() => handleMobileNavClick(index)}
                             >
                                 {items}
                             </p>
                         ))}
                     </div>
-                </div>
-                <div className='mobile-slider-cards'>
-                    <div
-                        className='mobile-view-single-card'
-                        style={{ transform: `translateX(-${cardIndex * 100}%)`, transition: 'transform 0.5s ease' }}
-                    >
-                        {products.slice(cardIndex, cardIndex + 1).map((item, index) => (
-                            <BestSellerProductCard
-                                productData={item}
-                                key={index}
-                                productMainImage={item.mainImage}
-                                starIcon={item.ratingStars}
-                                reviews={item.reviewCount}
-                                productName={item.productTitle}
-                                oldPrice={item.priceTag}
-                                newPrice={item.priceTag}
-                                handleCardClicked={() => handleCardClicked(item)}
-                            />
-                        ))}
+
+                    <div className='mobile-view-slider-cards'>
+
+                        <div
+                            className='mobile-view-single-card-container'
+                            style={{display: 'flex', transform: `translateX(-${cardIndex * 100}%)`, transition: 'transform 0.5s ease' }}
+                        >
+                            {products.slice(cardIndex, cardIndex + 1).map((item, index) => (
+                                <BestSellerProductCard
+                                    productData={item}
+                                    key={index}
+                                    productMainImage={item.mainImage}
+                                    starIcon={item.ratingStars}
+                                    reviews={item.reviewCount}
+                                    productName={item.productTitle}
+                                    oldPrice={item.priceTag}
+                                    newPrice={item.priceTag}
+                                    handleCardClicked={() => handleCardClicked(item)}
+                                />
+                            ))}
+                        </div>
+
+                        <div className='mobile-pagination-dots'>
+                            {displayedIndexes.map((_, index) => (
+                                <span
+                                    key={index}
+                                    className={`mobile-dot ${index === cardIndex ? 'mobile-active' : ''}`}
+                                    onClick={() => handlePaginationClick(index)}
+                                />
+                            ))}
+                        </div>
+
                     </div>
+
                 </div>
-                <div className='mobile-pagination-dots'>
-                    {displayedIndexes.map((_, index) => (
-                        <span
-                            key={index}
-                            className={`mobile-dot ${index === cardIndex ? 'mobile-active' : ''}`}
-                            onClick={() => handlePaginationClick(index)}
-                        />
-                    ))}
-                </div> 
             </div>
 
             <div className='pagination-dots'>

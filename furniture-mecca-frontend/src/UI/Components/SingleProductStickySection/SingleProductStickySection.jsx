@@ -150,7 +150,6 @@ const SingleProductStickySection = (productData) => {
 
   // Sticky Behavior cript end
 
-
   //   Second Section Functions
 
   const ratingStars = [
@@ -168,9 +167,10 @@ const SingleProductStickySection = (productData) => {
     { name: 'Gray', img: grayImage },
   ]
 
-  const [variationName, setVariationName] = useState(product.colorVariation[0].color)
-  const handleColorVariation = (name) => {
-    setVariationName(name);
+  // const [variationName, setVariationName] = useState(product.colorVariation[0].color)
+  const [variationName, setVariationName] = useState(0)
+  const handleColorVariation = (index) => {
+    setVariationName(index);
   }
 
   const [count, setCount] = useState(1);
@@ -270,9 +270,9 @@ const SingleProductStickySection = (productData) => {
                 <p>Get it between July 27 - July 31'</p>
               </span>
               <div className='single-product-frame-color'>
-                <span className='color-frame-heading'>
-                  {/* <p>Select Frame Color: </p><Link>{variationName}</Link> */}
-                </span>
+                {/* <span className='color-frame-heading'>
+                  <p>Select Frame Color: </p><Link>{variationName}</Link>
+                </span> */}
                 <div className='variant-images-div'>
                   {product.colorVariation && product.colorVariation.map((item, index) => {
                     return <div key={index} className={`single-product-color-variant ${variationName === index ? 'selected-color-variation' : ''}`} onClick={() => handleColorVariation(index)}>
@@ -411,7 +411,6 @@ const SingleProductStickySection = (productData) => {
                 </div>
           </div>
           <SizeVariant />
-          <FinancingOptions />
           <div className='mobile-product-count-and-add-to-cart'>
               <div className='mobile-product-count'>
                   <button>
@@ -424,6 +423,7 @@ const SingleProductStickySection = (productData) => {
               </div>
               <button className='mobile-add-to-cart-btn'>Add To Cart</button>
           </div>
+          <FinancingOptions />
           <SingleProductFAQ />
         </div>
       </div>

@@ -54,7 +54,7 @@ const SimillerProducts = () => {
         }
         const container = scrollContainerRef.current;
         if (container) {
-            const scrollAmount = direction * cardWidth * 4;
+            const scrollAmount = direction * cardWidth * 1;
             container.scrollBy({
                 left: scrollAmount,
                 behavior: 'smooth'
@@ -74,8 +74,6 @@ const SimillerProducts = () => {
     const handleCardClick = (item) => {
         navigate(`/single-product/${item.slug}`, {state: {products: item}})
     }
-
-    
     
   return (
     <div className='similler-products-main-container'>
@@ -84,11 +82,12 @@ const SimillerProducts = () => {
             onTouchMove={handleTouchMove}>
             <button
                 className={`scroll-button left ${simillerProductIndex >= products.length ? 'disable-similler-product-arrow' : ''}`}
-                onClick={() => handleScroll(-1)}
+                onClick={() => handleScroll(-1)} 
+            //    onClick={handlePrev}
                 disabled={simillerProductIndex === 0}
             >
                 <img src={arrowLeftRed} alt='arrow-left' />
-            </button>
+            </button> 
             <div className='similler-products-cards' ref={scrollContainerRef}>
                 {products.slice(0, 12).map((item, index) => (
                     <ProductCard
@@ -122,7 +121,8 @@ const SimillerProducts = () => {
             </div>
             <button
                 className={`scroll-button right ${simillerProductIndex >= products.length ? 'disable-similler-product-arrow' : ''}`}
-                onClick={() => handleScroll(1)}
+               onClick={() => handleScroll(1)} 
+            //   onClick={handleNext}
             >
                 <img src={arrowRightRed} about='arrow-right' />
             </button>

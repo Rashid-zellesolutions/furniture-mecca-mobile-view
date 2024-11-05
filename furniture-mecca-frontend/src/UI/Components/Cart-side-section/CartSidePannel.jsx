@@ -2,7 +2,7 @@ import React from 'react'
 import './CartSidePannel.css';
 import closeBtn from '../../../Assets/icons/close-btn.png'
 import CartSideSection from './CartSideSection';
-import cartBlack from '../../../Assets/icons/big-black-cart.png';
+import cartBlack from '../../../Assets/icons/cart-bag-charcol.png';
 import minusBtn from '../../../Assets/icons/minus-white.png';
 import plusBtn from '../../../Assets/icons/plus-white.png';
 
@@ -14,8 +14,11 @@ const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, rem
             </button>
             <div className={`cart-side-section-containt-div ${addToCartClicked ? 'show-side-cart-containt' : ''}`}>
                 <div className='cart-section-heading-div'>
-                    <img src={cartBlack} alt='cart icon' />
-                    <p>Your Cart {(cartData.length)}</p>
+                    <div className='cart-side-section-cart-bag-div'>
+                        <img src={cartBlack} alt='cart icon' />
+                        <p className='cart-side-panel-item-count'>{(cartData.length)}</p>
+                    </div>
+                    <p>Your Cart </p>
                 </div>
                 <div className='cart-section-products'>
                     {cartData.map((items, index) => {

@@ -297,6 +297,9 @@
 
 
 @media only screen and (max-width: 480px){
+    .deal-of-the-day-product-card{
+      width: 100%;
+    }
     .deal-of-the-day-product-rating-and-name{
       display: none;
     }
