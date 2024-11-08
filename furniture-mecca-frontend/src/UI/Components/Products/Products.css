@@ -761,6 +761,8 @@ label {
     z-index: 99999;
     width: 20px;
     height: 20px;
+    color: #fff;
+    cursor: pointer;
 }
 
 .quick-view-close img{

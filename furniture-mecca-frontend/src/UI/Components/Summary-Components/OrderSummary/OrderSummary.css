@@ -20,6 +20,34 @@
     gap: 20px;
 }
 
+.order-summary-selected-products-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    height: 230px;
+    overflow-x: hidden;
+    padding: 0 10px;
+    overflow-y: auto;
+}
+
+/* Scrollbar styles */
+.order-summary-selected-products-container::-webkit-scrollbar {
+    width: 3px; /* Thin scrollbar */
+    height: 5px !important;
+    background-color: #F0F0F0; /* Background color */
+}
+
+.order-summary-selected-products-container::-webkit-scrollbar-thumb {
+    background-color: #595959; /* Scrollbar color */
+    border-radius: 3px; /* Rounded corners for the scrollbar */
+}
+
+/* Hide the scrollbar arrows */
+.order-summary-selected-products-container::-webkit-scrollbar-button {
+    display: none; /* Hide top and bottom arrows */
+}
+
 .selected-products{
     display: flex;
     flex-direction: column;

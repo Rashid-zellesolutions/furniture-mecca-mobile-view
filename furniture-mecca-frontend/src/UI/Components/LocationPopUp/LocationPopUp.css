@@ -9,7 +9,7 @@
     right: 0;
     background-color: rgba(0, 0, 0, 0.7);
     height: 100vh;
-    z-index: 99999;
+    z-index: 99999999999;
     visibility: hidden;
     opacity: 0;
     transition: all 0.5s ease;
@@ -28,9 +28,14 @@
     height: 100%;
     position: absolute;
     background-color: #fff;
-    right: 0;
+    right: -430px;
     top: 0;
     z-index: 9;
+    transition: all 0.5s ease-in-out;
+}
+
+.location-modal-containt-div.show-location-bar-inner-container{
+    right: 0;
 }
 
 .close-location-modal{

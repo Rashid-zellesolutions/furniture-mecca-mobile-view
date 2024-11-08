@@ -2,17 +2,24 @@ import React from 'react'
 import './CartSidePannel.css';
 import closeBtn from '../../../Assets/icons/close-btn.png'
 import CartSideSection from './CartSideSection';
-import cartBlack from '../../../Assets/icons/cart-bag-charcol.png';
+import cartBlack from '../../../Assets/icons/cart-bag-new.png';
 import minusBtn from '../../../Assets/icons/minus-white.png';
 import plusBtn from '../../../Assets/icons/plus-white.png';
+import { Link } from 'react-router-dom';
 
 const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, removeFromCart,decreamentQuantity, increamentQuantity}) => {
   return (
-    <div className={`cart-side-main-section ${addToCartClicked ? 'show-side-cart' : ''} `}>
+    <div 
+        className={`cart-side-main-section ${addToCartClicked ? 'show-side-cart' : ''} `}
+        onClick={handleCartSectionClose}
+    >
             <button className='cart-section-close-btn' onClick={handleCartSectionClose}>
                 <img src={closeBtn} alt='close btn' />
             </button>
-            <div className={`cart-side-section-containt-div ${addToCartClicked ? 'show-side-cart-containt' : ''}`}>
+            <div 
+                className={`cart-side-section-containt-div ${addToCartClicked ? 'show-side-cart-containt' : ''}`}
+                onClick={(e) => e.stopPropagation()}  
+            >
                 <div className='cart-section-heading-div'>
                     <div className='cart-side-section-cart-bag-div'>
                         <img src={cartBlack} alt='cart icon' />
@@ -39,9 +46,9 @@ const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, rem
                 </div>
                 <div className='cart-side-section-buttons'>
                     <div className='cart-section-view-cart-and-checkout-btn'>
-                        <a href='/add-to-cart' className='cart-side-section-view-cart'>
+                        <Link to={'/add-to-cart'} className='cart-side-section-view-cart'>
                             View Cart
-                        </a>
+                        </Link>
                         <button className='cart-side-section-checkout'>
                             Checkout
                         </button>

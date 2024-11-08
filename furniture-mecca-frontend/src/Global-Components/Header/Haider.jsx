@@ -168,9 +168,9 @@ const Haider = () => {
           </div>
         </div>
         <div className='header-icons-container'>
-          <a href='/login'>
+          <Link to={'/login'}>
           <img src={profileIcon} alt="profile" /> 
-          </a>
+          </Link>
           <Link>
           <img src={HeartIcon} alt="heart" />
           </Link>
@@ -206,9 +206,9 @@ const Haider = () => {
       <div className='mobile-view-header'>
         <div className='mobile-view-logo-and-other-containt-section'>
           <img className='nav-toggler' src={navToggler} alt="togle button" onClick={showMobileNav} />
-          <a href='/'>
+          <Link href='/'>
             <img className='mobile-logo' src={logo} alt='mobile-logo' />
-          </a>
+          </Link>
           <div className='mobile-view-cart-and-location'>
             <img src={locationIcon} alt='location' onClick={handleNearStorePopUp}/>
             <img src={mobileCartIcon} alt='cart-icon' onClick={handleCartSectionOpen} />
@@ -219,9 +219,9 @@ const Haider = () => {
             <img src={searchIcon} alt='search-icon' />
             <input type='text' placeholder='Search All Things Mecca' />
           </div>
-          <a href='/login'>
+          <Link href='/login'>
             <img className='mobile-user-icon' src={mobileUserIcon} alt='user-icon' />
-          </a>
+          </Link>
         </div>
           
       </div>

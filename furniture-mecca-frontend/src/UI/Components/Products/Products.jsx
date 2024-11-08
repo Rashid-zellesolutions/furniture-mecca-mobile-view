@@ -23,6 +23,7 @@ import CartSidePannel from '../Cart-side-section/CartSidePannel';
 import paginationArrow from '../../../Assets/icons/arrow-right-large.png'
 import MobileViewProductFilters from '../MobileViewProductFilters/MobileViewProductFilters';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
+import { IoMdClose } from "react-icons/io";
 
 const Products = ({productArchiveHading}) => {
     // products context data
@@ -434,47 +435,6 @@ const Products = ({productArchiveHading}) => {
         </div>
 
         {/* Cart Side Section */}
-        {/* <div className={`cart-side-main-section ${addToCartClicked ? 'show-side-cart' : ''} `}>
-            <button className='cart-section-close-btn' onClick={handleCartSectionClose}>
-                <img src={closeBtn} alt='close btn' />
-            </button>
-            <div className={`cart-side-section-containt-div ${addToCartClicked ? 'show-side-cart-containt' : ''}`}>
-                <div className='cart-section-heading-div'>
-                    <img src={cartBlack} alt='cart icon' />
-                    <p>Your Cart {(cart.length)}</p>
-                </div>
-                <div className='cart-section-products'>
-                    {cart.map((items, index) => {
-                        return  <CartSideSection
-                            key={items.product.id}
-                            handleItemRemove={() => removeFromCart(items.product.id)}
-                            closeBtn={closeBtn}
-                            productTitle={items.product.productTitle}
-                            mainImage={items.product.mainImage}
-                            priceTag={items.product.priceTag}
-                            decreamentQuantity={() => decreamentQuantity(items.product.id)}
-                            minusBtn={minusBtn}
-                            quantity={items.quantity}
-                            increamentQuantity={() => increamentQuantity(items.product.id)}
-                            plusBtn={plusBtn}
-                        />
-                    })}
-                </div>
-                <div className='cart-side-section-buttons'>
-                    <div className='cart-section-view-cart-and-checkout-btn'>
-                        <a href='/add-to-cart' className='cart-side-section-view-cart'>
-                            View Cart
-                        </a>
-                        <button className='cart-side-section-checkout'>
-                            Checkout
-                        </button>
-                    </div>
-                    <button className='cart-side-section-continue-shopping'>
-                        Continue Shopping
-                    </button>
-                </div>
-            </div>
-        </div> */}
         <CartSidePannel 
             cartData={cart}
             addToCartClicked={addToCartClicked}
@@ -487,7 +447,8 @@ const Products = ({productArchiveHading}) => {
         {/* Quick View Section */}
         <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`}>
             <button className={`quick-view-close`} onClick={handleQuickViewClose}>
-                <img src={closeBtn} alt='close' />
+                {/* <img src={closeBtn} alt='close' /> */}
+                <IoMdClose size={25} />
             </button>
             <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`}>
                 <QuickView setQuickViewProduct={quickViewProduct} />

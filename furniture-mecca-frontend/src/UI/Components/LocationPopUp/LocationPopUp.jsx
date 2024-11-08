@@ -6,8 +6,14 @@ import locationModalIcon from '../../../Assets/icons/location.png'
 
 const LocationPopUp = ({searchLocation, handleCloseSearch}) => {
   return (
-    <div className={`show-location-modal ${searchLocation ? 'increase-width-location-modal' : ''} `}>
-              <div className='location-modal-containt-div'>
+    <div 
+      className={`show-location-modal ${searchLocation ? 'increase-width-location-modal' : ''} `}
+      onClick={handleCloseSearch}
+    >
+              <div 
+                className={`location-modal-containt-div ${searchLocation ? 'show-location-bar-inner-container' : ''}`}
+                onClick={(e) => e.stopPropagation()}  
+              >
                 <button className={`close-location-modal ${searchLocation ? '' : 'hide-location-close-btn' }`} onClick={handleCloseSearch}>
                   <img src={closeBtn} alt='close btn' />
                 </button>

@@ -10,6 +10,7 @@ import crossBtn from '../../../Assets/icons/close-btn.png';
 import mainLogo from '../../../Assets/Logo/m_logo_360 2.png';
 import MobileSubNav from './MobileSubNav/MobileSubNav';
 import { IoMdArrowBack } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const MobileNavbar = ({showMobileNav, setMobileNavVisible}) => {
     const mobileNav = [
@@ -39,9 +40,9 @@ const MobileNavbar = ({showMobileNav, setMobileNavVisible}) => {
             <img src={crossBtn} alt='close-nav' />
         </button>
         <div className='mobile-nav-logo-section'>
-            <a href='/'>
+            <Link to={'/'}>
                 <img src={mainLogo} alt='website-logo' />
-            </a>
+            </Link>
         </div>
         <div className='mobile-nav-containt-section'>
             <div className='mobile-nav-containt-header'>
@@ -59,10 +60,10 @@ const MobileNavbar = ({showMobileNav, setMobileNavVisible}) => {
                 <div className='mobile-nav-main-items'>
                     {mobileNav.map((items, index) => (
                         <div className='mobile-nav-single-item' key={index} >
-                            <a href={items.link} className='mobile-nav-single-item-name' onClick={() => setMobileNavVisible(false)}>
+                            <Link to={items.link} className='mobile-nav-single-item-name' onClick={() => setMobileNavVisible(false)}>
                                 <img src={items.icon} alt='nav-icon' />
                                 <p>{items.name}</p>
-                            </a>
+                            </Link>
                             <img 
                                 src={items.navIcon} 
                                 alt='nav-icon' 

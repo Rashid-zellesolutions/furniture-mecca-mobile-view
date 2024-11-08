@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import './OrderSummary.css'
 import productImage from '../../../../Assets/Furniture Mecca/Cart Page/products/mix-chery-dining-set.jpg';
+import { useCart } from '../../../../context/cartContext/cartContext';
 
 const OrderSummary = () => {
     const selectedProducts = [
+        {img: productImage, name: 'Harris Reclining Sofa and Loveseat *1', price: '$899', selectedColor: 'Black', selectedPackage: '2PC Sofa & LoveSeat'},
+        {img: productImage, name: 'Harris Reclining Sofa and Loveseat *1', price: '$899', selectedColor: 'Black', selectedPackage: '2PC Sofa & LoveSeat'},
         {img: productImage, name: 'Harris Reclining Sofa and Loveseat *1', price: '$899', selectedColor: 'Black', selectedPackage: '2PC Sofa & LoveSeat'},
         {img: productImage, name: 'Harris Reclining Sofa and Loveseat *1', price: '$899', selectedColor: 'Black', selectedPackage: '2PC Sofa & LoveSeat'},
     ]
@@ -17,6 +20,37 @@ const OrderSummary = () => {
     const handleShowMore = () => {
         setShowMoreProducts((prev) => prev > 1 ? 1 : selectedProducts.length)
     }
+    const {cart} = useCart();
+    console.log("Cart data", cart)
+
+    // Card title words limit
+    const maxLength = 50;
+    const truncateTitle = (title, maxLength) => {
+        if (title.length > maxLength) {
+            return title.slice(0, maxLength) + '...';
+        }
+        return title;
+    };
+
+    let subTotalPrice = 0;
+    let calculateTotal = cart.map((item) => {
+        return subTotalPrice += item.product.priceTag
+    })
+    const grandTotal = subTotalPrice + 230;
+    console.log("sub total price", subTotalPrice)
+    let formedSubTotalPrice = new Intl.NumberFormat('en-us', {
+        style: 'currency',
+        currency: 'USD'
+    }).format(subTotalPrice)
+
+    
+
+    const formatedGrandTotal = Intl.NumberFormat('en-us', {
+        style: 'currency',
+        currency: 'USD'
+    }).format(grandTotal)
+    
+
   return (
     <div className='order-summary-main-container'>
         <h3 className='order-summery-main-heading'>Order Summary</h3>
@@ -25,29 +59,31 @@ const OrderSummary = () => {
             <p>Edit</p>
         </div>
         <div className='order-summary-details'>
-            {selectedProducts.map((items, index) => (
-                <div key={index} className='selected-products'>
-                    <div className='selected-single-product'>
-                        <img src={items.img} alt='img' />
-                        <div className='selected-product-containt'>
-                            <span className='selected-product-name-and-price'>
-                                <h3>{items.name}</h3>
-                                <p>{items.price}</p>
-                            </span>
-                            <span className='selected-product-color'>
-                                <p> {items.selectedColor}</p>
-                            </span>
-                            <span className='selected-product-color'>
-                                <p>{items.selectedPackage}</p>
-                            </span>
+            <div className='order-summary-selected-products-container'>
+                {cart && cart.map((items, index) => (
+                    <div key={items.product.id} className='selected-products'>
+                        <div className='selected-single-product'>
+                            <img src={items.product.mainImage} alt='img' />
+                            <div className='selected-product-containt'>
+                                <span className='selected-product-name-and-price'>
+                                    <h3>{truncateTitle(items.product.productTitle, maxLength)}</h3>
+                                    <p>${items.product.priceTag}</p>
+                                </span>
+                                <span className='selected-product-color'>
+                                    <p>{items.product.color ? items.product.color : 'Black'}</p>
+                                </span>
+                                <span className='selected-product-color'>
+                                    <p>{items.product.productItems ? items.product.productItems : '2 PC Sofa & Loveseat'}</p>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
             <div className='products-tax-and-total'>
                 <span>
                     <p>Sub Total:</p>
-                    <p>$1899</p>
+                    <p>{formedSubTotalPrice}</p>
                 </span>
                 <span>
                     <p>Tax</p>
@@ -57,7 +93,7 @@ const OrderSummary = () => {
             <div className='selected-product-total'>
                 <span>
                     <h3>Total</h3>
-                    <p>$233</p>
+                    <p>{formatedGrandTotal}</p>
                 </span>
             </div>
         </div>

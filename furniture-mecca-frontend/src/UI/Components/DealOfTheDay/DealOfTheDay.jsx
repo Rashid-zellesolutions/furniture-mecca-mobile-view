@@ -138,7 +138,7 @@ const DealOfTheDay = () => {
 
     const {products} = useProducts()
     const handleDealCardClick = (items) => {
-      // navigate(`/single-product/${items.slug}`, {state: {products: items}})
+      navigate(`/single-product/${items.slug}`, {state: {products: items}})
     }
     const productCount = products.length
   

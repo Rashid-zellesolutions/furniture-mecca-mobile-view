@@ -5,7 +5,7 @@ import unFilledStar from '../../../Assets/icons/orange-star-outline.png';
 import testimage from '../../../Assets/Furniture Mecca/product archive page/product images/Dakota-Dining-Set-01-600x400 1.png';
 import imgTwo from '../../../Assets/Furniture Mecca/product archive page/product images/Dining-Room-Set-in-Gold-01-600x400 1.png';
 import imgThree from '../../../Assets/Furniture Mecca/product archive page/product images/Zora-600x400 1.png';
-import imgVariantOne from '../../../Assets/Furniture Mecca/product archive page/product images/Moondance-Bedroom-Set-01-1024x644 2 (1).png';
+import imgVariantOne from '../../../Assets/Furniture Mecca/product archive page/product images/Sherry-Set-01-300x200 1.png';
 import imgVariantTwo from '../../../Assets/Furniture Mecca/product archive page/product images/Sherry-Set-01-300x200 1 (1).png';
 import minusBtn from '../../../Assets/icons/minus.png'
 import plusBtn from '../../../Assets/icons/plus.png';
@@ -16,6 +16,7 @@ import arrowRight from '../../../Assets/icons/arrow-right.png';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
 import { useProducts } from '../../../context/productsContext/productContext';
 import { useCart } from '../../../context/cartContext/cartContext';
+import { FaStar } from "react-icons/fa";
 
 const QuickView = ({setQuickViewProduct}) => {
     
@@ -67,6 +68,10 @@ const QuickView = ({setQuickViewProduct}) => {
     const plusProductQuantity = () => {setProductQuantity(productQuantity + 1)}
     const minusProductQuantity = () => {setProductQuantity(prevCount => (prevCount == 1 ? 1 : productQuantity - 1))}
     
+    const formatedQuickViewProductPrice = Intl.NumberFormat('en-us', {
+        style: 'currency',
+        currency: 'USD'
+    }).format(setQuickViewProduct.priceTag)
 
 
   return (
@@ -76,10 +81,12 @@ const QuickView = ({setQuickViewProduct}) => {
             <div className='quick-view-rating'>
                 <div className='quick-view-start'>
                     {setQuickViewProduct.ratingStars && setQuickViewProduct.ratingStars.map((star, index) => (
-                        <img key={index} src={star.icon} alt='star' />
+                        // <img key={index} src={star.icon} alt='star' />
+                        <FaStar size={15} className='quick-view-star-icon' />
                     ))}
+                    <p>4.1</p>
                 </div>
-                <p>{setQuickViewProduct.reviewCount}</p>
+                <p>200 Reviews</p>
                 
             </div>
         </div>
@@ -108,7 +115,7 @@ const QuickView = ({setQuickViewProduct}) => {
                 ))}
             </div>
         </div>
-        <h3 className='quick-view-price'>${setQuickViewProduct.priceTag}</h3>
+        <h3 className='quick-view-price'>{formatedQuickViewProductPrice}</h3>
         <div className='quick-view-add-item-or-cart-btn'>
             <div className='quick-view-add-or-minus-item'>
                 <button onClick={decreamentQuantity}>

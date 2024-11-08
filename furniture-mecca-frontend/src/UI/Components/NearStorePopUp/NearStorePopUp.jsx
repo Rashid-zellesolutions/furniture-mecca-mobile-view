@@ -7,6 +7,7 @@ import { TbCurrentLocation } from "react-icons/tb";
 import AddBtn from '../../../Assets/icons/add-icon.png';
 import { MdOutlineStars } from "react-icons/md";
 import closeBtn from '../../../Assets/icons/close-btn-black.png';
+import { Link } from 'react-router-dom';
 
 const NearStorePopUp = ({isOpen, setIsOpen, handleCloseNearBy}) => {
     const [storeOpenIndex, setOpenStoreIndex] = useState(-1);
@@ -144,8 +145,14 @@ const NearStorePopUp = ({isOpen, setIsOpen, handleCloseNearBy}) => {
     ]
 
   return (
-    <div className={`near-store-pop-up ${isOpen ? 'show' : ''}`}>
-        <div className='near-store-container'>
+    <div 
+        className={`near-store-pop-up ${isOpen ? 'show' : ''}`} 
+        onClick={handleCloseNearBy}
+    >
+        <div 
+            className={`near-store-container ${isOpen ? 'show-near-store-inner-container' : ''}`} 
+            onClick={(e) => e.stopPropagation()}
+        >
             <div className='pop-up-header'>
                 <span onClick={handleCloseNearBy}> 
                     {/* <IoCloseOutline size={20} />  */}
@@ -162,10 +169,10 @@ const NearStorePopUp = ({isOpen, setIsOpen, handleCloseNearBy}) => {
                 <div className='pop-up-header-location'>
                     <p>
                         <TbCurrentLocation size={16} />
-                        <a href='#'>Use Currunt Location</a>
+                        <Link to={'#'}>Use Currunt Location</Link>
                     </p>
                     <p>
-                        <a href='#'>Use My Delivery Zip</a>
+                        <Link to={'#'}>Use My Delivery Zip</Link>
                     </p>
                 </div>
             </div>
@@ -193,11 +200,11 @@ const NearStorePopUp = ({isOpen, setIsOpen, handleCloseNearBy}) => {
                     <p>{items.address}</p>
                     <p>{items.addressCity}</p>
                     <p><span>Call</span> {items.call}</p>
-                    <a href={items.outletLink}>{items.outlet}</a>
-                    <a href={items.directionLink}>{items.direction}</a> 
+                    <Link to={items.outletLink}>{items.outlet}</Link>
+                    <Link to={items.directionLink}>{items.direction}</Link> 
                 </div>
                 <div className={`pop-up-store-open-days-and-time ${storeOpenIndex === index ? 'open-store' : ''}`}>
-                    <a href={items.appointmentLink}>{items.appointment}</a>
+                    <Link to={items.appointmentLink}>{items.appointment}</Link>
                     <div className='store-hours-detail'>
                         <p>{items.openHours}</p>
                         <div className='store-hours'>
@@ -205,8 +212,8 @@ const NearStorePopUp = ({isOpen, setIsOpen, handleCloseNearBy}) => {
                             return <p key={index}> <span>{hoursItem.day}</span> <span>{hoursItem.time}</span> </p>
                         })}
                         </div>
-                        <a href={items.virtualTourLink}>{items.virtualTour}</a>
-                        <a href={items.storeDetailsLink}>{items.storeDetails}</a>
+                        <Link to={items.virtualTourLink}>{items.virtualTour}</Link>
+                        <Link to={items.storeDetailsLink}>{items.storeDetails}</Link>
                     </div>
                 </div>
             </div>

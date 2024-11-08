@@ -4,9 +4,17 @@ import crossBtn from '../../../../Assets/icons/close-btn.png';
 import mainLogo from '../../../../Assets/Logo/m_logo_360 2.png'
 import ordersIcon from '../../../../Assets/icons/order.png';
 import { IoMdArrowBack } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 
-const MobileSubNav = ({ openSubNav, setOpenSubNav, setMobileNavVisible, subNavHeading, navImg, selectedIndex }) => {
+const MobileSubNav = ({ 
+    openSubNav, 
+    setOpenSubNav, 
+    setMobileNavVisible, 
+    subNavHeading, 
+    navImg, 
+    selectedIndex 
+}) => {
     const handleCloseSubNav = () => {
         setOpenSubNav(false)
     }
@@ -119,9 +127,9 @@ const MobileSubNav = ({ openSubNav, setOpenSubNav, setMobileNavVisible, subNavHe
         <div className={`mobile-sub-navbar ${openSubNav ? 'show-sub-nav' : ''}`}>
             <button className='close-sub-nav' onClick={handleCloseSubNav}>
                 {/* <img src={crossBtn} alt='close btn' /> */}
-                <a>
+                <Link>
                     <IoMdArrowBack size={25} />
-                </a>
+                </Link>
             </button>
             <div className='mobile-sub-nav-head'>
                 <img src={mainLogo} alt='main-logo' />
@@ -133,10 +141,10 @@ const MobileSubNav = ({ openSubNav, setOpenSubNav, setMobileNavVisible, subNavHe
                 </div>
                 <div className='mobile-sub-nav-items'>
                     {navSubItems[selectedIndex].subItems && navSubItems[selectedIndex].subItems.map((items, index) => (
-                        <a href={items.link} className='mobile-sub-nav-single-item' onClick={handleCloseAllNav}>
+                        <Link to={items.link} className='mobile-sub-nav-single-item' onClick={handleCloseAllNav}>
                             <img src={items.icon} alt='sub-nav-icon' />
                             <p >{items.name}</p>
-                        </a>
+                        </Link>
                     ))}
                 </div>
             </div>

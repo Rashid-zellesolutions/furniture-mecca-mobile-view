@@ -33,8 +33,14 @@ const LanguagePopUp = ({changeLanguage, setChangeLanguage, handleCLoseLanguageMo
   }
 
   return (
-    <div className={`show-language-modal ${changeLanguage ? 'increase-width-language-modal' : ''} `}>
-              <div className='language-modal-containt-div'>
+    <div 
+      className={`show-language-modal ${changeLanguage ? 'increase-width-language-modal' : ''} `}
+      onClick={handleCLoseLanguageModal}
+    >
+              <div 
+                className={`language-modal-containt-div ${changeLanguage ? 'show-language-modal-inner-container' : ''}`}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <button className={`close-language-modal ${changeLanguage ? '' : 'hide-close-btn' }`} onClick={handleCLoseLanguageModal}>
                   <img src={closeBtn} alt='close btn' />
                 </button>
