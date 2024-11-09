@@ -10,6 +10,7 @@ import combinedArrows from '../../../../Assets/icons/multi-arrow-charcol.png'
 import multiArrowWhite from '../../../../Assets/icons/multi-arrow-white.png'
 import leftArrow from '../../../../Assets/icons/arrow-left-white.png';
 import rightArrow from '../../../../Assets/icons/right-arrow-white.png';
+import { url } from '../../../../utils/api';
 
 
 const products = [
@@ -108,7 +109,8 @@ const DealOfTheDayCard = ({
     price, 
     newPrice, 
     imgIcons, 
-    productmage, 
+    isDiscountable,
+    productImage, 
     descount, 
     handleDealCardClick, 
     dealDayData,  
@@ -116,31 +118,24 @@ const DealOfTheDayCard = ({
     // handleHoveLeave
   }) => {
 
-    const cardIcons = [
-      {defIcon: cartIcon, hoveredIcon: cartWhite},
-      {defIcon: heartIcon, hoveredIcon: heartWhite},
-      {defIcon: combinedArrows, hoveredIcon: multiArrowWhite},
-    ];
+    const formatePrice = (price) => {
+      return new Intl.NumberFormat('en-us', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(price)
+    }
     const [isHovered, setIsHovered] = useState(null);
 
-    const handleIconMouseEnter = (index) => {
-      setIsHovered(index) 
-      console.log('on mouse enter index', isHovered)
-    }
-    const handleIconMouseLeave = () => {
-      setIsHovered(null)
-      console.log('on mouse leave index', isHovered)
-    }
+    
 
     // Deal of the day product name limitations
     const maxLength = 40;
     const truncateTitle = (title, maxLength) => {
-        if (title.length > maxLength) {
-            return title.slice(0, maxLength) + '...';
-        }
-        return title;
+      if(!title) return '';  
+      return title.length > maxLength ? title.slice(0, maxLength) + '...' : title 
+      
     };
-    
+    console.log("deal day data", url,productImage)
     return (
       <div 
         index={index} 
@@ -153,17 +148,18 @@ const DealOfTheDayCard = ({
           >
           <h3 className='deal-of-the-day-product-name'>
             {truncateTitle(name, maxLength)}
+            {/* {name} */}
           </h3>
           <div 
             className='deal-of-the-day-price'>
-            <del>${price}</del>
-            <p>$ 1,599.00</p>
+              {isDiscountable ? <del>{formatePrice(price)}</del> : <></>}
+              <p>{formatePrice(newPrice)}</p>
           </div>
           <div 
               className='deal-of-the-day-rating-and-reviews'>
             <div 
                 className='deal-of-the-day-card-stars'>
-              {star.map((items, innIndex) => (
+              {star && star.map((items, innIndex) => (
                 // <p className='deal-of-the-day-stars'>{items.icon}</p>
                 <img 
                     key={innIndex} 
@@ -179,7 +175,7 @@ const DealOfTheDayCard = ({
         <div className='deal-of-the-day-product-image'>
           <img src={heartIcon} alt='heart-icon' className='mobile-view-deal-day-card-heart-icon' />
           <div className='deal-of-the-day-product-discount'><p>-12%</p></div>
-          <img src={productmage} alt='img' />
+          <img src={`${url}${productImage}`} alt='img' />
           <div className='deal-of-the-day-card-icons-div'>
             {/* {imgIcons.map((items, iconIndex) => ( */}
               <button 
@@ -224,14 +220,15 @@ const DealOfTheDayCard = ({
         <div className='mobile-view-deal-of-the-day-product-details'>
             <div className='mobile-view-star-rating-and-review'>
                 <div className='mobile-view-product-stars'>
-                    {star.map((item, index) => (
+                    {star && star.map((item, index) => (
                       <img src={item.icon} alt='src' />
                     ))}
                 </div>
                 <p>{review}</p>
             </div>
             <h3 className='mobile-view-deal-of-the-day-product-name'>
-                {truncateTitle(name, maxLength)}
+                {/* {truncateTitle(name, maxLength)} */}
+                {name}
             </h3>
             <div 
               className='mobile-view-deal-of-the-day-price'>

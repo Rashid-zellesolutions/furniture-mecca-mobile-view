@@ -44,7 +44,7 @@ const Products = ({productArchiveHading}) => {
 
     const handleCartSectionOpen = (item) => {
         setAddToCartClicked(true)
-        console.log("Cart Data ", cart)
+        // console.log("Cart Data ", cart)
         // addToCart(item)
     }
 

@@ -6,6 +6,7 @@ import bestSellerMainSecondImage from '../../../Assets/Furniture Mecca/Landing P
 import { Link, useNavigate } from 'react-router-dom';
 import BestSellerProductCard from '../BestSellerProductCard/BestSellerProductCard';
 import { useProducts } from '../../../context/productsContext/productContext';
+import star from '../../../Assets/icons/Star 19.png'
 
 import leftArrow from '../../../Assets/icons/arrow-left-white.png';
 import rightArrow from '../../../Assets/icons/right-arrow-white.png';
@@ -31,12 +32,15 @@ function BestSellerNextArrow(props) {
 
 const BestSellerSlider = () => {
     const navigate = useNavigate()
-    const { products } = useProducts()
     
+    // const { products} = useProducts()
+    const {allProducts} = useProducts()
+    console.log("products", allProducts)
+
     // States for current page, cards per page, and loading
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsPerPage] = useState(6);
-    const [totalPages] = useState(Math.ceil(products.length / cardsPerPage));
+    const [totalPages] = useState(Math.ceil(allProducts.length / cardsPerPage));
     const [applyFilter, setApplyFilter] = useState(false);
 
     const [width, setWidth] = useState(window.innerWidth);
@@ -75,7 +79,8 @@ const BestSellerSlider = () => {
 
     // product slice to show 6 product maxx
     const handleCardClicked = (item) => {
-        navigate(`/single-product/${item.slug}`, { state: { products: item } })
+        // console.log("item clicked", item)
+        navigate(`/single-product/${item.slug}`, { state: { allProducts: item } })
     }
 
     // mobile scripts
@@ -92,7 +97,7 @@ const BestSellerSlider = () => {
         nextArrow: <BestSellerNextArrow to="next" />,
         prevArrow: <BestSellerPrevArrow to="prev" />,
     };
-    
+
     const handleMobileNavClick = (index) => {
         setApplyFilter(true);
         setTimeout(() => {
@@ -114,13 +119,43 @@ const BestSellerSlider = () => {
     const getDisplayedCards = () => {
         const start = currentPage * cardsPerPage;
         const end = start + cardsPerPage;
-        return products.slice(start, end);
+        const publishedProductes = allProducts.filter(product => product.status === 'published');
+        const productWithDiscount = publishedProductes.map((product) => {
+            let newPrice = parseFloat(product.regular_price);
+            if (product.discount && product.discount.is_discountable === 1) {
+                const oldPrice = parseFloat(product.regular_price); // Convert regular_price to a number
+                const discountValue = parseFloat(product.discount.discount_value);
+                // console.log("discount value", discountValue, parseFloat(product.regular_price))
+
+                // Calculate the new price based on the discount type
+                if (product.discount.discount_type === 'percentage' && !isNaN(discountValue)) {
+                    newPrice = parseFloat(product.regular_price) - (parseFloat(product.regular_price) * (discountValue / 100));
+                    // console.log("new price", oldPrice * (discountValue / 100));
+                    // console.log("old price", oldPrice)
+                    newPrice = parseFloat(newPrice.toFixed(2));
+                } else if(product.discount.discount_type === 'currency' && !isNaN(discountValue)){
+                    newPrice = oldPrice - discountValue;
+                    newPrice = parseFloat(newPrice.toFixed(2));
+                }
+                //else if (product.discount.discount_type === 'fixed') 
+                else{
+                    // newPrice = oldPrice - parseFloat(product.discount.discount_value);
+                    newPrice = oldPrice;
+                }
+            }
+            return {
+                ...product,
+                newPrice
+            }
+        })
+        
+        return productWithDiscount.slice(start, end);
     };
 
 
     const handlePaginationClick = (index) => {
         // setCardIndex(index);
-        const newIndex = Math.max(0, Math.min(products.length - 1, index));
+        const newIndex = Math.max(0, Math.min(allProducts.length - 1, index));
         setCardIndex(newIndex);
     };
 
@@ -132,6 +167,13 @@ const BestSellerSlider = () => {
     };
 
     const displayedIndexes = getDisplayedIndexes();
+    const ratingStars = [
+        { icon: star },
+        { icon: star },
+        { icon: star },
+        { icon: star },
+        { icon: star }
+    ]
 
     return (
         <div className="best-seller-slider-container">
@@ -160,23 +202,24 @@ const BestSellerSlider = () => {
                     </div>
                     <div className='products-slider-container'>
 
-                        <div className='best-seller-slider-wrapper' style={{overflow: 'hidden'}}>
-                            <div 
-                                className='best-seller-slider' 
-                                style={{ 
-                                    transform: `translateX(-${(currentIndex / totalPages) * 100}%)` 
+                        <div className='best-seller-slider-wrapper' style={{ overflow: 'hidden' }}>
+                            <div
+                                className='best-seller-slider'
+                                style={{
+                                    transform: `translateX(-${(currentIndex / totalPages) * 100}%)`
                                 }}>
                                 {/* {products.slice(currentIndex, currentIndex + cardsPerPage).map((item, index) => ( */}
                                 {getDisplayedCards().map((item, index) => (
                                     <BestSellerProductCard
                                         productData={item}
+                                        isDiscountable={item.discount.is_discountable === 1 ? true : false}
                                         key={index}
-                                        productMainImage={item.mainImage}
-                                        starIcon={item.ratingStars}
-                                        reviews={item.reviewCount}
-                                        productName={item.productTitle}
-                                        oldPrice={item.priceTag}
-                                        newPrice={item.priceTag}
+                                        productMainImage={item.images?.[0]?.image_url}
+                                        starIcon={ratingStars}
+                                        reviews={'200'}
+                                        productName={item.name}
+                                        oldPrice={item.regular_price}
+                                        newPrice={item.newPrice}
                                         handleCardClicked={() => handleCardClicked(item)}
                                     />
                                 ))}
@@ -195,6 +238,7 @@ const BestSellerSlider = () => {
                     <div className='mobile-view-best-seller-menu-items'>
                         {bestSellerNav.map((items, index) => (
                             <p
+                                key={index}
                                 className={`mobile-view-best-seller-nav ${mobIndex === index ? "mobile-view-nav-active" : ""}`}
                                 onClick={() => handleMobileNavClick(index)}
                             >
@@ -207,9 +251,9 @@ const BestSellerSlider = () => {
 
                         <div
                             className='mobile-view-single-card-container'
-                            style={{display: 'flex', transform: `translateX(-${cardIndex * 100}%)`, transition: 'transform 0.5s ease' }}
+                            style={{ display: 'flex', transform: `translateX(-${cardIndex * 100}%)`, transition: 'transform 0.5s ease' }}
                         >
-                            {products.slice(cardIndex, cardIndex + 1).map((item, index) => (
+                            {getDisplayedCards().slice(cardIndex, cardIndex + 1).map((item, index) => (
                                 <BestSellerProductCard
                                     productData={item}
                                     key={index}
@@ -254,7 +298,7 @@ const BestSellerSlider = () => {
                         onClick={() => handlePageChange(pageIndex)} // Change page on dot click
                     >
                     </span>
-                    ))}
+                ))}
             </div>
 
         </div>

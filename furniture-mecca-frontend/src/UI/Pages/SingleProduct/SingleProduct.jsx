@@ -33,7 +33,7 @@ const SingleProduct = () => {
   const [cartSection, setCartSection] = useState(false);
   const {slug} = useParams()
   const location = useLocation();
-  const product = location.state.products || {}
+  const product = location.state.allProducts || {}
   console.log("main product data", product)
 
   

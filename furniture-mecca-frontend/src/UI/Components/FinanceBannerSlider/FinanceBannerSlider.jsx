@@ -11,7 +11,7 @@ function FinanceBannerSlider() {
     const getFinanceBannerImagesFRomApi = async () => {
         try {
             const response = await axios.get('https://fm.skyhub.pk/api/v1/pages/home/finance-slider/get');
-            console.log("finance images", response.data.homeSliders)
+            // console.log("finance images", response.data.homeSliders)
             setIMages(response.data.homeSliders)
         } catch (error) {
             console.log("error", error);
@@ -35,7 +35,7 @@ function FinanceBannerSlider() {
         }, 5000);
         return () => clearInterval(intervel)
     }, [images.length]);
-    console.log("current index finance", currentIndex)
+    // console.log("current index finance", currentIndex)
 
     
   return (

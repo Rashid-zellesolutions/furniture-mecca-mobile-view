@@ -11,7 +11,7 @@ import rightArrow from '../../../Assets/icons/right-arrow-white.png';
 
 
 import testImage from '../../../Assets/Furniture Mecca/product page/frequently bought/MN600__04-300x200 1.png'
-// import star from '../../../Assets/icons/Star 19.png'
+import star from '../../../Assets/icons/Star 19.png'
 import cartIcon from '../../../Assets/icons/cart-bag-charcol.png';
 import cartWhite from '../../../Assets/icons/cart-bag-white.png'
 import heartIcon from '../../../Assets/icons/heart-charcol.png';
@@ -43,10 +43,12 @@ const DealOfTheDay = () => {
 
     const navigate = useNavigate();
   
-    const imgIcons = [
-      {defIcon: cartIcon, hoveredIcon: cartWhite},
-      {defIcon: heartIcon, hoveredIcon: heartWhite},
-      {defIcon: combinedArrows, hoveredIcon: multiArrowWhite},
+    const starIcons = [
+      {icon: star},
+      {icon: star},
+      {icon: star},
+      {icon: star},
+      {icon: star},
     ]
 
     var settings = {
@@ -126,9 +128,10 @@ const DealOfTheDay = () => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
-      const timer = setInterval(() => {
-        setTimeLeft(calculateTimeLeft());
-      }, 1000);
+      // const timer = setInterval(() => {
+      //   setTimeLeft(calculateTimeLeft());
+      // }, 1000);
+      const timer = 0;
 
       return () => clearInterval(timer);
     }, []);
@@ -136,11 +139,45 @@ const DealOfTheDay = () => {
     // Destructure timeLeft
     const { days, hours, minutes, seconds } = timeLeft;
 
-    const {products} = useProducts()
-    const handleDealCardClick = (items) => {
-      navigate(`/single-product/${items.slug}`, {state: {products: items}})
+    // const {products} = useProducts()
+    const {allProducts} = useProducts();
+    console.log("deal of the day products", allProducts)
+    
+    const getPublishedProducts = () => {
+      const publishedProductes = allProducts.filter(product => product.status === 'published')
+      const productWithDiscount = publishedProductes.map((product) => {
+        let newPrice = parseFloat(product.regular_price);
+        console.log("new Price", newPrice)
+        
+        if(product.discount && product.discount.is_discountable === 1){
+          const oldPrice = parseFloat(product.regular_price);
+          const discountedValue = parseFloat(product.discount.discount_value);
+          if(product.discount.discount_type === 'percentage'){
+            newPrice = oldPrice - (oldPrice * (discountedValue / 100));
+            newPrice = parseFloat(newPrice.toFixed(2));
+          } else if(product.discount.discount_type === 'currency'){
+            newPrice = oldPrice - discountedValue;
+          }else{
+            newPrice = oldPrice;
+          }
+        }
+        return {
+          ...product,
+          newPrice
+        }
+      })
+      console.log("published products", productWithDiscount)
+      return productWithDiscount
     }
-    const productCount = products.length
+
+
+    const handleDealCardClick = (items) => {
+      navigate(`/single-product/${items.slug}`, {state: {allProducts: items}})
+    }
+
+    let productCount = 0
+    const publishedProductsLength =  allProducts.filter(product => product.status === 'published')
+    productCount = publishedProductsLength.length;
   
     return (
       <div className='deal-of-the-day-main-container'> 
@@ -162,17 +199,18 @@ const DealOfTheDay = () => {
           </div>
           <div className='slider-main-container'>
             <Slider {...settings}>
-              {products.map((items, index) => (
+              {getPublishedProducts().map((items, index) => (
                 <DealOfTheDayCard
                   key={index} 
-                  productmage={items.mainImage}
+                  isDiscountable={items.discount.is_discountable === 1 ? true : false}
+                  productImage={items.images[0].image_url}
                   dealDayData={items}
-                  name={items.productTitle} 
-                  star={items.ratingStars}
-                  review={items.reviewCount} 
-                  price={items.priceTag}
+                  name={items.name} 
+                  star={starIcons}
+                  review={'200'} 
+                  price={items.regular_price}
                   newPrice={items.newPrice}
-                  imgIcons={imgIcons}
+                  // imgIcons={imgIcons}
                   descount={items.disc}
                   handleDealCardClick={() => handleDealCardClick(items)}
                 />

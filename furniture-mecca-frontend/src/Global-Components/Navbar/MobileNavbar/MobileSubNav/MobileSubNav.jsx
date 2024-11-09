@@ -141,7 +141,7 @@ const MobileSubNav = ({
                 </div>
                 <div className='mobile-sub-nav-items'>
                     {navSubItems[selectedIndex].subItems && navSubItems[selectedIndex].subItems.map((items, index) => (
-                        <Link to={items.link} className='mobile-sub-nav-single-item' onClick={handleCloseAllNav}>
+                        <Link to={items.link} key={index} className='mobile-sub-nav-single-item' onClick={handleCloseAllNav}>
                             <img src={items.icon} alt='sub-nav-icon' />
                             <p >{items.name}</p>
                         </Link>

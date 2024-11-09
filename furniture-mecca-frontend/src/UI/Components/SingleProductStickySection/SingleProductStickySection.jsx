@@ -41,12 +41,13 @@ import SizeVariant from '../SizeVariant/SizeVariant';
 import DeliveryOptions from '../DeliveryOptions/DeliveryOptions';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 import heartIcon from '../../../Assets/icons/red-heart.png'
+import { url } from '../../../utils/api';
 
 
 
 const SingleProductStickySection = (productData) => {
   const product = productData.productData;
-  // console.log("product data of top", product)
+  console.log("product data of top", product)
 
   // Alice Slider
   const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
@@ -209,8 +210,8 @@ const SingleProductStickySection = (productData) => {
         {/* <Breadcrumb /> */}
         <div className='left-section'>
           {/* <Breadcrumb /> */}
-          <p className='single-product-slider-main-image-stock-tag'>In Stock</p>
-            <p className='single-product-slider-main-image-sale-tag'> Clarence Sale</p>
+          <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
+            <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p>
           <div className='single-product-alice-slider'>
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
@@ -220,8 +221,8 @@ const SingleProductStickySection = (productData) => {
               activeIndex={activeIndex}
               disableDotsControls
               disableButtonsControls
-              items={product.productAllImages && product.productAllImages.map((img, index) => (
-                <img key={index} src={img} className="single-product-slider-img" alt={`Slide ${index}`} />
+              items={product.images && product.images.map((img, index) => (
+                <img key={index} src={`${url}${img.image_url}`} className="single-product-slider-img" alt={`Slide ${index}`} />
               ))
               }
               responsive={{
@@ -230,13 +231,13 @@ const SingleProductStickySection = (productData) => {
               }}
             />
             <div className="single-product-slider-thumbnails">
-              {product.productAllImages && product.productAllImages.map((img, index) => (
+              {product.images && product.images.map((img, index) => (
                 <div
                   key={index}
                   className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
                   onClick={() => handleThumbnailClickk(index)}
                 >
-                  <img src={img} alt={`Thumbnail ${index}`} />
+                  <img src={`${url}${img.image_url}`} alt={`Thumbnail ${index}`} />
                 </div>
               ))}
             </div>
@@ -248,20 +249,20 @@ const SingleProductStickySection = (productData) => {
         <div className='right-section'>
           <div className='single-product-detail-container'>
             <div className='single-page-product-name-anddetails'>
-              <h3 className='single-product-heading'>{product.productTitle}</h3>
+              <h3 className='single-product-heading'>{product.name}</h3>
               <div className='single-product-rating'>
                 <span className='stars-icon'>
-                  {product.ratingStars && product.ratingStars.map((item, index) => {
+                  {ratingStars && ratingStars.map((item, index) => {
                     return <img key={index} src={item.icon} alt={item.name} className='star-img' />
                   })}
                 </span>
                 <p>4.1</p>
-                <Link>{product.reviewCount} Reviews</Link>
+                <Link>200 Reviews</Link>
               </div>
               {/* <h3 className='single-product-price'>${productData.productCard.priceTag}</h3> */}
               <div className='single-product-prices'>
-                <del className='single-product-old-price'>$199.00</del>
-                <h3 className='single-product-new-price'>${product.priceTag}</h3>
+                <del className='single-product-old-price'>{product.regular_price}</del>
+                <h3 className='single-product-new-price'>${product.regular_price}</h3>
               </div>
               {/* <p className='single-product-installment-price-price'>$9/month for 6 months - Total {productData.productCard.priceTag} </p> */}
 
@@ -273,15 +274,15 @@ const SingleProductStickySection = (productData) => {
                 {/* <span className='color-frame-heading'>
                   <p>Select Frame Color: </p><Link>{variationName}</Link>
                 </span> */}
-                <div className='variant-images-div'>
+                {/* <div className='variant-images-div'>
                   {product.colorVariation && product.colorVariation.map((item, index) => {
                     return <div key={index} className={`single-product-color-variant ${variationName === index ? 'selected-color-variation' : ''}`} onClick={() => handleColorVariation(index)}>
                       <img src={silverImage} alt='img' />
                       <p>{item.color}</p>
                     </div>
                   })}
-                </div>
-                <SizeVariant />
+                </div> */}
+                <SizeVariant attributes={product.attributes}/>
               </div>
               <div className='add-cart-or-add-items-div'>
                 <div className='item-count'>

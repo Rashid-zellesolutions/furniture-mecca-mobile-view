@@ -5,6 +5,53 @@
     gap: 5px;
 }
 
+.attributes-types{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    padding: 10px 0; 
+}
+
+.attribute-type{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+}
+
+.attribute-heading{
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.attribute-variations{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+    justify-content: start;
+}
+
+/* Color Attribute */
+.attribute-single-color{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-self: start;
+    gap: 5px;
+}
+
+.attribute-color-variation-box{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
 .show-selected-size-section{
     display: flex;
     width: 100%;
@@ -12,6 +59,56 @@
     justify-content: start;
     gap: 5px;
     padding: 10px;
+}
+
+.atribute-option-name{
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+/* Select Type  */
+.select-type-attribute{
+    display: flex;
+    width: max-content;
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    cursor: pointer;
+}
+
+.select-type-attribute p{
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+/* attribute image */
+.attribute-image-type{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: max-content;
+
+}
+
+.attribute-image-type img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.attribute-image-type p{
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    color: var(--text-color);
 }
 
 .show-selected-size-section p{

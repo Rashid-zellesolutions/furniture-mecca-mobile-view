@@ -20,7 +20,7 @@ const TrendingNow = () => {
     const getTrandingProductsData = async () => {
         try {
             const response = await axios.get('https://fm.skyhub.pk/api/v1/pages/home/trending-now/get');
-            console.log('tranding data', response.data.data.sliders)
+            // console.log('tranding data', response.data.data.sliders)
             setData(response.data.data)
         } catch (error) {
             console.error(error);
@@ -29,7 +29,7 @@ const TrendingNow = () => {
     useEffect(() => {
         getTrandingProductsData()
     }, [])
-    console.log("tranding now data", data)
+    // console.log("tranding now data", data)
 
     useEffect(() => {
         const interval = setInterval(() => {

@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 import heartImg from '../../Assets/icons/like.png'
 import muellerSofa from '../../Assets/images/Mueller-Sofa-and-Loveseat-01-300x200 1.png';
@@ -14,12 +14,14 @@ import zoraDiningSet from '../../Assets/Furniture Mecca/product archive page/pro
 import sherryImage from '../../Assets/images/Sherry-Set-01-300x200 1.png';
 import filledStar from '../../Assets/icons/Star 19.png';
 import productTag from '../../Assets/images/product-tag.png';
-import star from '../../Assets/icons/blue-star.png' 
+import star from '../../Assets/icons/blue-star.png'
 import { IoStar } from "react-icons/io5";
+import productsData from '../../data/products.json'
+import axios from "axios";
 
 const ProductContext = createContext()
 
-export const ProductProvider = ({children}) => {
+export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([
         {id: 1, slug: `trevor-brown-90-manual-reclining-sofa-&-79-console-loveseat-1`, heart: heartImg, mainImage: dakotaSet, hoverImage: goldDiningSet , productTitle: `Trevor Brown 90" Manual Reclining Sofa & 79" Console Loveseat 01`, ratingStars: [
             {icon: star, title: 'filled'},
@@ -193,8 +195,24 @@ export const ProductProvider = ({children}) => {
         },
     ]);
 
-    return(
-        <ProductContext.Provider value={{products}}>
+    const [allProducts, setAllProducts] = useState([]);
+
+    const fetchProductData = async () =>  {
+        try {
+            const response = await axios.get('https://fm.skyhub.pk/api/v1/products/get');
+            // Parse the JSON response
+            const data = response.data.products;
+            setAllProducts(data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+    useEffect(() => {
+        fetchProductData()
+    }, [])
+
+    return (
+        <ProductContext.Provider value={{ products, allProducts }}>
             {children}
         </ProductContext.Provider>
     )
