@@ -8,12 +8,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ProductProvider } from './context/productsContext/productContext';
 import { CartProvider } from './context/cartContext/cartContext';
 import { NavigationProvider } from './context/BreadCrumbContext/NavigationContext';
+import { OrderProvivder } from './context/orderContext/orderContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <OrderProvivder>
     <NavigationProvider>
     <ProductProvider>
       <CartProvider>
@@ -25,6 +27,7 @@ root.render(
       </CartProvider>
     </ProductProvider>
     </NavigationProvider>
+    </OrderProvivder>
   </React.StrictMode>
 );
 

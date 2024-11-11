@@ -9,59 +9,54 @@ import deliveryTruck from '../../../../Assets/icons/delivery.png';
 import  locationIcon from '../../../../Assets/icons/location-red.png';
 import MobileCart from '../Mobile-Cart/MobileCart';
 import { useNavigate } from 'react-router-dom';
+import { useOrder } from '../../../../context/orderContext/orderContext';
 // import CArtEmpty from './cart-empty/CArtEmpty';
 // import CartEmpty from './cart-empty/CartEmpty';
 
 
 const CartProducts = () => {
-    const { cart, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice } = useCart()
+    const { cart, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice, toggleProtection } = useCart()
+    const {order, toggleProtectedProducts, addProductsToOrder} = useOrder();
+    
+    // const totalPrice = calculateTotalPrice();
 
-    const totalPrice = calculateTotalPrice();
-
-    const formatedCartData = cart.map((item => {
-        const { mainImage, productTitle, priceTag, quantity, id } = item.product
-        return `Product: ${mainImage}, name: ${productTitle}, Price: ${priceTag}, Quntity: ${quantity}, id: ${priceTag} `;
-    }))
-    console.log("new Products Array", formatedCartData)
+    // const formatedCartData = cart.map((item => {
+    //     const { image, name, regular_price, quantity, uid } = item.product
+    //     return `Product: ${image.image_url}, name: ${name}, Price: ${regular_price}, Quntity: ${quantity}, uid: ${uid} `;
+    // }))
+    // console.log("cart on cart page", cart)
+    // console.log("new Products Array", formatedCartData)
 
     const [isOpen, setIsOpen] = useState(false);
+    const [checkoutFixed, setCheckoutFixed] = useState(true);
+
+    const totalPrice = calculateTotalPrice();
+    const deliveryCharges = 50;
+    const discountPrice = 10;
+    const subTotal = deliveryCharges + totalPrice;
+    const finaleTotal = subTotal - discountPrice
+
+    const formatedPrice = (price) => price.toLocaleString('en-us', {style: 'currency', currency: 'USD'})
+    const detailsDeta = [
+        {
+            title: 'Delivery', price: formatedPrice(deliveryCharges),
+        },
+        {
+            title: 'Discount', price: formatedPrice(discountPrice)
+        },
+        {
+            title: 'Sub Total', price: formatedPrice(subTotal)
+        },
+        {
+            title: 'Total', price: formatedPrice(finaleTotal)
+        },
+    ]
+
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
 
-    const deliveryCharges = 50;
-    const discountPrice = 10;
-    const unFormedTotalPrice = calculateTotalPrice();
-    const subTotal = deliveryCharges + unFormedTotalPrice;
-    const finalTotal = subTotal - discountPrice;
-    const formedDeliveryCharges = deliveryCharges.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    });
-    const formedDiscountCharges = discountPrice.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    });
-
-    const formedSubTotalCharges = subTotal.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    });
-
-    const formatedTotalPrice = finalTotal.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-    });
-
-    const detailsDeta = [
-        { title: 'Delivery', price: formedDeliveryCharges },
-        { title: 'Discount', price: formedDiscountCharges },
-        { title: 'Sub Total', price: formedSubTotalCharges },
-        { title: 'Total', price: formatedTotalPrice }
-
-    ]
-
-    const [checkoutFixed, setCheckoutFixed] = useState(true);
+    
     const handleScroll = () => {
         if(window.scrollY > 250){
             setCheckoutFixed(false);
@@ -79,39 +74,70 @@ const CartProducts = () => {
         }
     }, [])
 
+    const [protectAll, setProtectAll] = useState(false);
+    const handleProtectAll = () => {
+        setProtectAll(!protectAll)
+        // console.log("cart with protection", cart)
+
+    }    
+
     const navigate = useNavigate();
     const handleNavigateToCheckoutPage = () => {
-        navigate(`/cart-page/check-out`)
+        console.log("Cart before adding to order:", cart);
+        const updatedCart = {
+            products: cart.products, // cart.products should be an array of products
+            allProtected: protectAll,
+            protectedPrice: protectAll ? 199 : 0,
+        };
+
+        addProductsToOrder(updatedCart); // This will append the products to the order context
+        navigate(`/cart-page/check-out`);
+        console.log("order context", order)
     }
     // console.log("cart products total price", cart[0].product.totalPrice)
-
+    // console.log("cart my data: ", cart[0].product.regular_price)
+    useEffect(() => {
+        if (order.products.length > 0) {
+            console.log("Updated order:", order); // Log when order changes
+            navigate(`/cart-page/check-out`);
+        }
+    }, [order]);
+    
+    
     return (
         <>
             <div className='cart-products-main-container'>
                 <div className='cart-products-heading'>
                     <h3>Products ({cart.length})</h3>
+                    <button 
+                        className={`protect-all-products-button ${protectAll ? 'protect-all-products-button-true' : ''}`}
+                        onClick={handleProtectAll}
+                    >
+                        Protect All
+                    </button>
 
                 </div>
                 <div className={`cart-items ${isOpen ? 'low-width' : ''}`}>
                     {cart.length <= 0 && <EmptyCart />}
                     {cart.map((items, index) => {
                         return <CartItems
-                            key={items.product.id}
+                            key={items.product.uid}
                             onlyMobile={false}
-                            cartIndex={items.product.id}
+                            // isAllProtected={protectAll}
+                            cartIndex={items.product.uid}
                             productsLength={cart.length}
-                            handleRomoveProduct={() => removeFromCart(items.product.id)}
-                            cartProductName={items.product.productTitle}
-                            cartPRoductImage={items.product.mainImage}
-                            cartProductColor={items.product.color}
-                            cartProductTitle={items.product.title}
-                            cartSingleProductPrice={items.product.priceTag}
+                            handleRomoveProduct={() => removeFromCart(items.product.uid)}
+                            cartProductName={items.product.name}
+                            cartPRoductImage={items.product.image?.image_url}
+                            // cartProductColor={items.product.color}
+                            cartProductTitle={items.product.name}
+                            cartSingleProductPrice={items.product.regular_price}
                             isCartOpen={isOpen}
-                            productColor={items.product.color}
+                            // productColor={items.product.color}
                             quantity={items.quantity}
                             productTotalPrice={items.totalPrice}
-                            handleIncreament={() => increamentQuantity(items.product.id)}
-                            handleDecreament={() => decreamentQuantity(items.product.id)}
+                            handleIncreament={() => increamentQuantity(items.product.uid)}
+                            handleDecreament={() => decreamentQuantity(items.product.uid)}
                         />
                     })}
                 </div>
@@ -188,9 +214,9 @@ const CartProducts = () => {
                         <p>Total</p>
                         <p>$1998.00</p>
                     </div>
-                    <bitton className='mobile-view-checkout-btn' onClick={handleNavigateToCheckoutPage}>
+                    <button className='mobile-view-checkout-btn' onClick={handleNavigateToCheckoutPage}>
                         Check out
-                    </bitton>
+                    </button>
                 </div>
 
 
@@ -208,7 +234,7 @@ const CartProducts = () => {
                         {/* <button onClick={handleToggle}>
                     Continue
                 </button> */}
-                        <a href='/cart-page/check-out'>Continue</a>
+                        <button onClick={handleNavigateToCheckoutPage}>Continue</button>
                     </div>
                 </div>
                 <CartPaymnetMethoud

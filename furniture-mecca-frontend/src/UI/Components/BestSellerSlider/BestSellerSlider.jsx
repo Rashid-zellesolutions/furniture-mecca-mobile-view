@@ -10,6 +10,8 @@ import star from '../../../Assets/icons/Star 19.png'
 
 import leftArrow from '../../../Assets/icons/arrow-left-white.png';
 import rightArrow from '../../../Assets/icons/right-arrow-white.png';
+import axios from 'axios';
+import { url } from '../../../utils/api';
 
 const BestSellerPrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -34,8 +36,22 @@ const BestSellerSlider = () => {
     const navigate = useNavigate()
     
     // const { products} = useProducts()
-    const {allProducts} = useProducts()
-    console.log("products", allProducts)
+    // const {allProducts} = useProducts()
+    const [allProducts, setAllProducts] = useState([])
+    // console.log("products", allProducts)
+    const getBestSellerProducts = async () => {
+        const api = `/api/v1/products/get-best-selling-products`
+        try {
+            const response = await axios.get(`${url}${api}`)
+            // console.log("response best seller", response.data.products)
+            setAllProducts(response.data.products)
+        } catch (error) {
+            console.error("error geting best seller products", error);
+        }
+    }
+    useEffect(() => {
+        getBestSellerProducts()
+    }, [])
 
     // States for current page, cards per page, and loading
     const [currentIndex, setCurrentIndex] = useState(0);

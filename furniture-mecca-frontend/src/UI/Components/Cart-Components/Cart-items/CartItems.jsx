@@ -11,23 +11,31 @@ import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
 import rotatedArrow from '../../../../Assets/icons/arrow-rotate-white.png'
 import unProtectedIcon from '../../../../Assets/icons/un-protected.png';
 import protectedIcon from '../../../../Assets/icons/protected.png'
+import { url } from '../../../../utils/api';
 
-const CartItems = ({cartProductName, cartPRoductImage, cartProductColor, cartProductTitle, cartProductTotalPrice, 
+const CartItems = ({cartProductName, isAllProtected, cartPRoductImage, cartProductColor, cartProductTitle, cartProductTotalPrice, 
     cartSingleProductPrice, isCartOpen, onlyMobile, productColor, quantity, handleRomoveProduct,  cartIndex, productsLength, handleIncreament, handleDecreament, handleTotalPrice}) => {
-  
+        // console.log("Cart single price", cartSingleProductPrice)
         const [saveForLeter, setSaveForLeter] = useState(false)
         const [isProtected, setIsProtected] = useState(false)
-        
+        const formatedSinglePrice = Intl.NumberFormat('en-us', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(cartSingleProductPrice)
         const productTotalPrice = cartSingleProductPrice * quantity;
-        const singlePrice = cartSingleProductPrice.toLocaleString('en-US', {
+        const formatedTotalPrice = Intl.NumberFormat('en-us', {
             style: 'currency',
             currency: 'USD'
-        }); 
-        const formatedProductTotalPrice = productTotalPrice.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        });
-        console.log("Product Total Price in Component:", productTotalPrice);
+        }).format(productTotalPrice)
+        // const singlePrice = cartSingleProductPrice.toLocaleString('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD'
+        // }); 
+        // const formatedProductTotalPrice = productTotalPrice.toLocaleString('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD'
+        // });
+        // console.log("Product Total Price in Component:", productTotalPrice);
         const handleSaveForLeter = () => {
             setSaveForLeter(true)
             const timeOut = setTimeout(() => {
@@ -49,7 +57,7 @@ const CartItems = ({cartProductName, cartPRoductImage, cartProductColor, cartPro
             </div>
             <div className='cart-product-containt'>
                 <div className='cart-item-image'>
-                    <img src={cartPRoductImage} alt='product image' />
+                    <img src={`${url}${cartPRoductImage}`} alt='product image' />
                 </div>
                 <div className='cart-product-details'>
                     <p>{cartProductColor}</p>
@@ -67,7 +75,7 @@ const CartItems = ({cartProductName, cartPRoductImage, cartProductColor, cartPro
                         </div>
                     </div>
                     <div className='cart-item-actual-price'>
-                        <p>{formatedProductTotalPrice} </p>
+                        <p>{productTotalPrice} </p>
                         {/* <p>{productTotalPrice} </p> */}
                     </div>
                 </div>
@@ -77,7 +85,7 @@ const CartItems = ({cartProductName, cartPRoductImage, cartProductColor, cartPro
         <div className={`desktop-cart-product`}>
             
             <div className='desktop-cart-product-image'>
-                <img src={cartPRoductImage} alt='product image' />
+                <img src={`${url}${cartPRoductImage}`} alt='product image' />
             </div>
             <div className='desktop-cart-containt-section'>
                 <button className={`cross-btn ${isCartOpen ? 'hide-cross-btn' : ''}`} onClick={handleRomoveProduct}>
@@ -85,14 +93,14 @@ const CartItems = ({cartProductName, cartPRoductImage, cartProductColor, cartPro
                 </button>
                 <div className='desktop-name-and-single-price'>
                     <h3>{cartProductName}</h3>
-                    <p className='desktop-product-extra-info'>$599</p>
+                    <p className='desktop-product-extra-info'>{formatedSinglePrice}</p>
                     <p className='desktop-product-extra-info'>Table & 4 Chairs</p>
                     {/* <p className='desktop-product-extra-info'>Yes, Protect it (+$99)</p> */}
                     <button className={`protect-product-tag ${isProtected ? 'protect-tick' : ''}`} onClick={handleProtected}>
                         <img src={isProtected ? protectedIcon : unProtectedIcon} alt='unProtected' />
                         {isProtected ? 'Protected(+99)' : 'Prodect'}
                     </button>
-                    <p>{singlePrice}</p>
+                    <p>{formatedTotalPrice}</p>
                 </div>
                 <div className={`desktop-quantity-and-save-for-leter ${isCartOpen ? 'hide-quantity' : ''}`}>
                     <div className='desktop-quantity'>
@@ -106,7 +114,7 @@ const CartItems = ({cartProductName, cartPRoductImage, cartProductColor, cartPro
                     </div>
                 </div>
                 <div className={`desktop-total-price-and-remove-item ${isCartOpen ? 'hide-total-and-remove-item' : ''}`}>
-                    <p>$ {formatedProductTotalPrice}</p>
+                    <p>$ {productTotalPrice}</p>
                     {/* <p>$ {productTotalPrice}</p> */}
                     <button className='save-for-leter' onClick={handleSaveForLeter}>
                        <img src={rotatedArrow} className={`${saveForLeter ? 'arrow-rotate' : ''}`} /> Save For Later
@@ -122,7 +130,7 @@ const CartItems = ({cartProductName, cartPRoductImage, cartProductColor, cartPro
                             <img src={plusCharcol} alt='plus' />
                         </button>
                     </div>
-                    <p className='cart-open-total-price'>$ {formatedProductTotalPrice}</p>
+                    <p className='cart-open-total-price'>$ {formatedTotalPrice}</p>
                     {/* <p className='cart-open-total-price'>$ {productTotalPrice}</p> */}
                 </div>
             </div>

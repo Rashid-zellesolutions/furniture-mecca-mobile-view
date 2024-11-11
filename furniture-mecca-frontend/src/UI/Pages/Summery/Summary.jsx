@@ -8,8 +8,10 @@ import TrustFor from '../../Components/Summary-Components/Trust-for-varaities/Tr
 import HappyCustomers from '../../Components/Summary-Components/Happy-Customer/HappyCustomers';
 import ShipingAndDelivery from '../../Components/Summary-Components/ShippingAndDelivery/ShipingAndDelivery';
 import PaymentInfo from '../../Components/Summary-Components/PaymentInfo/PaymentInfo';
+import { useLocation } from 'react-router-dom';
 
 const Summary = () => {
+  const location = useLocation()
 
   const checkoutSections = [
     { id: 1, name: 'Delivery' },

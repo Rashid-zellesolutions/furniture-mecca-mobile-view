@@ -17,7 +17,7 @@ const BestSellerProductCard = ({ productMainImage, isDiscountable, productData, 
         }).format(price)
     }
 
-    console.log("product name", productName)
+    // console.log("product name", productName)
 
 
   return (

@@ -20,14 +20,14 @@ const MobileCart = (
     }) => {
 
         const productTotalPrice = productSinglePrice * productQuantity;
-        const singlePrice = productSinglePrice.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        }); 
-        const formatedProductTotalPrice = productTotalPrice.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        });
+        // const singlePrice = productSinglePrice.toLocaleString('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD'
+        // }); 
+        // const formatedProductTotalPrice = productTotalPrice.toLocaleString('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD'
+        // });
 
     return (
         <div className='mobile-cart'>
@@ -40,7 +40,7 @@ const MobileCart = (
                 <div className='mobile-cart-product-containt'>
                     <p>{productColor}</p>
                     <p>{productAccesories}</p>
-                    <p>{singlePrice}</p>
+                    <p>{productSinglePrice}</p>
                     <div className='mobile-cart-product-count-and-total-price'>
                         <div className='mobile-cart-product-count'>
                             <button onClick={handleDecreament}>
@@ -51,7 +51,7 @@ const MobileCart = (
                                 <img src={plusBtn} alt='plus-btn' />
                             </button>
                         </div>
-                        <p>{formatedProductTotalPrice}</p>
+                        <p> $${productTotalPrice}</p>
                     </div>
                 </div>
             </div>

@@ -33,16 +33,16 @@ const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, rem
                 <div className='cart-section-products'>
                     {cartData && cartData.map((items, index) => {
                         return  <CartSideSection
-                            key={items.product.id}
-                            handleItemRemove={() => removeFromCart(items.product.id)}
+                            key={items.product.uid}
+                            handleItemRemove={() => removeFromCart(items.product.uid)}
                             closeBtn={closeBtn}
                             productTitle={items.product.name}
                             mainImage={items.product.image}
                             priceTag={items.product.regular_price}
-                            decreamentQuantity={() => decreamentQuantity(items.product.id)}
+                            decreamentQuantity={() => decreamentQuantity(items.product.uid)}
                             minusBtn={minusBtn}
                             quantity={items.quantity}
-                            increamentQuantity={() => increamentQuantity(items.product.id)}
+                            increamentQuantity={() => increamentQuantity(items.product.uid)}
                             plusBtn={plusBtn}
                         />
                     })}

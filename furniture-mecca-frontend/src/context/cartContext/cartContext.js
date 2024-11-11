@@ -7,7 +7,7 @@ export const CartProvider = ({children}) => {
     // initialize cart from local storage
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem('cart');
-        return savedCart ? JSON.parse(savedCart) : []
+        return savedCart ? JSON.parse(savedCart) : [];
     })
 
     useEffect(() => {
@@ -26,17 +26,17 @@ export const CartProvider = ({children}) => {
     // Add Items To Cart
     const addToCart = (product) => {
         setCart((prevCart) => {
-            const existingProduct = prevCart.find(item => item.product.id === product.id);
+            const existingProduct = prevCart.find(item => item.product.uid === product.uid);
 
             const updatedProduct = {
                 ...product,
-                totalPrice: product.priceTag * (existingProduct ? existingProduct.quantity + 1 : 1)
+                totalPrice: product.reguler_price * (existingProduct ? existingProduct.quantity + 1 : 1)
             };
             console.log("updated product price", updatedProduct)
 
             if (existingProduct) {
                 return prevCart.map(item =>
-                    item.product.id === product.id
+                    item.product.uid === product.uid
                         ? { ...item, quantity: item.quantity + 1, totalPrice: updatedProduct.totalPrice }
                         : item
                 );
@@ -47,28 +47,28 @@ export const CartProvider = ({children}) => {
     };
 
     // Remove Cart Item
-    const removeFromCart = (id) => {
-        setCart((prevCart) => prevCart.filter(item => item.product.id !== id));
+    const removeFromCart = (uid) => {
+        setCart((prevCart) => prevCart.filter(item => item.product.uid !== uid));
     };
 
     // Increase Product Quantity
-    const increamentQuantity = (id) => {
+    const increamentQuantity = (uid) => {
         setCart((prevCart) => {
 
             // to insure prevCart is not undefine
             if(!prevCart) return [];
 
             return prevCart.map(item => 
-                item.product.id === id ? {...item, quantity: item.quantity + 1} : item
+                item.product.uid === uid ? {...item, quantity: item.quantity + 1} : item
             );
         });
     };
 
     // Decreament Product Quantity
-    const decreamentQuantity = (id) => {
+    const decreamentQuantity = (uid) => {
         setCart((prevCart) => {
             const updateCart = prevCart.map(item => 
-                item.product.id === id ? {...item, quantity: Math.max(item.quantity - 1, 1)} : item
+                item.product.uid === uid ? {...item, quantity: Math.max(item.quantity - 1, 1)} : item
             );
             return updateCart.filter(item => item.quantity > 0);
         })
@@ -78,13 +78,22 @@ export const CartProvider = ({children}) => {
         return cart.reduce((total, item) => {
 
             // Directly use priceTag as a number
-            const price = item.product.priceTag;
+            const price = item.product.reguler_price;
             return total + (price * item.quantity);
         }, 0);
     };
 
     return (
-        <CartContext.Provider value={{cart, addToCart, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice}}>
+        <CartContext.Provider value={
+            {
+                cart, 
+                addToCart, 
+                removeFromCart, 
+                increamentQuantity, 
+                decreamentQuantity, 
+                calculateTotalPrice,
+            }
+        }>
             {children}
         </CartContext.Provider>
     )

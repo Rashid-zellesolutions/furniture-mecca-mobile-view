@@ -130,10 +130,10 @@ const DealOfTheDay = () => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
-      const timer = setInterval(() => {
-        setTimeLeft(calculateTimeLeft());
-      }, 1000);
-      // const timer = 0;
+      // const timer = setInterval(() => {
+      //   setTimeLeft(calculateTimeLeft());
+      // }, 1000);
+      const timer = 0;
 
       return () => clearInterval(timer);
     }, []);
@@ -144,12 +144,14 @@ const DealOfTheDay = () => {
     // const {products} = useProducts()
     // const {allProducts} = useProducts();
     // console.log("deal of the day products", allProducts)
-    const [allProducts, setAllProducts] = useState()
+    const [allProducts, setAllProducts] = useState([])
     const getDealOfTheMonthProducts = async () => {
       const api = `/api/v1/products/get-deal-of-month-products`
       try {
         const response = await axios.get(`${url}${api}`);
-        console.log("deal of the month products", response)
+        // console.log("deal of the month products", response.data.products)
+        setAllProducts(response.data.products)
+        console.log("deal month all products", allProducts)
       } catch (error) {
         console.error("error geting deal of the month products", error);
       }
@@ -159,8 +161,8 @@ const DealOfTheDay = () => {
     }, []);
     
     const getPublishedProducts = () => {
-      const publishedProductes = allProducts.filter(product => product.status === 'published')
-      const productWithDiscount = publishedProductes.map((product) => {
+      // const publishedProductes = allProducts.filter(product => product.status === 'published')
+      const productWithDiscount = allProducts.map((product) => {
         let newPrice = parseFloat(product.regular_price);
         // console.log("new Price", newPrice)
         
@@ -189,6 +191,8 @@ const DealOfTheDay = () => {
     const handleDealCardClick = (items) => {
       navigate(`/single-product/${items.slug}`, {state: {allProducts: items}})
     }
+
+    // console.log("all products of deal", allProducts)
 
     let productCount = 0
     const publishedProductsLength =  allProducts.filter(product => product.status === 'published')

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './OrderSummary.css'
 import productImage from '../../../../Assets/Furniture Mecca/Cart Page/products/mix-chery-dining-set.jpg';
 import { useCart } from '../../../../context/cartContext/cartContext';
+import { useOrder } from '../../../../context/orderContext/orderContext';
 
 const OrderSummary = () => {
     const selectedProducts = [
@@ -22,6 +23,8 @@ const OrderSummary = () => {
     }
     const {cart} = useCart();
     console.log("Cart data", cart)
+    const {order} = useOrder()
+    console.log("Order produts on summery page", order)
 
     // Card title words limit
     const maxLength = 50;
