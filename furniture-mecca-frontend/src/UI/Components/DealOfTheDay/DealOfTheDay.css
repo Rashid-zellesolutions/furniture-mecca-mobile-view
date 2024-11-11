@@ -65,8 +65,13 @@
     width: 99%;
 }
 
+.slick-list{
+    width: 100% !important;
+}
+
 .slider-main-container .slick-track{
     display: flex !important;
+    width: 100% !important;
 }
 
 .slick-arrow.slick-next,
@@ -118,6 +123,7 @@ position: absolute;
     font-weight: 600;
     color: var(--text-color);
     height: max-content;
+    display: none;
 }
 
 .mobile-view-timer{
@@ -174,6 +180,9 @@ position: absolute;
         right: -12px;
     }
     .mobile-view-timer{
+        display: flex;
+    }
+    .mobile-view-deal-of-the-day-product-count{
         display: flex;
     }
 }

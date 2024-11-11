@@ -47,7 +47,7 @@ import { url } from '../../../utils/api';
 
 const SingleProductStickySection = (productData) => {
   const product = productData.productData;
-  console.log("product data of top", product)
+  // console.log("product data of top", product)
 
   // Alice Slider
   const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
@@ -198,7 +198,9 @@ const SingleProductStickySection = (productData) => {
 
   const handleAddToCartProduct = (product) => {
     setCartSection(true);
+    console.log("clicked product", product)
     addToCart(product)
+    console.log("cart data", cart)
   }
   const handleCartClose = () => {
     setCartSection(false)

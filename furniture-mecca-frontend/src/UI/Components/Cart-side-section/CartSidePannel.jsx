@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './CartSidePannel.css';
 import closeBtn from '../../../Assets/icons/close-btn.png'
 import CartSideSection from './CartSideSection';
@@ -8,7 +8,10 @@ import plusBtn from '../../../Assets/icons/plus-white.png';
 import { Link } from 'react-router-dom';
 
 const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, removeFromCart,decreamentQuantity, increamentQuantity}) => {
-  return (
+    console.log("Card Panel Data", cartData)
+    const [singleCart, setSingleCart] = useState(cartData)
+    console.log("single cart state: ", singleCart)
+    return (
     <div 
         className={`cart-side-main-section ${addToCartClicked ? 'show-side-cart' : ''} `}
         onClick={handleCartSectionClose}
@@ -28,14 +31,14 @@ const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, rem
                     <p>Your Cart </p>
                 </div>
                 <div className='cart-section-products'>
-                    {cartData.map((items, index) => {
+                    {cartData && cartData.map((items, index) => {
                         return  <CartSideSection
                             key={items.product.id}
                             handleItemRemove={() => removeFromCart(items.product.id)}
                             closeBtn={closeBtn}
-                            productTitle={items.product.productTitle}
-                            mainImage={items.product.mainImage}
-                            priceTag={items.product.priceTag}
+                            productTitle={items.product.name}
+                            mainImage={items.product.image}
+                            priceTag={items.product.regular_price}
                             decreamentQuantity={() => decreamentQuantity(items.product.id)}
                             minusBtn={minusBtn}
                             quantity={items.quantity}

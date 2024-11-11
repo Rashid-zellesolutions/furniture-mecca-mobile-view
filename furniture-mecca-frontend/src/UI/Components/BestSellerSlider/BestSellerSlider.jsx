@@ -209,7 +209,7 @@ const BestSellerSlider = () => {
                                     transform: `translateX(-${(currentIndex / totalPages) * 100}%)`
                                 }}>
                                 {/* {products.slice(currentIndex, currentIndex + cardsPerPage).map((item, index) => ( */}
-                                {getDisplayedCards().map((item, index) => (
+                                {getDisplayedCards().slice(currentIndex, currentIndex + cardsPerPage).map((item, index) => (
                                     <BestSellerProductCard
                                         productData={item}
                                         isDiscountable={item.discount.is_discountable === 1 ? true : false}
@@ -256,13 +256,14 @@ const BestSellerSlider = () => {
                             {getDisplayedCards().slice(cardIndex, cardIndex + 1).map((item, index) => (
                                 <BestSellerProductCard
                                     productData={item}
+                                    isDiscountable={item.discount.is_discountable === 1 ? true : false}
                                     key={index}
-                                    productMainImage={item.mainImage}
-                                    starIcon={item.ratingStars}
-                                    reviews={item.reviewCount}
-                                    productName={item.productTitle}
-                                    oldPrice={item.priceTag}
-                                    newPrice={item.priceTag}
+                                    productMainImage={item.images?.[0]?.image_url}
+                                    starIcon={ratingStars}
+                                    reviews={'200'}
+                                    productName={item.name}
+                                    oldPrice={item.regular_price}
+                                    newPrice={item.newPrice}
                                     handleCardClicked={() => handleCardClicked(item)}
                                 />
                             ))}

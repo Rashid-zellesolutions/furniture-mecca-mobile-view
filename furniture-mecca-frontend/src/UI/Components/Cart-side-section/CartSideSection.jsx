@@ -1,5 +1,6 @@
 import React from 'react'
 import './CartSideSection.css';
+import { url } from '../../../utils/api';
 
 const CartSideSection = ({handleItemRemove, closeBtn, productTitle, mainImage, priceTag, decreamentQuantity, 
     minusBtn, quantity, increamentQuantity, plusBtn}) => {
@@ -13,6 +14,7 @@ const CartSideSection = ({handleItemRemove, closeBtn, productTitle, mainImage, p
             style: 'currency',
             currency: 'USD'
         });
+        console.log("this is main image",mainImage)
 
   return (
     <div className='cart-side-section-product'>
@@ -24,7 +26,7 @@ const CartSideSection = ({handleItemRemove, closeBtn, productTitle, mainImage, p
         </div>
         <div className='cart-side-section-product-containt'>
             <div className='cart-side-section-item-image'>
-                <img src={mainImage} alt='product image' />
+                <img src={`${url}${mainImage.image_url}`} alt='product image' />
             </div>
             <div className='cart-side-section-product-details'>
                 <p>gray</p>

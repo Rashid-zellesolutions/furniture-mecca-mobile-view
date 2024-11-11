@@ -20,6 +20,8 @@ import combinedArrows from '../../../Assets/icons/multi-arrow-charcol.png'
 import multiArrowWhite from '../../../Assets/icons/multi-arrow-white.png'
 import { IoStar } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { url } from '../../../utils/api';
 
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
@@ -99,7 +101,7 @@ const DealOfTheDay = () => {
 
     // Deal of the day timer
     const calculateTimeLeft = () => {
-      const targetDate = new Date("2024-11-09T21:00:00").getTime();
+      const targetDate = new Date("2024-11-15T21:00:00").getTime();
       const now = new Date().getTime();
       const difference = targetDate - now;
       const padZero = (num) => String(num).padStart(2, '0');
@@ -128,10 +130,10 @@ const DealOfTheDay = () => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
-      // const timer = setInterval(() => {
-      //   setTimeLeft(calculateTimeLeft());
-      // }, 1000);
-      const timer = 0;
+      const timer = setInterval(() => {
+        setTimeLeft(calculateTimeLeft());
+      }, 1000);
+      // const timer = 0;
 
       return () => clearInterval(timer);
     }, []);
@@ -140,14 +142,27 @@ const DealOfTheDay = () => {
     const { days, hours, minutes, seconds } = timeLeft;
 
     // const {products} = useProducts()
-    const {allProducts} = useProducts();
-    console.log("deal of the day products", allProducts)
+    // const {allProducts} = useProducts();
+    // console.log("deal of the day products", allProducts)
+    const [allProducts, setAllProducts] = useState()
+    const getDealOfTheMonthProducts = async () => {
+      const api = `/api/v1/products/get-deal-of-month-products`
+      try {
+        const response = await axios.get(`${url}${api}`);
+        console.log("deal of the month products", response)
+      } catch (error) {
+        console.error("error geting deal of the month products", error);
+      }
+    }
+    useEffect(() => {
+      getDealOfTheMonthProducts()
+    }, []);
     
     const getPublishedProducts = () => {
       const publishedProductes = allProducts.filter(product => product.status === 'published')
       const productWithDiscount = publishedProductes.map((product) => {
         let newPrice = parseFloat(product.regular_price);
-        console.log("new Price", newPrice)
+        // console.log("new Price", newPrice)
         
         if(product.discount && product.discount.is_discountable === 1){
           const oldPrice = parseFloat(product.regular_price);
@@ -166,7 +181,7 @@ const DealOfTheDay = () => {
           newPrice
         }
       })
-      console.log("published products", productWithDiscount)
+      // console.log("published products", productWithDiscount)
       return productWithDiscount
     }
 

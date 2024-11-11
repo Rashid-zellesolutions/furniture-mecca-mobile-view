@@ -34,7 +34,7 @@ const SingleProduct = () => {
   const {slug} = useParams()
   const location = useLocation();
   const product = location.state.allProducts || {}
-  console.log("main product data", product)
+  // console.log("main product data", product)
 
   
   const handleClickTop = () => {
