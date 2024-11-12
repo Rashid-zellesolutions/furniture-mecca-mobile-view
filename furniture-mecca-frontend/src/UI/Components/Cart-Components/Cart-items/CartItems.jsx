@@ -13,29 +13,24 @@ import unProtectedIcon from '../../../../Assets/icons/un-protected.png';
 import protectedIcon from '../../../../Assets/icons/protected.png'
 import { url } from '../../../../utils/api';
 
-const CartItems = ({cartProductName, isAllProtected, cartPRoductImage, cartProductColor, cartProductTitle, cartProductTotalPrice, 
+const CartItems = ({cartProductName, productSubTotal,  issingleProtected, handleSingleProtected, isAllProtected, cartPRoductImage, cartProductColor, cartProductTitle, cartProductTotalPrice, 
     cartSingleProductPrice, isCartOpen, onlyMobile, productColor, quantity, handleRomoveProduct,  cartIndex, productsLength, handleIncreament, handleDecreament, handleTotalPrice}) => {
         // console.log("Cart single price", cartSingleProductPrice)
         const [saveForLeter, setSaveForLeter] = useState(false)
-        const [isProtected, setIsProtected] = useState(false)
+        // const [isProtected, setIsProtected] = useState(false)
         const formatedSinglePrice = Intl.NumberFormat('en-us', {
             style: 'currency',
             currency: 'USD'
         }).format(cartSingleProductPrice)
+
         const productTotalPrice = cartSingleProductPrice * quantity;
+
         const formatedTotalPrice = Intl.NumberFormat('en-us', {
             style: 'currency',
             currency: 'USD'
         }).format(productTotalPrice)
-        // const singlePrice = cartSingleProductPrice.toLocaleString('en-US', {
-        //     style: 'currency',
-        //     currency: 'USD'
-        // }); 
-        // const formatedProductTotalPrice = productTotalPrice.toLocaleString('en-US', {
-        //     style: 'currency',
-        //     currency: 'USD'
-        // });
-        // console.log("Product Total Price in Component:", productTotalPrice);
+
+
         const handleSaveForLeter = () => {
             setSaveForLeter(true)
             const timeOut = setTimeout(() => {
@@ -43,7 +38,7 @@ const CartItems = ({cartProductName, isAllProtected, cartPRoductImage, cartProdu
             }, 2000);
         }
 
-        const handleProtected = () => {setIsProtected(!isProtected)}
+        // const handleProtected = () => {setIsProtected(!isProtected)}
         
     return (
     <>
@@ -96,9 +91,9 @@ const CartItems = ({cartProductName, isAllProtected, cartPRoductImage, cartProdu
                     <p className='desktop-product-extra-info'>{formatedSinglePrice}</p>
                     <p className='desktop-product-extra-info'>Table & 4 Chairs</p>
                     {/* <p className='desktop-product-extra-info'>Yes, Protect it (+$99)</p> */}
-                    <button className={`protect-product-tag ${isProtected ? 'protect-tick' : ''}`} onClick={handleProtected}>
-                        <img src={isProtected ? protectedIcon : unProtectedIcon} alt='unProtected' />
-                        {isProtected ? 'Protected(+99)' : 'Prodect'}
+                    <button className={`protect-product-tag ${issingleProtected ? 'protect-tick' : ''}`} onClick={handleSingleProtected}>
+                        <img src={issingleProtected ? protectedIcon : unProtectedIcon} alt='unProtected' />
+                        {issingleProtected ? 'Protected(+99)' : 'Prodect'}
                     </button>
                     <p>{formatedTotalPrice}</p>
                 </div>

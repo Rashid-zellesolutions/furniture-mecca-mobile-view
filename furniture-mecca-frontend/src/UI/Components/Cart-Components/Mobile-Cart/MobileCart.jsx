@@ -3,6 +3,7 @@ import './MobileCart.css';
 import deleteIcon from '../../../../Assets/icons/delete-red.png';
 import plusBtn from '../../../../Assets/icons/plus.png';
 import minusBtn from '../../../../Assets/icons/minus.png';
+import { url } from '../../../../utils/api';
 
 const MobileCart = (
     {
@@ -29,6 +30,15 @@ const MobileCart = (
         //     currency: 'USD'
         // });
 
+        const formatedSinglePrice = Intl.NumberFormat('en-us', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(productSinglePrice);
+        const formatedTotalPrice = Intl.NumberFormat('en-us', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(productTotalPrice)
+
     return (
         <div className='mobile-cart'>
             <button className='mobile-delete-product' onClick={() => handleRomoveProduct(cartIndex)}>
@@ -36,11 +46,11 @@ const MobileCart = (
             </button>
             <h3 className='mobile-priduct-name'>{productName}</h3>
             <div className='mobile-cart-product-image-and-containt'>
-                <img src={productImg} alt='product-image' className='mobile-cart-product-main-image' />
+                <img src={`${url}${productImg}`} alt='product-image' className='mobile-cart-product-main-image' />
                 <div className='mobile-cart-product-containt'>
                     <p>{productColor}</p>
                     <p>{productAccesories}</p>
-                    <p>{productSinglePrice}</p>
+                    <p>{formatedSinglePrice}</p>
                     <div className='mobile-cart-product-count-and-total-price'>
                         <div className='mobile-cart-product-count'>
                             <button onClick={handleDecreament}>
@@ -51,7 +61,7 @@ const MobileCart = (
                                 <img src={plusBtn} alt='plus-btn' />
                             </button>
                         </div>
-                        <p> $${productTotalPrice}</p>
+                        <p> $${formatedTotalPrice}</p>
                     </div>
                 </div>
             </div>

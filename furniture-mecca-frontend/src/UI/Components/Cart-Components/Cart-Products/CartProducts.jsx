@@ -10,13 +10,39 @@ import  locationIcon from '../../../../Assets/icons/location-red.png';
 import MobileCart from '../Mobile-Cart/MobileCart';
 import { useNavigate } from 'react-router-dom';
 import { useOrder } from '../../../../context/orderContext/orderContext';
+import axios from 'axios';
+import { url } from '../../../../utils/api';
 // import CArtEmpty from './cart-empty/CArtEmpty';
 // import CartEmpty from './cart-empty/CartEmpty';
 
 
 const CartProducts = () => {
     const { cart, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice, toggleProtection } = useCart()
-    const {order, toggleProtectedProducts, addProductsToOrder} = useOrder();
+    const [orderPayload, setOrderPayload] = useState({
+        status: 'pending',
+        currency: "USD",
+        billing: {
+            first_name: "John",
+            last_name: "Doe",
+            address_1: "123 Main St",
+            city: "Anytown",
+            state: "CA",
+            postal_code: "90210",
+            country: "USA",
+            email: "john.doe@example.com",
+            phone: "123-456-7890"
+        },
+
+        payment_method: "cash_on_delivery",
+        items: [],
+        discount: 10,
+        tax: 5,
+        cart_protected: 0,
+        is_shipping:1,
+        shipping_cost: 10
+    })
+
+    console.log("new cart attributes payload", cart);
     
     // const totalPrice = calculateTotalPrice();
 
@@ -77,31 +103,68 @@ const CartProducts = () => {
     const [protectAll, setProtectAll] = useState(false);
     const handleProtectAll = () => {
         setProtectAll(!protectAll)
+
         // console.log("cart with protection", cart)
 
-    }    
+    }  
+    
+    const [issingleProtected, setIsSingleProtected] = useState(false);
+    const [protectedSingleCart, setProtectedSingleCart] = useState([])
+    const handleSingleProtected = (item) => {
+        setIsSingleProtected(!issingleProtected)
+        console.log("value getted", issingleProtected)
+        // const protectionStates = !issingleProtected
+        const newUpdatedValue = {
+            ...item,
+            product: {
+                ...item.product,
+                is_protected: issingleProtected ? 1 : 0,
+                protected_value: issingleProtected ? 99 : 0,
+            }
+            
+        }
+        setProtectedSingleCart(newUpdatedValue)
+        console.log("single Protection update", newUpdatedValue)
+        console.log("payload updated", protectedSingleCart)
+
+    }
+
 
     const navigate = useNavigate();
     const handleNavigateToCheckoutPage = () => {
         console.log("Cart before adding to order:", cart);
-        const updatedCart = {
-            products: cart.products, // cart.products should be an array of products
-            allProtected: protectAll,
-            protectedPrice: protectAll ? 199 : 0,
-        };
-
-        addProductsToOrder(updatedCart); // This will append the products to the order context
         navigate(`/cart-page/check-out`);
-        console.log("order context", order)
     }
     // console.log("cart products total price", cart[0].product.totalPrice)
     // console.log("cart my data: ", cart[0].product.regular_price)
-    useEffect(() => {
-        if (order.products.length > 0) {
-            console.log("Updated order:", order); // Log when order changes
-            navigate(`/cart-page/check-out`);
+    const handleSaveOrders = async () => {
+        const valueFromCart = cart.map(product => ({
+            name: product.product.name,
+            product_id: product.product.uid,
+            quantity: product.product.quantity,
+            is_protected: product.product.is_protected,
+            sku: product.product.sku,
+            image: product.product.image.image_url
+        }))
+        console.log("updated values of card", valueFromCart)
+        const updatedOrderPayload = {
+            ...orderPayload,
+            items: valueFromCart
         }
-    }, [order]);
+        // setOrderPayload(prevState => ({
+        //     ...prevState,
+        //     items: valueFromCart
+        // }))
+        console.log("destructure cart", cart)
+        console.log("Ordered Payload to check", updatedOrderPayload)
+        try {
+            const response = await axios.post(`${url}/api/v1/orders/add`, updatedOrderPayload)
+            console.log(response)
+            navigate(`/cart-page/check-out`);
+        } catch (error) {
+            console.error("error adding order", error);   
+        }
+    }
     
     
     return (
@@ -123,6 +186,8 @@ const CartProducts = () => {
                         return <CartItems
                             key={items.product.uid}
                             onlyMobile={false}
+                            issingleProtected={issingleProtected}
+                            handleSingleProtected={() => handleSingleProtected(items)}
                             // isAllProtected={protectAll}
                             cartIndex={items.product.uid}
                             productsLength={cart.length}
@@ -134,8 +199,9 @@ const CartProducts = () => {
                             cartSingleProductPrice={items.product.regular_price}
                             isCartOpen={isOpen}
                             // productColor={items.product.color}
-                            quantity={items.quantity}
-                            productTotalPrice={items.totalPrice}
+                            quantity={items.product.quantity}
+                            productTotalPrice={items.product.total_price}
+                            productSubTotal={items.product.sub_total}
                             handleIncreament={() => increamentQuantity(items.product.uid)}
                             handleDecreament={() => decreamentQuantity(items.product.uid)}
                         />
@@ -145,24 +211,24 @@ const CartProducts = () => {
                     {cart.length <= 0 && <EmptyCart />}
                     {cart.map((items, index) => (
                         <MobileCart 
-                            key={items.product.id}
+                            key={items.product.uid}
                             // onlyMobile={false}
-                            cartIndex={items.product.id}
+                            cartIndex={items.product.uid}
                             // productsLength={cart.length}
-                            handleRomoveProduct={() => removeFromCart(items.product.id)}
-                            productName={items.product.productTitle}
-                            productImg={items.product.mainImage}
+                            handleRomoveProduct={() => removeFromCart(items.product.uid)}
+                            productName={items.product.name}
+                            productImg={items.product.image?.image_url}
                             // cartProductColor={items.product.color}
                             // cartProductTitle={items.product.title}
                             productAccesories={'2 Piece Sofa & Love Seat'}
-                            productSinglePrice={items.product.priceTag}
+                            productSinglePrice={items.product.regular_price}
                             // isCartOpen={isOpen}
                             // productColor={items.product.color}
                             productColor={'black'}
-                            productQuantity={items.quantity}
-                            productsTotalPrice={items.totalPrice}
-                            handleIncreament={() => increamentQuantity(items.product.id)}
-                            handleDecreament={() => decreamentQuantity(items.product.id)}
+                            productQuantity={items.product.quantity}
+                            productsTotalPrice={items.product.totalPrice}
+                            handleIncreament={() => increamentQuantity(items.product.uid)}
+                            handleDecreament={() => decreamentQuantity(items.product.uid)}
 
                         />
                     ))}
@@ -234,7 +300,7 @@ const CartProducts = () => {
                         {/* <button onClick={handleToggle}>
                     Continue
                 </button> */}
-                        <button onClick={handleNavigateToCheckoutPage}>Continue</button>
+                        <button onClick={handleSaveOrders}>Continue</button>
                     </div>
                 </div>
                 <CartPaymnetMethoud

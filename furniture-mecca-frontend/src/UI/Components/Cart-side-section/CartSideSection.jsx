@@ -6,15 +6,24 @@ const CartSideSection = ({handleItemRemove, closeBtn, productTitle, mainImage, p
     minusBtn, quantity, increamentQuantity, plusBtn}) => {
 
         const productTotalPrice = priceTag * quantity;
-        const singlePrice = priceTag.toLocaleString('en-US', {
+        const formatedSinglePrice = Intl.NumberFormat('en-us', {
             style: 'currency',
             currency: 'USD'
-        }); 
-        const formatedProductTotalPrice = productTotalPrice.toLocaleString('en-US', {
+        }).format(priceTag)
+
+        const formatedTotalPrice = Intl.NumberFormat('en-us', {
             style: 'currency',
             currency: 'USD'
-        });
-        console.log("this is main image",mainImage)
+        }).format(productTotalPrice)
+        // const singlePrice = priceTag.toLocaleString('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD'
+        // }); 
+        // const formatedProductTotalPrice = productTotalPrice.toLocaleString('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD'
+        // });
+        // console.log("this is main image",mainImage)
 
   return (
     <div className='cart-side-section-product'>
@@ -32,7 +41,7 @@ const CartSideSection = ({handleItemRemove, closeBtn, productTitle, mainImage, p
                 <p>gray</p>
                 <p>2 Piece Sofa & Loveseat</p>
                 <div className='cart-side-section-price-and-count'>
-                    <p>{singlePrice}</p>
+                    <p>{formatedSinglePrice}</p>
                     <div className='cart-side-section-product-count'>
                         <button onClick={decreamentQuantity}>
                             <img src={minusBtn} alt='minus' />
@@ -44,7 +53,7 @@ const CartSideSection = ({handleItemRemove, closeBtn, productTitle, mainImage, p
                     </div>
                 </div>
                 <div className='cart-side-section--item-actual-price'>
-                    <p className='cart-side-section-product-total'>{formatedProductTotalPrice} </p>
+                    <p className='cart-side-section-product-total'>{formatedTotalPrice} </p>
                 </div>
             </div>
         </div>

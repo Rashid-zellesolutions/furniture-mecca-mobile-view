@@ -8,9 +8,9 @@ import plusBtn from '../../../Assets/icons/plus-white.png';
 import { Link } from 'react-router-dom';
 
 const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, removeFromCart,decreamentQuantity, increamentQuantity}) => {
-    console.log("Card Panel Data", cartData)
+    // console.log("Card Panel Data", cartData)
     const [singleCart, setSingleCart] = useState(cartData)
-    console.log("single cart state: ", singleCart)
+    // console.log("single cart state: ", singleCart)
     return (
     <div 
         className={`cart-side-main-section ${addToCartClicked ? 'show-side-cart' : ''} `}
@@ -41,7 +41,7 @@ const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, rem
                             priceTag={items.product.regular_price}
                             decreamentQuantity={() => decreamentQuantity(items.product.uid)}
                             minusBtn={minusBtn}
-                            quantity={items.quantity}
+                            quantity={items.product.quantity}
                             increamentQuantity={() => increamentQuantity(items.product.uid)}
                             plusBtn={plusBtn}
                         />
