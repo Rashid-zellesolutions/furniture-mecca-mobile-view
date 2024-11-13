@@ -42,12 +42,20 @@ import DeliveryOptions from '../DeliveryOptions/DeliveryOptions';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 import heartIcon from '../../../Assets/icons/red-heart.png'
 import { url } from '../../../utils/api';
+import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 
 
 
 const SingleProductStickySection = (productData) => {
   const product = productData.productData;
   // console.log("product data of top", product)
+  // useEffect(() => {
+  //   console.log("updated product after increase quantity", product)
+  // }, [product])
+
+  const {decsreaseQuantity , increaseQuantity} = useSingleProductContext();
+  // const [product, setProduct] = useState(singleProduct);
+
 
   // Alice Slider
   const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
@@ -193,8 +201,13 @@ const SingleProductStickySection = (productData) => {
     }, 1000);
   };
 
-  const { cart, addToCart, increamentQuantity, decreamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
+  const { cart, addToCart, increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
   const [cartSection, setCartSection] = useState(false);
+
+  
+  // useEffect(() => {
+  //   console.log("updated product after increase", singleProduct)
+  // }, [singleProduct])
 
   const handleAddToCartProduct = (product) => {
     setCartSection(true);
@@ -273,26 +286,16 @@ const SingleProductStickySection = (productData) => {
                 <p>Get it between July 27 - July 31'</p>
               </span>
               <div className='single-product-frame-color'>
-                {/* <span className='color-frame-heading'>
-                  <p>Select Frame Color: </p><Link>{variationName}</Link>
-                </span> */}
-                {/* <div className='variant-images-div'>
-                  {product.colorVariation && product.colorVariation.map((item, index) => {
-                    return <div key={index} className={`single-product-color-variant ${variationName === index ? 'selected-color-variation' : ''}`} onClick={() => handleColorVariation(index)}>
-                      <img src={silverImage} alt='img' />
-                      <p>{item.color}</p>
-                    </div>
-                  })}
-                </div> */}
                 <SizeVariant attributes={product.attributes}/>
               </div>
               <div className='add-cart-or-add-items-div'>
                 <div className='item-count'>
-                  <button className={`minus-btn ${count === 1 ? 'disabled' : ''}`} onClick={handleDecrease} disabled={count === 1}>
+                  <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decsreaseQuantity} disabled={product.quantity === 1}>
                     <img src={minus} alt='minus btn' />
                   </button>
-                  <input type='number' value={count} readOnly />
-                  <button className='plus-btn' onClick={handleIncrease}>
+                  <input type='number' value={product.quantity} readOnly />
+                  {/* <p>{product.quantity}</p> */}
+                  <button className='plus-btn' onClick={increaseQuantity}>
                     <img src={plus} alt='plus btn' />
                   </button>
                 </div>
@@ -309,11 +312,11 @@ const SingleProductStickySection = (productData) => {
               </div>
             </div>
             <FinancingOptions />
-            <AlsoNeed />
+            <AlsoNeed productsUid={product.may_also_need} />
             <WhatWeOffer />
             <DeliveryOptions />
             {/* <ProductOverView /> */}
-            <SingleProductFAQ />
+            <SingleProductFAQ description={product.description} />
           </div>
         </div>
         <CartSidePannel
@@ -321,7 +324,7 @@ const SingleProductStickySection = (productData) => {
           addToCartClicked={cartSection}
           handleCartSectionClose={handleCartClose}
           removeFromCart={removeFromCart}
-          decreamentQuantity={decreamentQuantity}
+          decreamentQuantity={decsreaseQuantity}
           increamentQuantity={increamentQuantity}
         />
       </div>

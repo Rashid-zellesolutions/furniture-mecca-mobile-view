@@ -12,6 +12,8 @@ import leftArrow from '../../../Assets/icons/arrow-left-white.png';
 import rightArrow from '../../../Assets/icons/right-arrow-white.png';
 import axios from 'axios';
 import { url } from '../../../utils/api';
+import { addQuantityIntoProduct } from '../../../utils/AddQuantityIntoProduct/AddQuantity';
+import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 
 const BestSellerPrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -94,9 +96,15 @@ const BestSellerSlider = () => {
     })
 
     // product slice to show 6 product maxx
+    const {addSingleProduct} = useSingleProductContext();
     const handleCardClicked = (item) => {
         // console.log("item clicked", item)
-        navigate(`/single-product/${item.slug}`, { state: { allProducts: item } })
+        addSingleProduct(item)
+        navigate(`/single-product/${item.slug}`)
+        // addQuantityIntoProduct(item.uid, setAllProducts, allProducts)
+        // console.log("product uid", item.uid)
+        // console.log("added quantity into payload", allProducts)
+
     }
 
     // mobile scripts
@@ -190,6 +198,8 @@ const BestSellerSlider = () => {
         { icon: star },
         { icon: star }
     ]
+
+    
 
     return (
         <div className="best-seller-slider-container">

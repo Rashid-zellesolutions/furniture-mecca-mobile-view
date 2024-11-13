@@ -22,6 +22,7 @@ import { IoStar } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { url } from '../../../utils/api';
+import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
@@ -188,8 +189,10 @@ const DealOfTheDay = () => {
     }
 
 
+    const {addSingleProduct} = useSingleProductContext();
     const handleDealCardClick = (items) => {
-      navigate(`/single-product/${items.slug}`, {state: {allProducts: items}})
+      addSingleProduct(items)
+      navigate(`/single-product/${items.slug}`)
     }
 
     // console.log("all products of deal", allProducts)

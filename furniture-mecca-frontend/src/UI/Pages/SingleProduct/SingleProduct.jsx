@@ -26,6 +26,7 @@ import twelveMonthCreditOfferImage from '../../../Assets/Furniture Mecca/Landing
 import payPalMobileBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/PAYPAL-BANNER 1.png';
 import sixMonthCreditImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 122.png';
 import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/Frame 4278.png'
+import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext'
 
 const SingleProduct = () => {
 
@@ -33,10 +34,17 @@ const SingleProduct = () => {
   const [cartSection, setCartSection] = useState(false);
   const {slug} = useParams()
   const location = useLocation();
-  const product = location.state.allProducts || {}
+  // const product = location.state.allProducts || {}
   // console.log("main product data", product)
 
-  
+  const {singleProduct, increaseQuantity} = useSingleProductContext()
+  // const {} = useSingleProductContext();
+  console.log("single product on context", singleProduct)
+
+  const [product, setProduct] = useState(singleProduct);
+  console.log("update single product contect object into product state", product)
+  // const product = singleProduct;
+
   const handleClickTop = () => {
     window.scrollTo({
       top: 0,
@@ -53,7 +61,7 @@ const SingleProduct = () => {
 
   return (
     <div>
-        <SingleProductStickySection productData={product} />
+        <SingleProductStickySection productData={singleProduct} increaseQuantity={increaseQuantity} />
         <SimillerProducts />
         <FrequentlyBought />
         <RatingAndReview />

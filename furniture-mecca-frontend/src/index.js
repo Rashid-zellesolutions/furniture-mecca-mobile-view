@@ -9,6 +9,7 @@ import { ProductProvider } from './context/productsContext/productContext';
 import { CartProvider } from './context/cartContext/cartContext';
 import { NavigationProvider } from './context/BreadCrumbContext/NavigationContext';
 import { OrderProvivder } from './context/orderContext/orderContext';
+import { SingleProductProvider } from './context/singleProductContext/singleProductContext';
 
 
 
@@ -17,6 +18,7 @@ root.render(
   <React.StrictMode>
     <OrderProvivder>
     <NavigationProvider>
+      <SingleProductProvider>
     <ProductProvider>
       <CartProvider>
         <Provider store={store}>
@@ -26,6 +28,7 @@ root.render(
       </Provider>
       </CartProvider>
     </ProductProvider>
+    </SingleProductProvider>
     </NavigationProvider>
     </OrderProvivder>
   </React.StrictMode>

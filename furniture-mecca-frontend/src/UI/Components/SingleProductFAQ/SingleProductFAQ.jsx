@@ -3,7 +3,7 @@ import './SingleProductFAQ.css';
 import arrowDown from '../../../Assets/icons/arrow-down.png';
 import tickMark from '../../../Assets/icons/tick.png'
 
-const SingleProductFAQ = () => {
+const SingleProductFAQ = ({description}) => {
     const [activeIndex, setActiveIndex] = useState(null)
     const answerRef = useRef([]);
     useEffect(() => {
@@ -16,14 +16,16 @@ const SingleProductFAQ = () => {
         }
     }, [activeIndex])
 
+    const extractTextFromHTML = (htmlContent) => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, 'text/html');
+        return doc.body.textContent || doc.body.innerText
+    }
+
     const productDetails = [
         {
             question: 'Description', icon: arrowDown, answereOne:
-                `Well, let's face it. Coordinating living room furniture – including fabrics, pillows, colors, 
-            and sizes – can be exhausting! A living room set is an effective and convenient way to complete 
-            your living space, while eliminating the stress of matching sofas, chairs and ottomans. Don’t 
-            lose sleep over whether that loveseat you have your eye on is an ideal fit with your existing 
-            furniture. Buy a sofa set instead!`,
+                `${extractTextFromHTML(description)}`,
             include: "What's included", includeOptions: [
                 { tickIcon: tickMark, name: '12 cushions Included ' },
                 { tickIcon: tickMark, name: '1 Table ' },

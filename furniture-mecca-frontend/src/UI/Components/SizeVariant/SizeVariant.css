@@ -77,6 +77,14 @@
     cursor: pointer;
 }
 
+.select-type-attribute.select-select-variation{
+    background-color: var(--active-nav-item-color);
+}
+
+.select-type-attribute.select-select-variation p{
+    color: #FFF;
+}
+
 .select-type-attribute p{
     font-size: 13px;
     line-height: 18px;
@@ -95,6 +103,19 @@
     width: 80px;
     height: max-content;
 
+}
+
+.variation-image-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+}
+
+.variation-image-div.active-selected-image-variation{
+    border: 1px solid var(--active-nav-item-color);
+    /* padding: 2px; */
+    border-radius: 10px;
 }
 
 .attribute-image-type img{

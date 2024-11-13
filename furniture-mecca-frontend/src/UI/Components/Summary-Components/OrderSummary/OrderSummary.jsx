@@ -19,14 +19,6 @@ const OrderSummary = () => {
         {title: 'White Glove Delivery', price: '$3564'},
         {title: 'Tax', price: '$3564'},
     ]
-    // const [showMoreProducts, setShowMoreProducts] = useState(1);
-    // const handleShowMore = () => {
-    //     setShowMoreProducts((prev) => prev > 1 ? 1 : selectedProducts.length)
-    // }
-    // const {cart} = useCart();
-    // console.log("Cart data", cart)
-    // const {order} = useOrder()
-    // console.log("Order produts on summery page", order)
 
     // Card title words limit
     const maxLength = 50;
@@ -42,24 +34,7 @@ const OrderSummary = () => {
             currency: 'USD'
         }).format(price)
     }
-
-    // let subTotalPrice = 0;
-    // // let calculateTotal = cart.map((item) => {
-    // //     return subTotalPrice += item.product.priceTag
-    // // })
-    // const grandTotal = subTotalPrice + 230;
-    // console.log("sub total price", subTotalPrice)
-    // let formedSubTotalPrice = new Intl.NumberFormat('en-us', {
-    //     style: 'currency',
-    //     currency: 'USD'
-    // }).format(subTotalPrice)
-
     
-
-    // const formatedGrandTotal = Intl.NumberFormat('en-us', {
-    //     style: 'currency',
-    //     currency: 'USD'
-    // }).format(grandTotal)
     const [orders, setOrders] = useState([])
     const getOrders = async () => {
         try {
@@ -113,17 +88,17 @@ const OrderSummary = () => {
             <div className='products-tax-and-total'>
                 <span>
                     <p>Sub Total:</p>
-                    <p>{formatePrices(orders[2].items[0].sub_total)}</p>
+                    {/* <p>{formatePrices(orders[2].items[0].sub_total)}</p> */}
                 </span>
                 <span>
                     <p>Tax</p>
-                    <p>{formatePrices(orders[2].tax)}</p>
+                    {/* <p>{formatePrices(orders[2].tax)}</p> */}
                 </span>
             </div>
             <div className='selected-product-total'>
                 <span>
                     <h3>Total</h3>
-                    <p>{formatePrices(orders[2].items[0].total)}</p>
+                    {/* <p>{formatePrices(orders[2].items[0].total)}</p> */}
                 </span>
             </div>
         </div>
