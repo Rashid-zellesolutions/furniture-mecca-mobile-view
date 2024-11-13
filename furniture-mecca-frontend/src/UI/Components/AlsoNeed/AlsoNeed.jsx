@@ -67,7 +67,7 @@ const AlsoNeed = ({productsUid}) => {
         }).format(price)
     }
   return (
-    <div className='might-need-main-container'>
+    <div className={`might-need-main-container ${productsUid === undefined ? 'show-component' : ''}`}>
         <h3>You Might Also Need</h3>
         <div className='might-need-cards-main-container'>
             {data && data.map((item) => (

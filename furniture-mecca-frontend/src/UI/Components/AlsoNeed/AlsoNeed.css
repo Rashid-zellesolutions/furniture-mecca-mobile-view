@@ -1,8 +1,12 @@
 .might-need-main-container{
-    display: flex;
+    display: none;
     width: 100%;
     flex-direction: column;
     gap: 25px;
+}
+
+.might-need-main-container.show-component{
+    display: flex;
 }
 
 .might-need-main-container h3{

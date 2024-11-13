@@ -190,10 +190,12 @@ const Products = ({productArchiveHading}) => {
     // Card title words limit
     const maxLength = 50;
     const truncateTitle = (title, maxLength) => {
-        if (title.length > maxLength) {
-            return title.slice(0, maxLength) + '...';
-        }
-        return title;
+        if(!title) return '';
+        return title.length > maxLength ? title.slice(0, maxLength) + '...' : title
+        // if (title.length > maxLength) {
+        //     return title.slice(0, maxLength) + '...';
+        // }
+        // return title;
     };
 
     // Select Color Variations Functions

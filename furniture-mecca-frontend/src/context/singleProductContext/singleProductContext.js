@@ -28,6 +28,7 @@ export const SingleProductProvider = ({children}) => {
         })
     }
 
+    console.log("check for context", singleProduct)
     // increase quantity function
     const increaseQuantity = () => {
         setSingleProduct((prevState) => {

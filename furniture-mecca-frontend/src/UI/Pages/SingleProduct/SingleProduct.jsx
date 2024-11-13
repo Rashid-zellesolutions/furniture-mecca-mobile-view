@@ -62,8 +62,8 @@ const SingleProduct = () => {
   return (
     <div>
         <SingleProductStickySection productData={singleProduct} increaseQuantity={increaseQuantity} />
-        <SimillerProducts />
-        <FrequentlyBought />
+        <SimillerProducts collection={singleProduct} />
+        <FrequentlyBought relatedProducts={singleProduct} />
         <RatingAndReview />
         {/* <CustomerPhotos /> */}
         <ProductComments />

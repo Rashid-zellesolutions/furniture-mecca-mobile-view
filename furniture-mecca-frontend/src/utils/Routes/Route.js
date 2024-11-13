@@ -47,6 +47,7 @@ import LoginRegister from "../../UI/Pages/LoginRegisteration/LoginRegister";
 import UserDashboard from "../../UI/Pages/UserDashboard/UserDashboard";
 import Careers from "../../UI/Pages/Careers/Careers";
 import Blogs from "../../UI/Pages/Blogs/Blogs";
+import FurnitureAtEveryBudget from "../../UI/Pages/FurnitureAtEveryBudget/FurnitureAtEveryBudget";
 
 const categoryCardData = [
 {title: "Dining Room Sets", img: newArrivalImage, link: '#'},
@@ -329,6 +330,10 @@ const routes = (
         <Route 
             path="/blogs"
             element={<Blogs />}
+        />
+        <Route 
+            path="/furniture-at-every-budget"
+            element={<FurnitureAtEveryBudget />}
         />
 
         {/* not found routes */}

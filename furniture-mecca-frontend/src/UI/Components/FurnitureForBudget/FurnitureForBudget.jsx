@@ -3,13 +3,19 @@ import './FurnitureForBudget.css'
 import sofaUnder from '../../../Assets/Furniture Mecca/Landing Page/furniture-for-budget/sofa-under.png'
 import bedUnder from '../../../Assets/Furniture Mecca/Landing Page/furniture-for-budget/bed-under.png'
 import storageUnder from '../../../Assets/Furniture Mecca/Landing Page/furniture-for-budget/storage-under.png'
+import { useNavigate } from 'react-router-dom';
 
 const FurnitureForBudget = () => {
     const budgetCardData = [
-        {img: sofaUnder, sale: 'Sofa Under $200', shopNow: 'Shop now'},
-        {img: bedUnder, sale: 'Sofa Under $200', shopNow: 'Shop now'},
-        {img: storageUnder, sale: 'Sofa Under $200', shopNow: 'Shop now'},
+        {img: sofaUnder, sale: 'Dining Room Under $1000', shopNow: 'Shop now', uid: 84,max_price:1000,category:"dining-room"},
+        {img: bedUnder, sale: 'Benches Under $500', shopNow: 'Shop now', uid: 74,max_price:500,category:"benches"},
+        {img: storageUnder, sale: 'Love Seats Under $500', shopNow: 'Shop now', uid: 19,max_price:500,category:"love-seats"},
     ]
+    const navigate = useNavigate();
+
+    const navigateToDetails = (uid,max_price,category) => {
+        navigate(`/furniture-at-every-budget?category=${category}&categoryUid=${uid}&max_price=${max_price}`);
+    }
   return (
     <div className='furniture-for-budget-main-secton'>
         <div className='furniture-for-budget-heading-section'>
@@ -24,7 +30,9 @@ const FurnitureForBudget = () => {
                     </div>
                     <div className='budget-furniture-card-details'>
                         <p>{items.sale}</p>
-                        <button>
+                        <button onClick={()=>{
+                            navigateToDetails(items.uid,items.max_price,items.category)
+                        }}>
                             {items.shopNow}
                             <div className='shop-now-btn-under-line'></div>
                         </button>
