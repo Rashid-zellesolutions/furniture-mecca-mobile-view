@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import { useSingleProductContext } from "../singleProductContext/singleProductContext";
 
 const CartContext = createContext()
 
@@ -23,8 +24,32 @@ export const CartProvider = ({children}) => {
         // console.log("cart storage", cart)
     }, [cart])
 
+    const [singleProduct, setSingleProduct] = useState(() => {
+        const savedSingleProduct = localStorage.getItem('singleProduct');
+        return savedSingleProduct ? JSON.parse(savedSingleProduct) : []
+    });
+    useEffect(() => {
+        const storedSingleProduct = localStorage.getItem('singleProduct');
+        if (storedSingleProduct) {
+            setSingleProduct(JSON.parse(storedSingleProduct));
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('singleProduct', JSON.stringify(singleProduct));
+        // console.log("cart storage", cart)
+    }, [singleProduct])
+
+    const addSingleProduct = (product) => {
+        setSingleProduct((prevState) => ({
+            ...product,
+            quantity: prevState.quantity || 1,
+            is_protected: 0
+        }))
+    }
+
     // Add Items To Cart
-    const addToCart = (product) => {
+    const addToCart = (product, LocalQuantity, isProtected) => {
         // setCart((prevCart) => {
         //     const existingProduct = prevCart.find(item => item.product.uid === product.uid);
 
@@ -47,15 +72,20 @@ export const CartProvider = ({children}) => {
         //         return [...prevCart, { product: updatedProduct, quantity: 1 }];
         //     }
         // });
+        console.log("isProtected context value", isProtected)
         setCart((prevCart) => {
             const existingProduct = prevCart.find((item) => item.product.uid === product.uid);
+            // const quantityToAdd = singleProduct?.quantity || 1;
             if(existingProduct){
+                // console.log("single product quantity", singleProduct)
                 return prevCart.map(item => 
                     item.product.uid === product.uid ? {
-                        ...item,
+                        ...item.product,
                         product: {
                             ...item.product,
-                            quantity: (item.product.quantity || 0) + 1,
+                            quantity: LocalQuantity,
+                            is_protected: isProtected ? 1 : 0,
+                            protected_value: isProtected ? 99 : 0,
                             // sub_total: parseFloat(item.product.regular_price) * (item.product.quantity),
                             // total_price: parseFloat(item.product.regular_price) * (item.product.quantity)
                         }
@@ -65,13 +95,14 @@ export const CartProvider = ({children}) => {
                 const newProduct = {
                     product: {
                         ...product,
-                        is_protected: 0,
-                        protected_value: 0,
-                        quantity: 1,
+                        is_protected: isProtected ? 1 : 0,
+                        protected_value: isProtected ? 99 : 0,
+                        quantity: LocalQuantity,
                         sub_total: parseFloat(product.regular_price) * (product.quantity || 1),
                         total_price: parseFloat(product.regular_price) * (product.quantity || 1)
                     }
                 };
+                console.log("new quantity added from local", cart)
                 return [...prevCart, newProduct]
             }
         })
@@ -82,21 +113,7 @@ export const CartProvider = ({children}) => {
         setCart((prevCart) => prevCart.filter(item => item.product.uid !== uid));
     };
 
-    // Increase Product Quantity
-    // const increamentQuantity = (uid) => {
-    //     setCart((prevCart) => {
 
-    //         // to insure prevCart is not undefine
-    //         if(!prevCart) return [];
-
-    //         return prevCart.map(item => 
-    //             item.product.uid === uid ? {...item, product:  {
-    //                 ...item.product,
-    //                 quantity: item.quantity + 1
-    //             }} : item
-    //         );
-    //     });
-    // };
     const increamentQuantity = (uid) => {
         setCart((prevCart) => {
             // Ensure prevCart is not undefined
@@ -117,19 +134,6 @@ export const CartProvider = ({children}) => {
             );
         });
     };
-
-    // Decreament Product Quantity
-    // const decreamentQuantity = (uid) => {
-    //     setCart((prevCart) => {
-    //         const updateCart = prevCart.map(item => 
-    //             item.product.uid === uid ? {...item, product:  {
-    //                 ...item.product,
-    //                 quantity: Math.max(item.quantity - 1, 1)
-    //             }} : item
-    //         );
-    //         return updateCart.filter(item => item.product.quantity > 0);
-    //     })
-    // }
 
     // Decrement Product Quantity
     const decreamentQuantity = (uid) => {
@@ -161,6 +165,31 @@ export const CartProvider = ({children}) => {
         }, 0);
     };
 
+    
+
+    // console.log("check for context", singleProduct)
+    // increase quantity function
+    // const increaseQuantity = () => {
+    //     setSingleProduct((prevState) => {
+    //         if(prevState) {
+    //             return {...prevState, quantity: prevState.quantity + 1};
+    //         }
+    //         return prevState; // in case product is null or empty
+    //     })
+    //     console.log("quantity increase")
+    // }
+
+    // // descrease qauntity function
+    // const decsreaseQuantity = () => {
+    //     setSingleProduct((prevState) => {
+    //         if(prevState && prevState.quantity > 1){
+    //             return {...prevState, quantity: prevState.quantity - 1}
+    //         }
+    //         return prevState;
+    //     })
+    //      console.log("quantity increase")
+    // }
+
     return (
         <CartContext.Provider value={
             {
@@ -170,6 +199,7 @@ export const CartProvider = ({children}) => {
                 increamentQuantity, 
                 decreamentQuantity, 
                 calculateTotalPrice,
+                addSingleProduct
             }
         }>
             {children}

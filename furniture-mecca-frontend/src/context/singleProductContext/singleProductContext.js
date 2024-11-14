@@ -21,14 +21,14 @@ export const SingleProductProvider = ({children}) => {
     }, [singleProduct])
 
     const addSingleProduct = (product) => {
-        setSingleProduct({
+        setSingleProduct((prevState) => ({
             ...product,
-            quantity: 1,
+            quantity: prevState.quantity || 1,
             is_protected: 0
-        })
+        }))
     }
 
-    console.log("check for context", singleProduct)
+    // console.log("check for context", singleProduct)
     // increase quantity function
     const increaseQuantity = () => {
         setSingleProduct((prevState) => {
@@ -37,7 +37,7 @@ export const SingleProductProvider = ({children}) => {
             }
             return prevState; // in case product is null or empty
         })
-        console.log("quantity increase")
+        // console.log("quantity increase")
     }
 
     // descrease qauntity function
@@ -48,7 +48,7 @@ export const SingleProductProvider = ({children}) => {
             }
             return prevState;
         })
-         console.log("quantity increase")
+        //  console.log("quantity increase")
     }
 
     return (

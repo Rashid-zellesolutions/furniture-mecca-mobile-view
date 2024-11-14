@@ -1,7 +1,9 @@
 import React from 'react'
 import './PaymentInfo.css';
+import { useOrder } from '../../../../context/orderContext/orderContext';
 
 const PaymentInfo = () => {
+  const {billingData, setBillingData, handleValueChange} = useOrder();
   return (
     <div className='payment-info-main-container'>
         <div className='payment-info-heading'>

@@ -152,7 +152,7 @@ const DealOfTheDay = () => {
         const response = await axios.get(`${url}${api}`);
         // console.log("deal of the month products", response.data.products)
         setAllProducts(response.data.products)
-        console.log("deal month all products", allProducts)
+        // console.log("deal month all products", allProducts)
       } catch (error) {
         console.error("error geting deal of the month products", error);
       }

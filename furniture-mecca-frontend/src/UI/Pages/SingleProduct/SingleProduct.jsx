@@ -34,15 +34,15 @@ const SingleProduct = () => {
   const [cartSection, setCartSection] = useState(false);
   const {slug} = useParams()
   const location = useLocation();
-  // const product = location.state.allProducts || {}
-  // console.log("main product data", product)
+  const product = location.state || {}
+  console.log("main product data", product)
 
   const {singleProduct, increaseQuantity} = useSingleProductContext()
   // const {} = useSingleProductContext();
-  console.log("single product on context", singleProduct)
+  // console.log("single product on context", singleProduct)
 
-  const [product, setProduct] = useState(singleProduct);
-  console.log("update single product contect object into product state", product)
+  // const [product, setProduct] = useState(singleProduct);
+  // console.log("update single product contect object into product state", product)
   // const product = singleProduct;
 
   const handleClickTop = () => {
@@ -61,7 +61,7 @@ const SingleProduct = () => {
 
   return (
     <div>
-        <SingleProductStickySection productData={singleProduct} increaseQuantity={increaseQuantity} />
+        <SingleProductStickySection productData={product} />
         <SimillerProducts collection={singleProduct} />
         <FrequentlyBought relatedProducts={singleProduct} />
         <RatingAndReview />

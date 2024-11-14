@@ -17,7 +17,7 @@ const FrequentlyBought = ({relatedProducts}) => {
     // const productData = useSelector((state) => state.products.data)
     const products = relatedProducts.related_products;
     const relatedCollection = products.map((item) => item)
-    console.log("similler products", relatedCollection)
+    // console.log("similler products", relatedCollection)
 
     const [data, setData] = useState()
     const fetchData = async () => {
@@ -38,12 +38,12 @@ const FrequentlyBought = ({relatedProducts}) => {
     const getchMyCollectionProducts = async () => {
         const products = await fetchData();
         setData(products);
-        console.log("my colection data");
+        // console.log("my colection data");
     }
     useEffect(() => {
         getchMyCollectionProducts()
     }, [])
-    console.log("converted my related products", data)
+    // console.log("converted my related products", data)
 
     // const {products} = useProducts()
     const navigate = useNavigate()

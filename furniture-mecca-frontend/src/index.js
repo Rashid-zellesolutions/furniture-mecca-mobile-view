@@ -10,6 +10,7 @@ import { CartProvider } from './context/cartContext/cartContext';
 import { NavigationProvider } from './context/BreadCrumbContext/NavigationContext';
 import { OrderProvivder } from './context/orderContext/orderContext';
 import { SingleProductProvider } from './context/singleProductContext/singleProductContext';
+import { AddCartProvider } from './context/AddToCart/addToCart';
 
 
 
@@ -17,19 +18,23 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <OrderProvivder>
-    <NavigationProvider>
-      <SingleProductProvider>
-    <ProductProvider>
-      <CartProvider>
-        <Provider store={store}>
-          <Router>
-            <App />
-          </Router>
-      </Provider>
-      </CartProvider>
-    </ProductProvider>
-    </SingleProductProvider>
-    </NavigationProvider>
+      <NavigationProvider>
+        {/* <SingleProductProvider> */}
+          <AddCartProvider>
+            <ProductProvider>
+              <CartProvider>
+                <SingleProductProvider>
+                  <Provider store={store}>
+                    <Router>
+                      <App />
+                    </Router>
+                  </Provider>
+                </SingleProductProvider>
+              </CartProvider>
+            </ProductProvider>
+          </AddCartProvider>
+        {/* </SingleProductProvider> */}
+      </NavigationProvider>
     </OrderProvivder>
   </React.StrictMode>
 );

@@ -46,16 +46,29 @@ import { useSingleProductContext } from '../../../context/singleProductContext/s
 
 
 
-const SingleProductStickySection = (productData) => {
-  const product = productData.productData;
-  // console.log("product data of top", product)
-  // useEffect(() => {
-  //   console.log("updated product after increase quantity", product)
-  // }, [product])
+const SingleProductStickySection = ({productData}) => {
+  const product = productData;
+  console.log("product data of top", productData);
+  console.log("sticky products", product)
 
-  const {decsreaseQuantity , increaseQuantity} = useSingleProductContext();
-  // const [product, setProduct] = useState(singleProduct);
+  const { cart, addToCart, decreamentQuantity , increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
+  const [cartSection, setCartSection] = useState(false);
+  const [isProtectionCheck, setIsProtectionCheck] = useState(true)
+  console.log("reflection on sticky ", isProtectionCheck)
 
+  console.log("local product uid", product.uid)
+  const searchProductOnCart = cart.find((item) => item.product.uid === product.uid)
+  console.log("cart product with uid", searchProductOnCart )
+
+
+
+  const [quantity, setQuantity] = useState(searchProductOnCart !== undefined ? searchProductOnCart.product.quantity : 1)
+  const increaseLocalQuantity = () => {
+    setQuantity(quantity + 1);
+  }
+  const decreaseLocalQuantity = () => {
+    setQuantity(quantity -1);
+  }
 
   // Alice Slider
   const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
@@ -201,10 +214,8 @@ const SingleProductStickySection = (productData) => {
     }, 1000);
   };
 
-  const { cart, addToCart, increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
-  const [cartSection, setCartSection] = useState(false);
 
-  
+
   // useEffect(() => {
   //   console.log("updated product after increase", singleProduct)
   // }, [singleProduct])
@@ -212,7 +223,7 @@ const SingleProductStickySection = (productData) => {
   const handleAddToCartProduct = (product) => {
     setCartSection(true);
     console.log("clicked product", product)
-    addToCart(product)
+    addToCart(product, quantity, isProtectionCheck);
     console.log("cart data", cart)
   }
   const handleCartClose = () => {
@@ -290,12 +301,13 @@ const SingleProductStickySection = (productData) => {
               </div>
               <div className='add-cart-or-add-items-div'>
                 <div className='item-count'>
-                  <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decsreaseQuantity} disabled={product.quantity === 1}>
+                  <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decreaseLocalQuantity} disabled={product.quantity === 1}>
                     <img src={minus} alt='minus btn' />
                   </button>
-                  <input type='number' value={product.quantity} readOnly />
+                  
+                  <input type='number' value={quantity} readOnly />
                   {/* <p>{product.quantity}</p> */}
-                  <button className='plus-btn' onClick={increaseQuantity}>
+                  <button className='plus-btn' onClick={increaseLocalQuantity}>
                     <img src={plus} alt='plus btn' />
                   </button>
                 </div>
@@ -313,7 +325,7 @@ const SingleProductStickySection = (productData) => {
             </div>
             <FinancingOptions />
             <AlsoNeed productsUid={product.may_also_need} />
-            <WhatWeOffer />
+            <WhatWeOffer isProtected={isProtectionCheck} setIsProtected={setIsProtectionCheck} />
             <DeliveryOptions />
             {/* <ProductOverView /> */}
             <SingleProductFAQ description={product.description} />
@@ -324,7 +336,7 @@ const SingleProductStickySection = (productData) => {
           addToCartClicked={cartSection}
           handleCartSectionClose={handleCartClose}
           removeFromCart={removeFromCart}
-          decreamentQuantity={decsreaseQuantity}
+          decreamentQuantity={decreamentQuantity}
           increamentQuantity={increamentQuantity}
         />
       </div>

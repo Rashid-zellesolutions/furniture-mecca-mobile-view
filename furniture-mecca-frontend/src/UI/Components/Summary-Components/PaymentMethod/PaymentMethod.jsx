@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './PaymentMethod.css';
 import paypalLogo from '../../../../Assets/Logo/paypal-logo.png';
 import paypalFullLogo from '../../../../Assets/Logo/paypal-full-logo.png';
 import PaymentOptions from '../PaymentOptions/PaymentOptions';
 import venmaLogo from '../../../../Assets/icons/venma.png';
 import cardIcon from '../../../../Assets/icons/card-icon.png'
+import { useOrder } from '../../../../context/orderContext/orderContext';
 
 const PaymentMethod = () => {
   
@@ -12,6 +13,12 @@ const PaymentMethod = () => {
   const handleSelectedLabel = (method) => {
     setSelectedLabel(method);
   }
+
+  const {addOrderPayment, addOrder} = useOrder()
+  const handleOnClick = () => {
+    addOrder('payment_method', 'cash delivery')
+  }
+  
 
   const paypalBtnOptions = [
     {name: 'Pay with', icon: paypalFullLogo, bgColor: '#F2BA36', textColor: '#000'},
@@ -23,7 +30,7 @@ const PaymentMethod = () => {
   
   return (
     <div className='payment-method-main-container'>
-        <div className='payment-method-head-container'>
+        <div className='payment-method-head-container' onClick={handleOnClick}>
             <img src={paypalLogo} alt='logo' />
             <img src={paypalFullLogo} alt='full logo' />
             <p>As low as $377.89/month. <a href='#'>Learn more</a></p>    

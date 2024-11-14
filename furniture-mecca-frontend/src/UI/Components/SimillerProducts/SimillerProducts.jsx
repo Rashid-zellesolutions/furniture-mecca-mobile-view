@@ -17,7 +17,7 @@ const SimillerProducts = ({collection}) => {
     // console.log('collected collection', collection)
     const products = collection.collection;
     const similerProductsData = products.map((item) => item)
-    console.log("similler products", similerProductsData)
+    // console.log("similler products", similerProductsData)
 
     const [data, setData] = useState()
     const fetchData = async () => {
@@ -38,13 +38,13 @@ const SimillerProducts = ({collection}) => {
     const getchMyCollectionProducts = async () => {
         const products = await fetchData();
         setData(products);
-        console.log("my colection data");
+        // console.log("my colection data");
     }
     useEffect(() => {
         getchMyCollectionProducts()
     }, [])
-    console.log("converted my collection", data)
-    console.log("single collection", products)
+    // console.log("converted my collection", data)
+    // console.log("single collection", products)
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [hideFilters, setHideFilters] = useState(false);
 

@@ -23,7 +23,7 @@ const SizeVariant = ({ attributes }) => {
     const handleSelectVariation = (index) => {
         setSelectVariation(index);
     }
-    console.log("attributes", attributes)
+    // console.log("attributes", attributes)
     return (
         <div className='size-variant-main-container'>
             {attributes && attributes.map((attribute) => (

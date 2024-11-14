@@ -14,7 +14,7 @@ const RatingAndReview = () => {
     ]
 
     const maxValue = 1000;
-    console.log(maxValue)
+    // console.log(maxValue)
   return (
     <div className='rating-and-customers-photos'>
         <div className='rating-and-review-main-container'>

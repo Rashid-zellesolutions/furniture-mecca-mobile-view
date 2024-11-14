@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./FurnitureAtEveryBudget.css";
 import ProductCard from "../../Components/ProductCard/ProductCard";
+import ProductCardTwo from "../../Components/ProductCard/ProductCardTwo";
 import star from '../../../Assets/icons/blue-star.png'
 import { url } from "../../../utils/api";
 import { useLocation } from 'react-router-dom';
@@ -57,14 +58,14 @@ export default function FurnitureAtEveryBudget() {
    
             <div className="product-grid">
                 {data && data.products.map((item, index) => (
-                    <ProductCard
+                    <ProductCardTwo
                         key={index}
                         slug={item.slug}
                         singleProductData={item}
                         maxWidthAccordingToComp="100%"
                         tagIcon={item.productTag ? item.productTag : item.heart}
                         tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
-                        mainImage={`https://fm.skyhub.pk/${item.image.image_url}`}
+                        mainImage={`${item.image.image_url}`}
                         productCardContainerClass="product-card"
                         ProductSku={item.sku}
                         tags={item.tags}

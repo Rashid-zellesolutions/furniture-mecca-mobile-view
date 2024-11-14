@@ -14,6 +14,8 @@ import axios from 'axios';
 import { url } from '../../../utils/api';
 import { addQuantityIntoProduct } from '../../../utils/AddQuantityIntoProduct/AddQuantity';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
+import {  useCart } from '../../../context/AddToCart/addToCart';
+// import { SingleProductProvider } from '../../../context/AddToCart/addToCart';
 
 const BestSellerPrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -97,10 +99,14 @@ const BestSellerSlider = () => {
 
     // product slice to show 6 product maxx
     const {addSingleProduct} = useSingleProductContext();
+    const {addToCart} = useCart()
+    // const {addSingleProduct} = SingleProductProvider()
     const handleCardClicked = (item) => {
         // console.log("item clicked", item)
+        // addSingleProduct(item)
         addSingleProduct(item)
-        navigate(`/single-product/${item.slug}`)
+        addToCart(item)
+        navigate(`/single-product/${item.slug}`, {state: item})
         // addQuantityIntoProduct(item.uid, setAllProducts, allProducts)
         // console.log("product uid", item.uid)
         // console.log("added quantity into payload", allProducts)

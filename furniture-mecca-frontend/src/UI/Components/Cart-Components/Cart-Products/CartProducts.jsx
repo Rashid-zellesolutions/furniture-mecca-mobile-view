@@ -43,15 +43,6 @@ const CartProducts = () => {
     })
 
     console.log("new cart attributes payload", cart);
-    
-    // const totalPrice = calculateTotalPrice();
-
-    // const formatedCartData = cart.map((item => {
-    //     const { image, name, regular_price, quantity, uid } = item.product
-    //     return `Product: ${image.image_url}, name: ${name}, Price: ${regular_price}, Quntity: ${quantity}, uid: ${uid} `;
-    // }))
-    // console.log("cart on cart page", cart)
-    // console.log("new Products Array", formatedCartData)
 
     const [isOpen, setIsOpen] = useState(false);
     const [checkoutFixed, setCheckoutFixed] = useState(true);
@@ -111,22 +102,16 @@ const CartProducts = () => {
     const [issingleProtected, setIsSingleProtected] = useState(false);
     const [protectedSingleCart, setProtectedSingleCart] = useState([])
     const handleSingleProtected = (item) => {
-        setIsSingleProtected(!issingleProtected)
-        console.log("value getted", issingleProtected)
+        // setIsSingleProtected(!issingleProtected)
+        // console.log("value getted", issingleProtected)
         // const protectionStates = !issingleProtected
-        const newUpdatedValue = {
-            ...item,
-            product: {
-                ...item.product,
-                is_protected: issingleProtected ? 1 : 0,
-                protected_value: issingleProtected ? 99 : 0,
-            }
-            
-        }
-        setProtectedSingleCart(newUpdatedValue)
-        console.log("single Protection update", newUpdatedValue)
-        console.log("payload updated", protectedSingleCart)
-
+        // const newUpdatedValue = {
+        //     ...item,
+        //     product
+        // }
+        // setProtectedSingleCart(newUpdatedValue)
+        // console.log("single Protection update", newUpdatedValue)
+        // console.log("payload updated", protectedSingleCart)
     }
 
 
@@ -137,6 +122,7 @@ const CartProducts = () => {
     }
     // console.log("cart products total price", cart[0].product.totalPrice)
     // console.log("cart my data: ", cart[0].product.regular_price)
+    const {addOrders} = useOrder() 
     const handleSaveOrders = async () => {
         const valueFromCart = cart.map(product => ({
             name: product.product.name,
@@ -157,13 +143,15 @@ const CartProducts = () => {
         // }))
         console.log("destructure cart", cart)
         console.log("Ordered Payload to check", updatedOrderPayload)
-        try {
-            const response = await axios.post(`${url}/api/v1/orders/add`, updatedOrderPayload)
-            console.log(response)
-            navigate(`/cart-page/check-out`);
-        } catch (error) {
-            console.error("error adding order", error);   
-        }
+        addOrders(updatedOrderPayload)
+        navigate(`/cart-page/check-out`);
+        // try {
+        //     const response = await axios.post(`${url}/api/v1/orders/add`, updatedOrderPayload)
+        //     console.log(response)
+        //     navigate(`/cart-page/check-out`);
+        // } catch (error) {
+        //     console.error("error adding order", error);   
+        // }
     }
     
     
@@ -300,7 +288,7 @@ const CartProducts = () => {
                         {/* <button onClick={handleToggle}>
                     Continue
                 </button> */}
-                        <button onClick={handleSaveOrders}>Continue</button>
+                        <button onClick={handleNavigateToCheckoutPage}>Continue</button>
                     </div>
                 </div>
                 <CartPaymnetMethoud

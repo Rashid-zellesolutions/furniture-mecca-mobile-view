@@ -12,6 +12,29 @@ import { useLocation } from 'react-router-dom';
 
 const Summary = () => {
   const location = useLocation()
+  const [orderPayload, setOrderPayload] = useState({
+        status: 'pending',
+        currency: "USD",
+        billing: {
+            first_name: "",
+            last_name: "Doe",
+            address_1: "123 Main St",
+            city: "Anytown",
+            state: "CA",
+            postal_code: "90210",
+            country: "USA",
+            email: "john.doe@example.com",
+            phone: "123-456-7890"
+        },
+
+        payment_method: "cash_on_delivery",
+        items: [],
+        discount: 10,
+        tax: 5,
+        cart_protected: 0,
+        is_shipping:1,
+        shipping_cost: 10
+    })
 
   const checkoutSections = [
     { id: 1, name: 'Delivery' },
@@ -41,7 +64,7 @@ const Summary = () => {
         </div>
         {
           currentId === 1 ? <div className='shipping-details-and-coupen-show'>
-            <ShippingDetails />
+            <ShippingDetails userInfoPayload={setOrderPayload} />
             <Coupon />
           </div>:
           currentId === 2 ? <PaymentMethod /> : <div className='order-summery-and-proceed-btn'> 

@@ -15,7 +15,7 @@ const CartSideSection = ({handleItemRemove, closeBtn, productTitle, mainImage, p
             style: 'currency',
             currency: 'USD'
         }).format(productTotalPrice)
-        console.log("cart side section product image", mainImage.image_url)
+        // console.log("cart side section product image", mainImage.image_url)
         // const singlePrice = priceTag.toLocaleString('en-US', {
         //     style: 'currency',
         //     currency: 'USD'
