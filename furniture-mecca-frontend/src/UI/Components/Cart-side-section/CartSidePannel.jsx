@@ -7,9 +7,12 @@ import minusBtn from '../../../Assets/icons/minus-white.png';
 import plusBtn from '../../../Assets/icons/plus-white.png';
 import { Link } from 'react-router-dom';
 
-const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, removeFromCart,decreamentQuantity, increamentQuantity}) => {
+const CartSidePannel = ({cartData, addToCartClicked, setAddToCartClick, handleCartSectionClose, removeFromCart,decreamentQuantity, increamentQuantity}) => {
     // console.log("Card Panel Data", cartData)
     const [singleCart, setSingleCart] = useState(cartData)
+    const handleCLoseCartPanel = () => {
+        setAddToCartClick(false)
+    }
     // console.log("single cart state: ", singleCart)
     return (
     <div 
@@ -49,7 +52,7 @@ const CartSidePannel = ({cartData, addToCartClicked, handleCartSectionClose, rem
                 </div>
                 <div className='cart-side-section-buttons'>
                     <div className='cart-section-view-cart-and-checkout-btn'>
-                        <Link to={'/add-to-cart'} className='cart-side-section-view-cart'>
+                        <Link to={'/add-to-cart'} className='cart-side-section-view-cart' onClick={handleCLoseCartPanel}>
                             View Cart
                         </Link>
                         <button className='cart-side-section-checkout'>

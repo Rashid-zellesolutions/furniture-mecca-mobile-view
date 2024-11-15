@@ -2,36 +2,17 @@ import React, { useEffect, useState } from 'react'
 import './ShippingForm.css';
 import SummaryInputFields from '../InputField/SummaryInputFields';
 import { useOrder } from '../../../../context/orderContext/orderContext';
+import { useMyOrders } from '../../../../context/orderContext/ordersContext';
 
-const ShippingForm = ({ billingDetails }) => {
+const ShippingForm = () => {
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxClick = () => { setIsChecked(!isChecked) }
 
-    const { updateBillingField, orders, setOrders ,billingData,setBillingData,handleValueChange} = useOrder();
+    const {orderPayload, handleNestedValueChange, loading, handleValueChange, handleTabOpen} = useMyOrders();
 
-    useEffect(() => {console.log("order.dot", orders.billing)}, [])
-
-    // const [billingData, setBillingData] = useState({
-    //     first_name: "",
-    //     last_name: "",
-    //     address_1: "",
-    //     city: "",
-    //     state: "",
-    //     postal_code: "",
-    //     country: "",
-    //     email: "",
-    //     phone: ""
-    // })
-    // const [updatedBilling, setUpdatedBilling, , , ] = useState({ ...billingData })
-    
-
-    // const handleSave = () => {
-    //     setBillingData(updatedBilling);
-    //     Object.entries(billingData).forEach(([field, value]) => {
-    //         updateBillingField(field, value);
-    //     });
-    //     console.log("billing details on continue", billingData)
-    // }
+    if(loading){
+        return <div>Loading....</div>
+    }
 
     return (
         <>
@@ -39,33 +20,33 @@ const ShippingForm = ({ billingDetails }) => {
                 <div className='first-name-last-name'>
                     <SummaryInputFields
                         type={'text'}
-                        value={billingData.first_name}
+                        value={orderPayload.billing?.first_name || ''}
                         label={'First Name'}
                         fieldRequired={true}
                         placeholder={'First Name'}
                         name={'first_name'}
-                        onChange={handleValueChange   }
+                        onChange={handleNestedValueChange   }
                     />
                     <SummaryInputFields
                         type={'text'}
                         name={'last_name'}
-                        value={billingData.last_name}
+                        value={orderPayload.last_name}
                         label={'Last Name'}
                         fieldRequired={true}
                         placeholder={'Last Name'}
-                        onChange={handleValueChange
+                        onChange={handleNestedValueChange
                         }
                     />
                 </div>
                 <div className='email-container'>
                     <SummaryInputFields
                         type={'text'}
-                        value={billingData.email}
+                        value={orderPayload.email}
                         label={'Email'}
                         fieldRequired={true}
                         placeholder={'Email'}
                         name={'email'}
-                        onChange={handleValueChange
+                        onChange={handleNestedValueChange
                         }
                     />
                 </div>
@@ -76,12 +57,12 @@ const ShippingForm = ({ billingDetails }) => {
                 <div className='shipping-address'>
                     <SummaryInputFields
                         type={'text'}
-                        value={billingData.address_1}
+                        value={orderPayload.address_1}
                         label={'Street Address'}
                         fieldRequired={true}
                         placeholder={'House number & Street number'}
                         name={'address_1'}
-                        onChange={handleValueChange
+                        onChange={handleNestedValueChange
                         }
                     />
                     <SummaryInputFields
@@ -91,40 +72,40 @@ const ShippingForm = ({ billingDetails }) => {
                 <div className='city-state-zip'>
                     <SummaryInputFields
                         type={'text'}
-                        value={billingData.postal_code}
+                        value={orderPayload.postal_code}
                         label={'Zip Code'}
                         fieldRequired={true}
                         name={'postal_code'}
-                        onChange={handleValueChange
+                        onChange={handleNestedValueChange
                         }
                     />
                     <SummaryInputFields
                         type={'text'}
-                        value={billingData.city}
+                        value={orderPayload.city}
                         label={'Town/City'}
                         name={'city'}
-                        onChange={handleValueChange}
+                        onChange={handleNestedValueChange}
                     />
                     <SummaryInputFields
                         type={'text'}
-                        value={billingData.state}
+                        value={orderPayload.state}
                         label={'State'}
                         fieldRequired={true}
                         placeholder={'Pennsylvanian'}
                         name={'state'}
-                        onChange={handleValueChange
+                        onChange={handleNestedValueChange
                         }
                     />
                 </div>
                 <div>
                     <SummaryInputFields
                         type={'text'}
-                        value={billingData.phone}
+                        value={orderPayload.phone}
                         label={'Phone'}
                         fieldRequired={true}
                         placeholder={'Phone'}
                         name={'phone'}
-                        onChange={handleValueChange
+                        onChange={handleNestedValueChange
                         }
                     />
                 </div>
@@ -156,7 +137,7 @@ const ShippingForm = ({ billingDetails }) => {
                 <div className='order-note'>
                     <SummaryInputFields type={'text'} label={'Order Notes (Optional)'} placeholder={'Notes about your order, e.g Special  delivery notes'} />
                 </div>
-                <button type='button' onClick={()=>{}}>
+                <button type='button' onClick={()=> handleTabOpen('payment-method')} className='desktop-billing-details-send-button'>
                     Continue to Payment
                 </button>
             </form>

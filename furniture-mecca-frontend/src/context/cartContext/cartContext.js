@@ -1,11 +1,18 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { useSingleProductContext } from "../singleProductContext/singleProductContext";
 
 const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
 
     // initialize cart from local storage
+    const [subTotal, setSubTotal] = useState(0);
+    const [deliveryCharges, setDeliveryCharges] = useState(50)
+    const [taxValue, setTaxValue] = useState(0);
+    const [grandValue, setGrandValue] = useState(0);
+    // let subTotal = 0;
+    // let deliveryCharges = 50;
+    // let taxValue = 10;
+    // let grandValue = 0;
     const [cart, setCart] = useState(() => {
         const savedCart = localStorage.getItem('cart');
         return savedCart ? JSON.parse(savedCart) : [];
@@ -20,6 +27,7 @@ export const CartProvider = ({children}) => {
 
     // save cart to local storage when eer it changes
     useEffect(() => {
+        
         localStorage.setItem('cart', JSON.stringify(cart));
         // console.log("cart storage", cart)
     }, [cart])
@@ -108,6 +116,7 @@ export const CartProvider = ({children}) => {
         })
     };
 
+
     // Remove Cart Item
     const removeFromCart = (uid) => {
         setCart((prevCart) => prevCart.filter(item => item.product.uid !== uid));
@@ -115,6 +124,7 @@ export const CartProvider = ({children}) => {
 
 
     const increamentQuantity = (uid) => {
+        
         setCart((prevCart) => {
             // Ensure prevCart is not undefined
             if (!prevCart) return [];
@@ -137,6 +147,7 @@ export const CartProvider = ({children}) => {
 
     // Decrement Product Quantity
     const decreamentQuantity = (uid) => {
+        // getGrandTotal()
         setCart((prevCart) => {
             const updatedCart = prevCart.map(item =>
                 item.product.uid === uid
@@ -156,39 +167,37 @@ export const CartProvider = ({children}) => {
         });
     };
     // Calculate total orders price
-    const calculateTotalPrice = () => {
-        return cart.reduce((total, item) => {
-
-            // Directly use priceTag as a number
-            const price = item.product.reguler_price;
-            return total + (price * item.quantity);
-        }, 0);
-    };
-
+    
     
 
-    // console.log("check for context", singleProduct)
-    // increase quantity function
-    // const increaseQuantity = () => {
-    //     setSingleProduct((prevState) => {
-    //         if(prevState) {
-    //             return {...prevState, quantity: prevState.quantity + 1};
-    //         }
-    //         return prevState; // in case product is null or empty
-    //     })
-    //     console.log("quantity increase")
-    // }
+    const calculateTotalPrice = () => {
+        if(!Array.isArray(cart)){
+            console.error("Invalid Array", cart);
+            return 0;
+        }
 
-    // // descrease qauntity function
-    // const decsreaseQuantity = () => {
-    //     setSingleProduct((prevState) => {
-    //         if(prevState && prevState.quantity > 1){
-    //             return {...prevState, quantity: prevState.quantity - 1}
-    //         }
-    //         return prevState;
-    //     })
-    //      console.log("quantity increase")
-    // }
+
+        let total = cart.reduce((price, item) => price + item.product.sub_total, 0);
+        console.log("price val", total)
+        setSubTotal(total)
+        // for(const item of cart){
+        //     const price = parseFloat((
+        //         item.product.sub_total
+        //     ))
+            
+        //     if(!isNaN(price)){
+        //         total += price
+        //     }
+        // }
+        // return total 
+    };
+
+    useEffect(() => {
+        calculateTotalPrice()
+        
+    }, [cart]);
+
+    
 
     return (
         <CartContext.Provider value={
@@ -199,7 +208,11 @@ export const CartProvider = ({children}) => {
                 increamentQuantity, 
                 decreamentQuantity, 
                 calculateTotalPrice,
-                addSingleProduct
+                addSingleProduct,
+                subTotal,
+                taxValue,
+                deliveryCharges,
+                grandValue,
             }
         }>
             {children}

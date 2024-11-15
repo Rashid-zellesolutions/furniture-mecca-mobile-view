@@ -17,55 +17,42 @@ import { url } from '../../../../utils/api';
 
 
 const CartProducts = () => {
-    const { cart, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice, toggleProtection } = useCart()
-    const [orderPayload, setOrderPayload] = useState({
-        status: 'pending',
-        currency: "USD",
-        billing: {
-            first_name: "John",
-            last_name: "Doe",
-            address_1: "123 Main St",
-            city: "Anytown",
-            state: "CA",
-            postal_code: "90210",
-            country: "USA",
-            email: "john.doe@example.com",
-            phone: "123-456-7890"
-        },
+    const { cart, updateSubTotal, getAllTotals, taxValue, deliveryCharges, subTotal, grandValue, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice, toggleProtection } = useCart()
+    
+    calculateTotalPrice(cart)
+    console.log("cart total", calculateTotalPrice(cart))
 
-        payment_method: "cash_on_delivery",
-        items: [],
-        discount: 10,
-        tax: 5,
-        cart_protected: 0,
-        is_shipping:1,
-        shipping_cost: 10
-    })
+    useEffect(() => {
+        console.log("instant data change", subTotal)
+        // updateSubTotal()
+    }, [subTotal])
 
     console.log("new cart attributes payload", cart);
 
     const [isOpen, setIsOpen] = useState(false);
     const [checkoutFixed, setCheckoutFixed] = useState(true);
 
-    const totalPrice = calculateTotalPrice();
-    const deliveryCharges = 50;
-    const discountPrice = 10;
-    const subTotal = deliveryCharges + totalPrice;
-    const finaleTotal = subTotal - discountPrice
 
-    const formatedPrice = (price) => price.toLocaleString('en-us', {style: 'currency', currency: 'USD'})
+    const formatedPrice = (price) => {
+        return new Intl.NumberFormat('en-us', {
+            style: 'currency',
+            currency: 'USD'
+        }).format(price)
+    }
+    // let getTax, getDelivery = getGrandTotal(10, 50);
+    // const grandTotal = calculateTotalPrice(cart) + deliveryCharges + tax;
     const detailsDeta = [
         {
-            title: 'Delivery', price: formatedPrice(deliveryCharges),
+            title: 'Sub Total', price: formatedPrice(subTotal),
         },
         {
-            title: 'Discount', price: formatedPrice(discountPrice)
+            title: 'Delivery', price: formatedPrice(deliveryCharges)
         },
         {
-            title: 'Sub Total', price: formatedPrice(subTotal)
+            title: 'Tax', price: formatedPrice(taxValue)
         },
         {
-            title: 'Total', price: formatedPrice(finaleTotal)
+            title: 'Total', price: formatedPrice(grandValue)
         },
     ]
 
@@ -92,27 +79,8 @@ const CartProducts = () => {
     }, [])
 
     const [protectAll, setProtectAll] = useState(false);
-    const handleProtectAll = () => {
-        setProtectAll(!protectAll)
-
-        // console.log("cart with protection", cart)
-
-    }  
     
     const [issingleProtected, setIsSingleProtected] = useState(false);
-    const [protectedSingleCart, setProtectedSingleCart] = useState([])
-    const handleSingleProtected = (item) => {
-        // setIsSingleProtected(!issingleProtected)
-        // console.log("value getted", issingleProtected)
-        // const protectionStates = !issingleProtected
-        // const newUpdatedValue = {
-        //     ...item,
-        //     product
-        // }
-        // setProtectedSingleCart(newUpdatedValue)
-        // console.log("single Protection update", newUpdatedValue)
-        // console.log("payload updated", protectedSingleCart)
-    }
 
 
     const navigate = useNavigate();
@@ -120,39 +88,8 @@ const CartProducts = () => {
         console.log("Cart before adding to order:", cart);
         navigate(`/cart-page/check-out`);
     }
-    // console.log("cart products total price", cart[0].product.totalPrice)
-    // console.log("cart my data: ", cart[0].product.regular_price)
-    const {addOrders} = useOrder() 
-    const handleSaveOrders = async () => {
-        const valueFromCart = cart.map(product => ({
-            name: product.product.name,
-            product_id: product.product.uid,
-            quantity: product.product.quantity,
-            is_protected: product.product.is_protected,
-            sku: product.product.sku,
-            image: product.product.image.image_url
-        }))
-        console.log("updated values of card", valueFromCart)
-        const updatedOrderPayload = {
-            ...orderPayload,
-            items: valueFromCart
-        }
-        // setOrderPayload(prevState => ({
-        //     ...prevState,
-        //     items: valueFromCart
-        // }))
-        console.log("destructure cart", cart)
-        console.log("Ordered Payload to check", updatedOrderPayload)
-        addOrders(updatedOrderPayload)
-        navigate(`/cart-page/check-out`);
-        // try {
-        //     const response = await axios.post(`${url}/api/v1/orders/add`, updatedOrderPayload)
-        //     console.log(response)
-        //     navigate(`/cart-page/check-out`);
-        // } catch (error) {
-        //     console.error("error adding order", error);   
-        // }
-    }
+
+   
     
     
     return (
@@ -162,7 +99,7 @@ const CartProducts = () => {
                     <h3>Products ({cart.length})</h3>
                     <button 
                         className={`protect-all-products-button ${protectAll ? 'protect-all-products-button-true' : ''}`}
-                        onClick={handleProtectAll}
+                        // onClick={handleProtectAll}
                     >
                         Protect All
                     </button>
@@ -175,7 +112,7 @@ const CartProducts = () => {
                             key={items.product.uid}
                             onlyMobile={false}
                             issingleProtected={issingleProtected}
-                            handleSingleProtected={() => handleSingleProtected(items)}
+                            handleSingleProtected={() => {}}
                             // isAllProtected={protectAll}
                             cartIndex={items.product.uid}
                             productsLength={cart.length}
@@ -283,6 +220,7 @@ const CartProducts = () => {
                                 <p className='desktop-price-total'>{cart.length > 0 ? item.price : '$0'}</p>
                             </div>
                         })}
+                        {calculateTotalPrice()}
                     </div>
                     <div className={`desktop-continue-btn-div ${isOpen ? 'hide-continue-btn' : ''}`}>
                         {/* <button onClick={handleToggle}>

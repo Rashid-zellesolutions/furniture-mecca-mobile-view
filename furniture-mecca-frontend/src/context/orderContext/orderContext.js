@@ -77,6 +77,15 @@ export const OrderProvivder = ({ children }) => {
         console.log("this is billing data", orders)
     };
 
+    // const addProducts = (product) => {
+    //     setOrders((prevOrder) => ({
+    //         ...prevOrder,
+    //         items: [
+    //             product
+    //         ]
+    //     }))
+    // }
+
     // Add item to cart (items is an array of product objects)
     const addItemToCart = (item) => {
         setOrders((prevPayload) => ({

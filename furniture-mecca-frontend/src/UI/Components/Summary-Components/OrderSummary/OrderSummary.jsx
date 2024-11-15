@@ -5,6 +5,8 @@ import { useCart } from '../../../../context/cartContext/cartContext';
 import { useOrder } from '../../../../context/orderContext/orderContext';
 import axios from 'axios';
 import { url } from '../../../../utils/api';
+import { useMyOrders } from '../../../../context/orderContext/ordersContext';
+import { tab } from '@testing-library/user-event/dist/tab';
 
 const OrderSummary = () => {
     // const selectedProducts = [
@@ -34,25 +36,19 @@ const OrderSummary = () => {
             currency: 'USD'
         }).format(price)
     }
-    
-    const [orders, setOrders] = useState([])
-    const getOrders = async () => {
-        try {
-            const response = await axios.get(`${url}/api/v1/orders/get`)
-            setOrders(response.data.orders);
-            console.log("response orders", response.data.orders)
-            console.log("orders state", orders[2].items[0].image)
-        } catch (error) {
-            console.error("order geting failed", error);
-        }
+    const {cart, calculateTotalPrice, subTotal, deliveryCharges, taxValue, grandValue, getGrandTotal} = useCart()
+    const {orderPayload, setOrderPayload, addProducts} = useMyOrders();
+
+    console.log("cart on review page", cart)
+    const handleClickSave = () => {
+        addProducts(cart)
+        console.log("order payload after adding products", orderPayload)
     }
-    useEffect(() => {
-        getOrders()
-    }, []);
-    useEffect(() => {
-        console.log("Updated orders state:", orders);
-    }, [orders]);
-    
+
+    const taxPrice = getGrandTotal(10, 50)
+
+    // const tax = 10;
+    // const grandTotal = calculateTotalPrice(cart) + tax
 
   return (
     <div className='order-summary-main-container'>
@@ -63,16 +59,14 @@ const OrderSummary = () => {
         </div>
         <div className='order-summary-details'>
             <div className='order-summary-selected-products-container'>
-                {orders && orders.map((items, index) => (
-                    <div key={items._id} className='selected-products'>
+                {cart.map((items, index) => (
+                    <div key={items.uid} className='selected-products'>
                         <div className='selected-single-product'>
-                            <img src={`${url}${items.items?.[0]?.image}`} alt='img' />
+                            <img src={`${url}${items.product.image.image_url}`} alt='img' />
                             <div className='selected-product-containt'>
                                 <span className='selected-product-name-and-price'>
-                                    {/* <h3>{truncateTitle(items.items?.[0]?.name, maxLength)}</h3> */}
-                                    {/* <h3>{items.items?.[index]?.name}</h3> */}
-                                    <h3>Name</h3>
-                                    <p>{formatePrices(items.total)}</p>
+                                    <h3>{truncateTitle(items.product.name, maxLength)}</h3>
+                                    <p>{formatePrices(items.product.total_price)}</p>
                                 </span>
                                 <span className='selected-product-color'>
                                     <p>Black</p>
@@ -87,18 +81,18 @@ const OrderSummary = () => {
             </div>
             <div className='products-tax-and-total'>
                 <span>
-                    <p>Sub Total:</p>
-                    {/* <p>{formatePrices(orders[2].items[0].sub_total)}</p> */}
+                    <p>Sub Total: </p>
+                    <p>{formatePrices(subTotal)}</p>
                 </span>
                 <span>
                     <p>Tax</p>
-                    {/* <p>{formatePrices(orders[2].tax)}</p> */}
+                    <p>{formatePrices(10)}</p>
                 </span>
             </div>
             <div className='selected-product-total'>
                 <span>
                     <h3>Total</h3>
-                    {/* <p>{formatePrices(orders[2].items[0].total)}</p> */}
+                    <p>{formatePrices(grandValue)}</p>
                 </span>
             </div>
         </div>

@@ -9,45 +9,49 @@ import HappyCustomers from '../../Components/Summary-Components/Happy-Customer/H
 import ShipingAndDelivery from '../../Components/Summary-Components/ShippingAndDelivery/ShipingAndDelivery';
 import PaymentInfo from '../../Components/Summary-Components/PaymentInfo/PaymentInfo';
 import { useLocation } from 'react-router-dom';
+import { useMyOrders } from '../../../context/orderContext/ordersContext';
+import { useCart } from '../../../context/cartContext/cartContext';
+import axios from 'axios';
+import { url } from '../../../utils/api';
+import Loader from '../../Components/Loader/Loader';
 
 const Summary = () => {
-  const location = useLocation()
-  const [orderPayload, setOrderPayload] = useState({
-        status: 'pending',
-        currency: "USD",
-        billing: {
-            first_name: "",
-            last_name: "Doe",
-            address_1: "123 Main St",
-            city: "Anytown",
-            state: "CA",
-            postal_code: "90210",
-            country: "USA",
-            email: "john.doe@example.com",
-            phone: "123-456-7890"
-        },
-
-        payment_method: "cash_on_delivery",
-        items: [],
-        discount: 10,
-        tax: 5,
-        cart_protected: 0,
-        is_shipping:1,
-        shipping_cost: 10
-    })
 
   const checkoutSections = [
-    { id: 1, name: 'Delivery' },
-    { id: 2, name: 'Payment' },
-    { id: 3, name: 'Review' },
+    { id: 1, name: 'Delivery', navOp: 'delivery' },
+    { id: 2, name: 'Payment', navOp: 'payment-method' },
+    { id: 3, name: 'Review', navOp: 'review' },
   ]
-  const [currentId, setCurrentId] = useState(1)
+  // const {selectedTab, handleTabOpen} = useMyOrders();
+  const [currentId, setCurrentId] = useState(0)
   const handleNavClick = (id) => {
     setCurrentId(id);
   }
 
+    const {cart, calculateTotalPrice} = useCart()
+    const {setOrderPayload, addProducts, sendProducts, isLoader, setIsLoader} = useMyOrders();
+
+    console.log("cart on review page", cart)
+    // const sendProducts = async () => {
+    //   const api = `/api/v1/orders/add`;
+    //   try {
+    //     const response = await axios.post(`${url}${api}`, orderPayload);
+    //     console.log("add resposnse", response);
+    //   } catch (error) {
+    //     console.error("error adding order", error);
+    //   }
+    // }
+    const handleClickSave = () => {
+      addProducts(cart)
+      sendProducts()
+      
+    }
+
+
+
   return (
     <div className='summary-main-container'>
+      {isLoader && <Loader />}
       <div className='summary-left-section'>
         <div className='checkout-pages-toggle-nav'>
           {checkoutSections.map((items,) => (
@@ -72,7 +76,7 @@ const Summary = () => {
             <PaymentInfo />
             <OrderSummary />
             <div className='order-summery-proceed-btn-div'>
-              <button>
+              <button onClick={handleClickSave}>
                 Place Order
               </button>
             </div>

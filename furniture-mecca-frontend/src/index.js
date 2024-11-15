@@ -11,6 +11,7 @@ import { NavigationProvider } from './context/BreadCrumbContext/NavigationContex
 import { OrderProvivder } from './context/orderContext/orderContext';
 import { SingleProductProvider } from './context/singleProductContext/singleProductContext';
 import { AddCartProvider } from './context/AddToCart/addToCart';
+import { MyOrdersProvider } from './context/orderContext/ordersContext';
 
 
 
@@ -24,11 +25,13 @@ root.render(
             <ProductProvider>
               <CartProvider>
                 <SingleProductProvider>
-                  <Provider store={store}>
-                    <Router>
-                      <App />
-                    </Router>
-                  </Provider>
+                  <MyOrdersProvider>
+                    <Provider store={store}>
+                      <Router>
+                        <App />
+                      </Router>
+                    </Provider>
+                  </MyOrdersProvider>
                 </SingleProductProvider>
               </CartProvider>
             </ProductProvider>

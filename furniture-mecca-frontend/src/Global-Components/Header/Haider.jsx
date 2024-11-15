@@ -243,6 +243,7 @@ const Haider = () => {
             <CartSidePannel
             cartData={cart}
               addToCartClicked={showCart}
+              setAddToCartClick={setShowCart}
               handleCartSectionClose={handleCartSectionClose}
               increamentQuantity={increamentQuantity}
               decreamentQuantity={decreamentQuantity}

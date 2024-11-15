@@ -6,12 +6,19 @@ import PaymentOptions from '../PaymentOptions/PaymentOptions';
 import venmaLogo from '../../../../Assets/icons/venma.png';
 import cardIcon from '../../../../Assets/icons/card-icon.png'
 import { useOrder } from '../../../../context/orderContext/orderContext';
+import { useMyOrders } from '../../../../context/orderContext/ordersContext';
 
 const PaymentMethod = () => {
   
   const [selectedLabel, setSelectedLabel] = useState('')
+  const {setOrderPayload} = useMyOrders()
   const handleSelectedLabel = (method) => {
     setSelectedLabel(method);
+    console.log("method selected", selectedLabel)
+    setOrderPayload((prev) => ({
+      ...prev,
+      payment_method: selectedLabel
+    }))
   }
 
   const {addOrderPayment, addOrder} = useOrder()

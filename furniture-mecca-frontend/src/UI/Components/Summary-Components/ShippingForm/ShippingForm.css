@@ -122,6 +122,23 @@
     width: 100%;
 }
 
+.desktop-billing-details-send-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    color: #fff;
+    background-color: var(--active-nav-item-color);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 /* Mobile Styling */
 .mobile-view-shipping-details-form{
     display: none;
