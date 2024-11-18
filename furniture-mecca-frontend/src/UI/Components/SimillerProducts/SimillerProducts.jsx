@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './SimillerProducts.css'
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
-import ProductCard from '../ProductCard/ProductCardTwo'
+import ProductCard from '../ProductCard/ProductCard'
 import arrowLeftRed from '../../../Assets/icons/arrow-left-red.png';
 import arrowRightRed from '../../../Assets/icons/arrow-right-red.png';
 import { useProducts } from '../../../context/productsContext/productContext'
@@ -15,20 +15,23 @@ import heart from '../../../Assets/icons/heart-vector.png'
 
 const SimillerProducts = ({collection}) => {
     // console.log('collected collection', collection)
-    const products = collection.collection;
-    const similerProductsData = products.map((item) => item)
+    const simillerProducts = collection.map((item) => item);
+    console.log("similler product uid", simillerProducts)
+    // const similerProductsData = products.map((item) => item)
+    
     // console.log("similler products", similerProductsData)
 
     const [data, setData] = useState()
     const fetchData = async () => {
         const api = `/api/v1/products/get/`;
         try {
-            const request = similerProductsData.map(async (item) => {
+            const request = simillerProducts.map(async (item) => {
                 const response = await axios.get(`${url}${api}${item}`);
                 return response.data.products;
             });
             const myCollections = await Promise.all(request);
             const filteredMyCollection = myCollections.flat();
+            console.log("filtered similer data", filteredMyCollection)
             return filteredMyCollection;
         } catch (error) {
             console.error("error geting data", error)
@@ -38,7 +41,7 @@ const SimillerProducts = ({collection}) => {
     const getchMyCollectionProducts = async () => {
         const products = await fetchData();
         setData(products);
-        // console.log("my colection data");
+        console.log("my colection data", data);
     }
     useEffect(() => {
         getchMyCollectionProducts()
@@ -64,8 +67,9 @@ const SimillerProducts = ({collection}) => {
         return title.length > maxLength ? title.slice(0, maxLength) + '...' : title
     };
 
+    console.log("similler data", data)
     // Select Color Variations Functions
-    const [selectedColorIndices, setSelectedColorIndices] = useState(Array(products.length).fill(0));
+    const [selectedColorIndices, setSelectedColorIndices] = useState(Array(data && data.length).fill(0));
     const handleVariantImageClick = (cardIndex, colorIndex) => {
         const updatedIndices = [...selectedColorIndices];
         updatedIndices[cardIndex] = colorIndex;
@@ -80,7 +84,7 @@ const SimillerProducts = ({collection}) => {
     const [simillerProductIndex, setSimillerProductIndex] = useState(0);
     const handleScroll = (direction) => {
         const newIndex = simillerProductIndex + direction;
-        if(newIndex >= 0 && newIndex <= products.length - 1){
+        if(newIndex >= 0 && newIndex <= data.length - 1){
             setSimillerProductIndex(newIndex)
         }
         const container = scrollContainerRef.current;
@@ -112,7 +116,7 @@ const SimillerProducts = ({collection}) => {
         <div className='similler-products-wrapper' onMouseDown={handleMouseDown}
             onTouchMove={handleTouchMove}>
             <button
-                className={`scroll-button left ${simillerProductIndex >= products.length ? 'disable-similler-product-arrow' : ''}`}
+                className={`scroll-button left ${simillerProductIndex >= data && data.length ? 'disable-similler-product-arrow' : ''}`}
                 onClick={() => handleScroll(-1)} 
             //    onClick={handlePrev}
                 disabled={simillerProductIndex === 0}
@@ -155,7 +159,7 @@ const SimillerProducts = ({collection}) => {
                 ))}
             </div>
             <button
-                className={`scroll-button right ${simillerProductIndex >= products.length ? 'disable-similler-product-arrow' : ''}`}
+                className={`scroll-button right ${simillerProductIndex >= data && data.length ? 'disable-similler-product-arrow' : ''}`}
                onClick={() => handleScroll(1)} 
             //   onClick={handleNext}
             >

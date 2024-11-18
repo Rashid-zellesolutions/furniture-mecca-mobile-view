@@ -12,6 +12,7 @@ import { OrderProvivder } from './context/orderContext/orderContext';
 import { SingleProductProvider } from './context/singleProductContext/singleProductContext';
 import { AddCartProvider } from './context/AddToCart/addToCart';
 import { MyOrdersProvider } from './context/orderContext/ordersContext';
+import ScrollToTop from './utils/ScrollToTop/ScrollToTop';
 
 
 
@@ -28,7 +29,9 @@ root.render(
                   <MyOrdersProvider>
                     <Provider store={store}>
                       <Router>
-                        <App />
+                        <ScrollToTop>
+                          <App />
+                        </ScrollToTop>
                       </Router>
                     </Provider>
                   </MyOrdersProvider>

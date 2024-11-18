@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './FrequentlyBought.css';
 import { useSelector } from 'react-redux';
-import ProductCard from '../ProductCard/ProductCardTwo';
+import ProductCard from '../ProductCard/ProductCard';
 import { useNavigate } from 'react-router-dom';
 import { useProducts } from '../../../context/productsContext/productContext';
 import axios from 'axios';
@@ -11,11 +11,12 @@ import ProductCardTwo from '../ProductCard/ProductCard';
 
 const FrequentlyBought = ({relatedProducts}) => {
 
+    console.log("related products", relatedProducts)
     // console.log("core collections", collection);
     // const collections = collection.map((item) => item);
     // console.log("transfered valued", collections)
     // const productData = useSelector((state) => state.products.data)
-    const products = relatedProducts.related_products;
+    const products = relatedProducts;
     const relatedCollection = products.map((item) => item)
     // console.log("similler products", relatedCollection)
 
@@ -93,9 +94,9 @@ const FrequentlyBought = ({relatedProducts}) => {
         <h3>You may also like</h3>
         <div className='frequently-bought-card'>
         {data && data.slice(0, 5).map((item, index) => (
-                    <ProductCardTwo
+                    <ProductCard
                         key={item.uid}
-                        maxWidthAccordingToComp={'100%'} justWidth={'310px'}
+                        maxWidthAccordingToComp={'100%'} justWidth={'100%'}
                         // tagIcon={item.productTag ? item.productTag : item.heart}
                         tagIcon={heart}
                         tagClass={` ${item.productTag ? 'tag-img' : 'heart-icon'}`}

@@ -3,7 +3,6 @@ import './QuickViewVariations.css';
 import { url } from '../../../utils/api';
 
 const QuickViewVariations = ({attributes}) => {
-    console.log("variations on quick view", attributes)
     const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
     // const [variantName, setVariationName] = useState(sizeNamesObj[0])
     // const handleSizeSelect = (index) => {

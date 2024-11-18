@@ -14,7 +14,7 @@ const ProductCardTwo = ({tagIcon, tagClass, mainImage, productCardContainerClass
 }) => {
     
     const [cartClicked, setCartClicked] = useState(true);
-    console.log("main image , ", mainImage)
+    // console.log("main image , ", mainImage)
     
     const dispatch = useDispatch();
     const selectedColorIndex = useSelector((state) => state.colorIndex.colorIndex);

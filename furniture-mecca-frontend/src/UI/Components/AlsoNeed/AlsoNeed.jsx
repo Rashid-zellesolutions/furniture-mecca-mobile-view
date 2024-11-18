@@ -25,11 +25,12 @@ const AlsoNeed = ({productsUid}) => {
     //         ], reviewCount: '(200)', img: imageThree 
     //     }
     // ]
+    console.log("also neewuid", productsUid)
 
     const filledStars = [filledStar, filledStar, filledStar, filledStar]
 
     const relatedProduct = productsUid.map((item) => item)
-    console.log("also needed products", relatedProduct)
+    // console.log("also needed products", relatedProduct)
     // console.log("transfered valued", relatedProduct)
 
     const [data, setData] = useState();
@@ -68,7 +69,7 @@ const AlsoNeed = ({productsUid}) => {
         }).format(price)
     }
   return (
-    <div className={`might-need-main-container ${productsUid === undefined ? 'show-component' : ''}`}>
+    <div className={`might-need-main-container`}>
         <h3>You Might Also Need</h3>
         <div className='might-need-cards-main-container'>
             {data && data.map((item) => (

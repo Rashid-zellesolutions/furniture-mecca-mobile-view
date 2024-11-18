@@ -178,7 +178,6 @@ export const CartProvider = ({children}) => {
 
 
         let total = cart.reduce((price, item) => price + item.product.sub_total, 0);
-        console.log("price val", total)
         setSubTotal(total)
         // for(const item of cart){
         //     const price = parseFloat((

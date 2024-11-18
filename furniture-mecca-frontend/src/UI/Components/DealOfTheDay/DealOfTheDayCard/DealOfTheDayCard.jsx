@@ -221,7 +221,7 @@ const DealOfTheDayCard = ({
             <div className='mobile-view-star-rating-and-review'>
                 <div className='mobile-view-product-stars'>
                     {star && star.map((item, index) => (
-                      <img src={item.icon} alt='src' />
+                      <img key={index} src={item.icon} alt='src' />
                     ))}
                 </div>
                 <p>{review}</p>

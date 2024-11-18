@@ -178,6 +178,9 @@
 
 .header-cart-icon-count{
     position: relative;
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
 
 .header-cart-products-count{

@@ -7,11 +7,13 @@ import venmaLogo from '../../../../Assets/icons/venma.png';
 import cardIcon from '../../../../Assets/icons/card-icon.png'
 import { useOrder } from '../../../../context/orderContext/orderContext';
 import { useMyOrders } from '../../../../context/orderContext/ordersContext';
+import { Link } from 'react-router-dom';
 
 const PaymentMethod = () => {
   
+  const {handleTabOpen, handleClickTop} = useMyOrders()
   const [selectedLabel, setSelectedLabel] = useState('')
-  const {setOrderPayload} = useMyOrders()
+  const {orderPayload, setOrderPayload} = useMyOrders()
   const handleSelectedLabel = (method) => {
     setSelectedLabel(method);
     console.log("method selected", selectedLabel)
@@ -25,6 +27,22 @@ const PaymentMethod = () => {
   const handleOnClick = () => {
     addOrder('payment_method', 'cash delivery')
   }
+
+  // const isPaymentMethodFilled = () => {
+  //     console.log("payment selected", orderPayload.payment_method)
+  //       return orderPayload.payment_method.trim() !== "";
+  // }
+
+  // const handleSubmit = () => {
+  //       if (!isPaymentMethodFilled()) {
+  //           alert("Please fill the payment method before submitting.");
+  //           console.log("missing")
+  //       } else {
+  //           handleTabOpen(2); 
+  //           handleClickTop()
+  //           console.log("done")
+  //       }
+  //   };
   
 
   const paypalBtnOptions = [
@@ -52,10 +70,10 @@ const PaymentMethod = () => {
                 </p>
                 <div className='terms-agree'>
                     <input type='checkbox' id='agree-terms' />
-                    <label for='agree-terms'>I have read & agreed to the website <a href='#'>terms and conditions</a></label>
+                    <label for='agree-terms'>I have read & agreed to the website <Link>terms and conditions</Link></label>
                 </div>
               </div>
-              <div className={`procced-btn-div ${selectedLabel === 'Paypal' ? 'hide-proced' : ''}`}>
+              <div className={`procced-btn-div ${selectedLabel === 'Paypal' ? 'hide-proced' : ''}`}  onClick={()=> {handleTabOpen(2); handleClickTop()}}>
                 <button>
                   Procced with {selectedLabel}
                 </button>

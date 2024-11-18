@@ -30,7 +30,7 @@ export const MyOrdersProvider = ({children}) => {
         shipping_cost: 10
     })
     const [loading, setLoading] = useState(true); // Loading state
-    const [selectedTab, setSelectedTab] = useState('delivery')
+    const [selectedTab, setSelectedTab] = useState(0)
     const [isLoader, setIsLoader] = useState(false)
 
     useEffect(() => {
@@ -62,7 +62,6 @@ export const MyOrdersProvider = ({children}) => {
                 [name]: value, // Update the specific field in billing
             },
         }));
-        console.log("order from context", orderPayload);
     };
 
     const addProducts = (products) => {
@@ -80,7 +79,6 @@ export const MyOrdersProvider = ({children}) => {
                 }))
             ]
         }))
-        console.log("after send cart product into payload", orderPayload)
     }
 
     const handleValueChange = (e) => {
@@ -91,17 +89,27 @@ export const MyOrdersProvider = ({children}) => {
         }));
     };
 
-    const handleTabOpen = (tabName) => {
-        setSelectedTab(tabName);
+    const handleClickTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
+    const handleTabOpen = (tabId, scrollTop) => {
+
+        setSelectedTab(tabId);
+        console.log("selected id", selectedTab)
+
+        if(scrollTop){
+            scrollTop();
+        }
     }
     
     const sendProducts = async () => {
-        console.log("payload before send to api", orderPayload)
       try {
         setIsLoader(true)
         const api = `/api/v1/orders/add`;
         const response = await axios.post(`${url}${api}`, orderPayload);
-        console.log("add resposnse", response);
       } catch (error) {
         console.error("error adding order", error);
       }finally {
@@ -109,7 +117,6 @@ export const MyOrdersProvider = ({children}) => {
     }
     //   setIsLoader(false)
     }
-    console.log("payment set", orderPayload)
     return (
         <MyOrderContext.Provider value={{
             orderPayload,
@@ -122,7 +129,8 @@ export const MyOrdersProvider = ({children}) => {
             addProducts,
             sendProducts,
             isLoader,
-            setIsLoader
+            setIsLoader,
+            handleClickTop
         }}>
             {children}
         </MyOrderContext.Provider>

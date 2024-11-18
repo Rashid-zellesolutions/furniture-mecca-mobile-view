@@ -48,19 +48,13 @@ import { useSingleProductContext } from '../../../context/singleProductContext/s
 
 const SingleProductStickySection = ({productData}) => {
   const product = productData;
-  console.log("product data of top", productData.products);
-  console.log("sticky products", product)
+  console.log("product on top", product)
 
   const { cart, addToCart, decreamentQuantity , increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
   const [cartSection, setCartSection] = useState(false);
   const [isProtectionCheck, setIsProtectionCheck] = useState(true)
-  console.log("reflection on sticky ", isProtectionCheck)
 
-  console.log("local product uid", product.uid)
   const searchProductOnCart = cart.find((item) => item.product.uid === product.uid)
-  console.log("cart product with uid", searchProductOnCart )
-
-
 
   const [quantity, setQuantity] = useState(searchProductOnCart !== undefined ? searchProductOnCart.product.quantity : 1)
   const increaseLocalQuantity = () => {
@@ -222,9 +216,7 @@ const SingleProductStickySection = ({productData}) => {
 
   const handleAddToCartProduct = (product) => {
     setCartSection(true);
-    console.log("clicked product", product)
     addToCart(product, quantity, isProtectionCheck);
-    console.log("cart data", cart)
   }
   const handleCartClose = () => {
     setCartSection(false)
@@ -237,7 +229,7 @@ const SingleProductStickySection = ({productData}) => {
         <div className='left-section'>
           {/* <Breadcrumb /> */}
           <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
-            <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tag && product.tags[0].bg_color}}> {product.tags[0].text}</p>
+          {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p> }
           <div className='single-product-alice-slider'>
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
@@ -324,7 +316,7 @@ const SingleProductStickySection = ({productData}) => {
               </div>
             </div>
             <FinancingOptions />
-            {product.may_also_need ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
+            {product.may_also_need && product.may_also_need.length > 0 ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
             
             <WhatWeOffer isProtected={isProtectionCheck} setIsProtected={setIsProtectionCheck} />
             <DeliveryOptions />

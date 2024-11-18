@@ -8,7 +8,24 @@ const ShippingForm = () => {
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxClick = () => { setIsChecked(!isChecked) }
 
-    const {orderPayload, handleNestedValueChange, loading, handleValueChange, handleTabOpen} = useMyOrders();
+    const {orderPayload, handleNestedValueChange, loading, handleValueChange, handleClickTop, handleTabOpen} = useMyOrders();
+
+    // const areAllBillingFieldsFilled = () => {
+    //     return Object.values(orderPayload.billing).every(
+    //         (value) => value.trim() !== "",
+    //     )
+    // }
+
+    // const handleSubmit = () => {
+    //     if(!areAllBillingFieldsFilled()){
+    //         alert("required fields are missing");
+    //         console.log("missing")
+    //     }else{
+    //         handleTabOpen(1); 
+    //         handleClickTop()
+    //         console.log("done")
+    //     }
+    // }
 
     if(loading){
         return <div>Loading....</div>
@@ -137,7 +154,7 @@ const ShippingForm = () => {
                 <div className='order-note'>
                     <SummaryInputFields type={'text'} label={'Order Notes (Optional)'} placeholder={'Notes about your order, e.g Special  delivery notes'} />
                 </div>
-                <button type='button' onClick={()=> handleTabOpen('payment-method')} className='desktop-billing-details-send-button'>
+                <button type='button' onClick={()=> {handleTabOpen(1); handleClickTop()}} className='desktop-billing-details-send-button'>
                     Continue to Payment
                 </button>
             </form>
@@ -184,7 +201,7 @@ const ShippingForm = () => {
                     </div>
                 </div>
                 <div className='mobile-pay-btn-section'>
-                    <button onClick={()=>{}}>
+                    <button onClick={()=> handleTabOpen(1)}>
                         Continue to Payment
                     </button>
                 </div>

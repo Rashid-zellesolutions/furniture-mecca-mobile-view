@@ -174,10 +174,10 @@ const Haider = () => {
           <Link>
           <img src={HeartIcon} alt="heart" />
           </Link>
-          <Link className='header-cart-icon-count' onClick={handleCartSectionOpen}>
+          <button className='header-cart-icon-count' onClick={handleCartSectionOpen}>
             <img src={cartIcon} alt="cart" />
             <p className='header-cart-products-count'>{cartItemCount}</p>
-          </Link>
+          </button>
         </div>
       </div>
 

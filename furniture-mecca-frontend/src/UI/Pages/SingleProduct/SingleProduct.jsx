@@ -35,7 +35,7 @@ const SingleProduct = () => {
   const {slug} = useParams()
   const location = useLocation();
   const product = location.state || {}
-  console.log("main product data", product)
+  console.log("main product data", product.collection)
 
   const {singleProduct, increaseQuantity} = useSingleProductContext()
   // const {} = useSingleProductContext();
@@ -62,8 +62,8 @@ const SingleProduct = () => {
   return (
     <div>
         <SingleProductStickySection productData={product} />
-        <SimillerProducts collection={singleProduct} />
-        <FrequentlyBought relatedProducts={singleProduct} />
+        {product.collection && product.collection.length > 0 ? <SimillerProducts collection={product.collection} /> : <></>}
+        {product.related_products && product.related_products.length > 0 ? <FrequentlyBought relatedProducts={product.related_products} /> : <></>}
         <RatingAndReview />
         {/* <CustomerPhotos /> */}
         <ProductComments />

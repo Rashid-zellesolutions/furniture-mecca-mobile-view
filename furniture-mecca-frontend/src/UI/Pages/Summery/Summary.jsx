@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Summary.css';
 import ShippingDetails from '../../Components/Summary-Components/ShippingDetails/ShippingDetails';
 import OrderSummary from '../../Components/Summary-Components/OrderSummary/OrderSummary';
@@ -24,12 +24,21 @@ const Summary = () => {
   ]
   // const {selectedTab, handleTabOpen} = useMyOrders();
   const [currentId, setCurrentId] = useState(0)
-  const handleNavClick = (id) => {
-    setCurrentId(id);
-  }
+  const {setOrderPayload, addProducts, sendProducts, selectedTab, setSelectedTab, handleTabOpen, isLoader, setIsLoader} = useMyOrders();
+  // const handleNavClick = (id) => {
+  //   setCurrentId(id);
+  //   setSelectedTab(id)
+  // }
+
+    
+    // useEffect(() => {
+    //   window.addEventListener('scroll', handleClickTop);
+    //   return () => {
+    //     window.removeEventListener('scroll', handleClickTop)
+    //   }
+    // }, [selectedTab])
 
     const {cart, calculateTotalPrice} = useCart()
-    const {setOrderPayload, addProducts, sendProducts, isLoader, setIsLoader} = useMyOrders();
 
     console.log("cart on review page", cart)
     // const sendProducts = async () => {
@@ -54,12 +63,12 @@ const Summary = () => {
       {isLoader && <Loader />}
       <div className='summary-left-section'>
         <div className='checkout-pages-toggle-nav'>
-          {checkoutSections.map((items,) => (
+          {checkoutSections.map((items, index) => (
             <span 
               key={items.id} 
-              onClick={() => handleNavClick(items.id)}
+              onClick={() => handleTabOpen(index)}
               className={`checkout-page-toggle-nav-single-item 
-                ${currentId === items.id ? 'active-checkout-toggle' : ''}`} 
+                ${selectedTab === index ? 'active-checkout-toggle' : ''}`} 
               >
               <p>{items.id}.</p>
               <p>{items.name}</p>
@@ -67,11 +76,11 @@ const Summary = () => {
           ))}
         </div>
         {
-          currentId === 1 ? <div className='shipping-details-and-coupen-show'>
+          selectedTab === 0 ? <div className='shipping-details-and-coupen-show'>
             <ShippingDetails userInfoPayload={setOrderPayload} />
             <Coupon />
           </div>:
-          currentId === 2 ? <PaymentMethod /> : <div className='order-summery-and-proceed-btn'> 
+          selectedTab === 1 ? <PaymentMethod /> : selectedTab === 2 ? <div className='order-summery-and-proceed-btn'> 
             <ShipingAndDelivery />
             <PaymentInfo />
             <OrderSummary />
@@ -80,7 +89,7 @@ const Summary = () => {
                 Place Order
               </button>
             </div>
-          </div>
+          </div> : <></>
           
         }
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./FurnitureAtEveryBudget.css";
 import ProductCard from "../../Components/ProductCard/ProductCard";
-import ProductCardTwo from "../../Components/ProductCard/ProductCardTwo";
 import star from '../../../Assets/icons/blue-star.png'
 import { url } from "../../../utils/api";
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -50,14 +49,12 @@ export default function FurnitureAtEveryBudget() {
     const [quickViewClicked, setQuickView] = useState(false);
     const handleQuickViewOpen = (item) => {
         setQuickView(true);
-        console.log("quick view for budget: ", item)
         setQuickViewProduct(item)
 
     }
     const handleQuickViewClose = () => {setQuickView(false)}
 
     const handleProductClick = (item) => {
-        console.log("items on budget comp: ", item)
         navigate(`/single-product/${item.slug}`, { state: item })
     };
 
@@ -82,7 +79,7 @@ export default function FurnitureAtEveryBudget() {
 
                 <div className="product-grid">
                     {data && data.products.map((item, index) => (
-                        <ProductCardTwo
+                        <ProductCard
                             key={index}
                             slug={item.slug}
                             singleProductData={item}
