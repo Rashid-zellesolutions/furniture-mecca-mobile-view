@@ -5,6 +5,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     z-index: 999999999999;
+    position: relative;
 }
 
 
@@ -146,12 +147,17 @@
     color: #fff;
 }
 
-.quick-view-price{
+.quick-view-product-price-tag{
     font-size: 30px !important;
     font-weight: 600 !important;
     line-height: 45px !important;
-    color: var(--text-white) !important;
+    color: var(--active-nav-item-color) !important;
     margin: 20px 0;
+}
+
+.quick-view-product-price-tag del{
+    font-size: 22px;
+    color: #fff;
 }
 
 .quick-view-add-item-or-cart-btn{
@@ -178,6 +184,12 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.quick-view-add-or-minus-item button img{
+    width: 25px;
+    height: auto;
+    object-fit: contain;
 }
 
 .quick-view-add-item-or-cart-btn p{

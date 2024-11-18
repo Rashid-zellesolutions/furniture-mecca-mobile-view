@@ -48,7 +48,7 @@ import { useSingleProductContext } from '../../../context/singleProductContext/s
 
 const SingleProductStickySection = ({productData}) => {
   const product = productData;
-  console.log("product data of top", productData);
+  console.log("product data of top", productData.products);
   console.log("sticky products", product)
 
   const { cart, addToCart, decreamentQuantity , increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
@@ -237,7 +237,7 @@ const SingleProductStickySection = ({productData}) => {
         <div className='left-section'>
           {/* <Breadcrumb /> */}
           <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
-            <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p>
+            <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tag && product.tags[0].bg_color}}> {product.tags[0].text}</p>
           <div className='single-product-alice-slider'>
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
@@ -324,7 +324,8 @@ const SingleProductStickySection = ({productData}) => {
               </div>
             </div>
             <FinancingOptions />
-            <AlsoNeed productsUid={product.may_also_need} />
+            {product.may_also_need ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
+            
             <WhatWeOffer isProtected={isProtectionCheck} setIsProtected={setIsProtectionCheck} />
             <DeliveryOptions />
             {/* <ProductOverView /> */}

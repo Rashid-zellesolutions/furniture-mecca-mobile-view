@@ -5,13 +5,16 @@ import CartSideSection from './CartSideSection';
 import cartBlack from '../../../Assets/icons/cart-bag-new.png';
 import minusBtn from '../../../Assets/icons/minus-white.png';
 import plusBtn from '../../../Assets/icons/plus-white.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const CartSidePannel = ({cartData, addToCartClicked, setAddToCartClick, handleCartSectionClose, removeFromCart,decreamentQuantity, increamentQuantity}) => {
     // console.log("Card Panel Data", cartData)
     const [singleCart, setSingleCart] = useState(cartData)
+    const navigate = useNavigate()
     const handleCLoseCartPanel = () => {
         setAddToCartClick(false)
+        navigate(`/add-to-cart`)
+        
     }
     // console.log("single cart state: ", singleCart)
     return (
@@ -52,9 +55,9 @@ const CartSidePannel = ({cartData, addToCartClicked, setAddToCartClick, handleCa
                 </div>
                 <div className='cart-side-section-buttons'>
                     <div className='cart-section-view-cart-and-checkout-btn'>
-                        <Link to={'/add-to-cart'} className='cart-side-section-view-cart' onClick={handleCLoseCartPanel}>
+                        <button  className='cart-side-section-view-cart' onClick={handleCLoseCartPanel}>
                             View Cart
-                        </Link>
+                        </button>
                         <button className='cart-side-section-checkout'>
                             Checkout
                         </button>

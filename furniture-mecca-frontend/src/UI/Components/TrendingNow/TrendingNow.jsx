@@ -33,7 +33,7 @@ const TrendingNow = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % data.sliders.length);
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % data.sliders && data.sliders.length);
         }, 3000); // Change slide every 3 seconds
 
         return () => clearInterval(interval); // Cleanup interval on component unmount

@@ -45,7 +45,7 @@ const OrderSummary = () => {
         console.log("order payload after adding products", orderPayload)
     }
 
-    const taxPrice = getGrandTotal(10, 50)
+    // const taxPrice = getGrandTotal(10, 50)
 
     // const tax = 10;
     // const grandTotal = calculateTotalPrice(cart) + tax
@@ -92,7 +92,7 @@ const OrderSummary = () => {
             <div className='selected-product-total'>
                 <span>
                     <h3>Total</h3>
-                    <p>{formatePrices(grandValue)}</p>
+                    <p>{formatePrices(subTotal + 10)}</p>
                 </span>
             </div>
         </div>

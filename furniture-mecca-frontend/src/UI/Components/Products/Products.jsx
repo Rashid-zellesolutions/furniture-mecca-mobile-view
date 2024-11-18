@@ -24,6 +24,7 @@ import paginationArrow from '../../../Assets/icons/arrow-right-large.png'
 import MobileViewProductFilters from '../MobileViewProductFilters/MobileViewProductFilters';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 import { IoMdClose } from "react-icons/io";
+import ProductCardTwo from '../ProductCard/ProductCardTwo';
 
 const Products = ({productArchiveHading}) => {
     // products context data
@@ -62,7 +63,7 @@ const Products = ({productArchiveHading}) => {
     
     // navigate to single product page with product data
     const handleProductClick = (item) => {
-        navigate(`/single-product/${item.slug}`, {state: {products: item}});
+        navigate(`/single-product/${item.slug}`, {state: item});
     };
     
     // filters data
@@ -331,7 +332,8 @@ const Products = ({productArchiveHading}) => {
                 </div>
                 <div className='product-main'>
                     {products.slice(0, 9).map((item, index) => {
-                        return <ProductCard key={index}
+                        return <ProductCardTwo 
+                            key={index}
                             slug={item.slug}
                             singleProductData={item}
                             maxWidthAccordingToComp={'32%'} 
@@ -389,7 +391,7 @@ const Products = ({productArchiveHading}) => {
             </div>
             <div className={`${selectedGrid === 'single-col' ? 'mobile-view-product-single-column' : 'mobile-view-products-main-container' } `}>
                 {products.slice(0, 3).map((item, index) => {
-                        return <ProductCard key={index}
+                        return <ProductCardTwo key={index}
                             slug={item.slug}
                             singleProductData={item}
                             maxWidthAccordingToComp={'32%'} 

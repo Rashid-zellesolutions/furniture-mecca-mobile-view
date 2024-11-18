@@ -22,12 +22,12 @@ const CartProducts = () => {
     calculateTotalPrice(cart)
     console.log("cart total", calculateTotalPrice(cart))
 
-    useEffect(() => {
-        console.log("instant data change", subTotal)
-        // updateSubTotal()
-    }, [subTotal])
+    // useEffect(() => {
+    //     console.log("instant data change", subTotal)
+    //     // updateSubTotal()
+    // }, [subTotal])
 
-    console.log("new cart attributes payload", cart);
+    // console.log("new cart attributes payload", cart);
 
     const [isOpen, setIsOpen] = useState(false);
     const [checkoutFixed, setCheckoutFixed] = useState(true);
@@ -52,7 +52,7 @@ const CartProducts = () => {
             title: 'Tax', price: formatedPrice(taxValue)
         },
         {
-            title: 'Total', price: formatedPrice(grandValue)
+            title: 'Total', price: formatedPrice(subTotal + deliveryCharges + taxValue)
         },
     ]
 

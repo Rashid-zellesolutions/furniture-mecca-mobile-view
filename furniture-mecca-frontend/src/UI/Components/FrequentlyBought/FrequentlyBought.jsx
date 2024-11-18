@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import './FrequentlyBought.css';
 import { useSelector } from 'react-redux';
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from '../ProductCard/ProductCardTwo';
 import { useNavigate } from 'react-router-dom';
 import { useProducts } from '../../../context/productsContext/productContext';
 import axios from 'axios';
 import { url } from '../../../utils/api';
 import heart from '../../../Assets/icons/heart-vector.png'
-import ProductCardTwo from '../ProductCard/ProductCardTwo';
+import ProductCardTwo from '../ProductCard/ProductCard';
 
 const FrequentlyBought = ({relatedProducts}) => {
 

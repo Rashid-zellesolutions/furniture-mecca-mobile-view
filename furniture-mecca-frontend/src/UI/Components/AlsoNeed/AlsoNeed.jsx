@@ -29,6 +29,7 @@ const AlsoNeed = ({productsUid}) => {
     const filledStars = [filledStar, filledStar, filledStar, filledStar]
 
     const relatedProduct = productsUid.map((item) => item)
+    console.log("also needed products", relatedProduct)
     // console.log("transfered valued", relatedProduct)
 
     const [data, setData] = useState();

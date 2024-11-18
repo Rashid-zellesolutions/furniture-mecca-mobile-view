@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './SimillerProducts.css'
 import { useRef } from 'react'
 import { useSelector } from 'react-redux'
-import ProductCard from '../ProductCard/ProductCard'
+import ProductCard from '../ProductCard/ProductCardTwo'
 import arrowLeftRed from '../../../Assets/icons/arrow-left-red.png';
 import arrowRightRed from '../../../Assets/icons/arrow-right-red.png';
 import { useProducts } from '../../../context/productsContext/productContext'
@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext'
 import axios from 'axios'
 import { url } from '../../../utils/api'
-import ProductCardTwo from '../ProductCard/ProductCardTwo'
+import ProductCardTwo from '../ProductCard/ProductCard'
 import heart from '../../../Assets/icons/heart-vector.png'
 
 const SimillerProducts = ({collection}) => {
@@ -121,7 +121,7 @@ const SimillerProducts = ({collection}) => {
             </button> 
             <div className='similler-products-cards' ref={scrollContainerRef}>
                 {data && data.slice(0, 12).map((item, index) => (
-                    <ProductCardTwo
+                    <ProductCard
                         key={item.uid}
                         maxWidthAccordingToComp={'100%'} justWidth={'310px'}
                         // tagIcon={item.productTag ? item.productTag : item.heart}
