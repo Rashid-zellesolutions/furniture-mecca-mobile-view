@@ -8,24 +8,47 @@ const ShippingForm = () => {
     const [isChecked, setIsChecked] = useState(false);
     const handleCheckboxClick = () => { setIsChecked(!isChecked) }
 
-    const {orderPayload, handleNestedValueChange, loading, handleValueChange, handleClickTop, handleTabOpen} = useMyOrders();
+    const {orderPayload, emptyField, setEmptyField, handleNestedValueChange, loading, handleValueChange, handleClickTop, handleTabOpen} = useMyOrders();
 
-    // const areAllBillingFieldsFilled = () => {
-    //     return Object.values(orderPayload.billing).every(
-    //         (value) => value.trim() !== "",
-    //     )
+    // const validateBillingFields = () => {
+    //     const {billing} = orderPayload;
+
+    //     for (const key in billing){
+    //         if(billing[key] === ""){
+    //             alert(`the field ${key.replace("_", "")} is missing`)
+    //             return false;
+    //         }
+    //     } 
+    //     alert("all fields are missing")
+    //     return true
     // }
 
-    // const handleSubmit = () => {
-    //     if(!areAllBillingFieldsFilled()){
-    //         alert("required fields are missing");
-    //         console.log("missing")
-    //     }else{
-    //         handleTabOpen(1); 
-    //         handleClickTop()
-    //         console.log("done")
-    //     }
-    // }
+    const areBillingFieldsFilled = () => {
+        const { billing } = orderPayload;
+        const newErrorObj = {};
+
+        // return Object.values(billing).every((value) => value.trim() !== "");
+        for (const field in billing){
+            if(billing[field].trim() === ""){
+                newErrorObj[field] = `required`
+            }
+        }
+        setEmptyField(newErrorObj);
+        return Object.keys(newErrorObj).length === 0;
+    };
+
+     const handleSubmit = (e) => {
+        e.preventDefault();
+        if (areBillingFieldsFilled()) {
+        // Proceed with form submission
+        handleTabOpen(1); 
+        handleClickTop()
+        console.log("Order submitted:", orderPayload);
+        }
+        // else {
+        // alert("Please fill in all fields!");
+        // }
+    };
 
     if(loading){
         return <div>Loading....</div>
@@ -42,7 +65,9 @@ const ShippingForm = () => {
                         fieldRequired={true}
                         placeholder={'First Name'}
                         name={'first_name'}
-                        onChange={handleNestedValueChange   }
+                        required={'required'}
+                        onChange={handleNestedValueChange}
+                        error={emptyField.first_name}
                     />
                     <SummaryInputFields
                         type={'text'}
@@ -51,8 +76,9 @@ const ShippingForm = () => {
                         label={'Last Name'}
                         fieldRequired={true}
                         placeholder={'Last Name'}
-                        onChange={handleNestedValueChange
-                        }
+                        required={'required'}
+                        onChange={handleNestedValueChange}
+                        error={emptyField.last_name}
                     />
                 </div>
                 <div className='email-container'>
@@ -63,8 +89,9 @@ const ShippingForm = () => {
                         fieldRequired={true}
                         placeholder={'Email'}
                         name={'email'}
-                        onChange={handleNestedValueChange
-                        }
+                        required={'required'}
+                        onChange={handleNestedValueChange}
+                        error={emptyField.email}
                     />
                 </div>
                 <div className='country-region'>
@@ -79,29 +106,34 @@ const ShippingForm = () => {
                         fieldRequired={true}
                         placeholder={'House number & Street number'}
                         name={'address_1'}
-                        onChange={handleNestedValueChange
-                        }
+                        required={'required'}
+                        onChange={handleNestedValueChange}
+                        error={emptyField.address_1}
                     />
                     <SummaryInputFields
                         type={'text'}
-                        placeholder={'Apartment, suite, unit etc'} />
+                        placeholder={'Apartment, suite, unit etc'} 
+                    />
                 </div>
                 <div className='city-state-zip'>
                     <SummaryInputFields
                         type={'text'}
                         value={orderPayload.postal_code}
                         label={'Zip Code'}
-                        fieldRequired={true}
+                        // fieldRequired={true}
                         name={'postal_code'}
-                        onChange={handleNestedValueChange
-                        }
+                        required={'required'}
+                        onChange={handleNestedValueChange}
+                        error={emptyField.postal_code}
                     />
                     <SummaryInputFields
                         type={'text'}
                         value={orderPayload.city}
                         label={'Town/City'}
                         name={'city'}
+                        required={'required'}
                         onChange={handleNestedValueChange}
+                        error={emptyField.city}
                     />
                     <SummaryInputFields
                         type={'text'}
@@ -110,8 +142,9 @@ const ShippingForm = () => {
                         fieldRequired={true}
                         placeholder={'Pennsylvanian'}
                         name={'state'}
-                        onChange={handleNestedValueChange
-                        }
+                        required={'required'}
+                        onChange={handleNestedValueChange}
+                        error={emptyField.state}
                     />
                 </div>
                 <div>
@@ -122,8 +155,9 @@ const ShippingForm = () => {
                         fieldRequired={true}
                         placeholder={'Phone'}
                         name={'phone'}
-                        onChange={handleNestedValueChange
-                        }
+                        required={'required'}
+                        onChange={handleNestedValueChange}
+                        error={emptyField.phone}
                     />
                 </div>
                 <div className='different-billing-option'>
@@ -154,7 +188,7 @@ const ShippingForm = () => {
                 <div className='order-note'>
                     <SummaryInputFields type={'text'} label={'Order Notes (Optional)'} placeholder={'Notes about your order, e.g Special  delivery notes'} />
                 </div>
-                <button type='button' onClick={()=> {handleTabOpen(1); handleClickTop()}} className='desktop-billing-details-send-button'>
+                <button type='button' onClick={handleSubmit} className='desktop-billing-details-send-button'>
                     Continue to Payment
                 </button>
             </form>

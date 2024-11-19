@@ -3,12 +3,17 @@
     flex-direction: column;
     width: 100%;
     gap: 5px;
+    position: relative;
 }
 
 .summary-input-field label{
     font-size: 14px;
     line-height: 21px;
     font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
 }
 
 .required-field::after{
@@ -29,4 +34,12 @@
     /* box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1); */
     outline: none;
     color: var(--text-color);
+}
+
+.error-msg{
+    /* position: absolute; */
+    /* bottom: -25px; */
+    /* top: 0;
+    left: 0; */
+
 }

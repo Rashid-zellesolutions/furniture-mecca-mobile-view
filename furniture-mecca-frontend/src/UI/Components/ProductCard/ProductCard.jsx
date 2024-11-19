@@ -43,10 +43,13 @@ const ProductCard = ({
     borderLeft,
     justWidth,
     handleCardClick,
-    attributes
+    attributes,
+    type,
+    variation
 }) => {
 
     const [cartClicked, setCartClicked] = useState(true);
+    console.log("product type", type);
 
     const dispatch = useDispatch();
     const selectedColorIndex = useSelector((state) => state.colorIndex.colorIndex);
@@ -87,6 +90,11 @@ const ProductCard = ({
 
     const priorityAttribute = getPriorityAttribute(attributes);
 
+    const [selectedColorVariableindex, setSelectedColorVariableIndex] = useState(1)
+    const handleVariationImageSelect = (index) => {
+        setSelectedColorVariableIndex(index)
+    }
+
     return (
         <>
             <div className={`${productCardContainerClass} ${borderLeft ? 'hide-after' : ''} `} style={{ maxWidth: maxWidthAccordingToComp, width: justWidth }}>
@@ -108,7 +116,7 @@ const ProductCard = ({
 
 
                     <div className='product-main-image-container'>
-                        <img src={`${url}${mainImage}`}
+                        <img src={`${url}${type === 'variable' ? variation[selectedColorVariableindex].images[0].image_url : mainImage}`}
                             alt='product img' className='product-main-img'
                             onMouseEnter={mouseEnter}
                             onMouseLeave={mouseLeave} />
@@ -135,12 +143,12 @@ const ProductCard = ({
 
                     {tags && <div className="product-tagging">
                         {
-                            tags[0].type.toLowerCase() === "text" ?
+                            tags[0] && tags[0].type.toLowerCase() === "text" ?
                                 <div className='text-tag' style={{ backgroundColor: tags[0].bg_color, color: tags[0].text_color }} >
                                     {tags[0].text}
                                 </div> :
                                 <div className='image-tag' >
-                                    <img src={"https://fm.skyhub.pk" + tags[0].image} alt="" srcset="" />
+                                    <img src={"https://fm.skyhub.pk" + tags[0]?.image} alt="" srcset="" />
                                 </div>
                         }
                     </div>}
@@ -166,7 +174,71 @@ const ProductCard = ({
 
                     </div> */}
 
-                    {priorityAttribute && (
+                    {type === 'variable' ?
+                        <div className='variable-colors-variations-div'>
+                            {variation.map((item, index) => (
+                                item.attributes.filter((attr) => attr.type === 'color').map((colorAtr, attrIndex) => (
+                                    <div className="color-variation-div">
+                                    {colorAtr.options.map((option, opindex) => (
+                                        <span
+                                            key={index}
+                                            className="color-variation"
+                                            onClick={() => handleVariationImageSelect(index)}
+                                            style={{
+                                                backgroundColor: option.value,
+                                                border: 'none',
+                                                boxShadow: ''
+                                            }}
+                                        ></span>
+                                    ))}
+                                    </div>
+                                ))
+                            ))}
+                        </div>
+                        : priorityAttribute && (
+                            <div className='product-card-attr' >
+                                {priorityAttribute.type === "image" && (
+                                    <div className="image-variation">
+                                        {priorityAttribute.options.map((item, index) => (
+                                            <img
+                                                key={index}
+                                                src={"https://fm.skyhub.pk" + item.value}
+                                                alt=""
+                                            />
+                                        ))}
+                                    </div>
+                                )}
+
+                                {priorityAttribute.type === "color" && (
+                                    <div className="color-variation-div">
+                                        {priorityAttribute.options.map((item, index) => (
+                                            <span
+                                                key={index}
+                                                className="color-variation"
+                                                onClick={() => { }}
+                                                style={{
+                                                    backgroundColor: item.value,
+                                                    border: 'none',
+                                                    boxShadow: ''
+                                                }}
+                                            ></span>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {priorityAttribute.type === "select" && (
+                                    <div className="text-variation">
+                                        {priorityAttribute.options.map((item, index) => (
+                                            <p key={index} className="attr-var">{item.value}</p>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )
+
+                    }
+
+                    {/* {priorityAttribute && (
                         <div className='product-card-attr' >
                             {priorityAttribute.type === "image" && (
                                 <div className="image-variation">
@@ -205,7 +277,7 @@ const ProductCard = ({
                                 </div>
                             )}
                         </div>
-                    )}
+                    )} */}
 
 
 

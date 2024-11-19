@@ -9,41 +9,23 @@ import { useOrder } from '../../../../context/orderContext/orderContext';
 import { useMyOrders } from '../../../../context/orderContext/ordersContext';
 import { Link } from 'react-router-dom';
 
-const PaymentMethod = () => {
+const PaymentMethod = ({handleSubmitOrder}) => {
   
-  const {handleTabOpen, handleClickTop} = useMyOrders()
+  // const {handleTabOpen, handleClickTop} = useMyOrders()
   const [selectedLabel, setSelectedLabel] = useState('')
-  const {orderPayload, setOrderPayload} = useMyOrders()
+  const {setOrderPayload} = useMyOrders()
   const handleSelectedLabel = (method) => {
     setSelectedLabel(method);
-    console.log("method selected", selectedLabel)
     setOrderPayload((prev) => ({
       ...prev,
       payment_method: selectedLabel
     }))
   }
 
-  const {addOrderPayment, addOrder} = useOrder()
+  const {addOrder} = useOrder()
   const handleOnClick = () => {
     addOrder('payment_method', 'cash delivery')
   }
-
-  // const isPaymentMethodFilled = () => {
-  //     console.log("payment selected", orderPayload.payment_method)
-  //       return orderPayload.payment_method.trim() !== "";
-  // }
-
-  // const handleSubmit = () => {
-  //       if (!isPaymentMethodFilled()) {
-  //           alert("Please fill the payment method before submitting.");
-  //           console.log("missing")
-  //       } else {
-  //           handleTabOpen(2); 
-  //           handleClickTop()
-  //           console.log("done")
-  //       }
-  //   };
-  
 
   const paypalBtnOptions = [
     {name: 'Pay with', icon: paypalFullLogo, bgColor: '#F2BA36', textColor: '#000'},
@@ -51,14 +33,13 @@ const PaymentMethod = () => {
     {logoBefore: paypalLogo, name: 'Pay Later', bgColor: '#F2BA36', textColor: '#000'},
     {logoBefore: cardIcon, name: 'Debit or Credit Card', bgColor: '#595959', textColor: '#fff'}
   ]
-  
-  
+
   return (
     <div className='payment-method-main-container'>
         <div className='payment-method-head-container' onClick={handleOnClick}>
             <img src={paypalLogo} alt='logo' />
             <img src={paypalFullLogo} alt='full logo' />
-            <p>As low as $377.89/month. <a href='#'>Learn more</a></p>    
+            <p>As low as $377.89/month. <Link>Learn more</Link></p>    
         </div>
         <div className='payment-types-outer-container'>
           <PaymentOptions onSelectedLabel={handleSelectedLabel} />
@@ -73,7 +54,7 @@ const PaymentMethod = () => {
                     <label for='agree-terms'>I have read & agreed to the website <Link>terms and conditions</Link></label>
                 </div>
               </div>
-              <div className={`procced-btn-div ${selectedLabel === 'Paypal' ? 'hide-proced' : ''}`}  onClick={()=> {handleTabOpen(2); handleClickTop()}}>
+              <div className={`procced-btn-div ${selectedLabel === 'Paypal' ? 'hide-proced' : ''}`}  onClick={handleSubmitOrder} >
                 <button>
                   Procced with {selectedLabel}
                 </button>

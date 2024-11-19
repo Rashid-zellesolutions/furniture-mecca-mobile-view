@@ -310,6 +310,14 @@
     color: var(--active-nav-item-color);
 }
 
+.variable-colors-variations-div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
 .color-variation-div{
     display: flex;
     align-items: center;

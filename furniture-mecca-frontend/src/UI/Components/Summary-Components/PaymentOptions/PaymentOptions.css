@@ -127,8 +127,8 @@
 }
 
 .credit-card-data.show-credit-card{
-    height: 88px;
-    padding: 10px 0;
+    height: auto;
+    padding: 11px 24px;
     
 }
 
@@ -137,6 +137,55 @@
     width: 100%;
     gap: 15px;
     padding: 0 50px;
+}
+
+.card-number-input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.card-number-input-label{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.card-number-input-label p{
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.card-number-input-field{
+    border: none;
+    background-color: #F9FAFA;
+    height: 48px;
+    width: 100%;
+    padding: 14px 10px;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    /* box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1); */
+    outline: none;
+    color: var(--text-color);
+}
+
+.credit-card-expiry-and-sec-number{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.card-number-input-card-types{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .pay-secure-option{
@@ -152,6 +201,8 @@
     line-height: 18px;
     font-weight: 400;
 }
+
+
 
 /* Paypal Data */
 .paypal{

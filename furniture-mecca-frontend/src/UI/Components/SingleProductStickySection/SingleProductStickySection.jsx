@@ -64,10 +64,13 @@ const SingleProductStickySection = ({productData}) => {
     setQuantity(quantity -1);
   }
 
+  const variableRegularPrice = product.variations ? product.variations.regular_price : '';
+  const variableSalePrice = product.variations ? product.variations.sale_price : ''; 
+
   // Alice Slider
-  const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
+  // const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
   const [activeIndex, setActiveIndex] = useState(0);
-  const [mobActiveIndex, setMobActiveIndex] = useState(0);
+  // const [mobActiveIndex, setMobActiveIndex] = useState(0);
   const carouselRef = useRef(null);
   const mobCarouselRef = useRef(null);
 
@@ -82,14 +85,14 @@ const SingleProductStickySection = ({productData}) => {
 
   const handleNextSlide = () => {
     const newIndex = activeIndex + 1;
-    if (newIndex < images.length) {
+    if (newIndex < product.images.length) {
       setActiveIndex(newIndex);
       carouselRef.current.slideTo(newIndex); // Slide to the next thumbnail
     }
   };
   const handleMobNextSlide = () => {
     const newIndex = activeIndex + 1;
-    if (newIndex < images.length) {
+    if (newIndex < product.images.length) {
       setActiveIndex(newIndex);
       mobCarouselRef.current.slideTo(newIndex); // Slide to the next thumbnail
     }
@@ -115,22 +118,6 @@ const SingleProductStickySection = ({productData}) => {
       setActiveIndex(newIndex);
       mobCarouselRef.current.slideTo(newIndex); // Slide to the previous thumbnail
     }
-  };
-  // const handleMobilePrevSlide = () => {
-  //   const newIndex = mobActiveIndex - 1;
-  //   if (newIndex >= 0) {
-  //     setMobActiveIndex(newIndex);
-  //     mobCarouselRef.current.slideTo(newIndex); // Slide to the previous thumbnail
-  //   }
-  // };
-
-
-  // Calculate the visible thumbnails
-  
-  const visibleThumbnails = () => {
-    const totalImages = images.length;
-    const startIndex = Math.max(0, activeIndex > totalImages - 4 ? totalImages - 4 : activeIndex);
-    return images.slice(startIndex, startIndex + 4);
   };
 
   // sticky behavior scrip
@@ -176,12 +163,12 @@ const SingleProductStickySection = ({productData}) => {
     { name: 'un-filled Star', icon: whiteStar },
   ]
 
-  const variantImages = [
-    { name: 'Silver', img: silverImage },
-    { name: 'Brown', img: brownImage },
-    { name: 'Black', img: blackImage },
-    { name: 'Gray', img: grayImage },
-  ]
+  // const variantImages = [
+  //   { name: 'Silver', img: silverImage },
+  //   { name: 'Brown', img: brownImage },
+  //   { name: 'Black', img: blackImage },
+  //   { name: 'Gray', img: grayImage },
+  // ]
 
   // const [variationName, setVariationName] = useState(product.colorVariation[0].color)
   const [variationName, setVariationName] = useState(0)
@@ -189,15 +176,15 @@ const SingleProductStickySection = ({productData}) => {
     setVariationName(index);
   }
 
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
 
-  const handleIncrease = () => {
-    setCount(prevCount => prevCount + 1);
-  };
+  // const handleIncrease = () => {
+  //   setCount(prevCount => prevCount + 1);
+  // };
 
-  const handleDecrease = () => {
-    setCount(prevCount => Math.max(1, prevCount - 1));
-  };
+  // const handleDecrease = () => {
+  //   setCount(prevCount => Math.max(1, prevCount - 1));
+  // };
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -222,6 +209,8 @@ const SingleProductStickySection = ({productData}) => {
     setCartSection(false)
   }
 
+  console.log("product variable", product.type)
+
   return (
     <>
       <div className='sticky-main-container'>
@@ -229,7 +218,7 @@ const SingleProductStickySection = ({productData}) => {
         <div className='left-section'>
           {/* <Breadcrumb /> */}
           <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
-          {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p> }
+          {/* {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p> } */}
           <div className='single-product-alice-slider'>
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
@@ -289,7 +278,7 @@ const SingleProductStickySection = ({productData}) => {
                 <p>Get it between July 27 - July 31'</p>
               </span>
               <div className='single-product-frame-color'>
-                <SizeVariant attributes={product.attributes}/>
+                <SizeVariant type={product.type} attributes={product.type === 'variable' ? product.variations : product.attributes }/>
               </div>
               <div className='add-cart-or-add-items-div'>
                 <div className='item-count'>
@@ -328,6 +317,7 @@ const SingleProductStickySection = ({productData}) => {
           cartData={cart}
           addToCartClicked={cartSection}
           handleCartSectionClose={handleCartClose}
+          setAddToCartClick={setCartSection}
           removeFromCart={removeFromCart}
           decreamentQuantity={decreamentQuantity}
           increamentQuantity={increamentQuantity}

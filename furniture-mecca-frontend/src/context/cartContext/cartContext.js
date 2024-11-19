@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 
-const CartContext = createContext()
+export const CartContext = createContext()
 
 export const CartProvider = ({children}) => {
 
@@ -31,6 +31,11 @@ export const CartProvider = ({children}) => {
         localStorage.setItem('cart', JSON.stringify(cart));
         // console.log("cart storage", cart)
     }, [cart])
+
+    const resetCart = () => {
+        setCart([]); // Clear the cart state
+        localStorage.removeItem("cart"); // Remove cart from localStorage
+    };
 
     const [singleProduct, setSingleProduct] = useState(() => {
         const savedSingleProduct = localStorage.getItem('singleProduct');
@@ -168,14 +173,11 @@ export const CartProvider = ({children}) => {
     };
     // Calculate total orders price
     
-    
-
     const calculateTotalPrice = () => {
         if(!Array.isArray(cart)){
             console.error("Invalid Array", cart);
             return 0;
         }
-
 
         let total = cart.reduce((price, item) => price + item.product.sub_total, 0);
         setSubTotal(total)
@@ -212,6 +214,7 @@ export const CartProvider = ({children}) => {
                 taxValue,
                 deliveryCharges,
                 grandValue,
+                resetCart,
             }
         }>
             {children}

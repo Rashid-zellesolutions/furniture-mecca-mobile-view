@@ -110,6 +110,8 @@ export default function FurnitureAtEveryBudget() {
                             attributes={item.attributes}
                             handleCardClick={() => handleProductClick(item)}
                             handleQuickView={() => handleQuickViewOpen(item)}
+                            type={item.type}
+                            variation={item.variations}
                         />
                     ))}
                 </div>
