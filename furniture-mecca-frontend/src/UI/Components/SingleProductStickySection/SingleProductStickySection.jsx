@@ -46,11 +46,11 @@ import { useSingleProductContext } from '../../../context/singleProductContext/s
 
 
 
-const SingleProductStickySection = ({productData}) => {
+const SingleProductStickySection = ({ productData }) => {
   const product = productData;
-  console.log("product on top", product)
+  // console.log("product on top", product)
 
-  const { cart, addToCart, decreamentQuantity , increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
+  const { cart, addToCart, decreamentQuantity, increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
   const [cartSection, setCartSection] = useState(false);
   const [isProtectionCheck, setIsProtectionCheck] = useState(true)
 
@@ -61,11 +61,11 @@ const SingleProductStickySection = ({productData}) => {
     setQuantity(quantity + 1);
   }
   const decreaseLocalQuantity = () => {
-    setQuantity(quantity -1);
+    setQuantity(quantity - 1);
   }
 
   const variableRegularPrice = product.variations ? product.variations.regular_price : '';
-  const variableSalePrice = product.variations ? product.variations.sale_price : ''; 
+  const variableSalePrice = product.variations ? product.variations.sale_price : '';
 
   // Alice Slider
   // const images = [imgOne, imgOne, imgOne, imgOne, imgOne];
@@ -209,7 +209,87 @@ const SingleProductStickySection = ({productData}) => {
     setCartSection(false)
   }
 
-  console.log("product variable", product.type)
+  const [variationPayload, setVariationPayload] = useState();
+  const getVariationMatch = () => {
+    const selectedAttr = productData?.variations?.find(variation =>
+      variation.attributes.some(attribute =>
+        attribute.type === 'select' &&
+        attribute.options.some(option => option.value === selectVariation)
+      ) &&
+      variation.attributes.some(attribute =>
+        attribute.type === 'color' &&
+        attribute.options.some(option => option.value === selectedColor)
+      )
+    );
+
+    setVariationPayload(selectedAttr)
+
+    console.log("selected payload according to variatons on parent", variationPayload)
+  }
+
+  const [selectVariation, setSelectVariation] = useState(0);
+  const handleSelectVariation = (value) => {
+    setSelectVariation(value);
+    console.log("selected value on parend ", selectVariation)
+    getVariationMatch()
+  }
+
+  const [selectedColor, setSelectedColor] = useState();
+  const handleSelectColor = (value) => {
+    setSelectedColor(value)
+    console.log("selected color on parent", selectedColor)
+    getVariationMatch()
+    // const selectedAttr = productData?.variations?.find(attribute => 
+    //     attribute?.options?.some(option => option?.value === selectVariation) &&
+    //     attribute?.options?.some(option => option?.value === selectedColor)
+    // )
+    // const selectedAttr = productData?.variations?.find(variation =>
+    //     variation.attributes.some(attribute =>
+    //         attribute.type === 'select' &&
+    //         attribute.options.some(option => option.value === selectVariation)
+    //     ) &&
+    //     variation.attributes.some(attribute =>
+    //         attribute.type === 'color' &&
+    //         attribute.options.some(option => option.value === selectedColor)
+    //     )
+    // );
+
+    // console.log("selected payload according to variatons on parent", selectedAttr)
+  }
+
+  useEffect(() => {
+    const defAttImage = product?.variations?.find(attr =>
+      attr.uid === product.default_variation
+    )
+    // console.log("defould attribute on size variant", defAttImage)
+    const defAttrColor = defAttImage?.attributes?.find(attribute =>
+      attribute?.type === 'color' &&
+      attribute?.options?.some(option => option?.value)
+    )
+
+    const defAttrSelect = defAttImage?.attributes?.find(attribute =>
+      attribute?.type === 'select' &&
+      attribute?.options?.some(option => option?.value)
+    )
+
+    const defoultColor = defAttrColor?.options?.[0]?.value;
+    const defoultValue = defAttrSelect?.options?.[0]?.value;
+    console.log("on parent color", defoultColor);
+    console.log("on parent label", defoultValue)
+    setSelectVariation(defoultValue);
+    setSelectedColor(defoultColor)
+    getVariationMatch()
+  }, []);
+
+  const formatePrice = (price) => {
+    return new Intl.NumberFormat('en-us', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(price)
+  }
+
+  // console.log("product variable", product.type)
+
 
   return (
     <>
@@ -229,7 +309,7 @@ const SingleProductStickySection = ({productData}) => {
               disableDotsControls
               disableButtonsControls
               items={product.images && product.images.map((img, index) => (
-                <img key={index} src={`${url}${img.image_url}`} className="single-product-slider-img" alt={`Slide ${index}`} />
+                <img key={index} src={product.type === 'variable' ? `${url}${variationPayload?.images?.[0]?.image_url}` : `${url}${img.image_url}` } className="single-product-slider-img" alt={`Slide ${index}`} />
               ))
               }
               responsive={{
@@ -238,7 +318,7 @@ const SingleProductStickySection = ({productData}) => {
               }}
             />
             <div className="single-product-slider-thumbnails">
-              {product.images && product.images.map((img, index) => (
+              {/* {product.images && product.images.map((img, index) => (
                 <div
                   key={index}
                   className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
@@ -246,7 +326,26 @@ const SingleProductStickySection = ({productData}) => {
                 >
                   <img src={`${url}${img.image_url}`} alt={`Thumbnail ${index}`} />
                 </div>
-              ))}
+              ))} */}
+              {variationPayload !== undefined ? variationPayload.images.map((img, ind) => (
+                  <div
+                  key={ind}
+                  className={`single-product-slider-thumbnail ${activeIndex === ind ? '' : 'single-product-slider-thumbnail-inactive'}`}
+                  onClick={() => handleThumbnailClickk(ind)}
+                >
+                  <img src={`${url}${img.image_url}`} alt={`Thumbnail ${ind}`} />
+                </div>
+              )) : 
+                product.images && product.images.map((simpleImg, index) => (
+                <div
+                  key={index}
+                  className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
+                  onClick={() => handleThumbnailClickk(index)}
+                >
+                  <img src={`${url}${simpleImg.image_url}`} alt={`Thumbnail ${index}`} />
+                </div>
+              ))
+              }
             </div>
             <button className='single-product-arrow single-product-arrow-right' onClick={handleNextSlide}>
               <img src={arrowRight} alt='right' />
@@ -268,8 +367,8 @@ const SingleProductStickySection = ({productData}) => {
               </div>
               {/* <h3 className='single-product-price'>${productData.productCard.priceTag}</h3> */}
               <div className='single-product-prices'>
-                <del className='single-product-old-price'>{product.regular_price}</del>
-                <h3 className='single-product-new-price'>${product.regular_price}</h3>
+                <del className='single-product-old-price'>{variationPayload.regular_price ? formatePrice(variationPayload.regular_price) : formatePrice(product.regular_price) }</del>
+                <h3 className='single-product-new-price'>{variationPayload.sale_price ? formatePrice(variationPayload.sale_price) : formatePrice(product.regular_price)}</h3>
               </div>
               {/* <p className='single-product-installment-price-price'>$9/month for 6 months - Total {productData.productCard.priceTag} </p> */}
 
@@ -278,14 +377,21 @@ const SingleProductStickySection = ({productData}) => {
                 <p>Get it between July 27 - July 31'</p>
               </span>
               <div className='single-product-frame-color'>
-                <SizeVariant type={product.type} attributes={product.type === 'variable' ? product.variations : product.attributes }/>
+                <SizeVariant
+                  productData={product}
+                  attributes={product.attributes}
+                  selectedColor={selectedColor}
+                  selectVariation={selectVariation}
+                  handleSelectColor={handleSelectColor}
+                  handleSelectVariation={handleSelectVariation}
+                />
               </div>
               <div className='add-cart-or-add-items-div'>
                 <div className='item-count'>
                   <button className={`minus-btn ${product.quantity === 1 ? 'disabled' : ''}`} onClick={decreaseLocalQuantity} disabled={product.quantity === 1}>
                     <img src={minus} alt='minus btn' />
                   </button>
-                  
+
                   <input type='number' value={quantity} readOnly />
                   {/* <p>{product.quantity}</p> */}
                   <button className='plus-btn' onClick={increaseLocalQuantity}>
@@ -306,7 +412,7 @@ const SingleProductStickySection = ({productData}) => {
             </div>
             <FinancingOptions />
             {product.may_also_need && product.may_also_need.length > 0 ? <AlsoNeed productsUid={product.may_also_need} /> : <></>}
-            
+
             <WhatWeOffer isProtected={isProtectionCheck} setIsProtected={setIsProtectionCheck} />
             <DeliveryOptions />
             {/* <ProductOverView /> */}
@@ -398,31 +504,31 @@ const SingleProductStickySection = ({productData}) => {
         </div>
         <div className='mobile-view-single-product-details'>
           <div className='mobile-view-color-variant'>
-              <div className='mobile-selected-color'>
-                <p>Selected Color: </p>
-                <h3>{variationName}</h3>
-              </div>
-              <div className='mobile-variant-images-div'>
-                  {product.colorVariation && product.colorVariation.map((item, index) => {
-                    return <div key={index} className={`mobile-single-product-color-variant ${variationName === index ? 'selected-color-variation' : ''}`} onClick={() => handleColorVariation(item.color)}>
-                      <img src={silverImage} alt='img' />
-                      <p>{item.color}</p>
-                    </div>
-                  })}
+            <div className='mobile-selected-color'>
+              <p>Selected Color: </p>
+              <h3>{variationName}</h3>
+            </div>
+            <div className='mobile-variant-images-div'>
+              {product.colorVariation && product.colorVariation.map((item, index) => {
+                return <div key={index} className={`mobile-single-product-color-variant ${variationName === index ? 'selected-color-variation' : ''}`} onClick={() => handleColorVariation(item.color)}>
+                  <img src={silverImage} alt='img' />
+                  <p>{item.color}</p>
                 </div>
+              })}
+            </div>
           </div>
           <SizeVariant />
           <div className='mobile-product-count-and-add-to-cart'>
-              <div className='mobile-product-count'>
-                  <button>
-                    <img src={minus} alt='minus-btn' />
-                  </button>
-                  <p>0</p>
-                  <button>
-                    <img src={plus} alt='plus-btn' />
-                  </button>
-              </div>
-              <button className='mobile-add-to-cart-btn'>Add To Cart</button>
+            <div className='mobile-product-count'>
+              <button>
+                <img src={minus} alt='minus-btn' />
+              </button>
+              <p>0</p>
+              <button>
+                <img src={plus} alt='plus-btn' />
+              </button>
+            </div>
+            <button className='mobile-add-to-cart-btn'>Add To Cart</button>
           </div>
           <FinancingOptions />
           <SingleProductFAQ />

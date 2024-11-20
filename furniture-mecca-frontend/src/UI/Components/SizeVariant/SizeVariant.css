@@ -1,9 +1,9 @@
-.size-variant-main-container{
+/* .size-variant-main-container{
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 5px;
-}
+} */
 
 .attributes-types{
     display: flex;
@@ -23,9 +23,9 @@
 }
 
 .attribute-heading{
-    font-size: 18px;
-    line-height: 22px;
-    font-weight: 500;
+    font-size: 18px !important;
+    line-height: 22px !important;
+    font-weight: 400 !important;
     color: var(--text-color);
 }
 
@@ -40,7 +40,7 @@
 /* Color Attribute */
 .attribute-single-color{
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     align-items: center;
     justify-self: start;
     gap: 5px;
@@ -209,7 +209,7 @@
 }
 
 /* Variable type */
-.variable-type-main-container{
+/* .variable-type-main-container{
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -229,7 +229,7 @@
     gap: 10px;
     align-items: center;
     justify-content: start;
-}
+} */
 /* 
 .variable-variation-type-data{
     display: flex;
@@ -241,10 +241,63 @@
     padding: 20px 0;
 } */
 
-.attribute-single-color{
+/* .attribute-single-color{
     display: flex;
     width: 100%;
     gap: 5px;
     align-items: center;
     justify-content: start;
+} */
+
+.variable-all-attributes{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.variable-color-attribute{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.variable-color-attribute h3{
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.variable-color-boxes-div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+/* variable select */
+.variable-select-main-div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.variable-select-main-div h3{
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.select-variation-boxes-div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
 }

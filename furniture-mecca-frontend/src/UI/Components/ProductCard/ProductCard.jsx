@@ -49,7 +49,7 @@ const ProductCard = ({
 }) => {
 
     const [cartClicked, setCartClicked] = useState(true);
-    console.log("product type", type);
+    console.log("product ", singleProductData);
 
     const dispatch = useDispatch();
     const selectedColorIndex = useSelector((state) => state.colorIndex.colorIndex);
@@ -95,6 +95,40 @@ const ProductCard = ({
         setSelectedColorVariableIndex(index)
     }
 
+
+    // Select color
+    const [selectedColor, setSelectedColor] = useState();
+    const [selectedColorImage, setSelectedColorImage] = useState();
+    const handleColorSelect = (color) => {
+        setSelectedColor(color)
+        
+        const matchingAttribute = singleProductData.variations.find(variation =>
+            variation.attributes.some(attribute =>
+                attribute.type === "color" &&
+                attribute.options.some(option => option.value === color)
+            )
+        );
+
+        setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
+        return matchingAttribute;
+    }
+
+    useEffect(() => {
+
+        const defAttImage = singleProductData.variations.find(attr => 
+            attr.uid === singleProductData.default_variation
+        )
+
+        const defAttrColor = defAttImage?.attributes?.find(attribute => 
+            attribute?.type === 'color' &&
+            attribute?.options?.some(option => option?.value)
+        )
+        const defoultColor = defAttrColor?.options?.[0]?.value;
+
+        handleColorSelect(defoultColor);
+
+    }, []);
+
     return (
         <>
             <div className={`${productCardContainerClass} ${borderLeft ? 'hide-after' : ''} `} style={{ maxWidth: maxWidthAccordingToComp, width: justWidth }}>
@@ -116,7 +150,7 @@ const ProductCard = ({
 
 
                     <div className='product-main-image-container'>
-                        <img src={`${url}${type === 'variable' ? variation[selectedColorVariableindex].images[0].image_url : mainImage}`}
+                        <img src={`${url}${selectedColorImage ? selectedColorImage : mainImage}`}
                             alt='product img' className='product-main-img'
                             onMouseEnter={mouseEnter}
                             onMouseLeave={mouseLeave} />
@@ -174,7 +208,7 @@ const ProductCard = ({
 
                     </div> */}
 
-                    {type === 'variable' ?
+                    {/* {type === 'variable' ?
                         <div className='variable-colors-variations-div'>
                             {variation.map((item, index) => (
                                 item.attributes.filter((attr) => attr.type === 'color').map((colorAtr, attrIndex) => (
@@ -236,9 +270,9 @@ const ProductCard = ({
                             </div>
                         )
 
-                    }
+                    } */}
 
-                    {/* {priorityAttribute && (
+                    {priorityAttribute && (
                         <div className='product-card-attr' >
                             {priorityAttribute.type === "image" && (
                                 <div className="image-variation">
@@ -258,11 +292,13 @@ const ProductCard = ({
                                         <span
                                             key={index}
                                             className="color-variation"
-                                            onClick={() => { }}
+                                            onClick={type === 'variable' ? () => handleColorSelect(item.value) : () => {}}
                                             style={{
                                                 backgroundColor: item.value,
-                                                border: 'none',
-                                                boxShadow: ''
+                                                // border: 'none',
+                                                border: selectedColor === item.value ? `1px solid ${item.value}` : 'none',
+                                                // boxShadow: ''
+                                                boxShadow: selectedColor === item.value ? `inset 0 0 0 2px #FFFF` : ''
                                             }}
                                         ></span>
                                     ))}
@@ -277,12 +313,12 @@ const ProductCard = ({
                                 </div>
                             )}
                         </div>
-                    )} */}
+                    )}
 
 
 
                     {/* <p className='mobile-view-mos-finance'>12 mos special financing <i> Learn more</i></p> */}
-                    <div className='color-variation-div'>
+                    {/* <div className='color-variation-div'>
                         <div className='color-variations'>
                             {colorVariation && colorVariation.map((color, colorIndex) => {
                                 return <span key={colorIndex} className='color-variation' onClick={() => handleClick(colorIndex, color)}
@@ -297,7 +333,7 @@ const ProductCard = ({
                             <img src={cartBlack} alt='cart icon' />
                             <img src={eyeBlack} alt='eye icon' onClick={handleQuickView} />
                         </div>
-                    </div>
+                    </div>/ */}
                 </div>
             </div>
 

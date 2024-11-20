@@ -321,7 +321,7 @@
 .color-variation-div{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start !important; 
     gap: 10px;
     z-index: 3333;
 }

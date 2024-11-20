@@ -13,6 +13,7 @@ import { SingleProductProvider } from './context/singleProductContext/singleProd
 import { AddCartProvider } from './context/AddToCart/addToCart';
 import { MyOrdersProvider } from './context/orderContext/ordersContext';
 import ScrollToTop from './utils/ScrollToTop/ScrollToTop';
+import { VariationProvider } from './context/BreadCrumbContext/variationsContext';
 
 
 
@@ -27,13 +28,15 @@ root.render(
               <CartProvider>
                 <SingleProductProvider>
                   <MyOrdersProvider>
-                    <Provider store={store}>
-                      <Router>
-                        <ScrollToTop>
-                          <App />
-                        </ScrollToTop>
-                      </Router>
-                    </Provider>
+                    <VariationProvider>
+                      <Provider store={store}>
+                        <Router>
+                          <ScrollToTop>
+                            <App />
+                          </ScrollToTop>
+                        </Router>
+                      </Provider>
+                    </VariationProvider>
                   </MyOrdersProvider>
                 </SingleProductProvider>
               </CartProvider>
