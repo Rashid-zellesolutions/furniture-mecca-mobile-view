@@ -195,12 +195,6 @@ const SingleProductStickySection = ({ productData }) => {
     }, 1000);
   };
 
-
-
-  // useEffect(() => {
-  //   console.log("updated product after increase", singleProduct)
-  // }, [singleProduct])
-
   const handleAddToCartProduct = (product) => {
     setCartSection(true);
     addToCart(product, quantity, isProtectionCheck);
@@ -224,40 +218,24 @@ const SingleProductStickySection = ({ productData }) => {
 
     setVariationPayload(selectedAttr)
 
-    console.log("selected payload according to variatons on parent", variationPayload)
+    // console.log("selected payload according to variatons on parent", variationPayload)
   }
 
   const [selectVariation, setSelectVariation] = useState(0);
   const handleSelectVariation = (value) => {
     setSelectVariation(value);
-    console.log("selected value on parend ", selectVariation)
+    // console.log("selected value on parend ", selectVariation)
     getVariationMatch()
   }
 
   const [selectedColor, setSelectedColor] = useState();
   const handleSelectColor = (value) => {
     setSelectedColor(value)
-    console.log("selected color on parent", selectedColor)
+    // console.log("selected color on parent", selectedColor)
     getVariationMatch()
-    // const selectedAttr = productData?.variations?.find(attribute => 
-    //     attribute?.options?.some(option => option?.value === selectVariation) &&
-    //     attribute?.options?.some(option => option?.value === selectedColor)
-    // )
-    // const selectedAttr = productData?.variations?.find(variation =>
-    //     variation.attributes.some(attribute =>
-    //         attribute.type === 'select' &&
-    //         attribute.options.some(option => option.value === selectVariation)
-    //     ) &&
-    //     variation.attributes.some(attribute =>
-    //         attribute.type === 'color' &&
-    //         attribute.options.some(option => option.value === selectedColor)
-    //     )
-    // );
-
-    // console.log("selected payload according to variatons on parent", selectedAttr)
   }
 
-  useEffect(() => {
+  const getInitialDefaultValues = () => {
     const defAttImage = product?.variations?.find(attr =>
       attr.uid === product.default_variation
     )
@@ -274,12 +252,20 @@ const SingleProductStickySection = ({ productData }) => {
 
     const defoultColor = defAttrColor?.options?.[0]?.value;
     const defoultValue = defAttrSelect?.options?.[0]?.value;
-    console.log("on parent color", defoultColor);
-    console.log("on parent label", defoultValue)
+    // console.log("on parent color", defoultColor);
+    // console.log("on parent label", defoultValue)
     setSelectVariation(defoultValue);
     setSelectedColor(defoultColor)
     getVariationMatch()
+  };
+
+  useEffect(() => {
+    getInitialDefaultValues()
   }, []);
+
+  // useEffect(() => {
+  //   getVariationMatch(); // Runs whenever selectVariation or selectedColor changes
+  // }, [selectVariation, selectedColor]);
 
   const formatePrice = (price) => {
     return new Intl.NumberFormat('en-us', {
@@ -367,8 +353,8 @@ const SingleProductStickySection = ({ productData }) => {
               </div>
               {/* <h3 className='single-product-price'>${productData.productCard.priceTag}</h3> */}
               <div className='single-product-prices'>
-                <del className='single-product-old-price'>{variationPayload.regular_price ? formatePrice(variationPayload.regular_price) : formatePrice(product.regular_price) }</del>
-                <h3 className='single-product-new-price'>{variationPayload.sale_price ? formatePrice(variationPayload.sale_price) : formatePrice(product.regular_price)}</h3>
+                <del className='single-product-old-price'>{variationPayload?.regular_price ? formatePrice(variationPayload?.regular_price) : formatePrice(product.regular_price) }</del>
+                <h3 className='single-product-new-price'>{variationPayload?.sale_price ? formatePrice(variationPayload?.sale_price) : formatePrice(product.regular_price)}</h3>
               </div>
               {/* <p className='single-product-installment-price-price'>$9/month for 6 months - Total {productData.productCard.priceTag} </p> */}
 

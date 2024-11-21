@@ -97,6 +97,7 @@ const ProductCard = ({
 
 
     // Select color
+    const [hoveredImage, setHoveredImage] = useState()
     const [selectedColor, setSelectedColor] = useState();
     const [selectedColorImage, setSelectedColorImage] = useState();
     const handleColorSelect = (color) => {
@@ -110,15 +111,27 @@ const ProductCard = ({
         );
 
         setSelectedColorImage(matchingAttribute?.images[0]?.image_url)
+        setHoveredImage(matchingAttribute?.images[1]?.image_url)
         return matchingAttribute;
     }
-
+    const [priorArray, setPriorArray] = useState([])
+    const moveToFirst = (array, defValue) => {
+        const index = array.findIndex(item => item === defValue);
+        if(index > 0){
+            const [priorityItem] = array.splice(index, 1);
+            array.unshift(priorityItem)
+            console.log("set with default array", array)
+        }
+        setPriorArray(array)
+        return array;
+    }
+    console.log("dsdgsd", priorArray)
     useEffect(() => {
 
         const defAttImage = singleProductData.variations.find(attr => 
             attr.uid === singleProductData.default_variation
         )
-
+        console.log("selected attribute", defAttImage)
         const defAttrColor = defAttImage?.attributes?.find(attribute => 
             attribute?.type === 'color' &&
             attribute?.options?.some(option => option?.value)
@@ -127,30 +140,54 @@ const ProductCard = ({
 
         handleColorSelect(defoultColor);
 
+        const attribute = defAttImage?.attributes;
+        if(attribute){
+            const defaultAttribute = getPriorityAttribute(attribute)
+            console.log("pririty attribute", defaultAttribute)
+            if(defaultAttribute){
+                const updatedAttributes = moveToFirst(attribute, defaultAttribute)
+                console.log("Updated attributes with priority first:", updatedAttributes);
+            }
+        }
+
     }, []);
+
+
+    const [mainImageHoverIndex, setMainImageHoverIndex] = useState(null)
+    const handleMouseOnMainImage = (id) => {
+        setMainImageHoverIndex(id);
+        console.log("on mouse enter",mainImageHoverIndex);
+    }
+
+    const handleMouseLeaveOnMainImage = () => {
+        setMainImageHoverIndex(null)
+        console.log("on mouse leave",mainImageHoverIndex);
+    }
 
     return (
         <>
             <div className={`${productCardContainerClass} ${borderLeft ? 'hide-after' : ''} `} style={{ maxWidth: maxWidthAccordingToComp, width: justWidth }}>
                 <div className='product-card-data'>
 
-
-
-
-
-                    <div className='tag-and-heart'>
+                    {/* <div className='tag-and-heart'>
                         <h3 className='stock-label'>{stock.is_stock_manage === 1 ? "In Stock" : "Out of Stock"}</h3>
                         <p className='percent-label'>{percent}</p>
                         <img src={tagIcon} alt='heart img' className={tagClass} />
-                    </div>
+                    </div> */}
 
-
-
-
-
-
-                    <div className='product-main-image-container'>
-                        <img src={`${url}${selectedColorImage ? selectedColorImage : mainImage}`}
+                    <div className='product-main-image-container' onMouseEnter={() => handleMouseOnMainImage(singleProductData.uid)} onMouseLeave={handleMouseLeaveOnMainImage}>
+                        <div className='tag-and-heart'>
+                            <h3 className='stock-label'>{stock.is_stock_manage === 1 ? "In Stock" : "Out of Stock"}</h3>
+                            <p className='percent-label'>{percent}</p>
+                            <img src={tagIcon} alt='heart img' className={tagClass} />
+                        </div>
+                        <img src={`${url}${
+                            selectedColorImage 
+                            ? mainImageHoverIndex === singleProductData.uid
+                            ? hoveredImage
+                            : selectedColorImage 
+                            : mainImage
+                        }`}
                             alt='product img' className='product-main-img'
                             onMouseEnter={mouseEnter}
                             onMouseLeave={mouseLeave} />
@@ -169,11 +206,6 @@ const ProductCard = ({
                             </button>
                         </div>
                     </div>
-
-
-
-
-
 
                     {tags && <div className="product-tagging">
                         {
@@ -197,11 +229,15 @@ const ProductCard = ({
 
 
                     <p className='mobile-view-low-price'>{lowPriceAddvertisement}</p>
+
+
                     {
                         sale_price === "" ?
-                            <h3 className='product-price-tag'>${priceTag}</h3> :
+                            <h3 className='product-price-del'>${priceTag}</h3> :
                             <h3 className='product-price-tag'> <del>${priceTag}</del>  ${sale_price}</h3>
                     }
+
+
                     {/* <div className='category-product-price'>
                         {sale_price !== "" ? <del>${priceTag}</del> : <></>}
                         <p>${sale_price}</p>
@@ -314,8 +350,6 @@ const ProductCard = ({
                             )}
                         </div>
                     )}
-
-
 
                     {/* <p className='mobile-view-mos-finance'>12 mos special financing <i> Learn more</i></p> */}
                     {/* <div className='color-variation-div'>

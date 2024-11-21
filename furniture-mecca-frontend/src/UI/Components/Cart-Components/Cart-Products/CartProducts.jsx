@@ -97,12 +97,12 @@ const CartProducts = () => {
             <div className='cart-products-main-container'>
                 <div className='cart-products-heading'>
                     <h3>Products ({cart.length})</h3>
-                    <button 
+                    {/* <button 
                         className={`protect-all-products-button ${protectAll ? 'protect-all-products-button-true' : ''}`}
                         // onClick={handleProtectAll}
                     >
                         Protect All
-                    </button>
+                    </button> */}
 
                 </div>
                 <div className={`cart-items ${isOpen ? 'low-width' : ''}`}>
@@ -212,7 +212,7 @@ const CartProducts = () => {
 
 
                 {/* Desktop View */}
-                <div className={`desktop-cart-item-details ${isOpen ? 'desktop-cart-item-div-padding-decrease' : ''}`}>
+                {/* <div className={`desktop-cart-item-details ${isOpen ? 'desktop-cart-item-div-padding-decrease' : ''}`}>
                     <div className={`desktop-price-details-div ${isOpen ? 'desktop-price-div-decrease' : ''}`}>
                         {detailsDeta.map((item, index) => {
                             return <div key={index} className='dektop-price-details'>
@@ -223,12 +223,13 @@ const CartProducts = () => {
                         {calculateTotalPrice()}
                     </div>
                     <div className={`desktop-continue-btn-div ${isOpen ? 'hide-continue-btn' : ''}`}>
-                        {/* <button onClick={handleToggle}>
-                    Continue
-                </button> */}
+                        
                         <button onClick={handleNavigateToCheckoutPage}>Continue</button>
                     </div>
-                </div>
+                </div> */}
+                {/* <div>
+                    <h3>Products display section</h3>
+                </div> */}
                 <CartPaymnetMethoud
                     isOpen={isOpen}
                     handleToggle={handleToggle}
