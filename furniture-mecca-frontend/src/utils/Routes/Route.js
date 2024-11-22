@@ -51,36 +51,36 @@ import StoreLocator from "../../UI/Pages/StoreLocator/StoreLocator";
 import BlogPage from "../../UI/Pages/Blogs/BlogPage";
 
 const categoryCardData = [
-{title: "Dining Room Sets", img: newArrivalImage, link: '#'},
-{title: "Pub Height Dining Sets", img: livingRoomImage, link: '#'},
-{title: "Dining Table", img: diningImage, link: '#'},
-{title: "Dining Chairs & Banches", img: bedroomImage, link: '#'},
-{title: "Counter & Bar  Stools", img: outDoorImage, link: '#'},
-{title: "Server Buffets & China Cabinate", img: recliningImage, link: '#'},
-{title: "Small Space Dining", img: SectionaSofa, link: '#'},
-{title: "Dining Room Collections", img: Mattresses, link: '#'},
-{title: "Shop All Dining", img: HomeOffice, link: '#'},
-{title: "Dining Room Outlets", img: KidsRoom, link: '#'},
-{title: "Area Rugs", img: AreaRugs, link: '#'},
-{title: "Home Decor", img: HomeDecor, link: '#'},
-{title: "Outlet", img: Outlet, link: '#'},
+    { title: "Dining Room Sets", img: newArrivalImage, link: '#' },
+    { title: "Pub Height Dining Sets", img: livingRoomImage, link: '#' },
+    { title: "Dining Table", img: diningImage, link: '#' },
+    { title: "Dining Chairs & Banches", img: bedroomImage, link: '#' },
+    { title: "Counter & Bar  Stools", img: outDoorImage, link: '#' },
+    { title: "Server Buffets & China Cabinate", img: recliningImage, link: '#' },
+    { title: "Small Space Dining", img: SectionaSofa, link: '#' },
+    { title: "Dining Room Collections", img: Mattresses, link: '#' },
+    { title: "Shop All Dining", img: HomeOffice, link: '#' },
+    { title: "Dining Room Outlets", img: KidsRoom, link: '#' },
+    { title: "Area Rugs", img: AreaRugs, link: '#' },
+    { title: "Home Decor", img: HomeDecor, link: '#' },
+    { title: "Outlet", img: Outlet, link: '#' },
 ]
 const routes = (
 
     <>
         <Route exact path="/" element={<Home />} />
         {/* Living Room */}
-        <Route 
-            path="/living-room-category" 
+        <Route
+            path="/living-room-category"
             element={
-                <Categories 
-                    categoriesMainImage={livingRoomMainImage} 
-                    mobileViewMainImage={livingRoomMobileBanner} 
-                    categoryCartTitle={'Living Room'} 
-                    showPromotionsBaneers={false} 
-                    categoryCardData={categoryCardData} 
+                <Categories
+                    categoriesMainImage={livingRoomMainImage}
+                    mobileViewMainImage={livingRoomMobileBanner}
+                    categoryCartTitle={'Living Room'}
+                    showPromotionsBaneers={false}
+                    categoryCardData={categoryCardData}
                 />
-            } 
+            }
         />
         <Route path='/product-category/living-room/living-room-sets' element={<ProductArchive productArchiveHading={`Living Room Sets`} />} />
         <Route path='/product-category/living-room/sofa-loveseat-sets' element={<ProductArchive productArchiveHading={`Sofa & Loveseats`} />} />
@@ -93,17 +93,17 @@ const routes = (
         <Route path='/product-category/living-room/living-room-outlet' element={<ProductArchive productArchiveHading={`Living Room Outlets`} />} />
 
         {/* BedRoom */}
-        <Route 
-            path="/bedroom-category" 
+        <Route
+            path="/bedroom-category"
             element={
-                <Categories 
-                    categoriesMainImage={bedroomMainImage} 
-                    mobileViewMainImage={bedRoomMobileBanner} 
-                    categoryCartTitle={'Bedroom Set'} 
-                    showPromotionsBaneers={false} 
-                    categoryCardData={categoryCardData} 
+                <Categories
+                    categoriesMainImage={bedroomMainImage}
+                    mobileViewMainImage={bedRoomMobileBanner}
+                    categoryCartTitle={'Bedroom Set'}
+                    showPromotionsBaneers={false}
+                    categoryCardData={categoryCardData}
                 />
-            } 
+            }
         />
         <Route path='/product-category/bedroom/bedroom-sets' element={<ProductArchive productArchiveHading={`Bedroom Sets`} />} />
         <Route path='/product-category/bedroom/beds-headboards' element={<ProductArchive productArchiveHading={`Beds Headboards`} />} />
@@ -120,17 +120,17 @@ const routes = (
         <Route path='/product-category/bedroom/bedroom-outlet' element={<ProductArchive productArchiveHading={`Bedroom Outlet`} />} />
 
         {/* Dining Room */}
-        <Route 
-            path="/dining-room-category" 
+        <Route
+            path="/dining-room-category"
             element={
                 <Categories
-                    categoriesMainImage={diningRoomMainImage} 
-                    mobileViewMainImage={dinningRoomMobileBanner} 
-                    categoryCartTitle={'Dining Room'} 
-                    showPromotionsBaneers={false} 
-                    categoryCardData={categoryCardData} 
+                    categoriesMainImage={diningRoomMainImage}
+                    mobileViewMainImage={dinningRoomMobileBanner}
+                    categoryCartTitle={'Dining Room'}
+                    showPromotionsBaneers={false}
+                    categoryCardData={categoryCardData}
                 />
-            } 
+            }
         />
         <Route path='/product-category/dining-room/dining-room-sets' element={<ProductArchive productArchiveHading={`Dining Room Sets`} />} />
         <Route path='/product-category/dining-room/pub-heights-dining-sets' element={<ProductArchive productArchiveHading={`Pub Hights Dining Sets`} />} />
@@ -140,17 +140,17 @@ const routes = (
         <Route path='/product-category/dining-room/servers-buffets-china-cabinets' element={<ProductArchive productArchiveHading={`Servers Buffets China Cabinates`} />} />
 
         {/* Mattresses */}
-        <Route 
-            path="/mattresses-category" 
+        <Route
+            path="/mattresses-category"
             element={
-                <Categories 
-                    categoriesMainImage={mattressesMainImage} 
-                    mobileViewMainImage={mattresessMobileBanner} 
-                    categoryCartTitle={'Mattresses'} 
-                    showPromotionsBaneers={false} 
+                <Categories
+                    categoriesMainImage={mattressesMainImage}
+                    mobileViewMainImage={mattresessMobileBanner}
+                    categoryCartTitle={'Mattresses'}
+                    showPromotionsBaneers={false}
                     categoryCardData={categoryCardData}
                 />
-            } 
+            }
         />
 
         <Route path='/product-category/mattresses/twin-size' element={<ProductArchive productArchiveHading={`Twin Size`} />} />
@@ -165,17 +165,17 @@ const routes = (
         <Route path='/product-category/mattresses/sale-mattresses' element={<ProductArchive productArchiveHading={`Sale Mattresses`} />} />
 
         {/* Kids Room */}
-        <Route 
-            path="/kids-category" 
+        <Route
+            path="/kids-category"
             element={
                 <Categories
-                    categoriesMainImage={kidsMainImage} 
-                    mobileViewMainImage={kidsMobileBanner} 
-                    showPromotionsBaneers={false} 
-                    categoryCartTitle={'Kids Room'} 
-                    categoryCardData={categoryCardData} 
+                    categoriesMainImage={kidsMainImage}
+                    mobileViewMainImage={kidsMobileBanner}
+                    showPromotionsBaneers={false}
+                    categoryCartTitle={'Kids Room'}
+                    categoryCardData={categoryCardData}
                 />
-            } 
+            }
         />
 
         <Route path='/product-category/kids/kids-bedroom-sets' element={<ProductArchive productArchiveHading={`Kids Bedreem Sets`} />} />
@@ -185,18 +185,18 @@ const routes = (
         <Route path='/product-category/kids/sale-kids-room' element={<ProductArchive productArchiveHading={`Sale Kids Room`} />} />
 
         {/* Accent & Rugs */}
-        <Route 
-            path="/accent-furniture-category" 
+        <Route
+            path="/accent-furniture-category"
             element={
                 <Categories
-                    categoriesMainImage={accentFurnitureMainImage} 
-                    mobileViewMainImage={accentMobileBanner} 
-                    showPromotionsBaneers={false} 
-                    categoryCartTitle={'Accent Furniture And Rugs'} 
-                    categoryCardData={categoryCardData} 
-                    newArrival={true} 
+                    categoriesMainImage={accentFurnitureMainImage}
+                    mobileViewMainImage={accentMobileBanner}
+                    showPromotionsBaneers={false}
+                    categoryCartTitle={'Accent Furniture And Rugs'}
+                    categoryCardData={categoryCardData}
+                    newArrival={true}
                 />
-            } 
+            }
         />
 
         {/* Accent Furniture */}
@@ -218,18 +218,18 @@ const routes = (
         <Route path='/product-category/rugs-main/sale-rugs' element={<ProductArchive productArchiveHading={`Sale Rugs`} />} />
 
         {/* Small Spaces */}
-        <Route 
-            path="/small-spaces" 
+        <Route
+            path="/small-spaces"
             element={
                 <Categories
-                    categoriesMainImage={smallSpaceMainImage} 
-                    mobileViewMainImage={smallSpacesMobileBanner} 
-                    categoryCartTitle={'Small Spaces'} 
-                    showPromotionsBaneers={false} 
-                    categoryCardData={categoryCardData} 
-                    newArrival={true} 
+                    categoriesMainImage={smallSpaceMainImage}
+                    mobileViewMainImage={smallSpacesMobileBanner}
+                    categoryCartTitle={'Small Spaces'}
+                    showPromotionsBaneers={false}
+                    categoryCardData={categoryCardData}
+                    newArrival={true}
                 />
-            } 
+            }
         />
 
         <Route path='/product-category/small-space-furniture/small-space-bedrooms' element={<ProductArchive productArchiveHading={`Small Space Bedrooms`} />} />
@@ -237,18 +237,18 @@ const routes = (
         <Route path='/product-category/small-space-furniture/small-space-dining-rooms' element={<ProductArchive productArchiveHading={`Small Space Dining Rooms`} />} />
 
         {/* Outlets */}
-        <Route 
-            path="/sale-category" 
+        <Route
+            path="/sale-category"
             element={
                 <Categories
-                    categoriesMainImage={outletMainImage} 
-                    mobileViewMainImage={outletMobileBanner} 
-                    showPromotionsBaneers={false} 
-                    categoryCartTitle={'Outlets'} 
-                    categoryCardData={categoryCardData} 
-                    newArrival={true} 
+                    categoriesMainImage={outletMainImage}
+                    mobileViewMainImage={outletMobileBanner}
+                    showPromotionsBaneers={false}
+                    categoryCartTitle={'Outlets'}
+                    categoryCardData={categoryCardData}
+                    newArrival={true}
                 />
-            } 
+            }
         />
 
         <Route path='/steal-deal' element={<ProductArchive productArchiveHading={`Steal Deal`} />} />
@@ -258,86 +258,97 @@ const routes = (
         <Route path='/product-category/sale/last-call' element={<ProductArchive productArchiveHading={`Last Call`} />} />
 
         {/* Sale Day */}
-        <Route 
-            path="/labor-day-sale" 
+        <Route
+            path="/labor-day-sale"
             element={
                 <Categories
                     categoriesMainImage={tentSaleMainImage}
-                     mobileViewMainImage={livingRoomMobileBanner} 
-                     showBanners={false} 
-                     categoryCartTitle={'Labor Day Sale'} 
-                     categoryCardData={categoryCardData} 
-                     newArrival={true} 
+                    mobileViewMainImage={livingRoomMobileBanner}
+                    showBanners={false}
+                    categoryCartTitle={'Labor Day Sale'}
+                    categoryCardData={categoryCardData}
+                    newArrival={true}
                 />
-            } 
+            }
         />
 
         {/* Product Archive Page Routes */}
-        <Route 
-            path='/labor-day-sale' 
+        <Route
+            path='/labor-day-sale'
             element={
-                <ProductArchive 
+                <ProductArchive
                     productArchiveHading={`Labor Day Sale`}
                 />
-            } 
+            }
         />
 
-        
+
 
         {/* Single Product Page Routes */}
-        <Route 
-            path='/single-product/:slug' 
+        <Route
+            path='/single-product/:slug'
             element={
                 <SingleProduct />
-            } 
+            }
         />
 
         {/* Cart And Summery */}
-        <Route 
-            path='/add-to-cart' 
+        <Route
+            path='/add-to-cart'
             element={
-                <Cart 
+                <Cart
                 />
-            } 
+            }
         />
 
-        <Route 
-            path='/cart-page/check-out' 
+        <Route
+            path='/cart-page/check-out'
             element={
-                <Summary 
+                <Summary
                 />
-            } 
+            }
         />
 
-        <Route 
+        <Route
             path="/financing-option"
             element={<Financing />}
         />
 
-        <Route 
+        <Route
             path="/login"
             element={<LoginRegister />}
         />
 
-        <Route 
+        <Route
             path="/user-dashboard"
             element={<UserDashboard />}
         />
 
-        <Route 
+        <Route
             path="/careers"
             element={<Careers />}
         />
-        <Route 
+        <Route
             path="/blogs"
             element={<BlogPage />}
         />
-        <Route 
+        <Route
             path="/furniture-at-every-budget"
             element={<FurnitureAtEveryBudget />}
         />
-        <Route 
-            path="all-stores" 
+
+        <Route
+            path="/:categorySlug"
+            element={<Categories />}
+        />
+
+        <Route
+            path="/:categorySlug/:subCategorySlug"
+            element={<ProductArchive />}
+        />
+
+        <Route
+            path="all-stores"
             element={<StoreLocator />}
         />
 
