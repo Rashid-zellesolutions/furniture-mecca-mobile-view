@@ -16,7 +16,7 @@ import heart from '../../../Assets/icons/heart-vector.png'
 const SimillerProducts = ({collection}) => {
     // console.log('collected collection', collection)
     const simillerProducts = collection.map((item) => item);
-    console.log("similler product uid", simillerProducts)
+    // console.log("similler product uid", simillerProducts)
     // const similerProductsData = products.map((item) => item)
     
     // console.log("similler products", similerProductsData)
@@ -31,7 +31,7 @@ const SimillerProducts = ({collection}) => {
             });
             const myCollections = await Promise.all(request);
             const filteredMyCollection = myCollections.flat();
-            console.log("filtered similer data", filteredMyCollection)
+            // console.log("filtered similer data", filteredMyCollection)
             return filteredMyCollection;
         } catch (error) {
             console.error("error geting data", error)
@@ -41,7 +41,7 @@ const SimillerProducts = ({collection}) => {
     const getchMyCollectionProducts = async () => {
         const products = await fetchData();
         setData(products);
-        console.log("my colection data", data);
+        // console.log("my colection data", data);
     }
     useEffect(() => {
         getchMyCollectionProducts()
@@ -67,7 +67,7 @@ const SimillerProducts = ({collection}) => {
         return title.length > maxLength ? title.slice(0, maxLength) + '...' : title
     };
 
-    console.log("similler data", data)
+    // console.log("similler data", data)
     // Select Color Variations Functions
     const [selectedColorIndices, setSelectedColorIndices] = useState(Array(data && data.length).fill(0));
     const handleVariantImageClick = (cardIndex, colorIndex) => {

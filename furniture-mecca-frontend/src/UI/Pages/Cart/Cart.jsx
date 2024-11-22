@@ -14,46 +14,71 @@ import { useNavigate } from 'react-router-dom'
 import leftArrow from '../../../Assets/icons/arrow-left-charcol.png'
 import rightArrow from '../../../Assets/icons/arrow-right-charcol.png'
 import Slider from 'react-slick'
+import { useCart } from '../../../context/cartContext/cartContext'
 
 
 
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
-  return(
+  return (
     <div onClick={onClick} className={`cart-latest-products-slider-arrow cart-latest-products-slider-arrow-left ${className}`} >
       <img src={leftArrow} alt='arrow' />
     </div>
   )
-  }
+}
 
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return(
-      <div onClick={onClick} className={`cart-latest-products-slider-arrow cart-latest-products-slider-arrow-right ${className}`} >
-        <img src={rightArrow} alt='arrow'/>
-      </div>
-    )
-  }
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div onClick={onClick} className={`cart-latest-products-slider-arrow cart-latest-products-slider-arrow-right ${className}`} >
+      <img src={rightArrow} alt='arrow' />
+    </div>
+  )
+}
 
 const Cart = () => {
   const [isZipUpdateOpen, setIsZipUpdateOpen] = useState(false)
   const [isCouponOpen, setIsCouponOpen] = useState(false);
+  const [isCheck, setIsCheck] = useState({});
+
+  const handleCheckboxCheck = (index) => {
+    setIsCheck((prev) => ({
+      ...prev,
+      [index]: !prev[index], // Toggle the checked state
+    }));
+    // setIsCheck(index);
+    console.log("checked value", isCheck)
+  }
   const cartSummeryCheckData = [
     { type: 'checkbox', label: 'Professional Assembly (+ $210)', detail: 'Use professional assembly for all products and save up to $80' },
     { type: 'checkbox', label: 'Elite Platinum Furniture Protection(+ $210)', detail: 'Use professional assembly for all products and save up to $80' }
   ]
+
+  const { cart } = useCart();
+  const subTotalOfAllProducts = cart.map(item => item.product.sub_total);
+  // console.log("sub total of products", subTotalOfAllProducts)
+  const subtotal = subTotalOfAllProducts.reduce((acc, value) => acc + value, 0)
+  // console.log("sub tot ", subtotal)
+
   const formatePrice = (price) => {
     return new Intl.NumberFormat('en-us', {
       style: 'currency',
       currency: 'USD'
     }).format(price)
   }
+
+  const protectionPrice = isCheck[0] ? 210 : 0;
+  const assemblyPrice = isCheck[1] ? 250 : 0;
+  const discountPrice = 123;
+  const taxPrice = 322;
+
+  const grandTotal = subtotal + protectionPrice + assemblyPrice + taxPrice - discountPrice
   const orderPriceDetails = [
-    { title: 'Subtotal', price: formatePrice(1887) },
-    { title: 'Protection plan', price: formatePrice(99) },
-    { title: 'Professional Assembly', price: formatePrice(109) },
-    { title: 'Discount', price: formatePrice(123) },
-    { title: 'Tax', price: formatePrice(322) }
+    { title: 'Subtotal', price: formatePrice(subtotal) },
+    { title: 'Protection plan', price: formatePrice(protectionPrice) },
+    { title: 'Professional Assembly', price: formatePrice(assemblyPrice) },
+    { title: 'Discount', price: formatePrice(discountPrice) },
+    { title: 'Tax', price: formatePrice(taxPrice) }
   ]
   const handleZipInput = () => {
     setIsZipUpdateOpen(!isZipUpdateOpen)
@@ -68,7 +93,7 @@ const Cart = () => {
     try {
       const response = await axios.get(api);
       setLatestProducts(response.data.products)
-      console.log("response from cart products lates cards", response.data.products);
+      // console.log("response from cart products lates cards", response.data.products);
     } catch (error) {
       console.error("error", error);
     }
@@ -79,43 +104,12 @@ const Cart = () => {
 
   const productsUids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const newProducts = latestProducts.filter((product) => productsUids.includes(product.uid));
-  console.log("new filtered product", newProducts)
+  // console.log("new filtered product", newProducts)
 
   const maxLength = 30;
   const truncateTitle = (title, maxLength) => {
     return title.length > maxLength ? title.slice(0, maxLength) + '...' : title;
   };
-
-  // sliderr script
-  const [maxShow, setMaxShow] = useState(4);
-  const scrollContainerRef = useRef(null);
-    const cardWidth = 310; // Adjust the width of your cards here
-    const [simillerProductIndex, setSimillerProductIndex] = useState(0);
-    const handleScroll = (direction) => {
-        const newIndex = simillerProductIndex + direction;
-        if(newIndex >= 0 && newIndex <= newProducts.length - 1){
-            setSimillerProductIndex(newIndex)
-            setMaxShow(maxShow + 1)
-        }
-        const container = scrollContainerRef.current;
-        if (container) {
-            const scrollAmount = direction * cardWidth * 1;
-            container.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-            
-        }
-    };
-
-    // Prevent dragging to scroll
-    const handleMouseDown = (e) => {
-        e.preventDefault();
-    };
-
-    const handleTouchMove = (e) => {
-        e.preventDefault();
-    };
 
   const navigate = useNavigate()
   const [quickViewProduct, setQuickViewProduct] = useState({})
@@ -132,48 +126,54 @@ const Cart = () => {
     navigate(`/single-product/${item.slug}`, { state: item })
   };
 
-
   // Slick
   let settings = {
-        dots: false,
-        infinite: false,
-        arrows: false,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        initialSlide: 0,
-        arrows: true,
-        // nextArrow: true,
-        // prevArrow: true,
-        nextArrow: <SampleNextArrow to="next"/>,
-      prevArrow: <SamplePrevArrow to="prev" />,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              infinite: false,
-              dots: false
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 1,
-              initialSlide: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      };
+    dots: false,
+    infinite: false,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    arrows: true,
+    // nextArrow: true,
+    // prevArrow: true,
+    nextArrow: <SampleNextArrow to="next" />,
+    prevArrow: <SamplePrevArrow to="prev" />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
+  // Define conditional visibility logic
+  const filteredOrderPriceDetails = orderPriceDetails.filter((_, index) => {
+    if (index === 1) return isCheck[0]; // Show 'Professional Assembly' if isCheck[0] is true
+    if (index === 2) return isCheck[1]; // Show 'Elite Title' if isCheck[1] is true
+    return true; // Always include other items
+  });
 
   return (
     <div className='cart-main-container'>
@@ -182,10 +182,7 @@ const Cart = () => {
         <div className='cart-products-section'>
           <CartProducts />
         </div>
-        {/* <div className='cart-you-may-like-section'>
-                <h3>You may also like </h3>
-                <CartProductsSuggestion />
-            </div> */}
+
         <div className='cart-order-summery-section'>
           <div className='cart-order-summery-inner-section'>
             <h3 className='cart-order-summary-heading'>Order Summary (3)</h3>
@@ -193,7 +190,12 @@ const Cart = () => {
             {cartSummeryCheckData.map((item, index) => (
               <div className='proffesional-assembly-check-sec'>
                 <label key={index} className='order-summary-proffesional-check-item-label'>
-                  <input type={item.type} />
+                  <input
+                    type={item.type}
+                    className='order-summary-checkbox'
+                    checked={!!isCheck[index]}
+                    onChange={() => handleCheckboxCheck(index)}
+                  />
                   {item.label}
                 </label>
                 <p className='order-summary-proffesional-check-item-detail'>{item.detail}</p>
@@ -201,7 +203,7 @@ const Cart = () => {
             ))}
 
             <div className='cart-order-summary-price-details'>
-              {orderPriceDetails.map((price, index) => (
+              {filteredOrderPriceDetails.map((price, index) => (
                 <div key={index} className='cart-order-summary-price-detail-single-item'>
                   <p className='cart-order-summary-price-detail-single-item-title'>{price.title}</p>
                   <p className='cart-order-summary-price-detail-single-item-price'>{price.price}</p>
@@ -214,7 +216,11 @@ const Cart = () => {
                 </span>
                 <div className={`cart-order-summary-zip-code-input-div ${isZipUpdateOpen ? 'show-zip-code-update-input' : ''}`}>
                   <div className='cart-order-summary-zip-code-input-and-button'>
-                    <input type='text' placeholder='Zip Code' className='cart-summary-update-zip-input' />
+                    <input 
+                      type='text' 
+                      placeholder='Zip Code' 
+                      className='cart-summary-update-zip-input'
+                    />
                     <button className='cart-summary-update-zip-btn'>Update</button>
                   </div>
                 </div>
@@ -233,11 +239,11 @@ const Cart = () => {
             <div className='cart-order-summary-total'>
               <div className='cart-order-summary-price-detail-single-item'>
                 <p className='cart-order-summary-price-detail-single-item-title'>Total</p>
-                <p className='cart-order-summary-price-detail-single-item-price'>$2134</p>
+                <p className='cart-order-summary-price-detail-single-item-price'>{formatePrice(grandTotal)}</p>
               </div>
               <div className='cart-order-summary-price-detail-save-discount'>
                 <p>You Save</p>
-                <p>$123</p>
+                <p>{formatePrice(discountPrice)}</p>
               </div>
             </div>
 
@@ -247,17 +253,20 @@ const Cart = () => {
         </div>
       </div>
 
+
+
+
       <div className='cart-related-products-display-section'>
         <h3>You May Also Like</h3>
         <div className='cart-related-products-slider-main-div'>
           <Slider {...settings}>
             {newProducts.map((item, index) => (
               <div key={index} className='cart-latest-product-cards-container'>
-                  <ProductCard
+                <ProductCard
                   key={index}
                   slug={item.slug}
                   singleProductData={item}
-                  maxWidthAccordingToComp="97%"
+                  maxWidthAccordingToComp="98%"
                   // justWidth={'320px'}
                   tagIcon={item.productTag ? item.productTag : heart}
                   tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
@@ -290,7 +299,7 @@ const Cart = () => {
                 />
               </div>
             ))}
-          </Slider>          
+          </Slider>
         </div>
       </div>
     </div>

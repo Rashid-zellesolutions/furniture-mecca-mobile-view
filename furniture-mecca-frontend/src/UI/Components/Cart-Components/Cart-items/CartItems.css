@@ -147,7 +147,8 @@
 .desktop-cart-product{
     display: none;
     width: 100%;
-    max-height: 173px;
+    height: max-content;
+    max-height: max-content;
     gap: 10px;
     box-shadow: 0px 0px 10px 0px #0000001A;
 
@@ -206,7 +207,7 @@
     justify-content: space-between;
     height: 100%;
     width: 50%;
-    gap: 7px;
+    gap: 5px;
 }
 
 .desktop-name-and-single-price h3{
@@ -222,6 +223,114 @@
     font-weight: 400 !important;
     color: #595959 !important;
 }
+
+
+/* Protection */
+.desktop-card-protection-div{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    padding: 10px;
+    gap: 15px;
+    height: auto;
+    background-color: #FAFAFA;
+    border: 1px solid #F0F0F0;
+    border-radius: 5px;
+}
+
+.guard-and-heading{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+    justify-content: start;
+}
+
+.protection-guard-icon{
+    width: 28px;
+    height: auto;
+    object-fit: contain;
+}
+
+.guard-title-and-details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.protection-guard-title{
+    font-size: 12px !important;
+    line-height: 18px !important;
+    font-weight: 600 !important;
+
+}
+
+.protection-details-and-message{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.protection-details{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    color: var(--text-color);
+    border-right: 1px solid #F0F0F0;
+    padding-right: 10px;
+}
+
+.protection-price-message{
+    font-size: 10px !important;
+    line-height: 15px !important;
+    font-weight: 300 !important;
+    color: var(--text-color) !important;
+}
+
+
+.protection-btns-accept-and-cancel{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+.protection-buttons{
+    background-color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 5px 30px;
+    width: max-content;
+    border: 1px solid #fff;
+    color: var(--text-color);
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.protection-buttons.select-not-protection{
+    background-color: #595959;
+    border: 1px solid #595959;
+    color: #fff;
+}
+
+.protection-buttons.selected-yes-protect{
+    background-color: #595959;
+    border: 1px solid #595959;
+    color: #fff;
+}
+
+.protection-buttons:hover{
+    border: 1px solid #595959;
+    background-color: #595959;
+    color: #fff;
+}
+
+/* Protection End */
 
 .desktop-name-and-single-price p{
     font-size: 18px;

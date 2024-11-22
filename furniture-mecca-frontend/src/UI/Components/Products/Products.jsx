@@ -11,13 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import arrowBlack from '../../../Assets/icons/hide-arrow-black.png'
 import { useProducts } from '../../../context/productsContext/productContext';
 import { useCart } from '../../../context/cartContext/cartContext';
-// import cartBlack from '../../../Assets/icons/big-black-cart.png';
 import closeBtn from '../../../Assets/icons/close-btn.png'
-// import CartItems from '../Cart-Components/Cart-items/CartItems';
-
-// import minusBtn from '../../../Assets/icons/minus-white.png';
-// import plusBtn from '../../../Assets/icons/plus-white.png';
-// import CartSideSection from '../Cart-side-section/CartSideSection';
 import QuickView from '../QuickView/QuickView';
 import CartSidePannel from '../Cart-side-section/CartSidePannel';
 import paginationArrow from '../../../Assets/icons/arrow-right-large.png'
@@ -29,7 +23,16 @@ import ProductCardTwo from '../ProductCard/ProductCardTwo';
 const Products = ({productArchiveHading}) => {
     // products context data
     const {products} = useProducts();
-    const {cart, addToCart, cartSectionOpen, setCartSectionOpen, increamentQuantity, decreamentQuantity, removeFromCart, calculateTotalPrice} = useCart();
+    const {
+        cart, 
+        addToCart, 
+        cartSectionOpen, 
+        setCartSectionOpen, 
+        increamentQuantity, 
+        decreamentQuantity, 
+        removeFromCart, 
+        calculateTotalPrice
+    } = useCart();
 
     // state variables
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -41,8 +44,6 @@ const Products = ({productArchiveHading}) => {
     const [addToCartClicked, setAddToCartClicked] = useState(false)
     const [quickViewClicked, setQuickView] = useState(false);
     
-
-
     const handleCartSectionOpen = (item) => {
         setAddToCartClicked(true)
         // console.log("Cart Data ", cart)
@@ -309,6 +310,7 @@ const Products = ({productArchiveHading}) => {
                 </div>
                 </div>
             </div>
+            
             {/* Products section code */}
             <div className={`products-section ${hideFilters ? 'full-width' : ''}`}>
                 {/* product heading */}

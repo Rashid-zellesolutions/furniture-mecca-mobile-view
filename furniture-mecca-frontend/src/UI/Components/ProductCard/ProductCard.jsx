@@ -49,7 +49,7 @@ const ProductCard = ({
 }) => {
 
     const [cartClicked, setCartClicked] = useState(true);
-    console.log("product ", singleProductData);
+    // console.log("product ", singleProductData);
 
     const dispatch = useDispatch();
     const selectedColorIndex = useSelector((state) => state.colorIndex.colorIndex);
@@ -120,18 +120,18 @@ const ProductCard = ({
         if(index > 0){
             const [priorityItem] = array.splice(index, 1);
             array.unshift(priorityItem)
-            console.log("set with default array", array)
+            // console.log("set with default array", array)
         }
         setPriorArray(array)
         return array;
     }
-    console.log("dsdgsd", priorArray)
+    // console.log("dsdgsd", priorArray)
     useEffect(() => {
 
         const defAttImage = singleProductData.variations.find(attr => 
             attr.uid === singleProductData.default_variation
         )
-        console.log("selected attribute", defAttImage)
+        // console.log("selected attribute", defAttImage)
         const defAttrColor = defAttImage?.attributes?.find(attribute => 
             attribute?.type === 'color' &&
             attribute?.options?.some(option => option?.value)
@@ -143,10 +143,10 @@ const ProductCard = ({
         const attribute = defAttImage?.attributes;
         if(attribute){
             const defaultAttribute = getPriorityAttribute(attribute)
-            console.log("pririty attribute", defaultAttribute)
+            // console.log("pririty attribute", defaultAttribute)
             if(defaultAttribute){
                 const updatedAttributes = moveToFirst(attribute, defaultAttribute)
-                console.log("Updated attributes with priority first:", updatedAttributes);
+                // console.log("Updated attributes with priority first:", updatedAttributes);
             }
         }
 
@@ -156,12 +156,12 @@ const ProductCard = ({
     const [mainImageHoverIndex, setMainImageHoverIndex] = useState(null)
     const handleMouseOnMainImage = (id) => {
         setMainImageHoverIndex(id);
-        console.log("on mouse enter",mainImageHoverIndex);
+        // console.log("on mouse enter",mainImageHoverIndex);
     }
 
     const handleMouseLeaveOnMainImage = () => {
         setMainImageHoverIndex(null)
-        console.log("on mouse leave",mainImageHoverIndex);
+        // console.log("on mouse leave",mainImageHoverIndex);
     }
 
     return (

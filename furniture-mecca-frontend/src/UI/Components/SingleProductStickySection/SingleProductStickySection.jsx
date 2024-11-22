@@ -48,7 +48,7 @@ import { useSingleProductContext } from '../../../context/singleProductContext/s
 
 const SingleProductStickySection = ({ productData }) => {
   const product = productData;
-  // console.log("product on top", product)
+  console.log("product on top", product)
 
   const { cart, addToCart, decreamentQuantity, increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
   const [cartSection, setCartSection] = useState(false);

@@ -20,6 +20,7 @@
     display: flex;
     width: 70%;
     padding: 30px 20px 0 0;
+
     /* border-right: 1px solid #d9d9d9; */
 }
 
@@ -38,6 +39,8 @@
 .cart-order-summery-inner-section{
     /* position: absolute; */
     /* bottom: 0; */
+    position: sticky;
+    top: 20px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -102,6 +105,34 @@
     font-size: 12px;
     line-height: 15px;
     font-weight: 500;
+}
+
+.order-summary-checkbox {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #595959;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+
+.order-summary-checkbox:checked {
+    background-color: #28828A;
+    border-color: #28828A;
+}
+
+.order-summary-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 3px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .order-summary-proffesional-check-item-detail{
@@ -431,7 +462,7 @@
 
 .cart-latest-product-cards-container{
     display: flex !important;
-    width: 97% !important;
+    width: 100% !important;
     padding: 5px;
     align-items: center;
     justify-self: center;

@@ -11,7 +11,7 @@ import ProductCardTwo from '../ProductCard/ProductCard';
 
 const FrequentlyBought = ({relatedProducts}) => {
 
-    console.log("related products", relatedProducts)
+    // console.log("related products", relatedProducts)
     // console.log("core collections", collection);
     // const collections = collection.map((item) => item);
     // console.log("transfered valued", collections)

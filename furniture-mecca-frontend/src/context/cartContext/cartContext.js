@@ -1,8 +1,9 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import CartItems from "../../UI/Components/Cart-Components/Cart-items/CartItems";
 
 export const CartContext = createContext()
 
-export const CartProvider = ({children}) => {
+export const CartProvider = ({ children }) => {
 
     // initialize cart from local storage
     const [subTotal, setSubTotal] = useState(0);
@@ -27,7 +28,7 @@ export const CartProvider = ({children}) => {
 
     // save cart to local storage when eer it changes
     useEffect(() => {
-        
+
         localStorage.setItem('cart', JSON.stringify(cart));
         // console.log("cart storage", cart)
     }, [cart])
@@ -85,51 +86,121 @@ export const CartProvider = ({children}) => {
         //         return [...prevCart, { product: updatedProduct, quantity: 1 }];
         //     }
         // });
-        console.log("isProtected context value", isProtected)
+        // console.log("isProtected context value", isProtected)
         setCart((prevCart) => {
             const existingProduct = prevCart.find((item) => item.product.uid === product.uid);
             // const quantityToAdd = singleProduct?.quantity || 1;
-            if(existingProduct){
+            if (existingProduct) {
                 // console.log("single product quantity", singleProduct)
-                return prevCart.map(item => 
+                return prevCart.map(item =>
                     item.product.uid === product.uid ? {
                         ...item.product,
                         product: {
                             ...item.product,
                             quantity: LocalQuantity,
-                            is_protected: isProtected ? 1 : 0,
-                            protected_value: isProtected ? 99 : 0,
+                            // is_protected: isProtected ? 1 : 0,
+                            // protected_value: isProtected ? 99 : 0,
                             // sub_total: parseFloat(item.product.regular_price) * (item.product.quantity),
                             // total_price: parseFloat(item.product.regular_price) * (item.product.quantity)
                         }
                     } : item
                 );
-            }else{
+            } else {
                 const newProduct = {
                     product: {
                         ...product,
-                        is_protected: isProtected ? 1 : 0,
-                        protected_value: isProtected ? 99 : 0,
+                        // is_protected: isProtected ? 1 : 0,
+                        // protected_value: isProtected ? 99 : 0,
                         quantity: LocalQuantity,
                         sub_total: parseFloat(product.regular_price) * (product.quantity || 1),
                         total_price: parseFloat(product.regular_price) * (product.quantity || 1)
                     }
                 };
-                console.log("new quantity added from local", cart)
+                // console.log("new quantity added from local", cart)
                 return [...prevCart, newProduct]
             }
         })
     };
 
 
+    const addSingleProtection = (recievedProduct) => {
+        const product = recievedProduct.product;
+
+        setCart((prevCart) => {
+            const findProduct = prevCart.find((item) => item.product.uid === product.uid);
+            if (findProduct) {
+                return prevCart.map(item =>
+                    item.product.uid === product.uid ?
+                        {
+                            ...item.product,
+                            product: {
+                                ...item.product,
+                                is_protected: 1,
+                                protection_value: 99
+                            }
+                        } : item
+                )
+            }
+            return prevCart;
+        })
+    }
+
+    const removeProtection = (recievedProduct) => {
+        const product = recievedProduct.product;
+        setCart((prevCart) => {
+            const findProduct = prevCart.map((item) => item.product.uid === product.uid);
+            if (findProduct) {
+                return prevCart.map(item =>
+                    item.product.uid === product.uid
+                        ? {
+                            ...item.product,
+                            product: {
+                                ...item.product,
+                                is_protected: 0,
+                                protection_value: 0
+                            }
+                        } : item
+                )
+            }
+
+            return prevCart
+        })
+    }
+
+
+    // const updateCartProtection = (cartPayload, allProtectionPrice) => {
+    //     // Create a new cart array with updated is_protected and protection_value fields
+    //     const updatedCart = cartPayload.map((item) => {
+    //         // Clone the item to avoid directly mutating the original object
+    //         return {
+    //             ...item,
+    //             is_protected: 0,
+    //             protection_value: 0,
+    //         };
+    //     });
+
+    //     // Add all_protected and all_protection_price fields to the updated cart payload
+    //     const updatedCartWithProtectionSummary = {
+    //         product: updatedCart,
+    //         all_protected: 1,
+    //         all_protection_price: allProtectionPrice,
+    //     };
+
+    //     // Update the cart with the modified payload
+    //     setCart(updatedCartWithProtectionSummary);
+
+    //     console.log("Updated cart:", updatedCartWithProtectionSummary);
+    // };
+
     // Remove Cart Item
+    
     const removeFromCart = (uid) => {
         setCart((prevCart) => prevCart.filter(item => item.product.uid !== uid));
     };
 
 
     const increamentQuantity = (uid) => {
-        
+
         setCart((prevCart) => {
             // Ensure prevCart is not undefined
             if (!prevCart) return [];
@@ -161,8 +232,8 @@ export const CartProvider = ({children}) => {
                         product: {
                             ...item.product,
                             quantity: Math.max((item.product.quantity || 1) - 1, 1), // Fallback to 1 if quantity is undefined
-                            sub_total: parseFloat(item.product.regular_price) * (item.product.quantity), 
-                            total_price: parseFloat(item.product.regular_price) * (item.product.quantity), 
+                            sub_total: parseFloat(item.product.regular_price) * (item.product.quantity),
+                            total_price: parseFloat(item.product.regular_price) * (item.product.quantity),
                         }
                     }
                     : item
@@ -172,9 +243,9 @@ export const CartProvider = ({children}) => {
         });
     };
     // Calculate total orders price
-    
+
     const calculateTotalPrice = () => {
-        if(!Array.isArray(cart)){
+        if (!Array.isArray(cart)) {
             console.error("Invalid Array", cart);
             return 0;
         }
@@ -185,7 +256,7 @@ export const CartProvider = ({children}) => {
         //     const price = parseFloat((
         //         item.product.sub_total
         //     ))
-            
+
         //     if(!isNaN(price)){
         //         total += price
         //     }
@@ -195,19 +266,19 @@ export const CartProvider = ({children}) => {
 
     useEffect(() => {
         calculateTotalPrice()
-        
+
     }, [cart]);
 
-    
+
 
     return (
         <CartContext.Provider value={
             {
-                cart, 
-                addToCart, 
-                removeFromCart, 
-                increamentQuantity, 
-                decreamentQuantity, 
+                cart,
+                addToCart,
+                removeFromCart,
+                increamentQuantity,
+                decreamentQuantity,
                 calculateTotalPrice,
                 addSingleProduct,
                 subTotal,
@@ -215,6 +286,9 @@ export const CartProvider = ({children}) => {
                 deliveryCharges,
                 grandValue,
                 resetCart,
+                addSingleProtection,
+                removeProtection,
+                // updateCartProtection
             }
         }>
             {children}

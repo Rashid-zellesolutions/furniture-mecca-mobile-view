@@ -12,12 +12,35 @@ import rotatedArrow from '../../../../Assets/icons/arrow-rotate-white.png'
 import unProtectedIcon from '../../../../Assets/icons/un-protected.png';
 import protectedIcon from '../../../../Assets/icons/protected.png'
 import { url } from '../../../../utils/api';
+import guardIcon from '../../../../Assets/icons/guard-icon.png';
+import { Link } from 'react-router-dom';
+import { useCart } from '../../../../context/cartContext/cartContext';
 
-const CartItems = ({cartProductName, productSubTotal,  issingleProtected, handleSingleProtected, isAllProtected, cartPRoductImage, cartProductColor, cartProductTitle, cartProductTotalPrice, 
-    cartSingleProductPrice, isCartOpen, onlyMobile, productColor, quantity, handleRomoveProduct,  cartIndex, productsLength, handleIncreament, handleDecreament, handleTotalPrice}) => {
-        // console.log("Cart single price", cartSingleProductPrice)
+const CartItems = ({
+    cartProductName, 
+    productSubTotal,  
+    issingleProtected, 
+    handleSingleProtected, 
+    isAllProtected, 
+    cartPRoductImage, 
+    cartProductColor, 
+    productData,
+    cartProductTitle, 
+    cartProductTotalPrice, 
+    cartSingleProductPrice, 
+    isCartOpen, 
+    onlyMobile, 
+    productColor, 
+    quantity, 
+    handleRomoveProduct,  
+    cartIndex, 
+    productsLength, 
+    handleIncreament, 
+    handleDecreament, 
+    handleTotalPrice
+    }) => {
+        const {addSingleProtection, removeProtection} = useCart()
         const [saveForLeter, setSaveForLeter] = useState(false)
-        // const [isProtected, setIsProtected] = useState(false)
         const formatedSinglePrice = Intl.NumberFormat('en-us', {
             style: 'currency',
             currency: 'USD'
@@ -38,7 +61,16 @@ const CartItems = ({cartProductName, productSubTotal,  issingleProtected, handle
             }, 2000);
         }
 
-        // const handleProtected = () => {setIsProtected(!isProtected)}
+        const protectOrNotButtons = [
+            {type: 'button', title: 'No Thanks', style: 'protect-no-thanks', secondStyle: 'select-not-protection'},
+            {type: 'button', title: 'Yes Protect', style: 'protect-yes-protect', secondStyle: 'selected-yes-protect'},
+        ]
+
+        const [isProtectionClicked, setIsProtectionClicked] = useState();
+        const handleProtectOrNotButtonClicked = (value) => {
+            setIsProtectionClicked((prevValue) => prevValue === value ? null : value)
+        }
+
         
     return (
     <>
@@ -76,6 +108,9 @@ const CartItems = ({cartProductName, productSubTotal,  issingleProtected, handle
                 </div>
             </div>
         </div>
+
+
+
         {/* Desktop view Card */}
         <div className={`desktop-cart-product`}>
             
@@ -91,10 +126,51 @@ const CartItems = ({cartProductName, productSubTotal,  issingleProtected, handle
                     <p className='desktop-product-extra-info'>{formatedSinglePrice}</p>
                     <p className='desktop-product-extra-info'>Table & 4 Chairs</p>
                     {/* <p className='desktop-product-extra-info'>Yes, Protect it (+$99)</p> */}
-                    <button className={`protect-product-tag ${issingleProtected ? 'protect-tick' : ''}`} onClick={handleSingleProtected}>
+ 
+                    <div className='desktop-card-protection-div'>
+                        <div className='guard-and-heading'>
+                            <img src={guardIcon} alt='guard' className='protection-guard-icon' />
+                            <div className='guard-title-and-details'>
+                                <h3 className='protection-guard-title'>Platinum Elite Furniture</h3>
+                                <span className='protection-details-and-message'>
+                                    <Link className='protection-details'>Details</Link>
+                                    <p className='protection-price-message'>Price shown in summary</p>
+                                </span>
+                            </div>
+                        </div>
+                        <div className='protection-btns-accept-and-cancel'>
+                            {/* {protectOrNotButtons.map((items, index) => (
+                                <button 
+                                    key={index}
+                                    className={`protection-buttons ${items.style} ${isProtectionClicked === index ? items.secondStyle : ''}`}
+                                    onClick={() => handleProtectOrNotButtonClicked(index)}
+                                >
+                                    {items.title}
+                                </button>
+                            ))} */}
+                            <button 
+                                className={`protection-buttons protect-no-thanks ${isProtectionClicked === 'no-thanks' ? 'select-not-protection' : ''}`}
+                                onClick={() => {handleProtectOrNotButtonClicked('no-thanks'); removeProtection(productData)}}
+                            >
+                                No Thanks
+                            </button>
+                            <button 
+                                className={`protection-buttons protect-yes-protect ${isProtectionClicked === 'yes-protect' ? 'selected-yes-protect' : ''}`}
+                                onClick={() => {handleProtectOrNotButtonClicked('yes-protect'); addSingleProtection(productData)}}
+                            >
+                                Yes Protect it
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* <button className={`protect-product-tag ${issingleProtected ? 'protect-tick' : ''}`} onClick={handleSingleProtected}>
                         <img src={issingleProtected ? protectedIcon : unProtectedIcon} alt='unProtected' />
                         {issingleProtected ? 'Protected(+99)' : 'Prodect'}
-                    </button>
+                    </button> */}
+
+
+
+
                     <p>{formatedTotalPrice}</p>
                 </div>
                 <div className={`desktop-quantity-and-save-for-leter ${isCartOpen ? 'hide-quantity' : ''}`}>

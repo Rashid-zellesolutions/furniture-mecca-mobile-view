@@ -35,7 +35,7 @@ const SingleProduct = () => {
   const {slug} = useParams()
   const location = useLocation();
   const product = location.state || {}
-  console.log("main product data", product.collection)
+  // console.log("main product data", product.collection)
 
   const {singleProduct, increaseQuantity} = useSingleProductContext()
   // const {} = useSingleProductContext();

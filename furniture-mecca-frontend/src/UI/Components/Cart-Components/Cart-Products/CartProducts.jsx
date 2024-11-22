@@ -17,10 +17,10 @@ import { url } from '../../../../utils/api';
 
 
 const CartProducts = () => {
-    const { cart, updateSubTotal, getAllTotals, taxValue, deliveryCharges, subTotal, grandValue, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice, toggleProtection } = useCart()
+    const { cart, taxValue, deliveryCharges, subTotal, removeFromCart, increamentQuantity, decreamentQuantity, calculateTotalPrice, toggleProtection } = useCart()
     
     calculateTotalPrice(cart)
-    console.log("cart total", calculateTotalPrice(cart))
+    // console.log("cart total", calculateTotalPrice(cart))
 
     // useEffect(() => {
     //     console.log("instant data change", subTotal)
@@ -64,11 +64,11 @@ const CartProducts = () => {
     const handleScroll = () => {
         if(window.scrollY > 250){
             setCheckoutFixed(false);
-            console.log(window.scrollY)
+            // console.log(window.scrollY)
         }
         else{
             setCheckoutFixed(true);
-            console.log(window.scrollY)
+            // console.log(window.scrollY)
         }
     }
     useEffect(() => {
@@ -111,6 +111,7 @@ const CartProducts = () => {
                         return <CartItems
                             key={items.product.uid}
                             onlyMobile={false}
+                            productData={items}
                             issingleProtected={issingleProtected}
                             handleSingleProtected={() => {}}
                             // isAllProtected={protectAll}
