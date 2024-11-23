@@ -280,9 +280,9 @@ const Footer = ({notLandingPage}) => {
                             <div key={index} className='footer-costumer-care-and-about'>
                                 <h3>{item.heading}</h3>
                                 {item.navLinks.map((navItem, inn) => (
-                                    <a key={inn} href={navItem.link} className='about-and-care-link'>
+                                    <Link key={inn} to={navItem.link} className='about-and-care-link'>
                                         {navItem.name}
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
                         ))}

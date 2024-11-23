@@ -27,8 +27,9 @@ import diningRoomOutlet from '../../../Assets/Furniture Mecca/category page/cate
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 import BreadCrumWithProduct from '../BreadCrumWithProduct/BreadCrumWithProduct';
 import { useLocation } from 'react-router-dom';
+import CategoryShimmer from '../Loaders/Category/categoryShimmer';
 
-const Category = ({title, categoryData }) => {
+const Category = ({ title, categoryData, handleNavigate }) => {
 
   // console.log("category data : ", categoryData)
   const category = [
@@ -46,40 +47,122 @@ const Category = ({title, categoryData }) => {
     {img: outlet, link: '/outlets'},
   ]
 
-  const mobileCategory = [
-    {img: diningRoomSet, link: '/living-room'}, 
-    {img: pubHeightSet, link: '/bedroom'},
-    {img: diningTable, link: '/dining-room'},
-    {img: diningChairs, link: '/mattresses'},
-    {img: counterAndBars, link: '#'},
-    {img: smallSpaces, link: '#'},
-    {img: diningRoomCollection, link: '#'},
-    {img: shopAllDining, link: '/accent-furniture-and-rugs'},
-    {img: diningRoomOutlet, link: '/kids'},
-  ]
+  // const mobileCategory = [
+  //   {img: diningRoomSet, link: '/living-room'}, 
+  //   {img: pubHeightSet, link: '/bedroom'},
+  //   {img: diningTable, link: '/dining-room'},
+  //   {img: diningChairs, link: '/mattresses'},
+  //   {img: counterAndBars, link: '#'},
+  //   {img: smallSpaces, link: '#'},
+  //   {img: diningRoomCollection, link: '#'},
+  //   {img: shopAllDining, link: '/accent-furniture-and-rugs'},
+  //   {img: diningRoomOutlet, link: '/kids'},
+  // ]
 
   return (
+    // <div className='category-main-container'>
+    //   <div className="category-bread-crumb-and-title">
+    //     <Breadcrumb />
+    //     <h3 className='category-heading'>{title}</h3>
+    //   </div>
+    //     <div className='category-cards-container'>
+    //       {category.map((item, index) => (
+    //         <a key={index} href={item.link}>
+    //           <img src={item.img} alt='img' />
+    //         </a>
+    //       ))}
+    //     </div>
+    //     <div className='mobile-category-cards-container'>
+    //         {mobileCategory.map((items, index) => (
+    //           <a key={index} href={items.link}>
+    //             <img src={items.img} alt='img' />
+    //           </a>
+    //         ))}
+    //     </div>
+    // </div>
+
     <div className='category-main-container'>
       <div className="category-bread-crumb-and-title">
         <Breadcrumb />
         <h3 className='category-heading'>{title}</h3>
       </div>
-        <div className='category-cards-container'>
-          {category.map((item, index) => (
-            <a key={index} href={item.link}>
-              <img src={item.img} alt='img' />
-            </a>
-          ))}
-        </div>
-        <div className='mobile-category-cards-container'>
-            {mobileCategory.map((items, index) => (
-              <a key={index} href={items.link}>
-                <img src={items.img} alt='img' />
-              </a>
-            ))}
-        </div>
+      <div className='category-cards-container'>
+        {categoryData && categoryData.length > 0 ? (
+          categoryData.map((item, index) => (
+            <img
+              key={index}
+              onClick={() => handleNavigate(item.slug, item)}
+              src={"https://fm.skyhub.pk" + item.image}
+              alt='img'
+            />
+          ))
+        ) : (
+          Array.from({ length: 12 }).map((_, index) => (
+            <CategoryShimmer/>
+          ))
+        )}
+      </div>
+
+      <div className='mobile-category-cards-container'>
+        {categoryData && categoryData.map((item, index) => (
+          <img
+            key={index}
+            onClick={() => handleNavigate(item.slug, item)}
+            src={"https://fm.skyhub.pk" + item.image2}
+            alt='img'
+          />
+        ))}
+      </div>
     </div>
   )
 }
 
 export default Category
+
+
+// import React from 'react';
+// import './Category.css';
+// import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
+// import CategoryShimmer from '../Loaders/Category/categoryShimmer';
+// import { url } from '../../../utils/api';
+
+// const Category = ({ title, categoryData, handleNavigate }) => {
+//   return (
+//     <div className='category-main-container'>
+//       <div className="category-bread-crumb-and-title">
+//         <Breadcrumb />
+//         <h3 className='category-heading'>{title}</h3>
+//       </div>
+//       <div className='category-cards-container'>
+//         {categoryData && categoryData.length > 0 ? (
+//           categoryData.map((item, index) => (
+//             <img
+//               key={index}
+//               onClick={() => handleNavigate(item.slug, item)} // Ensure this function is passed correctly
+//               src={"https://fm.skyhub.pk" + item.image}
+//               alt='img'
+//             />
+//           ))
+//         ) : (
+//           Array.from({ length: 12 }).map((_, index) => (
+//             <CategoryShimmer/>
+//           ))
+//         )}
+//       </div>
+
+//       <div className='mobile-category-cards-container'>
+//         {categoryData && categoryData.map((item, index) => (
+//           <img
+//             key={index}
+//             onClick={() => handleNavigate(item.slug, item)}
+//             src={"https://fm.skyhub.pk" + item.image2}
+//             alt='img'
+//           />
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Category;
+

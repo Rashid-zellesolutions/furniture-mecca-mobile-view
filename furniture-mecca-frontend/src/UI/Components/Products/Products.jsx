@@ -18,11 +18,15 @@ import paginationArrow from '../../../Assets/icons/arrow-right-large.png'
 import MobileViewProductFilters from '../MobileViewProductFilters/MobileViewProductFilters';
 import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 import { IoMdClose } from "react-icons/io";
-import ProductCardTwo from '../ProductCard/ProductCardTwo';
+import star from "../../../Assets/icons/Star 19.png"
+import heart from '../../../Assets/icons/heart-vector.png'
+// import ProductCardTwo from '../ProductCard/ProductCardTwo';
+import { url } from '../../../utils/api';
+import axios from 'axios';
 
 const Products = ({productArchiveHading}) => {
     // products context data
-    const {products} = useProducts();
+    // const {products} = useProducts();
     const {
         cart, 
         addToCart, 
@@ -33,6 +37,7 @@ const Products = ({productArchiveHading}) => {
         removeFromCart, 
         calculateTotalPrice
     } = useCart();
+    const { subCategorySlug } = useParams();
 
     // state variables
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -43,6 +48,22 @@ const Products = ({productArchiveHading}) => {
     const [showAllFilters, setShowAllFilters] = useState(false);
     const [addToCartClicked, setAddToCartClicked] = useState(false)
     const [quickViewClicked, setQuickView] = useState(false);
+    const [products, setProducts] = useState([]);
+
+    const fetchProductData = async () =>  {
+        try {
+            const response = await axios.get(`${url}/api/v1/products/by-category?categorySlug=${subCategorySlug}`);
+            // Parse the JSON response
+            const data = response.data.products;
+            setProducts(data);
+            console.log("product archive data", response)
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+    useEffect(() => {
+        fetchProductData()
+    }, [])
     
     const handleCartSectionOpen = (item) => {
         setAddToCartClicked(true)
@@ -63,8 +84,12 @@ const Products = ({productArchiveHading}) => {
     const handleQuickViewClose = () => {setQuickView(false)}
     
     // navigate to single product page with product data
+    // const handleProductClick = (item) => {
+    //     navigate(`/single-product/${item.slug}`, {state: item});
+    // };
+
     const handleProductClick = (item) => {
-        navigate(`/single-product/${item.slug}`, {state: item});
+        navigate(`/single-product/${item.slug}`, {state:  item});
     };
     
     // filters data
@@ -333,7 +358,7 @@ const Products = ({productArchiveHading}) => {
                     </div>
                 </div>
                 <div className='product-main'>
-                    {products.slice(0, 9).map((item, index) => {
+                    {/* {products.slice(0, 9).map((item, index) => {
                         return <ProductCardTwo 
                             key={index}
                             slug={item.slug}
@@ -356,7 +381,46 @@ const Products = ({productArchiveHading}) => {
                             handleQuickView={() => handleQuickViewOpen(item)}
                             stock={item.stock}
                         />
+                    })} */}
+
+
+                    {products.slice(0, 9).map((item, index) => {
+                        return  <ProductCard
+                        key={index}
+                        slug={item.slug}
+                        singleProductData={item}
+                        maxWidthAccordingToComp={"32%"}
+                        justWidth={'100%'}
+                        tagIcon={item.productTag ? item.productTag : heart}
+                        tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                        mainImage={`${item.image.image_url}`}
+                        productCardContainerClass="product-card"
+                        ProductSku={item.sku}
+                        tags={item.tags}
+                        ProductTitle={truncateTitle(item.name, maxLength)}
+                        stars={[
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                        ]}
+                        reviewCount={item.reviewCount}
+                        lowPriceAddvertisement={item.lowPriceAddvertisement}
+                        priceTag={item.regular_price}
+                        sale_price={item.sale_price}
+                        financingAdd={item.financingAdd}
+                        learnMore={item.learnMore}
+                        mainIndex={index}
+                        deliveryTime={item.deliveryTime}
+                        stock={item.manage_stock}
+                        attributes={item.attributes}
+                        handleCardClick={() => handleProductClick(item)}
+                        handleQuickView={() => handleQuickViewOpen(item)}
+                    />
                     })}
+
+
                 </div>
                 {/* Product Card Code End */}
                 <div className='view-more-products-button-div'>
@@ -392,7 +456,7 @@ const Products = ({productArchiveHading}) => {
                 </div>
             </div>
             <div className={`${selectedGrid === 'single-col' ? 'mobile-view-product-single-column' : 'mobile-view-products-main-container' } `}>
-                {products.slice(0, 3).map((item, index) => {
+                {/* {products.slice(0, 3).map((item, index) => {
                         return <ProductCardTwo key={index}
                             slug={item.slug}
                             singleProductData={item}
@@ -422,6 +486,40 @@ const Products = ({productArchiveHading}) => {
                             handleCartSectionOpen={() => handleCartSectionOpen(item)}
                             handleQuickView={() => handleQuickViewOpen(item)}
                         />
+                    })} */}
+
+                {products.slice(0, 3).map((item, index) => {
+                        return <ProductCard
+                        key={index}
+                        slug={item.slug}
+                        singleProductData={item}
+                        maxWidthAccordingToComp="100%"
+                        justWidth={'310px'}
+                        tagIcon={item.productTag ? item.productTag : item.heart}
+                        tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                        mainImage={`${item.image.image_url}`}
+                        productCardContainerClass="product-card"
+                        ProductSku={item.sku}
+                        tags={item.tags}
+                        ProductTitle={truncateTitle(item.name, maxLength)}
+                        stars={[
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                        ]}
+                        reviewCount={item.reviewCount}
+                        lowPriceAddvertisement={item.lowPriceAddvertisement}
+                        priceTag={item.regular_price}
+                        sale_price={item.sale_price}
+                        financingAdd={item.financingAdd}
+                        learnMore={item.learnMore}
+                        mainIndex={index}
+                        deliveryTime={item.deliveryTime}
+                        stock={item.manage_stock}
+                        attributes={item.attributes}
+                    />
                     })}
             </div>
             <div className='mobile-view-pagination'>

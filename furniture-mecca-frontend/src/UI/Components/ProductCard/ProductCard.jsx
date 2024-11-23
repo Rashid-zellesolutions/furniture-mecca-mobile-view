@@ -103,10 +103,10 @@ const ProductCard = ({
     const handleColorSelect = (color) => {
         setSelectedColor(color)
         
-        const matchingAttribute = singleProductData.variations.find(variation =>
-            variation.attributes.some(attribute =>
-                attribute.type === "color" &&
-                attribute.options.some(option => option.value === color)
+        const matchingAttribute = singleProductData?.variations?.find(variation =>
+            variation?.attributes?.some(attribute =>
+                attribute?.type === "color" &&
+                attribute?.options?.some(option => option?.value === color)
             )
         );
 
@@ -128,8 +128,8 @@ const ProductCard = ({
     // console.log("dsdgsd", priorArray)
     useEffect(() => {
 
-        const defAttImage = singleProductData.variations.find(attr => 
-            attr.uid === singleProductData.default_variation
+        const defAttImage = singleProductData?.variations?.find(attr => 
+            attr?.uid === singleProductData.default_variation
         )
         // console.log("selected attribute", defAttImage)
         const defAttrColor = defAttImage?.attributes?.find(attribute => 
@@ -175,9 +175,9 @@ const ProductCard = ({
                         <img src={tagIcon} alt='heart img' className={tagClass} />
                     </div> */}
 
-                    <div className='product-main-image-container' onMouseEnter={() => handleMouseOnMainImage(singleProductData.uid)} onMouseLeave={handleMouseLeaveOnMainImage}>
+                    <div className='product-main-image-container' onMouseEnter={() => handleMouseOnMainImage(singleProductData?.uid)} onMouseLeave={handleMouseLeaveOnMainImage}>
                         <div className='tag-and-heart'>
-                            <h3 className='stock-label'>{stock.is_stock_manage === 1 ? "In Stock" : "Out of Stock"}</h3>
+                            <h3 className='stock-label'>{stock?.is_stock_manage === 1 ? "In Stock" : "Out of Stock"}</h3>
                             <p className='percent-label'>{percent}</p>
                             <img src={tagIcon} alt='heart img' className={tagClass} />
                         </div>

@@ -14,12 +14,14 @@ import { AddCartProvider } from './context/AddToCart/addToCart';
 import { MyOrdersProvider } from './context/orderContext/ordersContext';
 import ScrollToTop from './utils/ScrollToTop/ScrollToTop';
 import { VariationProvider } from './context/BreadCrumbContext/variationsContext';
+import { LPContentProvider } from './context/LPContentContext/LPContentContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <LPContentProvider>
     <OrderProvivder>
       <NavigationProvider>
         {/* <SingleProductProvider> */}
@@ -45,6 +47,7 @@ root.render(
         {/* </SingleProductProvider> */}
       </NavigationProvider>
     </OrderProvivder>
+    </LPContentProvider>
   </React.StrictMode>
 );
 

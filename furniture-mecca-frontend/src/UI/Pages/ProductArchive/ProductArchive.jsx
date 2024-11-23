@@ -35,15 +35,31 @@ const ProductArchive = ({productArchiveHading}) => {
 
   return (
     <div>
-        <BreadCrumWithProduct breadcrumRecentData={breadcrumRecentData}  />
-        <Products productArchiveHading={productArchiveHading}/>
+        <BreadCrumWithProduct 
+          breadcrumRecentData={breadcrumRecentData}  
+        />
+        <Products 
+          productArchiveHading={productArchiveHading}
+        />
         <RelatedCategories />
         <FAQ />
         <MobileFinancingSlider />
-        <AnnouncmentBanners bannerImage={twelveMonthCreditOfferImage} padding={'10px'}/>
-        <AnnouncmentBanners bannerImage={payPalMobileBanner} padding={'10px 0'}/>
-        <AnnouncmentBanners bannerImage={sixMonthCreditImage} padding={'10px 0'}/>
-        <AnnouncmentBanners bannerImage={paymentOptionsBanner} padding={'10px 0'}/>
+        <AnnouncmentBanners 
+          bannerImage={twelveMonthCreditOfferImage} 
+          padding={'10px'}
+        />
+        <AnnouncmentBanners 
+          bannerImage={payPalMobileBanner} 
+          padding={'10px 0'}
+        />
+        <AnnouncmentBanners 
+          bannerImage={sixMonthCreditImage} 
+          padding={'10px 0'}
+        />
+        <AnnouncmentBanners 
+          bannerImage={paymentOptionsBanner} 
+          padding={'10px 0'}
+        />
     </div>    
   )
 }

@@ -49,6 +49,7 @@ import Careers from "../../UI/Pages/Careers/Careers";
 import FurnitureAtEveryBudget from "../../UI/Pages/FurnitureAtEveryBudget/FurnitureAtEveryBudget";
 import StoreLocator from "../../UI/Pages/StoreLocator/StoreLocator";
 import BlogPage from "../../UI/Pages/Blogs/BlogPage";
+import SingleBlog from "../../UI/Pages/SingleBlog/SingleBlog";
 
 const categoryCardData = [
     { title: "Dining Room Sets", img: newArrivalImage, link: '#' },
@@ -331,6 +332,10 @@ const routes = (
         <Route
             path="/blogs"
             element={<BlogPage />}
+        />
+        <Route 
+            path="/single-blog/:id"
+            element={<SingleBlog />}
         />
         <Route
             path="/furniture-at-every-budget"

@@ -38,6 +38,7 @@ const SimillerProducts = ({collection}) => {
         }
     }
 
+
     const getchMyCollectionProducts = async () => {
         const products = await fetchData();
         setData(products);
@@ -46,6 +47,8 @@ const SimillerProducts = ({collection}) => {
     useEffect(() => {
         getchMyCollectionProducts()
     }, [])
+    const showArrowOnCardLength = data && data.length
+    console.log("cards data", showArrowOnCardLength)
     // console.log("converted my collection", data)
     // console.log("single collection", products)
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -116,7 +119,7 @@ const SimillerProducts = ({collection}) => {
         <div className='similler-products-wrapper' onMouseDown={handleMouseDown}
             onTouchMove={handleTouchMove}>
             <button
-                className={`scroll-button left ${simillerProductIndex >= data && data.length ? 'disable-similler-product-arrow' : ''}`}
+                className={`scroll-button left ${simillerProductIndex >= data && data.length ? 'disable-similler-product-arrow' : ''} ${showArrowOnCardLength > 4 ? 'show-arrow-on-slider' : ''}`}
                 onClick={() => handleScroll(-1)} 
             //    onClick={handlePrev}
                 disabled={simillerProductIndex === 0}
@@ -159,7 +162,7 @@ const SimillerProducts = ({collection}) => {
                 ))}
             </div>
             <button
-                className={`scroll-button right ${simillerProductIndex >= data && data.length ? 'disable-similler-product-arrow' : ''}`}
+                className={`scroll-button right ${simillerProductIndex >= data && data.length ? 'disable-similler-product-arrow' : ''} ${showArrowOnCardLength > 4 ? 'show-arrow-on-slider' : ''}`}
                onClick={() => handleScroll(1)} 
             //   onClick={handleNext}
             >

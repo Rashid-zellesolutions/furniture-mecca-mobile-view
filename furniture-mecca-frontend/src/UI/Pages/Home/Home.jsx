@@ -36,7 +36,7 @@ import Comparision from '../../Components/Comparision/Comparision';
 import DealOfTheDay from '../../Components/DealOfTheDay/DealOfTheDay';
 import TrendingNow from '../../Components/TrendingNow/TrendingNow';
 import FurnitureForBudget from '../../Components/FurnitureForBudget/FurnitureForBudget';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import AnnouncmentBanners from '../../Components/AnnouncmentBanner/AnnouncmentBanner';
 
 import twelveMonthCreditOfferImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 121.png';
@@ -46,14 +46,19 @@ import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/s
 import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFinancingSlider';
 import ImageSlider from '../../Components/404NotFound/ImageSlider';
 import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery';
+import { useLPContentContext } from '../../../context/LPContentContext/LPContentContext';
 
 
 const Home = () => {
   const [currentUrl, setCurrentUrl] = useState('/');
+  const {postData, data, landingPageCategories} = useLPContentContext();
   const location = useLocation();
   useEffect(() => {
     setCurrentUrl(location.pathname);
   }, [location]);
+  useEffect(() => {
+    postData();
+  }, [])
   
   
   const productCardData = [
@@ -101,6 +106,12 @@ const Home = () => {
     {title: "Outlet", img: Outlet, link: '#'},
   ]
 
+  const navigate = useNavigate();
+
+  const handleNavigate = (slug, item) => {
+    navigate(`/${slug}`, { state: item });
+  };
+
  
 
 
@@ -109,7 +120,7 @@ const Home = () => {
       <NearStorePopUp />
       <Sliderr />
       <ShipBanner bannerImg={shipBanner} showBanner={true} paddindTrue={false} />
-      <Category title={'Shop by Category'} categoryData={categoryCardData} />
+      <Category title={'Shop by Category'} categoryData={landingPageCategories} handleNavigate={handleNavigate} />
       <MobileFinancingSlider />
       <AnnouncmentBanners bannerImage={twelveMonthCreditOfferImage} padding={'10px'}/>
       <AnnouncmentBanners bannerImage={payPalMobileBanner} padding={'10px 0'}/>
