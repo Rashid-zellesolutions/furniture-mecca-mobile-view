@@ -353,6 +353,7 @@
     line-height: 22px;
     font-size: 15px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 /* Cart Order Summery End */

@@ -37,10 +37,37 @@
 
 .search-bar-container{
     display: flex;
+    flex-direction: column;
+    position: relative;
     align-items: center;
-    /* padding: 19.5px 10px 21.5px 16px; */
+    justify-content: center;
     width: 40%;
+    height: auto;
+    z-index: 99;
+    /* background-color: orange; */
+    padding: 0 10px;
 }
+
+
+.on-input-focus-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 9;
+}
+
+.search-bar-container.focused-search-container{
+    z-index: 99;
+    background-color: #fff;
+    padding: 10px;
+    /* border-top-left-radius: 5px;
+    border-top-right-radius: 5px; */
+    border-radius: 5px;
+}
+
 
 .search-bar-div{
     display: flex;
@@ -57,6 +84,7 @@
 .search-bar-div input{
     width: 100%;
     height: 100%;
+    /* background-color: orange; */
     border: none;
     outline: none;
     font-size: 12px;
@@ -66,6 +94,251 @@
     background-color: transparent;
     color: var(--text-color);
 }
+
+.input-loader{
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #595959;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.search-product-display-div{
+    display: none;
+    position: absolute;
+    bottom: -350px;
+    height: 350px;
+    z-index: 9;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
+    overflow: hidden;
+    background-color: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* .search-bar-div input:focus .search-bar-container{
+    background-color: green;
+    z-index: 99999999;
+} */
+
+.search-product-display-div.search-product-display-div-focused{
+    display: flex;
+    bottom: -350px;
+    /* background-color: orange; */
+}
+
+.search-products-display-left{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px 0;
+    height: 100%;
+    border-right: 1px solid var(--border-color);
+    gap: 5px;
+}
+
+
+
+.searched-products{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border-color);
+    height: 320px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+/* Scrollbar styles */
+.searched-products::-webkit-scrollbar {
+    width: 3px; /* Thin scrollbar */
+    height: 5px !important;
+    background-color: #F0F0F0; /* Background color */
+}
+
+.searched-products::-webkit-scrollbar-thumb {
+    background-color: #595959; /* Scrollbar color */
+    border-radius: 3px; /* Rounded corners for the scrollbar */
+}
+
+/* Hide the scrollbar arrows */
+.searched-products::-webkit-scrollbar-button {
+    display: none; /* Hide top and bottom arrows */
+}
+
+.searched-product{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+    width: 100%;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.searched-product:hover{
+    background-color: #F0F0F0;
+}
+
+.searched-product img{
+    width: 25px;
+    height: auto;
+    object-fit: contain;
+}
+
+.searched-product-name-and-sku{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    gap: 5px;
+}
+
+.searched-product-name-and-sku h3{
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 400;
+}
+
+.searched-product-name-and-sku p{
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+}
+
+.searched-product-prices{
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    gap: 5px;
+}
+
+.searched-product-regular-price{
+    font-size: 8px;
+    line-height: 12px;
+    font-weight: 400;
+}
+
+.searched-product-sale-price{
+    font-size: 10px;
+    line-height: 16px;
+    font-weight: 500;
+}
+
+
+.see-all-searched-products{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    background-color: transparent;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.see-all-searched-products:hover{
+    background-color: #f0f0f0;
+    border: 1px solid var(--border-color);
+}
+
+.search-product-display-right{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Scrollbar styles */
+.search-product-display-right::-webkit-scrollbar {
+    width: 3px; /* Thin scrollbar */
+    height: 5px !important;
+    background-color: #F0F0F0; /* Background color */
+}
+
+.search-product-display-right::-webkit-scrollbar-thumb {
+    background-color: #595959; /* Scrollbar color */
+    border-radius: 3px; /* Rounded corners for the scrollbar */
+}
+
+/* Hide the scrollbar arrows */
+.search-product-display-right::-webkit-scrollbar-button {
+    display: none; /* Hide top and bottom arrows */
+}
+
+.searched-selected-product-main-image-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 150px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border-color);
+
+}
+
+.searched-selected-product-main-image{
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.searched-selected-product-name-and-price{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.searched-selected-product-name{
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+}
+
+.searched-selected-product-sku{
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 400;
+}
+
+.searched-selected-product-description-div{
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.searched-selected-product-description{
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+}
+
+/* .search-bar-div input:focus .search-bar-container {
+    background-color: orange;
+} */
 
 .search-bar-div img{
     width: 22px;
@@ -77,8 +350,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    padding: 0px 20px;
+    width: 40%;
+    padding: 0px 0px;
 }
 
 
@@ -150,7 +423,7 @@
     align-items: center;
     justify-content: center;
     width: max-content;
-    gap: 20px;
+    gap: 10px;
     justify-content: end;
     padding-right: 0px;
     padding: 0 5px;

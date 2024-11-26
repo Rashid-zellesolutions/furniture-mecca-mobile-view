@@ -43,11 +43,36 @@ import Breadcrumb from '../../../Global-Components/BreadCrumb/BreadCrumb';
 import heartIcon from '../../../Assets/icons/red-heart.png'
 import { url } from '../../../utils/api';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
+import axios from 'axios';
 
 
 
 const SingleProductStickySection = ({ productData }) => {
-  const product = productData;
+  console.log("product data", productData)
+  const { slug } = useParams()
+  console.log("slug get", slug)
+  const [getBySlug, setGetBySlug] = useState({})
+  const getProductDataWithSlug = async (slug) => {
+    const api = `/api/v1/products/get-by-slug/`
+    try {
+      const response = await axios.get(`${url}${api}${slug}`)
+      console.log("response with slug", response.data.products)
+      const temporaryProduct = response.data.products[0] || {};
+      setGetBySlug(temporaryProduct)
+    } catch (error) {
+      console.log("Error Fetching fetching data with slug", error);
+    }
+  }
+  // Effect to fetch data if user came directly via link
+  useEffect(() => {
+  console.log("useEffect triggered");
+  if (!productData || Object.keys(productData).length === 0) {
+    console.log("Fetching data for slug:", slug);
+    getProductDataWithSlug(slug);
+  }
+}, [productData, slug]);
+  // const product = productData || getBySlug;
+  const product = Object.keys(productData || {}).length > 0 ? productData : getBySlug;
   console.log("product on top", product)
 
   const { cart, addToCart, decreamentQuantity, increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();

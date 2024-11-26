@@ -18,6 +18,7 @@ import twelveMonthCreditOfferImage from '../../../Assets/Furniture Mecca/Landing
 import payPalMobileBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/PAYPAL-BANNER 1.png';
 import sixMonthCreditImage from '../../../Assets/Furniture Mecca/Landing Page/sale banner/download 122.png';
 import paymentOptionsBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/Frame 4278.png'
+import { useParams } from 'react-router-dom';
 
 const ProductArchive = ({productArchiveHading}) => {
   // Breadcrup component data
@@ -32,6 +33,7 @@ const ProductArchive = ({productArchiveHading}) => {
     {img: sofaAndLoveSeat, title: 'Sofa & Love Seat Sets'},
     {img: sectionalSets, title: 'Sectional Sets'},
 ]
+
 
   return (
     <div>

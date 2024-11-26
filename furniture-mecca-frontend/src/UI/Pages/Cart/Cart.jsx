@@ -10,7 +10,7 @@ import axios from 'axios'
 import ProductCard from '../../Components/ProductCard/ProductCard'
 import heart from '../../../Assets/icons/heart-vector.png';
 import star from '../../../Assets/icons/black-star.png'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import leftArrow from '../../../Assets/icons/arrow-left-charcol.png'
 import rightArrow from '../../../Assets/icons/arrow-right-charcol.png'
 import Slider from 'react-slick'
@@ -247,7 +247,7 @@ const Cart = () => {
               </div>
             </div>
 
-            <button className='cart-summary-proceed-btn'>Proceed to checkout</button>
+            <Link to={'/cart-page/check-out'} className='cart-summary-proceed-btn'>Proceed to checkout</Link>
 
           </div>
         </div>

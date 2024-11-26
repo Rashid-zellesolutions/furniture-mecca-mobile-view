@@ -19,7 +19,7 @@ export const LPContentProvider = ({ children }) => {
           const result = await response.json();
           setData(result);
           setLandingPageCategories(result.landingPageContent.sectional_schema.shop_by_category);
-          console.log(result)
+          // console.log(result)
         } catch (error) {
           setError(error.message);
         } finally {

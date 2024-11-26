@@ -225,7 +225,7 @@ const DealOfTheDay = () => {
                 <DealOfTheDayCard
                   key={index} 
                   isDiscountable={items.discount.is_discountable === 1 ? true : false}
-                  productImage={items.images[0].image_url}
+                  productImage={items?.images?.[0]?.image_url}
                   dealDayData={items}
                   name={items.name} 
                   star={starIcons}

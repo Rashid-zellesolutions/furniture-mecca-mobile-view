@@ -219,10 +219,6 @@ const Products = ({productArchiveHading}) => {
     const truncateTitle = (title, maxLength) => {
         if(!title) return '';
         return title.length > maxLength ? title.slice(0, maxLength) + '...' : title
-        // if (title.length > maxLength) {
-        //     return title.slice(0, maxLength) + '...';
-        // }
-        // return title;
     };
 
     // Select Color Variations Functions
