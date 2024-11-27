@@ -15,6 +15,7 @@ import leftArrow from '../../../Assets/icons/arrow-left-charcol.png'
 import rightArrow from '../../../Assets/icons/arrow-right-charcol.png'
 import Slider from 'react-slick'
 import { useCart } from '../../../context/cartContext/cartContext'
+import ProductCardShimmer from '../../Components/Loaders/productCardShimmer/productCardShimmer'
 
 
 
@@ -260,7 +261,8 @@ const Cart = () => {
         <h3>You May Also Like</h3>
         <div className='cart-related-products-slider-main-div'>
           <Slider {...settings}>
-            {newProducts.map((item, index) => (
+            {newProducts && newProducts.length > 0 ? (
+              newProducts.map((item, index) => (
               <div key={index} className='cart-latest-product-cards-container'>
                 <ProductCard
                   key={index}
@@ -298,7 +300,51 @@ const Cart = () => {
                   variation={item.variations}
                 />
               </div>
-            ))}
+            ))
+            ) : (
+              Array.from({ length: 4 }).map((_, index) => (
+                            <ProductCardShimmer />
+                        ))
+            )}
+            {/* newProducts.map((item, index) => (
+              <div key={index} className='cart-latest-product-cards-container'>
+                <ProductCard
+                  key={index}
+                  slug={item.slug}
+                  singleProductData={item}
+                  maxWidthAccordingToComp="98%"
+                  // justWidth={'320px'}
+                  tagIcon={item.productTag ? item.productTag : heart}
+                  tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                  mainImage={`${item.image.image_url}`}
+                  productCardContainerClass="product-card"
+                  ProductSku={item.sku}
+                  tags={item.tags}
+                  ProductTitle={truncateTitle(item.name, maxLength)}
+                  stars={[
+                    { icon: star, title: 'filled' },
+                    { icon: star, title: 'filled' },
+                    { icon: star, title: 'filled' },
+                    { icon: star, title: 'filled' },
+                    { icon: star, title: 'filled' },
+                  ]}
+                  reviewCount={item.reviewCount}
+                  lowPriceAddvertisement={item.lowPriceAddvertisement}
+                  priceTag={item.regular_price}
+                  sale_price={item.sale_price}
+                  financingAdd={item.financingAdd}
+                  learnMore={item.learnMore}
+                  mainIndex={index}
+                  deliveryTime={item.deliveryTime}
+                  stock={item.manage_stock}
+                  attributes={item.attributes}
+                  handleCardClick={() => handleProductClick(item)}
+                  handleQuickView={() => handleQuickViewOpen(item)}
+                  type={item.type}
+                  variation={item.variations}
+                />
+              </div>
+            )) */}
           </Slider>
         </div>
       </div>

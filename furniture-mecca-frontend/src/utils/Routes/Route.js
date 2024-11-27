@@ -50,6 +50,7 @@ import FurnitureAtEveryBudget from "../../UI/Pages/FurnitureAtEveryBudget/Furnit
 import StoreLocator from "../../UI/Pages/StoreLocator/StoreLocator";
 import BlogPage from "../../UI/Pages/Blogs/BlogPage";
 import SingleBlog from "../../UI/Pages/SingleBlog/SingleBlog";
+import WishList from "../../UI/Pages/WishList/WishList";
 
 const categoryCardData = [
     { title: "Dining Room Sets", img: newArrivalImage, link: '#' },
@@ -353,8 +354,12 @@ const routes = (
         />
 
         <Route
-            path="all-stores"
+            path="/all-stores"
             element={<StoreLocator />}
+        />
+        <Route 
+            path="/wish-list"
+            element={<WishList />}
         />
 
         {/* not found routes */}

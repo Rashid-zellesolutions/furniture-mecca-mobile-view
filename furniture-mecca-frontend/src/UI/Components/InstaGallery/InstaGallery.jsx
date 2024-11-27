@@ -11,6 +11,7 @@ import galleryImageEight from '../../../Assets/Furniture Mecca/Landing Page/inst
 import galleryImageNine from '../../../Assets/Furniture Mecca/Landing Page/instagram images/Rectangle 882.png';
 import galleryImageTen from '../../../Assets/Furniture Mecca/Landing Page/instagram images/Rectangle 883.png';
 import instaIcon from '../../../Assets/Furniture Mecca/Landing Page/instagram images/insta-icon.png'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 const InstaGallery = () => {
@@ -29,11 +30,11 @@ const InstaGallery = () => {
     <div className='insta-container' onMouseMove={handleMouseMove}>
         <div className='images'>
             {instaGalleryImages.map((image, index) => {
-                return <img key={index} src={image} alt={`image ${index + 1}`} />
+                return <LazyLoadImage key={index} src={image} alt={`image ${index + 1}`} effect='blur' />
             })}
         </div>
         <div className={`icon ${animateMouse ? 'animate' : ''}`}>
-            <img src={instaIcon} alt='icon' className={`${animateMouse ? 'animate' : ''}`} />
+            <LazyLoadImage src={instaIcon} alt='icon' className={`${animateMouse ? 'animate' : ''}`} effect='blur'/>
         </div>
     </div>
   )

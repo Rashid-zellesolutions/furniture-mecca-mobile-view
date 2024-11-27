@@ -15,6 +15,7 @@ import { url } from '../../../../utils/api';
 import guardIcon from '../../../../Assets/icons/guard-icon.png';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../../../context/cartContext/cartContext';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CartItems = ({
     cartProductName, 
@@ -129,7 +130,7 @@ const CartItems = ({
  
                     <div className='desktop-card-protection-div'>
                         <div className='guard-and-heading'>
-                            <img src={guardIcon} alt='guard' className='protection-guard-icon' />
+                            <LazyLoadImage effect='blur' src={guardIcon} alt='guard' className='protection-guard-icon' />
                             <div className='guard-title-and-details'>
                                 <h3 className='protection-guard-title'>Platinum Elite Furniture</h3>
                                 <span className='protection-details-and-message'>

@@ -15,12 +15,14 @@ import { MyOrdersProvider } from './context/orderContext/ordersContext';
 import ScrollToTop from './utils/ScrollToTop/ScrollToTop';
 import { VariationProvider } from './context/BreadCrumbContext/variationsContext';
 import { LPContentProvider } from './context/LPContentContext/LPContentContext';
+import { WishListProvider } from './context/wishListContext/wishListContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <WishListProvider>
     <LPContentProvider>
     <OrderProvivder>
       <NavigationProvider>
@@ -48,6 +50,7 @@ root.render(
       </NavigationProvider>
     </OrderProvivder>
     </LPContentProvider>
+    </WishListProvider>
   </React.StrictMode>
 );
 

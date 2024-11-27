@@ -5,6 +5,7 @@ import starBlack from '../../../Assets/icons/star-black.png';
 import startUnfilled from '../../../Assets/icons/star-transperent-bg.png'
 import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const BlogCard = ({img, category, title, createdBy, comments}) => {
     
@@ -24,7 +25,7 @@ const BlogCard = ({img, category, title, createdBy, comments}) => {
                     <p>30</p>
                     <p>May</p>
                 </div>
-                <img src={img} alt='img' />
+                <LazyLoadImage src={img} alt='img' effect='blur' />
             </div>
             <div className='blog-arther-details'>
                 <p>{category}</p>

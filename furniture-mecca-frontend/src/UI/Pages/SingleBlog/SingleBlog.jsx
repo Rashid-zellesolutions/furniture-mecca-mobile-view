@@ -8,6 +8,9 @@ import instaGram from '../../../Assets/icons/insta-icon.png'
 import tiktok from '../../../Assets/icons/tik-tok-icon.png'
 import mail from '../../../Assets/icons/main-icon.png'    
 import TrandingBlogs from '../../Components/Blogs-Components/TrandingBlogs/TrandingBlogs'
+import FirstToKnow from '../../Components/Blogs-Components/FirstToKnow/FirstToKnow'
+import SearchTag from '../../Components/Blogs-Components/SearchTags/SearchTag'
+import NextUp from '../../Components/Blogs-Components/NextUp/NextUp'
 
 const SingleBlog = () => {
     const location = useLocation()
@@ -43,6 +46,7 @@ const SingleBlog = () => {
     <div className='single-blog-main-container'>
       <div className='single-blog-main-heading-div'>
         <h3 className='single-blog-main-heading'>Exciting Blogs Created by <span> Furniture Mecca </span></h3>
+        <h3 className='mobile-view-single-blog-main-heading'>Exciting Blogs</h3>
       </div>
       <BlogHead />
       <div className='single-blog-content-section'>
@@ -82,6 +86,9 @@ const SingleBlog = () => {
         </div>
         <div className='single-blog-right-content'>
             <TrandingBlogs />
+            <FirstToKnow />
+            <SearchTag />
+            <NextUp />
         </div>
       </div>
     </div>

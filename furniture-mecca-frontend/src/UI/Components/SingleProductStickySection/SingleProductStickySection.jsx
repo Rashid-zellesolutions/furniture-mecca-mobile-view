@@ -44,6 +44,7 @@ import heartIcon from '../../../Assets/icons/red-heart.png'
 import { url } from '../../../utils/api';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 import axios from 'axios';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 
@@ -320,7 +321,7 @@ const SingleProductStickySection = ({ productData }) => {
               disableDotsControls
               disableButtonsControls
               items={product.images && product.images.map((img, index) => (
-                <img key={index} src={product.type === 'variable' ? `${url}${variationPayload?.images?.[0]?.image_url}` : `${url}${img.image_url}` } className="single-product-slider-img" alt={`Slide ${index}`} />
+                <LazyLoadImage effect='blur' key={index} src={product.type === 'variable' ? `${url}${variationPayload?.images?.[0]?.image_url}` : `${url}${img.image_url}` } className="single-product-slider-img" alt={`Slide ${index}`} />
               ))
               }
               responsive={{
@@ -344,7 +345,7 @@ const SingleProductStickySection = ({ productData }) => {
                   className={`single-product-slider-thumbnail ${activeIndex === ind ? '' : 'single-product-slider-thumbnail-inactive'}`}
                   onClick={() => handleThumbnailClickk(ind)}
                 >
-                  <img src={`${url}${img.image_url}`} alt={`Thumbnail ${ind}`} />
+                  <LazyLoadImage effect='blur' src={`${url}${img.image_url}`} alt={`Thumbnail ${ind}`} />
                 </div>
               )) : 
                 product.images && product.images.map((simpleImg, index) => (
@@ -353,7 +354,7 @@ const SingleProductStickySection = ({ productData }) => {
                   className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
                   onClick={() => handleThumbnailClickk(index)}
                 >
-                  <img src={`${url}${simpleImg.image_url}`} alt={`Thumbnail ${index}`} />
+                  <LazyLoadImage effect='blur' src={`${url}${simpleImg.image_url}`} alt={`Thumbnail ${index}`} />
                 </div>
               ))
               }

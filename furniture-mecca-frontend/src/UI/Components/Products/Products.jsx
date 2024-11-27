@@ -23,6 +23,7 @@ import heart from '../../../Assets/icons/heart-vector.png'
 // import ProductCardTwo from '../ProductCard/ProductCardTwo';
 import { url } from '../../../utils/api';
 import axios from 'axios';
+import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer';
 
 const Products = ({productArchiveHading}) => {
     // products context data
@@ -379,8 +380,8 @@ const Products = ({productArchiveHading}) => {
                         />
                     })} */}
 
-
-                    {products.slice(0, 9).map((item, index) => {
+                    {products && products.length > 0 ? (
+                        products.map((item, index) => {
                         return  <ProductCard
                         key={index}
                         slug={item.slug}
@@ -414,7 +415,48 @@ const Products = ({productArchiveHading}) => {
                         handleCardClick={() => handleProductClick(item)}
                         handleQuickView={() => handleQuickViewOpen(item)}
                     />
-                    })}
+                    })
+                    ) : (
+                        Array.from({ length: 12 }).map((_, index) => (
+                            <ProductCardShimmer />
+                        ))
+                    )}
+
+                    {/* {products.slice(0, 9).map((item, index) => {
+                        return  <ProductCard
+                        key={index}
+                        slug={item.slug}
+                        singleProductData={item}
+                        maxWidthAccordingToComp={"32%"}
+                        justWidth={'100%'}
+                        tagIcon={item.productTag ? item.productTag : heart}
+                        tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                        mainImage={`${item.image.image_url}`}
+                        productCardContainerClass="product-card"
+                        ProductSku={item.sku}
+                        tags={item.tags}
+                        ProductTitle={truncateTitle(item.name, maxLength)}
+                        stars={[
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                            { icon: star, title: 'filled' },
+                        ]}
+                        reviewCount={item.reviewCount}
+                        lowPriceAddvertisement={item.lowPriceAddvertisement}
+                        priceTag={item.regular_price}
+                        sale_price={item.sale_price}
+                        financingAdd={item.financingAdd}
+                        learnMore={item.learnMore}
+                        mainIndex={index}
+                        deliveryTime={item.deliveryTime}
+                        stock={item.manage_stock}
+                        attributes={item.attributes}
+                        handleCardClick={() => handleProductClick(item)}
+                        handleQuickView={() => handleQuickViewOpen(item)}
+                    />
+                    })} */}
 
 
                 </div>

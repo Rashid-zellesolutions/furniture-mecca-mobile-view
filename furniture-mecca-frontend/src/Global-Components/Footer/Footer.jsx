@@ -22,6 +22,7 @@ import { WiTime4 } from "react-icons/wi";
 import { CiCalendarDate } from "react-icons/ci";
 import { FiPhoneCall } from "react-icons/fi";
 import MobileFooter from '../TabAndMobileFooter/MobileFooter';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // import { FaRegCalendarPlus } from "react-icons/fa";
 // import NearStorePopUp from '../../UI/Components/NearStorePopUp/NearStorePopUp';
@@ -240,7 +241,7 @@ const Footer = ({notLandingPage}) => {
                         <h3 className='footer-location-section'>Nearest Store</h3>
                         <div className='near-store-containt-section'>
                             <div className='near-store-image-div'>
-                                <img src={nearStore} alt='near store image' />
+                                <LazyLoadImage src={nearStore} alt='near store image' effect='blur' />
                             </div>
                             <div className='near-store-details-section'>
                                 {nearStoreDetails.map((item, index) => (

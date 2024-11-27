@@ -3,6 +3,7 @@ import './FinanceBannerSlider.css';
 import paypalBanner from '../../../Assets/Furniture Mecca/Landing Page/sale banner/New-Financing-WF-1.jpg';
 import moveForword from '../../../Assets/Furniture Mecca/Landing Page/sale banner/New-Financing-AAF-1.jpg';
 import axios from "axios";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 
 function FinanceBannerSlider() {
@@ -43,7 +44,7 @@ function FinanceBannerSlider() {
         <div className="carousel-wrapper" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
             {images.map((image, index) => {
                 return <div className="carousel-slide" key={index}>
-                    <img src={`${url}${image.image_url}`} alt={`slide ${index + 1}`} />
+                    <LazyLoadImage src={`${url}${image.image_url}`} alt={`slide ${index + 1}`} effect="blur" />
                 </div>
             })}
         </div>

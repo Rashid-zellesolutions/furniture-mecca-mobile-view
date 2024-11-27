@@ -14,11 +14,18 @@ const BlogHead = () => {
         {name: 'Renovations', type: 'renovation'},
     ]
   return (
+    <>
     <div className='blog-head-main-container'>
       {blogCategories.map((item, index) => (
         <p className='blog-head-category-type'>{item.name}</p>
       ))}
     </div>
+    <div className='mobile-view-blog-head-main-container'>
+      {blogCategories.slice(0, 6).map((item, index) => (
+        <p className='mobile-view-blog-head-category-type'>{item.name}</p>
+      ))}
+    </div>
+    </>
   )
 }
 

@@ -12,6 +12,7 @@ import axios from 'axios'
 import { url } from '../../../utils/api'
 import ProductCardTwo from '../ProductCard/ProductCard'
 import heart from '../../../Assets/icons/heart-vector.png'
+import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer'
 
 const SimillerProducts = ({collection}) => {
     // console.log('collected collection', collection)
@@ -127,7 +128,8 @@ const SimillerProducts = ({collection}) => {
                 <img src={arrowLeftRed} alt='arrow-left' />
             </button> 
             <div className='similler-products-cards' ref={scrollContainerRef}>
-                {data && data.slice(0, 12).map((item, index) => (
+                {data ? (
+                    data && data.slice(0, 12).map((item, index) => (
                     <ProductCard
                         key={item.uid}
                         maxWidthAccordingToComp={'100%'} justWidth={'310px'}
@@ -159,7 +161,45 @@ const SimillerProducts = ({collection}) => {
                         ProductSku={item.sku}
                         sale_price={item.sale_price}
                     />
-                ))}
+                ))
+            ) : (
+                Array.from({ length: 5 }).map((_, index) => (
+                    <ProductCardShimmer />
+                ))
+            )}
+                {/* {data && data.slice(0, 12).map((item, index) => (
+                    <ProductCard
+                        key={item.uid}
+                        maxWidthAccordingToComp={'100%'} justWidth={'310px'}
+                        // tagIcon={item.productTag ? item.productTag : item.heart}
+                        tagIcon={heart}
+                        tagClass={` ${item.productTag ? 'tag-img' : 'heart-icon'}`}
+                        tagDivClass={`${item.productTag ? 'product-tag-div' : 'heart-icon-div'}`}
+                        mainImage={hoveredIndex === index && item.image.image_url ? item.hoverImage : item.image.image_url}
+                        productCardContainerClass={`product-card ${hideFilters ? 'card-width-increase' : ''}`}
+                        mouseEnter={() => handleImageHover(index)}
+                        mouseLeave={handleImageHoverLeave}
+                        ProductTitle={truncateTitle(item.name, maxLength)}
+                        stars={item.ratingStars}
+                        reviewCount={'200'}
+                        lowPriceAddvertisement={item.lowPriceAddvertisement}
+                        priceTag={item.regular_price}
+                        financingAdd={item.financingAdd}
+                        learnMore={item.learnMore}
+                        colorVariation={item.colorVariation}
+                        mainIndex={index}
+                        deliveryTime={item.deliveryTime}
+                        selectedColorIndices={selectedColorIndices}
+                        handleVariantColor={() => handleVariantImageClick(index, colorIndex)}
+                        borderLeft={index % 4 === 3}
+                        stock={item.manage_stock}
+                        handleCardClick={() => handleCardClick(item)}
+                        singleProductData={item}
+                        attributes={item.attributes}
+                        ProductSku={item.sku}
+                        sale_price={item.sale_price}
+                    />
+                ))} */}
             </div>
             <button
                 className={`scroll-button right ${simillerProductIndex >= data && data.length ? 'disable-similler-product-arrow' : ''} ${showArrowOnCardLength > 4 ? 'show-arrow-on-slider' : ''}`}

@@ -1,14 +1,18 @@
 import React from 'react'
 import './BestSellerProductCard.css';
 import heartIcon from '../../../Assets/icons/like.png'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { VscHeartFilled } from "react-icons/vsc";
+import { useList } from '../../../context/wishListContext/wishListContext';
 
-const BestSellerProductCard = ({ productMainImage, isDiscountable, productData, starIcon, reviews, productName, oldPrice, newPrice, singleProductLink, handleCardClicked}) => {
+const BestSellerProductCard = ({ productMainImage, listed, handleWishListClicked, isDiscountable, productData, starIcon, reviews, productName, oldPrice, newPrice, singleProductLink, handleCardClicked}) => {
     const url = 'https://fm.skyhub.pk/'
     const maxLength = 40;
     const truncateTitle = (title, maxLength) => {
         if(!title) return '';
         return title.length > maxLength ? title.slice(0, maxLength) + '...' : title;
     };
+    console.log("product uid", productData.uid)
 
     const formatedPrice = (price) => {
         return new Intl.NumberFormat('en-us', {
@@ -18,7 +22,7 @@ const BestSellerProductCard = ({ productMainImage, isDiscountable, productData, 
     }
 
     // console.log("product name", productName)
-
+    const {isInWishList} = useList()
 
   return (
     <div 
@@ -27,7 +31,7 @@ const BestSellerProductCard = ({ productMainImage, isDiscountable, productData, 
     >
         <img src={heartIcon} alt='heart' className='show-on-mobile' />
         <div className='category-product-image'>
-            <img src={`${url}${productMainImage}`} alt='product image' />
+            <LazyLoadImage src={`${url}${productMainImage}`} alt='product image' effect='blur' />
         </div>
         <div className='category-containt-section'>
             <div className='category-product-rating-and-name'>
@@ -56,7 +60,8 @@ const BestSellerProductCard = ({ productMainImage, isDiscountable, productData, 
                     <p>{formatedPrice(newPrice)}</p>
                     
                 </div>
-                <img src={heartIcon} alt='heart' className='hide-on-mobile' />
+                {isInWishList(productData.uid) ? <VscHeartFilled size={25} style={{color: '#C61B1A'}} onClick={(e) => {e.stopPropagation(); handleWishListClicked(productData)}} /> : <img src={heartIcon} alt='heart' className='hide-on-mobile' onClick={(e) => {e.stopPropagation(); handleWishListClicked(productData)}} />}
+                
             </div>
         </div>
     </div>

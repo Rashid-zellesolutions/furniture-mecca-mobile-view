@@ -4,6 +4,7 @@ import sofaUnder from '../../../Assets/Furniture Mecca/Landing Page/furniture-fo
 import bedUnder from '../../../Assets/Furniture Mecca/Landing Page/furniture-for-budget/bed-under.png'
 import storageUnder from '../../../Assets/Furniture Mecca/Landing Page/furniture-for-budget/storage-under.png'
 import { useNavigate } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const FurnitureForBudget = () => {
     const budgetCardData = [
@@ -26,7 +27,7 @@ const FurnitureForBudget = () => {
             {budgetCardData.map((items, index) => (
                 <div key={index} className='budget-furniturre-card'>
                     <div className='budget-furniture-card-img'>
-                        <img src={items.img} alt='img' />
+                        <LazyLoadImage src={items.img} alt='img' effect='blur' />
                     </div>
                     <div className='budget-furniture-card-details'>
                         <p>{items.sale}</p>

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import './FrequentlyBought.css';
 import { useSelector } from 'react-redux';
 import ProductCard from '../ProductCard/ProductCard';
@@ -8,8 +8,9 @@ import axios from 'axios';
 import { url } from '../../../utils/api';
 import heart from '../../../Assets/icons/heart-vector.png'
 import ProductCardTwo from '../ProductCard/ProductCard';
+import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer';
 
-const FrequentlyBought = ({relatedProducts}) => {
+const FrequentlyBought = ({ relatedProducts }) => {
 
     // console.log("related products", relatedProducts)
     // console.log("core collections", collection);
@@ -49,25 +50,25 @@ const FrequentlyBought = ({relatedProducts}) => {
     // const {products} = useProducts()
     const navigate = useNavigate()
     const handleProductClicked = (item) => {
-      navigate(`/single-product/${item.slug}`, {state: {products: item}})
+        navigate(`/single-product/${item.slug}`, { state: { products: item } })
     }
-    
+
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [hideFilters, setHideFilters] = useState(false);
 
     // console.log(productData)
 
-    
 
-   
+
+
 
     // Change image on hover function
     const handleImageHover = (index) => {
-      setHoveredIndex(index);
+        setHoveredIndex(index);
     };
-  
+
     const handleImageHoverLeave = () => {
-      setHoveredIndex(null);
+        setHoveredIndex(null);
     };
 
     // Card title words limit
@@ -79,7 +80,7 @@ const FrequentlyBought = ({relatedProducts}) => {
         return title;
     };
 
-    
+
     // Select Color Variations Functions
     const [selectedColorIndices, setSelectedColorIndices] = useState(Array(products.length).fill(0));
     const handleVariantImageClick = (cardIndex, colorIndex) => {
@@ -89,11 +90,50 @@ const FrequentlyBought = ({relatedProducts}) => {
     };
 
     const colorIndex = useSelector((state) => state.colorIndex.colorIndex)
-  return (
-    <div className='frequently-bought-main'>
-        <h3>You may also like</h3>
-        <div className='frequently-bought-card'>
-        {data && data.slice(0, 5).map((item, index) => (
+    return (
+        <div className='frequently-bought-main'>
+            <h3>You may also like</h3>
+            <div className='frequently-bought-card'>
+                {data ? (
+                    data && data.slice(0, 5).map((item, index) => (
+                    <ProductCard
+                        key={item.uid}
+                        maxWidthAccordingToComp={'100%'} justWidth={'100%'}
+                        // tagIcon={item.productTag ? item.productTag : item.heart}
+                        tagIcon={heart}
+                        tagClass={` ${item.productTag ? 'tag-img' : 'heart-icon'}`}
+                        tagDivClass={`${item.productTag ? 'product-tag-div' : 'heart-icon-div'}`}
+                        mainImage={hoveredIndex === index && item.image.image_url ? item.hoverImage : item.image.image_url}
+                        productCardContainerClass={`product-card ${hideFilters ? 'card-width-increase' : ''}`}
+                        mouseEnter={() => handleImageHover(index)}
+                        mouseLeave={handleImageHoverLeave}
+                        ProductTitle={truncateTitle(item.name, maxLength)}
+                        stars={item.ratingStars}
+                        reviewCount={'200'}
+                        lowPriceAddvertisement={item.lowPriceAddvertisement}
+                        priceTag={item.regular_price}
+                        financingAdd={item.financingAdd}
+                        learnMore={item.learnMore}
+                        colorVariation={item.colorVariation}
+                        mainIndex={index}
+                        deliveryTime={item.deliveryTime}
+                        selectedColorIndices={selectedColorIndices}
+                        handleVariantColor={() => handleVariantImageClick(index, colorIndex)}
+                        borderLeft={index % 4 === 3}
+                        stock={item.manage_stock}
+                        // handleCardClick={() => handleCardClick(item)}
+                        singleProductData={item}
+                        attributes={item.attributes}
+                        ProductSku={item.sku}
+                        sale_price={item.sale_price}
+                    />
+                ))
+                ) : (
+                    Array.from({ length: 4 }).map((_, index) => (
+                        <ProductCardShimmer />
+                    ))
+                )}
+                {data && data.slice(0, 5).map((item, index) => (
                     <ProductCard
                         key={item.uid}
                         maxWidthAccordingToComp={'100%'} justWidth={'100%'}
@@ -126,9 +166,9 @@ const FrequentlyBought = ({relatedProducts}) => {
                         sale_price={item.sale_price}
                     />
                 ))}
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default FrequentlyBought

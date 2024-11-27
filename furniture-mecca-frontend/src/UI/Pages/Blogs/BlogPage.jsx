@@ -63,12 +63,11 @@ const BlogPage = () => {
     }
   };
 
-
-
   return (
     <div className='blogs-page-main-container'>
       <div className='blogs-page-main-heading-div'>
         <h3 className='blogs-page-main-heading'>Exciting Blogs Created by <span> Furniture Mecca </span></h3>
+        <h3 className='mobile-view-blog-page-main-heading'>Exciting Blogs</h3>
       </div>
       <BlogHead />
       <AllBlogs blogData={blogsToShow}/>

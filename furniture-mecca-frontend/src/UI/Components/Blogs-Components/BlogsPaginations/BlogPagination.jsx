@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './BlogPagination.css'
 import { LuArrowLeftCircle } from "react-icons/lu";
 import { LuArrowRightCircle } from "react-icons/lu";
 
-const BlogPagination = ({currentPage, totalPages, setCurrentPage, handlePrev, handleNext}) => {
-  
-  return (
+const BlogPagination = ({ currentPage, totalPages, setCurrentPage, handlePrev, handleNext }) => {
 
-    <div className="blog-page-paginations">
+  return (
+    <>
+      <div className="blog-page-paginations">
         <button
           className="blog-page-pagination-arrows blog-page-pagination-arrow-left"
           onClick={handlePrev}
@@ -48,6 +48,10 @@ const BlogPagination = ({currentPage, totalPages, setCurrentPage, handlePrev, ha
           <LuArrowRightCircle size={50} />
         </button>
       </div>
+      <div className='mobile-view-show-all-blogs-button-main-div'>
+          <button className='mobile-view-show-all-blogs-button'>View 12 more</button>
+      </div>
+    </>
   )
 }
 

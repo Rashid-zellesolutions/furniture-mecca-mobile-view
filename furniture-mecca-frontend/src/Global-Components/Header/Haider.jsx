@@ -326,7 +326,7 @@ const Haider = () => {
           <Link to={'/login'}>
             <img src={profileIcon} alt="profile" />
           </Link>
-          <Link>
+          <Link to={'/wish-list'}>
             <img src={HeartIcon} alt="heart" />
           </Link>
           <button className='header-cart-icon-count' onClick={handleCartSectionOpen}>

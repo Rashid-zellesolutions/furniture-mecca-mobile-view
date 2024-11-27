@@ -9,6 +9,7 @@ import cornerChair from '../../../Assets/Furniture Mecca/Landing Page/trending-n
 import chaisChair from '../../../Assets/Furniture Mecca/Landing Page/trending-now/chaise.png'
 import armlessChair from '../../../Assets/Furniture Mecca/Landing Page/trending-now/armless-chair.png'
 import axios from 'axios'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const TrendingNow = () => {
 
@@ -51,7 +52,7 @@ const TrendingNow = () => {
                 <div className="tranding-slides" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {data.sliders && data.sliders.map((image, index) => (
                         <div className="tranding-slide" key={index}>
-                            <img src={`${url}${image.image_url}`} alt={`Slide ${index + 1}`} />
+                            <LazyLoadImage src={`${url}${image.image_url}`} alt={`Slide ${index + 1}`} effect='blur' />
                         </div>
                     ))}
                 </div>
@@ -59,7 +60,7 @@ const TrendingNow = () => {
             <div className='trending-items-cards'>
                 {productArray.map((item, index) => (
                     <div key={item.uid} className='trending-item-category'>
-                        <img src={`${url}${item.image_url}`} alt={item.alt_text} />
+                        <LazyLoadImage src={`${url}${item.image_url}`} alt={item.alt_text} effect='blur' />
                     </div>
                 ))} 
             </div>

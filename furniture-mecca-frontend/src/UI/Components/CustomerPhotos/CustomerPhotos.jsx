@@ -9,6 +9,7 @@ import customerImageSix from '../../../Assets/images/customer-slider-image-6.png
 
 import arrowLeft from '../../../Assets/icons/arrow-left-red.png';
 import arrowRight from '../../../Assets/icons/arrow-right-red.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const CustomerPhotos = () => {
 
@@ -76,7 +77,7 @@ const CustomerPhotos = () => {
                 style={{ transform: `translateX(-${currentIndex * 220}px)` }}
             >
                 {[...images, ...images, ...images].map((src, index) => (
-                <img key={index} src={src} alt={`Slide ${index}`} className="slide-image" />
+                <LazyLoadImage effect='blur' key={index} src={src} alt={`Slide ${index}`} className="slide-image" />
                 ))}
             </div>
             <button className="customer-slider-arrow right" onClick={handleNext}>

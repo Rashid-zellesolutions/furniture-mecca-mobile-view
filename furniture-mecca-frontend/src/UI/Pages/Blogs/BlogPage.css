@@ -24,3 +24,26 @@
 .blogs-page-main-heading span{
     color: var(--active-nav-item-color);
 }
+
+/* Mobile view styling */
+.mobile-view-blog-page-main-heading{
+    display: none;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 480px){
+    .blogs-page-main-container{
+        padding: 30px 10px;
+        gap: 15px;
+    }
+    
+    .blogs-page-main-heading{
+        display: none;
+    }
+    .mobile-view-blog-page-main-heading{
+        display: flex;
+    }
+
+}

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import './Slider.css';
+import './Slider.css'; 
 import ArrowLeft from '../../Assets/icons/arrow-left.png';
 import ArrowRight from '../../Assets/icons/arrow-right.png';
 import arrowLeftRed from '../../Assets/icons/arrow-left-red.png';
 import arrowRightRed from '../../Assets/icons/arrow-right-red.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // Mobile view banner images
 import sliderImageOne from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa3.png';
 import sliderImageThree from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa4.png';
 import sliderImageFour from '../../Assets/Furniture Mecca/Landing Page/Slider/sofa2.png';
 import axios from 'axios';
+import MainSLiderShimmer from '../../UI/Components/Loaders/MainSliderShimmer/MainSLiderShimmer';
 
 const Sliderr = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -92,17 +94,34 @@ const Sliderr = () => {
             <div className='slides-container' 
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
-                {slides.map((slide, index) => (
+                {/* {slides && slides.length > 0 ? ( */}
+                   { slides.map((slide, index) => (
+                        <div 
+                            className='slide' 
+                            key={index}>
+                            <LazyLoadImage 
+                                src={`${url}${slide.image_url}`} 
+                                // src={slide.img}
+                                alt={`slide ${index + 1}`}
+                                effect='blur'
+                            />
+                        </div>
+                    ))}
+                {/* ) : (
+                    <MainSLiderShimmer />
+                )} */}
+                {/* slides.map((slide, index) => (
                     <div 
                         className='slide' 
                         key={index}>
-                        <img 
+                        <LazyLoadImage 
                             src={`${url}${slide.image_url}`} 
                             // src={slide.img}
                             alt={`slide ${index + 1}`}
+                            effect='blur'
                         />
                     </div>
-                ))}
+                )) */}
             </div>
             <div 
                 className='arrow right-arrow' 

@@ -5,6 +5,7 @@ import mainImage from '../../../../Assets/blogs-images/Some-Basics-on-cleaning-L
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import arrowRight from '../../../../Assets/icons/blog-btn-arrow.png'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const BlogCard = ({blogMainImage, navigateToSinglePage, blogCategory, blogTitle, blogPostDate, ind}) => {
 
@@ -45,7 +46,7 @@ const BlogCard = ({blogMainImage, navigateToSinglePage, blogCategory, blogTitle,
       onClick={navigateToSinglePage}
     >
         <div className='blog-card-main-image-div'>
-            <img src={blogMainImage} alt='main' className='blog-card-main-image-class' />
+            <LazyLoadImage effect='blur' src={blogMainImage} alt='main' className='blog-card-main-image-class' />
         </div>
         <div className='blog-card-content-div'>
           <Link className='blog-card-category'>{blogCategory}</Link>

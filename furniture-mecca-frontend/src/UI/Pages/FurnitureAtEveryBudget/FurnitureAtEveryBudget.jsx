@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import heart from '../../../Assets/icons/heart-vector.png'
 import QuickView from "../../Components/QuickView/QuickView";
 import { IoMdClose } from "react-icons/io";
+import ProductCardShimmer from "../../Components/Loaders/productCardShimmer/productCardShimmer";
 
 
 export default function FurnitureAtEveryBudget() {
@@ -24,7 +25,7 @@ export default function FurnitureAtEveryBudget() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${url}api/v1/products/by-category?categoryUid=${category}&max_price=${max_price}`);
+                const response = await fetch(`${url}/api/v1/products/by-category?categoryUid=${category}&max_price=${max_price}`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch data");
                 }
@@ -78,7 +79,8 @@ export default function FurnitureAtEveryBudget() {
                 <h3 className="category-heading">Furniture At Every Budget</h3>
 
                 <div className="product-grid">
-                    {data && data.products.map((item, index) => (
+                    {data  ? (
+                        data.products.map((item, index) => (
                         <ProductCard
                             key={index}
                             slug={item.slug}
@@ -113,7 +115,48 @@ export default function FurnitureAtEveryBudget() {
                             type={item.type}
                             variation={item.variations}
                         />
-                    ))}
+                    ))
+                ) : (
+                    Array.from({ length: 4 }).map((_, index) => (
+                        <ProductCardShimmer />
+                    ))
+                )}
+                    {/* data && data.products.map((item, index) => (
+                        <ProductCard
+                            key={index}
+                            slug={item.slug}
+                            singleProductData={item}
+                            maxWidthAccordingToComp="100%"
+                            tagIcon={item.productTag ? item.productTag : heart}
+                            tagClass={item.productTag ? 'tag-img' : 'heart-icon'}
+                            mainImage={`${item.image.image_url}`}
+                            productCardContainerClass="product-card"
+                            ProductSku={item.sku}
+                            tags={item.tags}
+                            ProductTitle={truncateTitle(item.name, maxLength)}
+                            stars={[
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                                { icon: star, title: 'filled' },
+                            ]}
+                            reviewCount={item.reviewCount}
+                            lowPriceAddvertisement={item.lowPriceAddvertisement}
+                            priceTag={item.regular_price}
+                            sale_price={item.sale_price}
+                            financingAdd={item.financingAdd}
+                            learnMore={item.learnMore}
+                            mainIndex={index}
+                            deliveryTime={item.deliveryTime}
+                            stock={item.manage_stock}
+                            attributes={item.attributes}
+                            handleCardClick={() => handleProductClick(item)}
+                            handleQuickView={() => handleQuickViewOpen(item)}
+                            type={item.type}
+                            variation={item.variations}
+                        />
+                    )) */}
                 </div>
                 <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`}>
                     <button className={`quick-view-close`} onClick={handleQuickViewClose}>

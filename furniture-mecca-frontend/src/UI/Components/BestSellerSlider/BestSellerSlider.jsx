@@ -15,7 +15,9 @@ import { url } from '../../../utils/api';
 import { addQuantityIntoProduct } from '../../../utils/AddQuantityIntoProduct/AddQuantity';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 import {  useCart } from '../../../context/AddToCart/addToCart';
+import { useList } from '../../../context/wishListContext/wishListContext';
 // import { SingleProductProvider } from '../../../context/AddToCart/addToCart';
+import { VscHeartFilled } from "react-icons/vsc";
 
 const BestSellerPrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -111,6 +113,17 @@ const BestSellerSlider = () => {
         // console.log("product uid", item.uid)
         // console.log("added quantity into payload", allProducts)
 
+    }
+
+    const {wishList, addToList , isInWishList , removeFromList} = useList()
+    const [listed, setListed] = useState(false);
+    const handleWishlisted = (item) => {
+        console.log("to delete uid", item.uid)
+        if(isInWishList(item.uid)){
+            removeFromList(item.uid);
+        }else {
+            addToList(item); // Add if not in wishlist
+        }
     }
 
     // mobile scripts
@@ -252,7 +265,9 @@ const BestSellerSlider = () => {
                                         productName={item.name}
                                         oldPrice={item.regular_price}
                                         newPrice={item.newPrice}
+                                        listed={listed}
                                         handleCardClicked={() => handleCardClicked(item)}
+                                        handleWishListClicked={() => handleWishlisted(item)}
                                     />
                                 ))}
                             </div>
@@ -297,6 +312,7 @@ const BestSellerSlider = () => {
                                     oldPrice={item.regular_price}
                                     newPrice={item.newPrice}
                                     handleCardClicked={() => handleCardClicked(item)}
+                                    handleWishListClecked={() => handleWishlisted(item)}
                                 />
                             ))}
                         </div>

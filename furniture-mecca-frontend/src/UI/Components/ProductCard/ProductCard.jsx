@@ -7,8 +7,8 @@ import cartIcon from '../../../Assets/icons/cart-white.png'
 import cartBlack from '../../../Assets/icons/cart-black.png';
 import eyeBlack from '../../../Assets/icons/eye-black.png';
 import eyeWhite from '../../../Assets/icons/eye-white.png';
-import namer from 'color-namer';
 import { url } from '../../../utils/api';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ProductCard = ({
     tagIcon,
@@ -181,16 +181,19 @@ const ProductCard = ({
                             <p className='percent-label'>{percent}</p>
                             <img src={tagIcon} alt='heart img' className={tagClass} />
                         </div>
-                        <img src={`${url}${
+                        <LazyLoadImage src={`${url}${
                             selectedColorImage 
                             ? mainImageHoverIndex === singleProductData.uid
                             ? hoveredImage
                             : selectedColorImage 
                             : mainImage
                         }`}
-                            alt='product img' className='product-main-img'
+                            alt='product img' 
+                            className='product-main-img'
                             onMouseEnter={mouseEnter}
-                            onMouseLeave={mouseLeave} />
+                            onMouseLeave={mouseLeave} 
+                            effect='blur'
+                        />
                         <div className='overlay-buttons'>
                             <button className={`overlay-button ${cartClicked ? 'loading' : ''}`} onClick={handleQuickView} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                                 <img src={cardHovered ? cartIcon : cartBlack} alt='cart' />
@@ -234,7 +237,7 @@ const ProductCard = ({
                     {
                         sale_price === "" ?
                             <h3 className='product-price-del'>${priceTag}</h3> :
-                            <h3 className='product-price-tag'> <del>${priceTag}</del>  ${sale_price}</h3>
+                            <h3 className='product-price-tag'> <del className='product-del-price-with-sale-price'>${priceTag}</del>  ${sale_price}</h3>
                     }
 
 
