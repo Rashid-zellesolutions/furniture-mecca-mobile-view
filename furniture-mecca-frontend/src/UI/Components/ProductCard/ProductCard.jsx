@@ -9,6 +9,8 @@ import eyeBlack from '../../../Assets/icons/eye-black.png';
 import eyeWhite from '../../../Assets/icons/eye-white.png';
 import { url } from '../../../utils/api';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useList } from '../../../context/wishListContext/wishListContext';
+import { VscHeartFilled } from "react-icons/vsc";
 
 const ProductCard = ({
     tagIcon,
@@ -43,6 +45,7 @@ const ProductCard = ({
     borderLeft,
     justWidth,
     handleCardClick,
+    handleWishListclick,
     attributes,
     type,
     variation
@@ -164,10 +167,16 @@ const ProductCard = ({
         // console.log("on mouse leave",mainImageHoverIndex);
     }
 
+    const {isInWishList} = useList();
+
     return (
         <>
-            <div className={`${productCardContainerClass} ${borderLeft ? 'hide-after' : ''} `} style={{ maxWidth: maxWidthAccordingToComp, width: justWidth }}>
-                <div className='product-card-data'>
+            <div 
+                className={`${productCardContainerClass} ${borderLeft ? 'hide-after' : ''} `} 
+                style={{ maxWidth: maxWidthAccordingToComp, width: justWidth }}
+                
+            >
+                <div className='product-card-data' onClick={() => handleCardClick(singleProductData)}>
 
                     {/* <div className='tag-and-heart'>
                         <h3 className='stock-label'>{stock.is_stock_manage === 1 ? "In Stock" : "Out of Stock"}</h3>
@@ -175,11 +184,28 @@ const ProductCard = ({
                         <img src={tagIcon} alt='heart img' className={tagClass} />
                     </div> */}
 
-                    <div className='product-main-image-container' onMouseEnter={() => handleMouseOnMainImage(singleProductData?.uid)} onMouseLeave={handleMouseLeaveOnMainImage}>
+                    <div className='product-main-image-container' /* onMouseEnter={() => handleMouseOnMainImage(singleProductData?.uid)} onMouseLeave={handleMouseLeaveOnMainImage} */>
                         <div className='tag-and-heart'>
                             <h3 className='stock-label'>{stock?.is_stock_manage === 1 ? "In Stock" : "Out of Stock"}</h3>
                             <p className='percent-label'>{percent}</p>
-                            <img src={tagIcon} alt='heart img' className={tagClass} />
+                            {
+                                isInWishList(singleProductData.uid) ? 
+                                    <VscHeartFilled 
+                                        size={25}
+                                        style={{color: '#C61B1A'}} 
+                                        onClick={(e) => {
+                                            e.stopPropagation(); 
+                                            handleWishListclick(singleProductData)
+                                        }} 
+                                    /> 
+                            : 
+                                <img 
+                                    src={tagIcon} alt='heart img' 
+                                    className={tagClass} 
+                                    onClick={(e) => {e.stopPropagation(); handleWishListclick(singleProductData)}}
+                                />
+                            }
+                            
                         </div>
                         <LazyLoadImage src={`${url}${
                             selectedColorImage 
@@ -190,12 +216,12 @@ const ProductCard = ({
                         }`}
                             alt='product img' 
                             className='product-main-img'
-                            onMouseEnter={mouseEnter}
-                            onMouseLeave={mouseLeave} 
+                            // onMouseEnter={mouseEnter}
+                            // onMouseLeave={mouseLeave} 
                             effect='blur'
                         />
                         <div className='overlay-buttons'>
-                            <button className={`overlay-button ${cartClicked ? 'loading' : ''}`} onClick={handleQuickView} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                            <button className={`overlay-button ${cartClicked ? 'loading' : ''}`} onClick={(e) => { e.stopPropagation() ; handleQuickView()}} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                                 <img src={cardHovered ? cartIcon : cartBlack} alt='cart' />
                                 Add to cart
                             </button>
@@ -331,7 +357,7 @@ const ProductCard = ({
                                         <span
                                             key={index}
                                             className="color-variation"
-                                            onClick={type === 'variable' ? () => handleColorSelect(item.value) : () => {}}
+                                            onClick={type === 'variable' ? (e) => {e.stopPropagation() ; handleColorSelect(item.value)} : () => {}}
                                             style={{
                                                 backgroundColor: item.value,
                                                 // border: 'none',

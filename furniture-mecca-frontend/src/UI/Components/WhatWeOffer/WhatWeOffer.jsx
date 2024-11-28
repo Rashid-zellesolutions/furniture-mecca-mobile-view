@@ -7,7 +7,7 @@ import toolIcon from '../../../Assets/icons/tools.png';
 const WhatWeOffer = ({isProtected, setIsProtected}) => {
     const [isSingleProtectionChecked, setIsSingleProtectionChecked] = useState(false);
     const servisesData = [
-        {key: 'professional-assembly', serviseName: 'Professional Assembly for $109.99', howItWOrk: 'How It Work', icon: toolIcon, style: '' },
+        // {key: 'professional-assembly', serviseName: 'Professional Assembly for $109.99', howItWOrk: 'How It Work', icon: toolIcon, style: '' },
         { key: 'single-protection', serviseName: '5 Year Protection Plan for $100.99', howItWOrk: `What's Covered`, icon: protectionIcon },
         // {serviseName: 'Flexible Payment Options', howItWOrk: 'Pay in full or carry a balance. Pay in full or carry a balance.', icon: paymentIcon },
     ]

@@ -471,6 +471,11 @@
     margin-top: 0px;
 }
 
+.slick-slider .slick-track{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 @media only screen and (max-width: 480px){
     .cart-you-may-like-section{
         display: none;

@@ -97,7 +97,7 @@ const QuickView = ({ setQuickViewProduct, stars , quickViewClose}) => {
                 <h3>{setQuickViewProduct.name}</h3>
                 <div className='quick-view-rating'>
                     <div className='quick-view-start'>
-                        {stars && stars.map((star, index) => (
+                        {Array.from({length: 5}).map((star, index) => (
                             // <img key={index} src={star.icon} alt='star' />
                             <FaStar size={15} className='quick-view-star-icon' />
                         ))}

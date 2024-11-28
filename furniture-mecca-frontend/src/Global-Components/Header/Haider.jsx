@@ -27,8 +27,11 @@ import mobileUserIcon from '../../Assets/icons/user-charcol.png';
 import MobileNavbar from '../Navbar/MobileNavbar/MobileNavbar';
 import axios from 'axios';
 import { url } from '../../utils/api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Haider = () => {
+  // const notify = () => toast()
   const [isTabMenuOpen, setIsTabMenuOpen] = useState(false);
   const [showCart, setShowCart] = useState(false)
   const { products } = useProducts()
@@ -273,7 +276,7 @@ const Haider = () => {
                     }
                   </div>
                   </div>
-                ))}
+                ))} 
               </div>
               <button className='see-all-searched-products'>See all Products {searchForProducts?.length}</button>
             </div>

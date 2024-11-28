@@ -9,6 +9,8 @@ import { url } from '../../../utils/api';
 import heart from '../../../Assets/icons/heart-vector.png'
 import ProductCardTwo from '../ProductCard/ProductCard';
 import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer';
+import { useList } from '../../../context/wishListContext/wishListContext';
+import { toast } from 'react-toastify';
 
 const FrequentlyBought = ({ relatedProducts }) => {
 
@@ -90,6 +92,31 @@ const FrequentlyBought = ({ relatedProducts }) => {
     };
 
     const colorIndex = useSelector((state) => state.colorIndex.colorIndex)
+
+    const handleCardClick = (item) => {
+        navigate(`/single-product/${item.slug}`, {state: {products: item}})
+    }
+
+    // wish list
+    const {addToList, removeFromList, isInWishList} = useList()
+    const notify = (str) => toast.success(str);
+    const notifyRemove = (str) => toast.error(str)
+    const handleWishList = (item) => {
+        if(isInWishList(item.uid)){
+            removeFromList(item.uid);
+            notifyRemove('Removed from wish list', {
+                autoClose: 10000,
+                className: "toast-message",
+            })
+        }else{
+            addToList(item)
+            notify("added to wish list", {
+                autoClose: 10000,
+            })
+        }
+    }
+
+
     return (
         <div className='frequently-bought-main'>
             <h3>You may also like</h3>
@@ -126,6 +153,8 @@ const FrequentlyBought = ({ relatedProducts }) => {
                         attributes={item.attributes}
                         ProductSku={item.sku}
                         sale_price={item.sale_price}
+                        handleWishListclick={() => handleWishList(item)}
+                        handleCardClick={() => handleCardClick(item)}
                     />
                 ))
                 ) : (

@@ -24,6 +24,8 @@ import heart from '../../../Assets/icons/heart-vector.png'
 import { url } from '../../../utils/api';
 import axios from 'axios';
 import ProductCardShimmer from '../Loaders/productCardShimmer/productCardShimmer';
+import { useList } from '../../../context/wishListContext/wishListContext';
+import { toast } from 'react-toastify';
 
 const Products = ({productArchiveHading}) => {
     // products context data
@@ -243,6 +245,25 @@ const Products = ({productArchiveHading}) => {
         setMobileFilters(true)
     }
 
+    // wish list 
+    const {addToList, removeFromList, isInWishList} = useList()
+    const notify = (str) => toast.success(str);
+    const notifyRemove = (str) => toast.error(str)
+    const handleWishList = (item) => {
+        if(isInWishList(item.uid)){
+            removeFromList(item.uid);
+            notifyRemove('Removed from wish list', {
+                autoClose: 10000,
+                className: "toast-message",
+            })
+        }else{
+            addToList(item)
+             notify("added to wish list", {
+                autoClose: 10000,
+            })
+        }
+    }
+
   return (
     <div className='products-main-container'>
         <Breadcrumb />
@@ -414,6 +435,7 @@ const Products = ({productArchiveHading}) => {
                         attributes={item.attributes}
                         handleCardClick={() => handleProductClick(item)}
                         handleQuickView={() => handleQuickViewOpen(item)}
+                        handleWishListclick={() => handleWishList(item)}
                     />
                     })
                     ) : (
@@ -557,6 +579,8 @@ const Products = ({productArchiveHading}) => {
                         deliveryTime={item.deliveryTime}
                         stock={item.manage_stock}
                         attributes={item.attributes}
+                        handleCardClick={() => handleProductClick(item)}
+                        handleWishListclick={() => handleWishList(item)}
                     />
                     })}
             </div>
@@ -587,12 +611,12 @@ const Products = ({productArchiveHading}) => {
         />
 
         {/* Quick View Section */}
-        <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`}>
+        <div className={`quick-view-section ${quickViewClicked ? 'show-quick-view-section' : ''}`} onClick={handleQuickViewClose}>
             <button className={`quick-view-close`} onClick={handleQuickViewClose}>
                 {/* <img src={closeBtn} alt='close' /> */}
-                <IoMdClose size={25} />
-            </button>
-            <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`}>
+                <IoMdClose size={25} style={{color: '#595959'}} />
+            </button> 
+            <div className={`quickview-containt ${quickViewClicked ? 'show-quick-view-containt' : ''}`} onClick={(e) => e.stopPropagation()}>
                 <QuickView setQuickViewProduct={quickViewProduct} />
             </div>
         </div>

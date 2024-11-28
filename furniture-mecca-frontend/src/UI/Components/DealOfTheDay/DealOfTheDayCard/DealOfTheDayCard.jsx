@@ -12,6 +12,7 @@ import leftArrow from '../../../../Assets/icons/arrow-left-white.png';
 import rightArrow from '../../../../Assets/icons/right-arrow-white.png';
 import { url } from '../../../../utils/api';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useList } from '../../../../context/wishListContext/wishListContext';
 
 
 const products = [
@@ -114,9 +115,9 @@ const DealOfTheDayCard = ({
     productImage, 
     descount, 
     handleDealCardClick, 
-    dealDayData,  
-    // handleHoverEnter, 
-    // handleHoveLeave
+    dealDayData,
+    handleWishListClick,
+    handleCartSection,
   }) => {
 
     const formatePrice = (price) => {
@@ -137,6 +138,7 @@ const DealOfTheDayCard = ({
       
     };
     // console.log("deal day data", url,productImage)
+    const {isInWishList} = useList()
     return (
       <div 
         index={index} 
@@ -181,7 +183,8 @@ const DealOfTheDayCard = ({
             {/* {imgIcons.map((items, iconIndex) => ( */}
               <button 
                   // key={iconIndex}  
-                  className={`deal-of-the-day-icon-one`} 
+                  className={`deal-of-the-day-icon-one`}
+                  onClick={() => handleCartSection(dealDayData)} 
                   // onMouseEnter={() => handleIconMouseEnter(iconIndex)} 
                   // onMouseLeave={handleIconMouseLeave}
               >
@@ -193,7 +196,8 @@ const DealOfTheDayCard = ({
               
               <button 
                   // key={iconIndex}  
-                  className={`deal-of-the-day-icon-two`} 
+                  className={`deal-of-the-day-icon-two ${isInWishList(dealDayData.uid) ? 'active-wish-list-btn' : ''}`}
+                  onClick={(e) => {e.stopPropagation(); handleWishListClick(dealDayData)}} 
                   // onMouseEnter={() => handleIconMouseEnter(iconIndex)} 
                   // onMouseLeave={handleIconMouseLeave}
               >

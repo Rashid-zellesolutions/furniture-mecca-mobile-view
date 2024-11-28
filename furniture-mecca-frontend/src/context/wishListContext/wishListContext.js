@@ -44,7 +44,14 @@ export const WishListProvider = ({children}) => {
     };
     console.log("cart added into wish list", wishList)
     return (
-        <WishListContext.Provider value={{ wishList, addToList, removeFromList, isInWishList }}>
+        <WishListContext.Provider value={
+            { 
+                wishList, 
+                addToList, 
+                removeFromList, 
+                isInWishList 
+                }
+            }>
             {children}
         </WishListContext.Provider>
     );

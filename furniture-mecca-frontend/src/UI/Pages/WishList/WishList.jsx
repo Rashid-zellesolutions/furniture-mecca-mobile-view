@@ -6,6 +6,7 @@ import ProductCardShimmer from '../../Components/Loaders/productCardShimmer/prod
 import star from '../../../Assets/icons/Star 19.png'
 import ProductCard from '../../Components/ProductCard/ProductCard';
 import heart from '../../../Assets/icons/heart-vector.png'
+import { toast } from 'react-toastify';
 
 const WishList = () => {
     const navigate = useNavigate()
@@ -29,6 +30,27 @@ const WishList = () => {
     const handleProductClick = (item) => {
         navigate(`/single-product/${item.slug}`, {state:  item});
     };
+
+    // wish list
+    const {addToList, removeFromList, isInWishList} = useList()
+    const notify = (str) => toast.success(str);
+    const notifyRemove = (str) => toast.error(str)
+    const handleWishList = (item) => {
+        if(isInWishList(item.uid)){
+            removeFromList(item.uid);
+            notifyRemove('Removed from wish list', {
+                autoClose: 10000,
+                className: "toast-message",
+            })
+        }else{
+            addToList(item)
+            notify("added to wish list", {
+                autoClose: 10000,
+            })
+        }
+    }
+
+
   return (
     <div className='wish-list-main-container'>
         <div className='wish-list-heading-container'>
@@ -70,6 +92,7 @@ const WishList = () => {
                         attributes={item.attributes}
                         handleCardClick={() => handleProductClick(item)}
                         handleQuickView={() => handleQuickViewOpen(item)}
+                        handleWishListclick={() => handleWishList(item)}
                     />
             })
           ) : (

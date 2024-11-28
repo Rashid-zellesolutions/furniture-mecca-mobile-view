@@ -1,22 +1,17 @@
-/* .size-variant-main-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 5px;
-} */
+
 
 .attributes-types{
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 20px;
-    padding: 10px 0; 
+    padding: 5px 0; 
 }
 
 .attribute-type{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     width: 100%;
     align-items: start;
     justify-content: start;

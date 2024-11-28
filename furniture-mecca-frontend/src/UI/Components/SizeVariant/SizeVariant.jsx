@@ -20,15 +20,21 @@ const SizeVariant = ({
     const handleColorVariation = (index) => {
         setColorVariation(index);
     }
-    const handleImageVariation = (index) => {
+    const [selectedImageName, setSelectedImageName] = useState()
+    const handleImageVariation = (index, name) => {
         setImageVariaton(index)
+        setSelectedImageName(name)
     }
 
-    const handleclickColor = (value) => {
+    const [selectedColorName, setSelectedColorName] = useState()
+    const handleclickColor = (value, name) => {
         handleSelectColor(value);
+        setSelectedColorName(name)
     }
-    const handleSelectClick = (value) => {
+    const [selectedSelectAttr, setSelectedSelectAttr] = useState()
+    const handleSelectClick = (value, name) => {
         handleSelectVariation(value)
+        setSelectedSelectAttr(name)
     }
 
 
@@ -39,13 +45,13 @@ const SizeVariant = ({
                 <div className='attributes-types'>
                     {attribute.type === 'color' ? (
                         <div className='attribute-type'>
-                            <h3 className='attribute-heading'>{attribute.name}</h3>
+                            <h3 className='attribute-heading'>{selectedColorName ? selectedColorName : attribute.name}</h3>
                             <div className='attribute-variations'>
                                 {attribute.options.map((option, index) => (
                                     <div className='attribute-single-color' >
                                         <div 
                                             className='attribute-color-variation-box'
-                                            onClick={() => handleclickColor(option.value)} 
+                                            onClick={() => handleclickColor(option.value, option.name)} 
                                             style={{ 
                                                 backgroundColor: option.value,
                                                 border: selectedColor === option.value ? `1px solid ${option.value}` : 'none',
@@ -62,7 +68,7 @@ const SizeVariant = ({
                             <h3 className='attribute-heading'>{attribute.name}</h3>
                             <div className='attribute-variations'>
                                 {attribute.options.map((option, index) => (
-                                    <div className={`attribute-image-type `} onClick={() => handleImageVariation(index)}>
+                                    <div className={`attribute-image-type `} onClick={() => handleImageVariation(index, option.name)}>
                                         <div className={`variation-image-div ${imageVariation === index ? 'active-selected-image-variation' : ''}`}>
                                             <img src={`${url}${option.value}`} alt={option.name} />
                                         </div>
@@ -76,7 +82,7 @@ const SizeVariant = ({
                             <h3 className='attribute-heading'>{attribute.name}</h3>
                             <div className='attribute-variations' >
                                 {attribute.options.map((option, index) => (
-                                    <div className={`select-type-attribute ${selectVariation === option.value ? 'select-select-variation' : ''}`} onClick={() => handleSelectClick(option.value)}>
+                                    <div className={`select-type-attribute ${selectVariation === option.value ? 'select-select-variation' : ''}`} onClick={() => handleSelectClick(option.value, option.name)}>
                                         <p>{option.name}</p>
                                     </div>
                                 ))}

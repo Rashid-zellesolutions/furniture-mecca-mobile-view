@@ -791,8 +791,8 @@ label {
     right: 0;
     top: 0;
     position: absolute;
-    background-color: #666666;
-    color: var(--text-white);
+    background-color: #fff;
+    color: var(--text-color);
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
 }

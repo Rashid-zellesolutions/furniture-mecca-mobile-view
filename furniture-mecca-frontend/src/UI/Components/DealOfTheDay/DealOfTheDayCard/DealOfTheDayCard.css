@@ -207,6 +207,11 @@
   background-image: url('../../../../Assets/icons/heart-white.png');
 }
 
+.deal-of-the-day-icon-two.active-wish-list-btn{
+  background-color: #595959;
+  background-image: url('../../../../Assets/icons/heart-white.png');
+}
+
 .deal-of-the-day-icon-three{
   display: flex;
   align-items: center;

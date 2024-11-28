@@ -8,6 +8,11 @@ import heart from '../../../Assets/icons/heart-vector.png'
 import QuickView from "../../Components/QuickView/QuickView";
 import { IoMdClose } from "react-icons/io";
 import ProductCardShimmer from "../../Components/Loaders/productCardShimmer/productCardShimmer";
+import { useList } from "../../../context/wishListContext/wishListContext";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { type } from "@testing-library/user-event/dist/type";
 
 
 export default function FurnitureAtEveryBudget() {
@@ -60,16 +65,101 @@ export default function FurnitureAtEveryBudget() {
     };
 
 
+    // wish list
+    const {addToList, removeFromList, isInWishList} = useList()
+    const notify = (str) => toast.success(str);
+    const notifyRemove = (str) => toast.error(str)
+    const handleWishList = (item) => {
+        if(isInWishList(item.uid)){
+            removeFromList(item.uid);
+            notifyRemove('Removed from wish list', {
+                autoClose: 10000,
+                className: "toast-message",
+            })
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
+        }else{
+            addToList(item)
+            notify("added to wish list", {
+                autoClose: 10000,
+            })
+        }
+    }
+
+    
+
+
+
+    // variation price
+
+    const [variationPayload, setVariationPayload] = useState();
+  const getVariationMatch = () => {
+    const selectedAttr = data?.variations?.find(variation =>
+      variation.attributes.some(attribute =>
+        attribute.type === 'select' &&
+        attribute.options.some(option => option.value === selectVariation)
+      ) &&
+      variation.attributes.some(attribute =>
+        attribute.type === 'color' &&
+        attribute.options.some(option => option.value === selectedColor)
+      )
+    );
+
+    setVariationPayload(selectedAttr)
+
+    // console.log("selected payload according to variatons on parent", variationPayload)
+  }
+
+  const [selectVariation, setSelectVariation] = useState(0);
+  const handleSelectVariation = (value) => {
+    setSelectVariation(value);
+    // console.log("selected value on parend ", selectVariation)
+    getVariationMatch()
+  }
+
+  const [selectedColor, setSelectedColor] = useState();
+  const handleSelectColor = (value) => {
+    setSelectedColor(value)
+    // console.log("selected color on parent", selectedColor)
+    getVariationMatch()
+  }
+
+  const getInitialDefaultValues = () => {
+    const defAttImage = data?.variations?.find(attr =>
+      attr.uid === data.default_variation
+    )
+    // console.log("defould attribute on size variant", defAttImage)
+    const defAttrColor = defAttImage?.attributes?.find(attribute =>
+      attribute?.type === 'color' &&
+      attribute?.options?.some(option => option?.value)
+    )
+
+    const defAttrSelect = defAttImage?.attributes?.find(attribute =>
+      attribute?.type === 'select' &&
+      attribute?.options?.some(option => option?.value)
+    )
+
+    const defoultColor = defAttrColor?.options?.[0]?.value;
+    const defoultValue = defAttrSelect?.options?.[0]?.value;
+    // console.log("on parent color", defoultColor);
+    // console.log("on parent label", defoultValue)
+    setSelectVariation(defoultValue);
+    setSelectedColor(defoultColor)
+    getVariationMatch()
+  };
+
+  useEffect(() => {
+    getInitialDefaultValues()
+  }, []);
+
+    // if (loading) return <p>Loading...</p>;
+    // if (error) return <p>Error: {error}</p>;
 
 
 
 
     return (
         <>
-
+            
             <div className="cover_photo">
                 <img src="https://fm.skyhub.pk/uploads/media/Pages/home/slider/1731385502484_209_Main-Desktop-Banner-2-2048x545.webp" alt="Furniture Cover" />
             </div>
@@ -102,8 +192,8 @@ export default function FurnitureAtEveryBudget() {
                             ]}
                             reviewCount={item.reviewCount}
                             lowPriceAddvertisement={item.lowPriceAddvertisement}
-                            priceTag={item.regular_price}
-                            sale_price={item.sale_price}
+                            priceTag={item.variationPayload?.regular_price ? item.variationPayload?.regular_price : item.regular_price }
+                            sale_price={item.variationPayload?.sale_price ? item.variationPayload?.sale_price : item.regular_price}
                             financingAdd={item.financingAdd}
                             learnMore={item.learnMore}
                             mainIndex={index}
@@ -112,6 +202,7 @@ export default function FurnitureAtEveryBudget() {
                             attributes={item.attributes}
                             handleCardClick={() => handleProductClick(item)}
                             handleQuickView={() => handleQuickViewOpen(item)}
+                            handleWishListclick={() => handleWishList(item)}
                             type={item.type}
                             variation={item.variations}
                         />

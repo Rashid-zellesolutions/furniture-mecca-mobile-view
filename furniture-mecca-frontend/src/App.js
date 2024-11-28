@@ -59,6 +59,7 @@ import PageNotFound from './UI/Pages/404Page/404Page';
 import Cart from "./UI/Pages/Cart/Cart";
 import Summary from "./UI/Pages/Summery/Summary";
 import Breadcrumb from "./Global-Components/BreadCrumb/BreadCrumb";
+import { ToastContainer, Zoom } from "react-toastify";
 
 
 function App() {
@@ -107,13 +108,16 @@ function App() {
     }
   }, [])
 
-  // const [breadcrumbItem, setBreadcrumbItem] = useState([]);
-  // const updateBreadcrumb = (items) => {
-  //   setBreadcrumbItem(items)
-  // }
 
   return (
       <div>
+        <ToastContainer 
+          style={{zIndex: 99999999}}
+          position="top-center"
+          transition={Zoom}
+          autoClose={1000}
+          // limit={1}
+        />
         <Haider />
         <Shopvia />
         {/* <Breadcrumb /> */}

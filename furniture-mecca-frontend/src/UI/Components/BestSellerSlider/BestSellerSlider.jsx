@@ -18,6 +18,7 @@ import {  useCart } from '../../../context/AddToCart/addToCart';
 import { useList } from '../../../context/wishListContext/wishListContext';
 // import { SingleProductProvider } from '../../../context/AddToCart/addToCart';
 import { VscHeartFilled } from "react-icons/vsc";
+import { toast } from 'react-toastify';
 
 const BestSellerPrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -116,13 +117,23 @@ const BestSellerSlider = () => {
     }
 
     const {wishList, addToList , isInWishList , removeFromList} = useList()
+    const notify = (str) => toast.success(str);
+    const notifyRemove = (str) => toast.error(str)
     const [listed, setListed] = useState(false);
     const handleWishlisted = (item) => {
         console.log("to delete uid", item.uid)
         if(isInWishList(item.uid)){
             removeFromList(item.uid);
+             notifyRemove('Removed from wish list', {
+                autoClose: 10000,
+                // position: toast.POSITION.BOTTOM_CENTER,
+                className: "toast-message",
+            })
         }else {
             addToList(item); // Add if not in wishlist
+            notify("added to wish list", {
+                autoClose: 10000,
+            })
         }
     }
 

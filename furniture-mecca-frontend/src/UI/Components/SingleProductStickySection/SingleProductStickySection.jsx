@@ -6,6 +6,7 @@ import moonDanceImg from '../../../Assets/images/Moondance-Bedroom-Set-01-1024x6
 import arrowLeft from '../../../Assets/icons/arrow-left-red.png';
 import arrowRight from '../../../Assets/icons/arrow-right-red.png';
 import redHeart from '../../../Assets/icons/red-heart.png'
+import filledHeart from '../../../Assets/icons/filled-heart.png';
 
 // Rating Stars Import
 import blackStar from '../../../Assets/icons/star-black.png';
@@ -45,6 +46,7 @@ import { url } from '../../../utils/api';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useList } from '../../../context/wishListContext/wishListContext';
 
 
 
@@ -301,6 +303,15 @@ const SingleProductStickySection = ({ productData }) => {
   }
 
   // console.log("product variable", product.type)
+  const {addToList, removeFromList, isInWishList} = useList()
+  const handleWishList = (item) => {
+
+    if(isInWishList(item.uid)){
+      removeFromList(item.uid)
+    }else{
+      addToList(item)
+    }
+  }
 
 
   return (
@@ -309,9 +320,9 @@ const SingleProductStickySection = ({ productData }) => {
         {/* <Breadcrumb /> */}
         <div className='left-section'>
           {/* <Breadcrumb /> */}
-          <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
-          {/* {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p> } */}
           <div className='single-product-alice-slider'>
+          <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
+          {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p> }
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
             </button>
@@ -410,7 +421,7 @@ const SingleProductStickySection = ({ productData }) => {
                     <img src={plus} alt='plus btn' />
                   </button>
                 </div>
-                <img src={redHeart} alt='red-heart-icon' className='red-heart-icon' />
+                <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => {e.stopPropagation() ; handleWishList(product)}} />
                 <button
                   className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
                   onClick={() => {

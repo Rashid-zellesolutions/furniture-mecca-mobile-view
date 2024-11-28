@@ -47,6 +47,7 @@ import MobileFinancingSlider from '../../Components/FinanceBannerSlider/MobileFi
 import ImageSlider from '../../Components/404NotFound/ImageSlider';
 import InstaTwoImageGallery from '../../Components/InstaTwoImageGallery/InstaTwoImageGallery';
 import { useLPContentContext } from '../../../context/LPContentContext/LPContentContext';
+import LandingPageFinancing from '../../Components/LandingPageFinancingBanners/LandingPageFinancing';
 
 
 const Home = () => {
@@ -128,6 +129,7 @@ const Home = () => {
       <AnnouncmentBanners bannerImage={paymentOptionsBanner} padding={'10px 0'}/>
       <FinanceBannerSlider />
       <TrendingNow />
+      <LandingPageFinancing />
       <BestSellerSlider />
       {/* <ImageSlider /> */}
       <Comparision />

@@ -16,6 +16,8 @@ import rightArrow from '../../../Assets/icons/arrow-right-charcol.png'
 import Slider from 'react-slick'
 import { useCart } from '../../../context/cartContext/cartContext'
 import ProductCardShimmer from '../../Components/Loaders/productCardShimmer/productCardShimmer'
+import { useList } from '../../../context/wishListContext/wishListContext'
+import { toast } from 'react-toastify'
 
 
 
@@ -70,14 +72,16 @@ const Cart = () => {
 
   const protectionPrice = isCheck[0] ? 210 : 0;
   const assemblyPrice = isCheck[1] ? 250 : 0;
+  const shipping = 109;
   const discountPrice = 123;
   const taxPrice = 322;
 
-  const grandTotal = subtotal + protectionPrice + assemblyPrice + taxPrice - discountPrice
+  const grandTotal = subtotal + protectionPrice + assemblyPrice + shipping + taxPrice - discountPrice
   const orderPriceDetails = [
     { title: 'Subtotal', price: formatePrice(subtotal) },
     { title: 'Protection plan', price: formatePrice(protectionPrice) },
     { title: 'Professional Assembly', price: formatePrice(assemblyPrice) },
+    {title: 'Shipping', price: formatePrice(shipping)},
     { title: 'Discount', price: formatePrice(discountPrice) },
     { title: 'Tax', price: formatePrice(taxPrice) }
   ]
@@ -175,6 +179,29 @@ const Cart = () => {
     if (index === 2) return isCheck[1]; // Show 'Elite Title' if isCheck[1] is true
     return true; // Always include other items
   });
+
+  const handleCardClick = (item) => {
+        navigate(`/single-product/${item.slug}`, {state: {products: item}})
+    }
+
+  // wish list
+    const {addToList, removeFromList, isInWishList} = useList()
+    const notify = (str) => toast.success(str);
+    const notifyRemove = (str) => toast.error(str)
+    const handleWishList = (item) => {
+        if(isInWishList(item.uid)){
+            removeFromList(item.uid);
+            notifyRemove('Removed from wish list', {
+                autoClose: 10000,
+                className: "toast-message",
+            })
+        }else{
+            addToList(item)
+            notify("added to wish list", {
+                autoClose: 10000,
+            })
+        }
+    }
 
   return (
     <div className='cart-main-container'>
@@ -298,6 +325,7 @@ const Cart = () => {
                   handleQuickView={() => handleQuickViewOpen(item)}
                   type={item.type}
                   variation={item.variations}
+                  handleWishListclick={() => handleWishList(item)}
                 />
               </div>
             ))
