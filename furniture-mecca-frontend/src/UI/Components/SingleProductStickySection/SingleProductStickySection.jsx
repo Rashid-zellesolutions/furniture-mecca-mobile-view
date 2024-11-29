@@ -47,19 +47,20 @@ import { useSingleProductContext } from '../../../context/singleProductContext/s
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useList } from '../../../context/wishListContext/wishListContext';
+import ImageComp from '../ImageComp/ImageComp';
 
 
 
 const SingleProductStickySection = ({ productData }) => {
   console.log("product data", productData)
   const { slug } = useParams()
-  console.log("slug get", slug)
+  // console.log("slug get", slug)
   const [getBySlug, setGetBySlug] = useState({})
   const getProductDataWithSlug = async (slug) => {
     const api = `/api/v1/products/get-by-slug/`
     try {
       const response = await axios.get(`${url}${api}${slug}`)
-      console.log("response with slug", response.data.products)
+      // console.log("response with slug", response.data.products)
       const temporaryProduct = response.data.products[0] || {};
       setGetBySlug(temporaryProduct)
     } catch (error) {
@@ -68,14 +69,14 @@ const SingleProductStickySection = ({ productData }) => {
   }
   // Effect to fetch data if user came directly via link
   useEffect(() => {
-  console.log("useEffect triggered");
-  if (!productData || Object.keys(productData).length === 0) {
-    console.log("Fetching data for slug:", slug);
-    getProductDataWithSlug(slug);
-  }
-}, [productData, slug]);
+    // console.log("useEffect triggered");
+    if (!productData || Object.keys(productData).length === 0) {
+      // console.log("Fetching data for slug:", slug);
+      getProductDataWithSlug(slug);
+    }
+  }, [productData, slug]);
   // const product = productData || getBySlug;
-  const product = Object.keys(productData || {}).length > 0 ? productData : getBySlug;
+  const [product, setProduct] = useState(Object.keys(productData || {}).length > 0 ? productData : getBySlug)
   console.log("product on top", product)
 
   const { cart, addToCart, decreamentQuantity, increamentQuantity, removeFromCart, calculateTotalPrice } = useCart();
@@ -230,10 +231,10 @@ const SingleProductStickySection = ({ productData }) => {
   const handleCartClose = () => {
     setCartSection(false)
   }
-
+  const [variationData, setVariationData] = useState([])
   const [variationPayload, setVariationPayload] = useState();
   const getVariationMatch = () => {
-    const selectedAttr = productData?.variations?.find(variation =>
+    const selectedAttr = product?.variations?.find(variation =>
       variation.attributes.some(attribute =>
         attribute.type === 'select' &&
         attribute.options.some(option => option.value === selectVariation)
@@ -244,30 +245,38 @@ const SingleProductStickySection = ({ productData }) => {
       )
     );
 
-    setVariationPayload(selectedAttr)
+    // setVariationPayload(selectedAttr?.images)
+    setVariationData(selectedAttr)
+    return selectedAttr
 
-    // console.log("selected payload according to variatons on parent", variationPayload)
+    // console.log("variation payload to check", variationPayload)
+
   }
+
+
+
+  // console.log("variation payload to check outer", variationPayload)
 
   const [selectVariation, setSelectVariation] = useState(0);
   const handleSelectVariation = (value) => {
     setSelectVariation(value);
-    // console.log("selected value on parend ", selectVariation)
-    getVariationMatch()
+    const matchedVariation = getVariationMatch(); // Use matched variation immediately if needed
+    console.log("Matched Variation: ", matchedVariation);
   }
 
   const [selectedColor, setSelectedColor] = useState();
   const handleSelectColor = (value) => {
-    setSelectedColor(value)
-    // console.log("selected color on parent", selectedColor)
-    getVariationMatch()
+    setSelectedColor(value);
+    const matchedVariation = getVariationMatch(); // Use matched variation immediately if needed
+    console.log("Matched Variation: ", matchedVariation);
   }
 
   const getInitialDefaultValues = () => {
     const defAttImage = product?.variations?.find(attr =>
       attr.uid === product.default_variation
     )
-    // console.log("defould attribute on size variant", defAttImage)
+    console.log("def var", defAttImage)
+
     const defAttrColor = defAttImage?.attributes?.find(attribute =>
       attribute?.type === 'color' &&
       attribute?.options?.some(option => option?.value)
@@ -278,23 +287,29 @@ const SingleProductStickySection = ({ productData }) => {
       attribute?.options?.some(option => option?.value)
     )
 
+    setVariationData(defAttImage)
+
     const defoultColor = defAttrColor?.options?.[0]?.value;
     const defoultValue = defAttrSelect?.options?.[0]?.value;
-    // console.log("on parent color", defoultColor);
-    // console.log("on parent label", defoultValue)
+
     setSelectVariation(defoultValue);
     setSelectedColor(defoultColor)
-    getVariationMatch()
+    // getVariationMatch()
   };
 
   useEffect(() => {
     getInitialDefaultValues()
-  }, []);
+    // getVariationMatch();
+  }, [product]);
 
-  // useEffect(() => {
-  //   getVariationMatch(); // Runs whenever selectVariation or selectedColor changes
-  // }, [selectVariation, selectedColor]);
+  useEffect(() => {
+    if (selectVariation && selectedColor) {
+      getVariationMatch();
+    }
+  }, [selectVariation, selectedColor]);
 
+
+  console.log("imgggg", variationData)
   const formatePrice = (price) => {
     return new Intl.NumberFormat('en-us', {
       style: 'currency',
@@ -303,15 +318,18 @@ const SingleProductStickySection = ({ productData }) => {
   }
 
   // console.log("product variable", product.type)
-  const {addToList, removeFromList, isInWishList} = useList()
+  const { addToList, removeFromList, isInWishList } = useList()
   const handleWishList = (item) => {
 
-    if(isInWishList(item.uid)){
+    if (isInWishList(item.uid)) {
       removeFromList(item.uid)
-    }else{
+    } else {
       addToList(item)
     }
   }
+
+  console.log("variation payload image", variationPayload?.images?.[0]?.image_url)
+  // console.log("pp vv", `${url}${product.variations[0].images[0].image_url}`)
 
 
   return (
@@ -319,62 +337,62 @@ const SingleProductStickySection = ({ productData }) => {
       <div className='sticky-main-container'>
         {/* <Breadcrumb /> */}
         <div className='left-section'>
-          {/* <Breadcrumb /> */}
           <div className='single-product-alice-slider'>
-          <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
-          {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{backgroundColor: product.tags[0].bg_color}}> {product.tags[0].text}</p> }
+            <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
+            {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{ backgroundColor: product.tags[0].bg_color }}> {product.tags[0].text}</p>}
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
             </button>
             <AliceCarousel
-              ref={carouselRef} // Attach the ref
+              ref={carouselRef}
               activeIndex={activeIndex}
               disableDotsControls
               disableButtonsControls
-              items={product.images && product.images.map((img, index) => (
-                <LazyLoadImage effect='blur' key={index} src={product.type === 'variable' ? `${url}${variationPayload?.images?.[0]?.image_url}` : `${url}${img.image_url}` } className="single-product-slider-img" alt={`Slide ${index}`} />
-              ))
+              items={
+                product.type === 'variable' ?
+                  variationData && variationData?.images?.map((img, index) => {
+                    return <img key={index} src={`${url}${img.image_url}`} className="single-product-slider-img" alt={`Slide ${index}`} />
+                  }) : product?.images && product?.images?.map((item, index) => {
+                    return <img src={`${url}${item.image_url}`} className="single-product-slider-img" alt='simple' />
+                  })
               }
               responsive={{
                 0: { items: 1 },
                 1024: { items: 1 }
               }}
+
             />
             <div className="single-product-slider-thumbnails">
-              {/* {product.images && product.images.map((img, index) => (
+
+              {variationData !== undefined ? variationData?.images?.map((img, ind) => (
                 <div
-                  key={index}
-                  className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
-                  onClick={() => handleThumbnailClickk(index)}
-                >
-                  <img src={`${url}${img.image_url}`} alt={`Thumbnail ${index}`} />
-                </div>
-              ))} */}
-              {variationPayload !== undefined ? variationPayload.images.map((img, ind) => (
-                  <div
                   key={ind}
                   className={`single-product-slider-thumbnail ${activeIndex === ind ? '' : 'single-product-slider-thumbnail-inactive'}`}
                   onClick={() => handleThumbnailClickk(ind)}
                 >
-                  <LazyLoadImage effect='blur' src={`${url}${img.image_url}`} alt={`Thumbnail ${ind}`} />
+                  <img src={`${url}${img.image_url}`} alt={`Thumbnail ${ind}`} />
                 </div>
-              )) : 
+              )) :
                 product.images && product.images.map((simpleImg, index) => (
-                <div
-                  key={index}
-                  className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
-                  onClick={() => handleThumbnailClickk(index)}
-                >
-                  <LazyLoadImage effect='blur' src={`${url}${simpleImg.image_url}`} alt={`Thumbnail ${index}`} />
-                </div>
-              ))
+                  <div
+                    key={index}
+                    className={`single-product-slider-thumbnail ${activeIndex === index ? '' : 'single-product-slider-thumbnail-inactive'}`}
+                    onClick={() => handleThumbnailClickk(index)}
+                  >
+                    <LazyLoadImage effect='blur' src={`${url}${simpleImg.image_url}`} alt={`Thumbnail ${index}`} />
+                  </div>
+                ))
               }
             </div>
             <button className='single-product-arrow single-product-arrow-right' onClick={handleNextSlide}>
               <img src={arrowRight} alt='right' />
             </button>
           </div>
+          {/* <ImageComp singleImage={product.variations[0].images[0].image_url} /> */}
         </div>
+
+
+
         <div className='right-section'>
           <div className='single-product-detail-container'>
             <div className='single-page-product-name-anddetails'>
@@ -390,8 +408,8 @@ const SingleProductStickySection = ({ productData }) => {
               </div>
               {/* <h3 className='single-product-price'>${productData.productCard.priceTag}</h3> */}
               <div className='single-product-prices'>
-                <del className='single-product-old-price'>{variationPayload?.regular_price ? formatePrice(variationPayload?.regular_price) : formatePrice(product.regular_price) }</del>
-                <h3 className='single-product-new-price'>{variationPayload?.sale_price ? formatePrice(variationPayload?.sale_price) : formatePrice(product.regular_price)}</h3>
+                <del className='single-product-old-price'>{variationData?.regular_price ? formatePrice(variationData?.regular_price) : formatePrice(product.regular_price)}</del>
+                <h3 className='single-product-new-price'>{variationData?.sale_price ? formatePrice(variationData?.sale_price) : formatePrice(product.regular_price)}</h3>
               </div>
               {/* <p className='single-product-installment-price-price'>$9/month for 6 months - Total {productData.productCard.priceTag} </p> */}
 
@@ -421,7 +439,7 @@ const SingleProductStickySection = ({ productData }) => {
                     <img src={plus} alt='plus btn' />
                   </button>
                 </div>
-                <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => {e.stopPropagation() ; handleWishList(product)}} />
+                <img src={isInWishList(product.uid) ? filledHeart : redHeart} alt='red-heart-icon' className='red-heart-icon' onClick={(e) => { e.stopPropagation(); handleWishList(product) }} />
                 <button
                   className={`add-to-cart-btn ${isLoading ? 'loading' : ''}`}
                   onClick={() => {

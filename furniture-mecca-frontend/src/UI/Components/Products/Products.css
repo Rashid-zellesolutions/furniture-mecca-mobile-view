@@ -563,25 +563,78 @@ label {
     width: 100%;
     flex-grow: 1;
     gap: 15px;
+    transition: all 0.3s ease-in-out;
 }
 
 .products-section.full-width{
     width: 100%;
+    flex-grow: 1;
 }
+
 
 .products-heading{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0 10px 10px 10px;
+    padding: 0 10px 10px 0px;
     align-items: center;
     /* border-bottom: 2px solid var(--border-color); */
 }
 
-.products-heading p{
+.show-filter-btn-and-product-count{
+    display: flex;
+    width: max-content;
+    gap: 20px;
+    align-items: center;
+    justify-content: start;
+}
+
+.show-filter-btn-and-product-count p{
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
+}
+
+.show-filter-btn{
+    width: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* visibility: hidden; */
+    opacity: 0;
+    padding: 0;
+    gap: 15px;
+    background-color: transparent;
+    border: 1px solid #000;
+    outline: none;
+    border-radius: 25px;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    /* width: 125px; */
+    height: 40px;
+
+    transition: all 0.3 ease-in-out;
+}
+
+.show-filter-btn.hide-show-filter-btn{
+    /* display: flex;
+    visibility: visible; */
+    width: max-content;
+    padding: 10px;
+    opacity: 1;
+}
+
+.show-filter-btn-arrow{
+    transition: all 0.3s ease-in-out;
+}
+
+.show-filter-btn-arrow.rotate-show-filter-arrow-icon{
+    
+    transform: rotate(180deg);
 }
 
 /* relevence Container */
@@ -668,10 +721,12 @@ label {
 /* main products card */
 .product-main{
     padding: 10px 0 25px 0; 
-    display: flex;
+    /* display: flex;
     flex-direction: row;
+    flex-wrap: wrap; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     width: 100%;
-    flex-wrap: wrap;
     /* background-color: orange; */
     /* overflow-y: auto; */
     overflow-x: hidden;
@@ -680,6 +735,11 @@ label {
     padding: 10px 5px;
     gap: 15px;
     padding-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.product-main.increase-columns{
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .product-main::-webkit-scrollbar{display: none;}

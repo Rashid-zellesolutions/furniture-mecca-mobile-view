@@ -25,6 +25,7 @@ import { url } from '../../../utils/api';
 import { useSingleProductContext } from '../../../context/singleProductContext/singleProductContext';
 import { useList } from '../../../context/wishListContext/wishListContext';
 import { toast } from 'react-toastify';
+import ShareProduct from '../ShareProduct/ShareProduct';
 
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
@@ -219,6 +220,15 @@ const DealOfTheDay = () => {
 
   }
 
+  const [isSharePopup, setIsSharePopup] = useState(null);
+  const [selectedUid, setSelectedUid] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState()
+  const handleShareProduct = (items) => {
+    setIsSharePopup(items.uid)
+    setSelectedProduct(items)
+    setSelectedUid(items.uid);
+  }
+
   return (
     <div className='deal-of-the-day-main-container'>
       <div className='deal-of-the-day-border-heading'>
@@ -255,11 +265,19 @@ const DealOfTheDay = () => {
                 handleDealCardClick={() => handleDealCardClick(items)}
                 handleWishListClick={() => handleWishList(items)}
                 handleCartSection={() => handleCartPanel(items)}
+                handleShareProduct={() => handleShareProduct(items)}
               />
             ))}
           </Slider>
         </div>
       </div>
+      <ShareProduct
+        isSharePopup={isSharePopup}
+        setIsSharePopup={setIsSharePopup}
+        selectedUid={selectedUid}
+        setSelectedUid={setSelectedUid}
+        selectedProduct={selectedProduct}
+      />
     </div>
   )
 }

@@ -118,6 +118,7 @@ const DealOfTheDayCard = ({
     dealDayData,
     handleWishListClick,
     handleCartSection,
+    handleShareProduct,
   }) => {
 
     const formatePrice = (price) => {
@@ -210,6 +211,7 @@ const DealOfTheDayCard = ({
               <button 
                   // key={iconIndex}  
                   className={`deal-of-the-day-icon-three `} 
+                  onClick={(e) => {e.stopPropagation() ; handleShareProduct(dealDayData)}}
                   // onMouseEnter={() => handleIconMouseEnter(iconIndex)} 
                   // onMouseLeave={handleIconMouseLeave}
               >

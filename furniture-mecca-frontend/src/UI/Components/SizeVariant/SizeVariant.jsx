@@ -79,7 +79,7 @@ const SizeVariant = ({
                         </div>
                     ) : attribute.type === 'select' ? (
                         <div className='attribute-type'>
-                            <h3 className='attribute-heading'>{attribute.name}</h3>
+                            <h3 className='attribute-heading'>{selectedSelectAttr ? selectedSelectAttr : attribute.name}</h3>
                             <div className='attribute-variations' >
                                 {attribute.options.map((option, index) => (
                                     <div className={`select-type-attribute ${selectVariation === option.value ? 'select-select-variation' : ''}`} onClick={() => handleSelectClick(option.value, option.name)}>

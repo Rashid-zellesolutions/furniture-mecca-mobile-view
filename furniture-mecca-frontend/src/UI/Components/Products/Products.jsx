@@ -358,7 +358,13 @@ const Products = ({productArchiveHading}) => {
             <div className={`products-section ${hideFilters ? 'full-width' : ''}`}>
                 {/* product heading */}
                 <div className='products-heading'>
-                    <p>220 Items starting at $266.99</p>
+                    <div className='show-filter-btn-and-product-count'>
+                        <button className={`show-filter-btn ${hideFilters ? 'hide-show-filter-btn' : ''}`} onClick={handleFilterSection}>
+                            <img src={arrowBlack} alt='arrow black' className={`show-filter-btn-arrow ${hideFilters ? 'rotate-show-filter-arrow-icon' : ''}`} />  
+                            Show Filters
+                        </button>
+                        <p>220 Items starting at $266.99</p>
+                    </div>
                     <div className='relevance-container'>
                         <div className='relevance-heading'>
                             <h3>Sort by:</h3>
@@ -375,7 +381,7 @@ const Products = ({productArchiveHading}) => {
                         
                     </div>
                 </div>
-                <div className='product-main'>
+                <div className={`product-main ${hideFilters ? 'increase-columns' : ''}`}>
                     {/* {products.slice(0, 9).map((item, index) => {
                         return <ProductCardTwo 
                             key={index}
@@ -407,7 +413,7 @@ const Products = ({productArchiveHading}) => {
                         key={index}
                         slug={item.slug}
                         singleProductData={item}
-                        maxWidthAccordingToComp={"32%"}
+                        maxWidthAccordingToComp={"100%"}
                         justWidth={'100%'}
                         tagIcon={item.productTag ? item.productTag : heart}
                         tagClass={item.productTag ? 'tag-img' : 'heart-icon'}

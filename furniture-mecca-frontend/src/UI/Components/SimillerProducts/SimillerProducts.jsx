@@ -73,7 +73,7 @@ const SimillerProducts = ({collection}) => {
         getchMyCollectionProducts()
     }, [])
     const showArrowOnCardLength = data && data.length
-    console.log("cards data", showArrowOnCardLength)
+    // console.log("cards data", showArrowOnCardLength)
     // console.log("converted my collection", data)
     // console.log("single collection", products)
     const [hoveredIndex, setHoveredIndex] = useState(null);
