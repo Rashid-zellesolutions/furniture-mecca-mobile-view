@@ -15,7 +15,7 @@ import { url } from '../../../../utils/api';
 import guardIcon from '../../../../Assets/icons/guard-icon.png';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../../../context/cartContext/cartContext';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import exclemanationMark from '../../../../Assets/icons/exclamenationMark.png'
 
 const CartItems = ({
     cartProductName, 
@@ -38,7 +38,10 @@ const CartItems = ({
     productsLength, 
     handleIncreament, 
     handleDecreament, 
-    handleTotalPrice
+    handleTotalPrice,
+    handleProtectionDetails,
+    cartProtectionId,
+    setCartProtectionId,
     }) => {
         const {addSingleProtection, removeProtection} = useCart()
         const [saveForLeter, setSaveForLeter] = useState(false)
@@ -129,14 +132,23 @@ const CartItems = ({
                     {/* <p className='desktop-product-extra-info'>Yes, Protect it (+$99)</p> */}
  
                     <div className='desktop-card-protection-div'>
+                        <button className='desktop-card-prodection-excelemenation-mark-icon' onClick={() => handleProtectionDetails(cartIndex)}>
+                            <img src={exclemanationMark} alt='excelemanation mark' />
+                        </button>
                         <div className='guard-and-heading'>
-                            <LazyLoadImage effect='blur' src={guardIcon} alt='guard' className='protection-guard-icon' />
+                            <img src={guardIcon} alt='guard' className='protection-guard-icon' />
                             <div className='guard-title-and-details'>
                                 <h3 className='protection-guard-title'>Platinum Elite Furniture</h3>
-                                <span className='protection-details-and-message'>
-                                    <Link className='protection-details'>Details</Link>
-                                    <p className='protection-price-message'>Price shown in summary</p>
+                                <span className={`protection-details-and-message ${cartProtectionId === cartIndex ? 'hide-protection-details-and-message' : ''}`}>
+                                    {/* <Link className='protection-details'>Details</Link> */}
+                                    <p className='protection-price-message'>Charges will be mention in checkout page.</p>
                                 </span>
+                                <div className={`protection-plan-details-container ${cartProtectionId === cartIndex ? 'show-cart-protection-plan' : ''}`}>
+                                    <p className='protection-plan-details-para'>
+                                        Our Elite Furniture Protection Plan covers accidental stains and damage to your new fabric, 
+                                        leather, and wood (and other hard surfaces) furniture.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                         <div className='protection-btns-accept-and-cancel'>

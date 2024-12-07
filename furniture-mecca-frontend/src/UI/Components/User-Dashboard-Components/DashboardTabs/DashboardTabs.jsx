@@ -25,6 +25,7 @@ const DashboardTabs = () => {
         setCurrentTabIndex(index);
         setTimeout(() => setLoading(false), 1000);
     }
+    
   return (
     <div className='dashboard-all-tabs-toggler-main-container'>
         {loading && <Loader />}

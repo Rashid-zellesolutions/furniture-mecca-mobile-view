@@ -142,3 +142,96 @@
     height: 15px;
     object-fit: contain;
 }
+
+/* moble styling */
+.mobile-view-action-buttons-container{
+    display: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.mobile-view-action-toggler{
+    background-color: #fff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    height: max-content;
+    padding: 5px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+}
+
+.mobile-view-action-dropdown{
+    position: absolute;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    visibility: hidden;
+    opacity: 0;
+    flex-direction: column;
+    width: 120px;
+    height: 0px;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
+    z-index: 999;
+    top: 0;
+    left: -100px;
+    transition: all 0.3s ease-in-out;
+}
+
+.mobile-view-action-dropdown.show-mobile-view-action-dropdown{
+    /* display: flex; */
+    visibility: visible;
+    opacity: 1;
+    height: 40px;
+}
+
+.mobile-view-action-dropdown-view,
+.mobile-view-action-dropdown-cancel{
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    padding: 0px 5px;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+}
+
+.mobile-view-action-dropdown-view:hover,
+.mobile-view-action-dropdown-cancel:hover{
+    background-color: #595959;
+    color: #fff;
+}
+
+@media only screen and (max-width: 480px){
+    .order-table tr{
+        align-items: center;
+    }
+    .order-table tr th{
+        font-size: 12px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .order-table tr td{
+        font-size: 12px;
+        line-height: 18px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .table-action-buttons{
+        display: none;
+    }
+    .mobile-view-action-buttons-container{
+        display: flex;
+    }
+}

@@ -25,3 +25,22 @@
 .dash-user-can-do-details strong {
     font-weight: 500;
 }
+
+@media only screen and (max-width: 480px){
+    .dashboard-all-tabs-toggler-main-container{
+        gap: 15px;
+    }
+    .dash-tab-main-container{
+        gap: 10px;
+    }
+    .dash-user-greetings{
+        font-size: 15px;
+        line-height: 22px;
+        font-weight: 500;
+    }
+    .dash-user-can-do-details{
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 400;
+    }
+}

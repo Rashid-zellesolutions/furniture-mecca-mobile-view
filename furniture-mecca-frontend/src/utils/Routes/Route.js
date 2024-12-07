@@ -51,6 +51,11 @@ import StoreLocator from "../../UI/Pages/StoreLocator/StoreLocator";
 import BlogPage from "../../UI/Pages/Blogs/BlogPage";
 import SingleBlog from "../../UI/Pages/SingleBlog/SingleBlog";
 import WishList from "../../UI/Pages/WishList/WishList";
+import Contact from "../../UI/Pages/Contact/Contact";
+import PrivacyPolicy from "../../UI/Pages/PrivacyPolicy/PrivacyPolicy";
+import TermsAndConditions from "../../UI/Pages/TermsAndCondition/TermsAndConditions";
+import ShippingAndDelivery from "../../UI/Pages/ShippingAndDelivery/ShippingAndDelivery";
+import BookAppointment from "../../UI/Pages/BookAppointment/BookAppointment";
 
 const categoryCardData = [
     { title: "Dining Room Sets", img: newArrivalImage, link: '#' },
@@ -360,6 +365,26 @@ const routes = (
         <Route 
             path="/wish-list"
             element={<WishList />}
+        />
+        <Route 
+            path="/contact-us"
+            element={<Contact />}
+        />
+        <Route 
+            path="/privacy-policy"
+            element={<PrivacyPolicy />}
+        />
+        <Route 
+            path="/terms-condition"
+            element={<TermsAndConditions />}
+        />
+        <Route 
+            path="/shipping-and-delivery"
+            element={<ShippingAndDelivery />}
+        />
+        <Route 
+            path="/book-an-appointment"
+            element={<BookAppointment />}
         />
 
         {/* not found routes */}

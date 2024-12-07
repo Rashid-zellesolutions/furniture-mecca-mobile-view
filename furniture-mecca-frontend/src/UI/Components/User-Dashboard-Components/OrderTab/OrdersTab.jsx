@@ -4,6 +4,7 @@ import arrowLeft from '../../../../Assets/icons/arrow-left-charcol.png';
 import arrowRight from '../../../../Assets/icons/arrow-right-charcol.png';
 import Loader from '../../Loader/Loader';
 import OrderViewModal from '../OrderViewModal/OrderViewModal';
+import { HiOutlineDotsHorizontal } from "react-icons/hi"
 
 const OrdersTab = () => {
   const dataPerPage = 7;
@@ -142,7 +143,13 @@ const OrdersTab = () => {
     setViewProductModal(true);
     setSelectedProductData(data);
   }
-  console.log("selected product data", selectedProductData);
+  const [isMobDropClicked, setIsMobDropClicked] = useState(null)
+  const handleMobActionDropdown = (index) => {
+    console.log("def index", index)
+    setIsMobDropClicked((prevIndex) => prevIndex === index ? null : index);
+    console.log("index", isMobDropClicked)
+  }
+  // console.log("selected product data", selectedProductData);
   return (
     <div className='dash-orders-main-container'>
         {loading && <Loader /> }
@@ -165,6 +172,15 @@ const OrdersTab = () => {
                         <button>Pay</button>
                         <button onClick={() => handleViewProductData(tbody)}>View</button>
                         <button>Cancel</button>
+                    </div>
+                    <div className='mobile-view-action-buttons-container' >
+                      <button className='mobile-view-action-toggler' onClick={() => handleMobActionDropdown(tindex)}>
+                        <HiOutlineDotsHorizontal size={15} />
+                      </button>
+                      <div className={`mobile-view-action-dropdown ${isMobDropClicked === tindex ? 'show-mobile-view-action-dropdown' : ''}`}>
+                        <p className='mobile-view-action-dropdown-cancel'>Cancel</p>
+                        <p className='mobile-view-action-dropdown-view'>View</p>
+                      </div>
                     </div>
                   </td>
                 </tr>

@@ -228,14 +228,34 @@
 /* Protection */
 .desktop-card-protection-div{
     display: flex;
+    position: relative;
     flex-direction: column;
     width: max-content;
     padding: 10px;
     gap: 15px;
-    height: auto;
+    height: 100%;
+    width: 323px;
     background-color: #FAFAFA;
     border: 1px solid #F0F0F0;
     border-radius: 5px;
+}
+
+.desktop-card-prodection-excelemenation-mark-icon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.desktop-card-prodection-excelemenation-mark-icon img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .guard-and-heading{
@@ -267,10 +287,45 @@
 
 .protection-details-and-message{
     display: flex;
+    height: auto;
     width: 100%;
     align-items: center;
     justify-content: start;
+    opacity: 1;
+    visibility: visible;
     gap: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.protection-details-and-message.hide-protection-details-and-message{
+    /* display: none; */
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.protection-plan-details-para{
+    font-size: 10px !important;
+    line-height: 15px !important;
+    font-weight: 400 !important;
+    color: var(--text-color) !important;
+}
+
+.protection-plan-details-container{
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    height: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.protection-plan-details-container.show-cart-protection-plan{
+    /* display: flex; */
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    margin-top: 5px;
 }
 
 .protection-details{

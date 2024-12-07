@@ -32,3 +32,24 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+
+@media only screen and (max-width: 480px){
+    .wish-list-main-container{
+        padding: 32px 10px;
+        gap: 15px;
+    }
+    .heading-line{
+        display: none;
+    }
+    .wish-list-main-heading{
+        width: 100%;
+        font-size: 15px;
+        line-height: 18px;
+        font-weight: 600;
+    }
+    .wish-listed-products{
+        grid-template-columns: auto;
+        gap: 15px;
+        padding: 0 5px;
+    }
+}

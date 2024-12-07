@@ -646,6 +646,10 @@
     color: var(--text-white);
 }
 
+.footer-get-scoop-and-conditions p a{
+    color: #fff;
+}
+
 .right-section-care-and-about{
     display: flex;
     width: 100%;

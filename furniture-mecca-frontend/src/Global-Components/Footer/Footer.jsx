@@ -163,10 +163,10 @@ const Footer = ({notLandingPage}) => {
 
     const footerCustomerCareAndAbout = [
         {heading: 'Customer Care', navLinks: [
-            {name: 'Contact Us', link: '#'},
+            {name: 'Contact Us', link: '/contact-us'},
             {name: 'Financing', link: '/financing-option'},
-            {name: 'Shipping & Delivery', link: '#'},
-            {name: 'Terms & Conditions', link: '#'},
+            {name: 'Shipping & Delivery', link: '/shipping-and-delivery'},
+            {name: 'Terms & Conditions', link: '/terms-condition'},
         ]},
         {heading: 'About Furniture Mecca', navLinks: [
             {name: 'About Us', link: '/about-us'},
@@ -252,15 +252,15 @@ const Footer = ({notLandingPage}) => {
                                 ))}
                             </div>
                             <div className='appointment-and-outlet-div'>
-                                <a href='#'>
+                                <Link to={''}>
                                     <p>Outlet</p>
-                                </a>
-                                <a href='#'>
+                                </Link>
+                                <Link to={''}>
                                     <p>Directions</p>
-                                </a>
-                                <a href='#'>
+                                </Link>
+                                <Link to={'/book-an-appointment'}>
                                     <p>Book an Appointment</p>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -273,7 +273,7 @@ const Footer = ({notLandingPage}) => {
                                 <input type='text' placeholder='Email' />
                                 <button>Sign Me Up!</button>
                             </div>
-                            <p>By signing up, you agree to our  Privacy Policy  and  Terms of Use.</p>
+                            <p>By signing up, you agree to our  <Link  to={'/privacy-policy'}> Privacy Policy </Link>  and  Terms of Use.</p>
                         </div>
                     </div>
                     <div className='right-section-care-and-about'>

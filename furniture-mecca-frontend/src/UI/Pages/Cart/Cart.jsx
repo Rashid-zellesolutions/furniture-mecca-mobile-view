@@ -57,6 +57,12 @@ const Cart = () => {
     { type: 'checkbox', label: 'Elite Platinum Furniture Protection(+ $210)', detail: 'Use professional assembly for all products and save up to $80' }
   ]
 
+  const deliveryOptionsData = [
+    {type: 'radio', name: 'delivery_options', label:'delivery-and-setup', value: 'delivery-and-setup', title: 'Delivery & Setup', details: `Package is delivered inside the house and set up by our Professional Crew without mistake and hassle`},
+    {type: 'radio', name: 'delivery_options', label: 'delivery-without-setup', value: 'delivery-without-setup', title: 'Delivery & No Setup', details: `Package is delivered on your front door but setup is not included`},
+    {type: 'radio', name: 'delivery_options', label: 'local-delivery', value: 'local-delivery', title: 'Local Delivery', details: `Come to your designated Furniture Mecca franchise and get your furniture packed and ready for you`},
+  ]
+
   const { cart } = useCart();
   const subTotalOfAllProducts = cart.map(item => item.product.sub_total);
   // console.log("sub total of products", subTotalOfAllProducts)
@@ -229,6 +235,21 @@ const Cart = () => {
                 <p className='order-summary-proffesional-check-item-detail'>{item.detail}</p>
               </div>
             ))}
+
+            <div className='cart-order-summary-delivery-options-main-container'>
+              <h3 className='delivery-options-main-heading'>Delivery Options</h3>
+              <div className='cart-order-summary-delivery-options-inner-div'>
+                {deliveryOptionsData.map((item, index) => (
+                  <div key={index} className='cart-order-summary-delivery-type'>
+                    <input type={item.type} id={item.label} name={item.name} value={item.value} />
+                    <label htmlFor={item.label} className='cart-option-deliver-type-details'>
+                      <h3 className='cart-option-deliver-type-details-heading'>{item.title}</h3>
+                      <p className='cart-option-deliver-type-details-details'>{item.details}</p>
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
 
             <div className='cart-order-summary-price-details'>
               {filteredOrderPriceDetails.map((price, index) => (

@@ -339,7 +339,7 @@ const SingleProductStickySection = ({ productData }) => {
         <div className='left-section'>
           <div className='single-product-alice-slider'>
             <p className='single-product-slider-main-image-stock-tag' >In Stock</p>
-            {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{ backgroundColor: product.tags[0].bg_color }}> {product.tags[0].text}</p>}
+            {product.tags && <p className='single-product-slider-main-image-sale-tag' style={{ backgroundColor: product?.tags?.[0]?.bg_color }}> {product?.tags?.[0]?.text}</p>}
             <button className='single-product-arrow single-product-arrow-left' onClick={handlePrevSlide} >
               <img src={arrowLeft} alt='left' />
             </button>

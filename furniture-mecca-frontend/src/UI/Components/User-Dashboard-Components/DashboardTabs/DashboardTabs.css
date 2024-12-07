@@ -39,3 +39,29 @@
     margin-top: -2px;
     padding-bottom: 2px;
 }
+
+@media only screen and (max-width: 480px){
+    .user-dashboard-main-page{
+        padding: 32px 10px;
+        gap: 15px;
+    }
+    .dashboard-tabs-toggle-nav{
+        gap: 15px;
+        padding: 5px 0;
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+    .dashboard-tabs-toggle-nav::-webkit-scrollbar{
+        display: none;
+    }
+    .dash-single-tab-title{
+        font-size: 12px;
+        line-height: 25px;
+        font-weight: 500;
+    }
+    .active-dash-tab{
+        font-size: 12px;
+        line-height: 25px;
+        font-weight: 500;
+    }
+}

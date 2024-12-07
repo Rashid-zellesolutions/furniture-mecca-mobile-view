@@ -122,3 +122,22 @@
     border-radius: 25px;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 480px){
+    .billing-and-shipping-addresses{
+        flex-direction: column;
+    }
+    .title-and-edit-icon{
+        margin-bottom: 0;
+    }
+    .edit-billing-address{
+        width: 100%;
+    }
+    .billing-address-details{
+        width: 100%;
+    }
+    .user-billing-address{
+        flex-direction: column;
+        width: 100%;
+    }
+}

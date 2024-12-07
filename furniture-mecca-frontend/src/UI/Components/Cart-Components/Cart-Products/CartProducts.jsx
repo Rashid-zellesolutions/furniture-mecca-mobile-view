@@ -88,6 +88,10 @@ const CartProducts = () => {
         console.log("Cart before adding to order:", cart);
         navigate(`/cart-page/check-out`);
     }
+    const [cartProtectionId, setCartProtectionId] = useState(null);
+    const handleProtectionDetails = (id) => {
+        setCartProtectionId((prevId) => prevId === id ? null : id);
+    }
 
    
     
@@ -130,6 +134,9 @@ const CartProducts = () => {
                             productSubTotal={items.product.sub_total}
                             handleIncreament={() => increamentQuantity(items.product.uid)}
                             handleDecreament={() => decreamentQuantity(items.product.uid)}
+                            handleProtectionDetails={() => handleProtectionDetails(items.product.uid)}
+                            cartProtectionId={cartProtectionId}
+                            setCartProtectionId={setCartProtectionId}
                         />
                     })}
                 </div>
